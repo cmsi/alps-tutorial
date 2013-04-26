@@ -1,0 +1,10 @@
+% bxdpx-beamer.sty from https://gist.github.com/zr-tex8r
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bxdpx-beamer.sty}[2013/02/18 v0.1]
+\def\bxqbd@tempa{pgfsys-dvipdfmx.def}
+\ifx\pgfsysdriver\bxqbd@tempa
+  \font\bxqbd@font=ec-lmr10 at 16.2582pt  % 10*7/4.3055
+  \chardef\bxqbd@cwm=23
+  \def\beamer@linkspace#1{%
+    \lower1.5pt\hbox{\bxqbd@font\bxqbd@cwm\kern#1\bxqbd@cwm}}
+\fi
