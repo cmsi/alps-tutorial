@@ -1,4 +1,4 @@
-BASENAME = Tutorial
+BASENAME = tutorial
 SRC = ${BASENAME}.tex ../style/*.sty ../style/*.bb
 
 default: ${BASENAME}-wide.pdf ${BASENAME}-normal.pdf
