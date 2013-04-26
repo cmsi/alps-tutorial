@@ -1,0 +1,397 @@
+\title{ALPSチュートリアル -- アプリケーションのALPS化}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% \begin{frame}
+%   \begin{columns}[t]
+%     \begin{column}{.3\textwidth}
+%     \end{column}
+%     \begin{column}{.7\textwidth}
+%       \tableofcontents
+%     \end{column}
+%   \end{columns}
+% \end{frame}
+
+\begin{frame}
+  \frametitle{ALPSize 全体の流れ}
+  \begin{itemize}
+  \item 01-04 C++でのプログラミング
+  \item 05-07 ALPSライブラリ単体の利用
+  \item \alert{08 ALPSスケジューラ}
+  \end{itemize}
+  \begin{block}{}
+    ALPSスケジューラで単純な並列化と中断・再開
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{CMake}
+  \begin{itemize}
+  \item クロスプラットフォームなビルドツール\\
+    Windowsにも対応
+  \item Makefileを生成
+  \item 高速な並列ビルド
+  \item 簡単なテスト
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{alpsizeの準備}
+\begin{semiverbatim}
+\$ mkdir -p alpsize/XX
+\$ cd alpsize/XX
+\end{semiverbatim}
+  \begin{block}{}
+    ソースディレクトリとビルド・テストディレクトリは分けましょう
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{00 CMake化 (1)}
+  簡単なプログラムをCMakeを利用してビルドする
+\begin{semiverbatim}
+\$ cmake /opt/nano/alps/alpsize/00_cmake/
+\$ make
+\$ ctest
+\$ ./hello
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile,shrink=10]
+  \frametitle{00 CMake化 (2)}
+\begin{semiverbatim}
+\$ cat /opt/nano/alps/alpsize/00_CMake/CMakeLists.txt
+\alert<1>{cmake_minimum_required(VERSION 2.8 FATAL_ERROR)}
+\alert<1>{project(hello NONE)}
+
+# find ALPS Library
+\alert<1>{find_package(ALPS REQUIRED PATHS ${ALPS_ROOT_DIR} $ENV{ALPS_HOME} NO_SYSTEM_ENVIRONMENT_PATH)}
+\alert<1>{message(STATUS "Found ALPS: ${ALPS_ROOT_DIR} (revision: ${ALPS_VERSION})")}
+\alert<1>{include(${ALPS_USE_FILE})}
+
+# enable C and C++ compilers
+\alert<2>{enable_language(CXX)}
+
+# rule for generating 'hello world' program
+\alert<3>{add_executable(hello hello.C)}
+\alert<4>{add_alps_test(hello)}
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{00 CMake化 (3)}
+add\_alps\_testは以下と同等
+\begin{semiverbatim}
+\$ ./hello /opt/nano/alps/alpsize/00_CMake/hello.ip > hello.tmp
+\$ diff -u hello.tmp /opt/nano/alps/alpsize/00_CMake/hello.op
+\$ rm hello.tmp
+\end{semiverbatim}
+実行バイナリを期待される出力と比較するテスト
+\begin{semiverbatim}
+\$ cat /opt/nano/alps/alpsize/00_CMake/hello.op
+hello, world
+\end{semiverbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{01 Cプログラム}
+  Wolffアルゴリズムのプログラム
+\begin{semiverbatim}
+\$ cmake /opt/nano/alps/alpsize/01_original-c/
+\$ make
+\$ ctest
+\$ ./wolff
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{02 C++プログラム}
+  WolffアルゴリズムをC++で
+\begin{semiverbatim}
+\$ cmake /opt/nano/alps/alpsize/02_basic-cpp/
+\$ make
+\$ ctest
+\$ ./wolff
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{03 STLの利用}
+  STLを利用する
+\begin{semiverbatim}
+\$ cmake /opt/nano/alps/alpsize/03_stl/
+\$ make
+\$ ctest
+\$ ./wolff
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{04 Boostの利用 (1)}
+  Boostライブラリを利用する
+\begin{semiverbatim}
+\$ cmake /opt/nano/alps/alpsize/04_boost/
+\$ make
+\$ ctest
+\$ ./wolff
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile,shrink=10]
+  \frametitle{04 Boostの利用 (2)}
+\begin{semiverbatim}
+...
+#include <boost/random.hpp>
+...
+// random number generator
+boost::mt19937 eng(SEED);
+boost::variate_generator<boost::mt19937&, boost::uniform_real<> >
+random_01(eng, boost::uniform_real<>());
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{05 ALPS Parameters}
+  ALPS Parameterを利用する
+\begin{semiverbatim}
+\$ cmake /opt/nano/alps/alpsize/05_parameters/
+\$ make
+\$ ctest
+\$ ./wolff
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Parameterライブラリ}
+  プログラムに与えるパラメータを解釈するライブラリ
+  \begin{columns}
+    \begin{column}{6cm}
+\begin{semiverbatim}
+LATTICE = "chain lattice";
+L = 16,
+
+SEED = 2873
+// C++ style comment
+SWEEPS = 4096;
+THERMALIZATION = \alert<1>{SWEEPS/8};
+/* C style comment */
+\{ T = 2; Sq = 2*\alert<2>{PI}/3; \}
+\{ T = 1.8; \}
+\end{semiverbatim}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item 四則演算可能
+      \item $\pi$ を文字で指定
+      \item 空行も正しく認識
+      \item C風, C++風のコメント
+      \item \{ \} で囲んだ変数は異なるセット
+      \item 空白を適切に認識
+      \item 改行, セミコロン, コンマで変数を区別
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile,shrink=5] \frametitle{Parameter ライブラリの利用法}
+\begin{semiverbatim}
+#include <boost/foreach.hpp>
+#include <alps/parameter.h>
+...
+int main(int argc, char** argv) \{
+...
+  alps::ParameterList plist = read_param(argc, argv);
+  BOOST_FOREACH(alps::Parameters& p, plist) \{
+    \alert<1>{double a = p["a"];}
+    \alert<2>{double b = p.value_or_default("b", 0.5);}
+...
+  \}
+...
+\}
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{06 ALPS Alea}
+  ALPS Aleaを利用する
+\begin{semiverbatim}
+\$ cmake /opt/nano/alps/alpsize/06_alea/
+\$ make
+\$ ctest
+\$ ./wolff
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile,shrink=10] \frametitle{Alea ライブラリの利用法}
+  マルコフ連鎖における平均値, 分散, 自己相関を計算するライブラリ
+\begin{semiverbatim}
+#include <alps/alea.h>
+...
+alps::ObservableSet obs;
+...
+obs << alps::RealObservable("Energy");
+...
+for (int i = 0; i != N; ++i) \{
+  double e = energy(); // calclulate something
+  obs.reset(i == THERM); // when thermalized
+  obs["Energy"] << e;
+\}
+...
+std::cout << obs["Energy"];
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile,shrink=10] \frametitle{Tips: 出力を制御する}
+\begin{semiverbatim}
+// Gnuplot 風出力
+std::cout << 1./param["beta"] << " "
+          << obs["Energy"].mean() << " "
+          << obs["Energy"].variance() << std::endl;
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{07 ALPS Lattice}
+  ALPS Latticeを利用する
+\begin{semiverbatim}
+\$ cmake /opt/nano/alps/alpsize/07_lattice/
+\$ make
+\$ ctest
+\$ ./wolff
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Lattice ライブラリの利用法}
+\begin{semiverbatim}
+#include <alps/lattice.h>
+...
+class ising : public alps::graph_helper<> \{
+ public:
+  ising(alps::Parameters const& p)
+   : \alert{graph_helper<>(p)} \{\}
+...
+\};
+\end{semiverbatim}
+
+\end{frame}
+
+\begin{frame}[fragile,shrink=30] \frametitle{Lattice の定義}
+\begin{semiverbatim}
+<LATTICE name="square lattice" dimension="2">
+  <PARAMETER name="a" default="1"/>
+  <BASIS><VECTOR>a 0</VECTOR><VECTOR>0 a</VECTOR></BASIS>
+  <RECIPROCALBASIS><VECTOR>2*pi/a 0</VECTOR><VECTOR>0 2*pi/a</VECTOR></RECIPROCALBASIS>
+</LATTICE>
+<UNITCELL name="simple2d" dimension="2">
+  <VERTEX/>
+  <EDGE><SOURCE vertex="1" offset="0 0"/><TARGET vertex="1" offset="0 1"/></EDGE>
+  <EDGE><SOURCE vertex="1" offset="0 0"/><TARGET vertex="1" offset="1 0"/></EDGE>
+</UNITCELL>
+<LATTICEGRAPH name = "square lattice">
+  <FINITELATTICE>
+    <LATTICE ref="square lattice"/>
+    <PARAMETER name="W" default="L"/>
+    <EXTENT dimension="1" size="L"/>
+    <EXTENT dimension="2" size="W"/>
+    <BOUNDARY type="periodic"/>
+  </FINITELATTICE>
+  <UNITCELL ref="simple2d"/>
+</LATTICEGRAPH>
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile,shrink=10] \frametitle{Lattice ライブラリの便利な関数}
+\begin{semiverbatim}
+std::vector<double> d(\alert{num_sites()});
+std::vector<double> J(\alert{num_bonds()});
+...
+double energy = 0.;
+BOOST\_FOREACH(site_descriptor s, \alert{sites()}) \{
+  BOOST\_FOREACH(bond_descriptor b, \alert{neighbor_bonds(s)}) \{
+    energy += J[b] * d[\alert{source(b)}] * d[\alert{target(b)}];
+  \}
+\}
+...
+boost::mt19937 rng;
+boost::uniform_int<> dst(0, \alert{num_bonds()}-1);
+J[\alert{bond(dst(rng))}] = 0;
+Jtemp = param["J" + \alert{bond_type(b)}];
+\end{semiverbatim}
+  \begin{itemize}
+  \item sites(), bonds() は BOOST\_FOREACH と組み合わせる
+  \item index(s) や index(b) で数字に変換
+  \item bond(n) や site(n) で *\_descriptor に変換
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{08 ALPS Scheduler (1)}
+  ALPS Schedulerを利用する
+\begin{semiverbatim}
+\$ cmake /opt/nano/alps/alpsize/08_scheduler/
+\$ make
+\$ ctest
+\$ ./hello
+\$ ./wolff
+\end{semiverbatim}
+\end{frame}
+\begin{frame}[fragile,shrink=10]
+  \frametitle{08 ALPS Scheduler (2)}
+\begin{semiverbatim}
+class wolff_worker : public alps::parapack::lattice_mc_worker<> \{
+private:
+  typedef alps::parapack::lattice_mc_worker<> super_type;
+
+public:
+  wolff_worker(alps::Parameters const& params) : super_type(params);
+  virtual ~wolff_worker();
+
+  void init_observables(alps::Parameters const&, alps::ObservableSet& obs);
+  bool is_thermalized() const;
+  double progress() const;
+
+  \alert{void run(alps::ObservableSet& obs);}
+  void save(alps::ODump& dp) const;
+  void load(alps::IDump& dp);
+\};
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{08 ALPS Scheduler (3)}
+\begin{semiverbatim}
+class wolff_evaluator : public alps::parapack::simple_evaluator \{
+public:
+  wolff_evaluator(alps::Parameters const&);
+  void evaluate(alps::ObservableSet& obs) const;
+\};
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{08 ALPS Scheduler (4)}
+\begin{semiverbatim}
+#include <alps/parapack/parapack.h>
+
+int main(int argc, char** argv) \{
+  return alps::parapack::start(argc, argv);
+\}
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{ALPS Fortran}
+  ALPS SchedulerをFortranプログラムに
+\end{frame}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: japanese-latex
+%%% TeX-master: nil
+%%% coding: utf-8
+%%% End: 
