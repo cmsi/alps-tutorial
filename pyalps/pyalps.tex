@@ -1,85 +1,94 @@
-\lstset{language={Python},
- backgroundcolor=\color{lime}}
+\lstset{language={Python}}
 
 \title{ALPSチュートリアル: Introduction to ALPS Python}
 
 \begin{document}
 
 \begin{frame}
-  \titlepage
+ \titlepage
 \end{frame}
 
 \section*{Outline}
 \begin{frame}
-  \tableofcontents
+ \tableofcontents
 \end{frame}
 
 \section{ALPS python}
 \begin{frame}[t,fragile]
-\frametitle{Launching Python}
-phi 上では
+ \frametitle{Launching Python}
+
+ \alert{ALPS を Python のモジュールとして利用することができます．}
+
+ その準備として ALPS Python へ PATH を通す必要があります．
+
+ phi 上で ALPS Python へ PATH を通すには次のコマンドを実行してください．
+
 \begin{lstlisting}
-bash> source /opt/local/pythonvars-2.7.sh
 bash> source /opt/nano/alps/alpsvars-20121208-r6630.sh
 \end{lstlisting}
-通常のインストールでは
+
+
+ 自分で ALPS をインストールした場合，まず ALPS へ PATH を通してください．
+ そこに alpspython というコマンドがインストールされているので，それを実行
+ することで ALPS Python へ PATH が通せます．
+
 \begin{lstlisting}
 bash> alpspython
 \end{lstlisting}
-alps python へのインストール先へパスを通すコマンドです．
+
 \end{frame}
 
 \section{Preparing the simulation}
 \begin{frame}[t,fragile]
-\frametitle{Importing the ALPS modules}
+ \frametitle{Importing the ALPS modules}
+
+ ALPS Python を Python のインタープリタから利用してみましょう．
+
 \begin{lstlisting}
 >>> import pyalps
->>> import matplotlib.pyplot as plt
->>> import pyalps.plot
 \end{lstlisting}
 
-\begin{itemize}
-\item pyalps は必ず必要です
-\item matplotlib.pyplot は図をプロットするのに必要です
-\item pyalps.plot は図をプロットするときやデータの変化を行うのに必要です
-\end{itemize}
+ なにもエラーが出なければこれで準備終了です．
+
 \end{frame}
 
 
 \begin{frame}[t,fragile]
 \frametitle{Preparing the input}
+
+1 回のシミュレーションに必要なパラメータセットを辞書型で与えます．
+
+
+この例では 温度 T を 1.5, 2, 2.5 と変化させて 3 回のシミュレーションを行うためのパラメータセットを準備しています．parms は要素として 3 個の辞書型の要素を持つリストになります．
+
 \begin{lstlisting}
 >>> parms = []
 >>> for t in [1.5,2,2.5]:
->>>    parms.append(
->>>        { 
->>>          'LATTICE'        : "square lattice", 
->>>          'T'              : t,
->>>          'J'              : 1 ,
->>>          'THERMALIZATION' : 1000,
->>>          'SWEEPS'         : 100000,
->>>          'UPDATE'         : "cluster",
->>>          'MODEL'          : "Ising",
->>>          'L'              : 8
->>>        }
->>>    )
+...    parms.append({'LATTICE': "square lattice", 
+...    'T': t,  'J': 1 ,
+...    'THERMALIZATION': 1000, 'SWEEPS': 100000,
+...    'UPDATE': "cluster", 'MODEL': "Ising",
+...    'L': 8})
+>>>
 \end{lstlisting}
+
 \end{frame}
 
-\begin{frame}[t,fragile]
-\frametitle{Preparing the input}
-\begin{lstlisting}
->>> from parms import *
->>> print parms
-[{'LATTICE': 'square lattice', 'T': ...
-\end{lstlisting}
-\begin{itemize}
-\item Wiki ではインタープリタ上でパラメータを入力していますが，ここでは import を使ってファイルから読み込みました．
-\item カレントディレクトリに parms.py というファイル名で先ほどの内容のスクリプトを作成して置きます．これを import します.
-\item phi 上では LATTICE\_LIBRARY, MODEL\_LIBRARY の指定が必要です
-\item 辞書型を要素に持つリストが定義されています
-\end{itemize}
-\end{frame}
+% ここはいらない?
+% \begin{frame}[t,fragile]
+% \frametitle{Preparing the input}
+% \begin{lstlisting}
+% >>> from parms import *
+% >>> print parms
+% [{'LATTICE': 'square lattice', 'T': ...
+% \end{lstlisting}
+% \begin{itemize}
+% \item Wiki ではインタープリタ上でパラメータを入力していますが，ここでは import を使ってファイルから読み込みました．
+% \item カレントディレクトリに parms.py というファイル名で先ほどの内容のスクリプトを作成して置きます．これを import します.
+% \item phi 上では LATTICE\_LIBRARY, MODEL\_LIBRARY の指定が必要です
+% \item 辞書型を要素に持つリストが定義されています
+% \end{itemize}
+% \end{frame}
 
 \begin{frame}[t,fragile]
 \frametitle{Preparing the input}
