@@ -42,14 +42,28 @@ bash> alpspython
 \begin{frame}[t,fragile]
  \frametitle{Importing the ALPS modules}
 
- ALPS Python を Python のインタープリタから利用してみましょう．
-
-\begin{lstlisting}
+\begin{itemize}
+ \item ALPS Python を Python のインタープリタから利用してみましょう．
+       できれば iPython を使ってください．
+       
+       \begin{lstlisting}
+$ ipython
 >>> import pyalps
-\end{lstlisting}
+       \end{lstlisting}
+       なにもエラーが出なければこれで準備終了です．
 
- なにもエラーが出なければこれで準備終了です．
 
+ \item Tab 補完で pyalps のモジュールや関数などが列挙できます．
+
+       \begin{lstlisting}
+>>> al.[ここで Tab]
+Display all 102 possibilities? (y or n)
+al.CycleColors   
+al.CycleMarkers  
+...            
+       \end{lstlisting}
+\end{itemize}
+ 
 \end{frame}
 
 
