@@ -68,12 +68,12 @@ al.CycleMarkers
 
 
 \begin{frame}[t,fragile]
-\frametitle{Preparing the input}
+\frametitle{Preparing parameter}
 
 1 回のシミュレーションに必要なパラメータセットを辞書型で与えます．
 
 
-この例では 温度 T を 1.5, 2, 2.5 と変化させて 3 回のシミュレーションを行うためのパラメータセットを準備しています．parms は要素として 3 個の辞書型の要素を持つリストになります．
+温度 $T = 1.5, 2, 2.5$ と変化させ 3 回のシミュレーションを行う例
 
 \begin{lstlisting}
 >>> parms = []
@@ -85,6 +85,8 @@ al.CycleMarkers
 ...    'L': 8})
 >>>
 \end{lstlisting}
+
+辞書型の要素を 3 つ持つリスト params ができます
 
 \end{frame}
 
@@ -105,24 +107,20 @@ al.CycleMarkers
 % \end{frame}
 
 \begin{frame}[t,fragile]
-\frametitle{Preparing the input}
-先程作ったパラメータファイルを XML 形式のインプットファイルに変換します
+\frametitle{Preparing input XML files}
+パラメータから XML 形式の入力ファイルを作成します．
 \begin{lstlisting}
+>>> mkdir sim         # シミュレーション用のディレクトリを作成し
+>>> cd sim            # そこへ移動する
 >>> input_file = pyalps.writeInputFiles('parm1',parms)
->>> print input_file  # 入力ファイル名が返されいる
+>>> print input_file  # 入力ファイル名が返されている
 parm1.in.xml
->>> (ctrl-z)
-[1]+ 停止 python2.7
-[halm@phi ~]# ls
+>>> ls                # 作成されたファイルを確かめる．
 ALPS.xsl parm1.in.xml parm1.task1.in.xml parm1.task2.in.xml parm1.task3.in.xml
-
 \end{lstlisting}
 \begin{itemize}
-\item python を一時停止してカレントディレクトリを確認すると入力ファイルがいくつかできています．
-  \begin{itemize}
-  \item parm1.in.xml はシミュレーション全体の入力ファイルです
-  \item parm1.task\# .in.xml は各タスク毎の入力ファイルです
-  \end{itemize}
+ \item parm1.in.xml はシミュレーション全体の入力ファイルです
+ \item parm1.task\# .in.xml は各タスク毎の入力ファイルです
 \end{itemize}
 
 \end{frame}
