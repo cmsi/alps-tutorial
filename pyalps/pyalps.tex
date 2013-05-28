@@ -47,20 +47,20 @@ bash> alpspython
        できれば iPython を使ってください．
        
        \begin{lstlisting}
-$ ipython
->>> import pyalps
+	$ ipython
+	>>> import pyalps
        \end{lstlisting}
        なにもエラーが出なければこれで準備終了です．
 
 
- \item Tab 補完で pyalps のモジュールや関数などが列挙できます．
+ \item iPython の場合 Tab 補完で pyalps のモジュールや関数などが列挙できます．
 
        \begin{lstlisting}
->>> al.[ここで Tab]
-Display all 102 possibilities? (y or n)
-al.CycleColors   
-al.CycleMarkers  
-...            
+	>>> al.[ここで Tab]
+	Display all 102 possibilities? (y or n)
+	al.CycleColors   
+	al.CycleMarkers  
+	...            
        \end{lstlisting}
 \end{itemize}
  
@@ -87,24 +87,8 @@ al.CycleMarkers
 \end{lstlisting}
 
 辞書型の要素を 3 つ持つリスト params ができます
-
+% [ {'LATTICE': "square lattice", 'T': t,  'J': 1 ,'THERMALIZATION': 1000, 'SWEEPS': 100000,'UPDATE': "cluster", 'MODEL': "Ising", 'L': 8} for t in [1.5,2,2.5]]
 \end{frame}
-
-% ここはいらない?
-% \begin{frame}[t,fragile]
-% \frametitle{Preparing the input}
-% \begin{lstlisting}
-% >>> from parms import *
-% >>> print parms
-% [{'LATTICE': 'square lattice', 'T': ...
-% \end{lstlisting}
-% \begin{itemize}
-% \item Wiki ではインタープリタ上でパラメータを入力していますが，ここでは import を使ってファイルから読み込みました．
-% \item カレントディレクトリに parms.py というファイル名で先ほどの内容のスクリプトを作成して置きます．これを import します.
-% \item phi 上では LATTICE\_LIBRARY, MODEL\_LIBRARY の指定が必要です
-% \item 辞書型を要素に持つリストが定義されています
-% \end{itemize}
-% \end{frame}
 
 \begin{frame}[t,fragile]
 \frametitle{Preparing input XML files}
@@ -157,16 +141,16 @@ Finished with everything.
 
 \section{Loading the simulation results}
 \begin{frame}[t,fragile]
-\frametitle{Getting the result files}
-\begin{lstlisting}
->>> result_files = pyalps.getResultFiles(prefix='parm1')
->>> print result_files
-['./parm1.task2.out.xml', './parm1.task3.out.xml', './parm1.task1.out.xml']
-\end{lstlisting}
-\begin{itemize}
-\item カレントディレクトリ内からプレフィックスが 'parm1' のファイルを正規表現によるパターンマッチで探してファイル名を出力します．
-\end{itemize}
-
+ \frametitle{Getting the result files}
+ \begin{lstlisting}
+  >>> result_files = pyalps.getResultFiles(prefix='parm1')
+  >>> print result_files
+  ['./parm1.task2.out.xml', './parm1.task3.out.xml', './parm1.task1.out.xml']
+ \end{lstlisting}
+ \begin{itemize}
+  \item カレントディレクトリ内からプレフィックスが 'parm1' のファイルを正規表現によるパターンマッチで探してファイル名を出力します．
+  \item result\_files はファイル名のリスト．
+ \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]
