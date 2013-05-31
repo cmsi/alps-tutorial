@@ -42,24 +42,38 @@ bash> alpspython
 \begin{frame}[t,fragile]
  \frametitle{Importing the ALPS modules}
 
- ALPS Python を Python のインタープリタから利用してみましょう．
+\begin{itemize}
+ \item ALPS Python を Python のインタープリタから利用してみましょう．
+       できれば iPython を使ってください．
+       
+       \begin{lstlisting}
+	$ ipython
+	>>> import pyalps
+       \end{lstlisting}
+       なにもエラーが出なければこれで準備終了です．
 
-\begin{lstlisting}
->>> import pyalps
-\end{lstlisting}
 
- なにもエラーが出なければこれで準備終了です．
+ \item iPython の場合 Tab 補完で pyalps のモジュールや関数などが列挙できます．
 
+       \begin{lstlisting}
+	>>> al.[ここで Tab]
+	Display all 102 possibilities? (y or n)
+	al.CycleColors   
+	al.CycleMarkers  
+	...            
+       \end{lstlisting}
+\end{itemize}
+ 
 \end{frame}
 
 
 \begin{frame}[t,fragile]
-\frametitle{Preparing the input}
+\frametitle{Preparing parameter}
 
 1 回のシミュレーションに必要なパラメータセットを辞書型で与えます．
 
 
-この例では 温度 T を 1.5, 2, 2.5 と変化させて 3 回のシミュレーションを行うためのパラメータセットを準備しています．parms は要素として 3 個の辞書型の要素を持つリストになります．
+温度 $T = 1.5, 2, 2.5$ と変化させ 3 回のシミュレーションを行う例
 
 \begin{lstlisting}
 >>> parms = []
@@ -72,43 +86,25 @@ bash> alpspython
 >>>
 \end{lstlisting}
 
+辞書型の要素を 3 つ持つリスト params ができます
+% [ {'LATTICE': "square lattice", 'T': t,  'J': 1 ,'THERMALIZATION': 1000, 'SWEEPS': 100000,'UPDATE': "cluster", 'MODEL': "Ising", 'L': 8} for t in [1.5,2,2.5]]
 \end{frame}
 
-% ここはいらない?
-% \begin{frame}[t,fragile]
-% \frametitle{Preparing the input}
-% \begin{lstlisting}
-% >>> from parms import *
-% >>> print parms
-% [{'LATTICE': 'square lattice', 'T': ...
-% \end{lstlisting}
-% \begin{itemize}
-% \item Wiki ではインタープリタ上でパラメータを入力していますが，ここでは import を使ってファイルから読み込みました．
-% \item カレントディレクトリに parms.py というファイル名で先ほどの内容のスクリプトを作成して置きます．これを import します.
-% \item phi 上では LATTICE\_LIBRARY, MODEL\_LIBRARY の指定が必要です
-% \item 辞書型を要素に持つリストが定義されています
-% \end{itemize}
-% \end{frame}
-
 \begin{frame}[t,fragile]
-\frametitle{Preparing the input}
-先程作ったパラメータファイルを XML 形式のインプットファイルに変換します
+\frametitle{Preparing input XML files}
+パラメータから XML 形式の入力ファイルを作成します．
 \begin{lstlisting}
+>>> mkdir sim         # シミュレーション用のディレクトリを作成し
+>>> cd sim            # そこへ移動する
 >>> input_file = pyalps.writeInputFiles('parm1',parms)
->>> print input_file  # 入力ファイル名が返されいる
+>>> print input_file  # 入力ファイル名が返されている
 parm1.in.xml
->>> (ctrl-z)
-[1]+ 停止 python2.7
-[halm@phi ~]# ls
+>>> ls                # 作成されたファイルを確かめる．
 ALPS.xsl parm1.in.xml parm1.task1.in.xml parm1.task2.in.xml parm1.task3.in.xml
-
 \end{lstlisting}
 \begin{itemize}
-\item python を一時停止してカレントディレクトリを確認すると入力ファイルがいくつかできています．
-  \begin{itemize}
-  \item parm1.in.xml はシミュレーション全体の入力ファイルです
-  \item parm1.task\# .in.xml は各タスク毎の入力ファイルです
-  \end{itemize}
+ \item parm1.in.xml はシミュレーション全体の入力ファイルです
+ \item parm1.task\# .in.xml は各タスク毎の入力ファイルです
 \end{itemize}
 
 \end{frame}
@@ -145,16 +141,16 @@ Finished with everything.
 
 \section{Loading the simulation results}
 \begin{frame}[t,fragile]
-\frametitle{Getting the result files}
-\begin{lstlisting}
->>> result_files = pyalps.getResultFiles(prefix='parm1')
->>> print result_files
-['./parm1.task2.out.xml', './parm1.task3.out.xml', './parm1.task1.out.xml']
-\end{lstlisting}
-\begin{itemize}
-\item カレントディレクトリ内からプレフィックスが 'parm1' のファイルを正規表現によるパターンマッチで探してファイル名を出力します．
-\end{itemize}
-
+ \frametitle{Getting the result files}
+ \begin{lstlisting}
+  >>> result_files = pyalps.getResultFiles(prefix='parm1')
+  >>> print result_files
+  ['./parm1.task2.out.xml', './parm1.task3.out.xml', './parm1.task1.out.xml']
+ \end{lstlisting}
+ \begin{itemize}
+  \item カレントディレクトリ内からプレフィックスが 'parm1' のファイルを正規表現によるパターンマッチで探してファイル名を出力します．
+  \item result\_files はファイル名のリスト．
+ \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]
