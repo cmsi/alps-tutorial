@@ -6,15 +6,147 @@
   \titlepage
 \end{frame}
 
-% \begin{frame}
-%   \begin{columns}[t]
-%     \begin{column}{.3\textwidth}
-%     \end{column}
-%     \begin{column}{.7\textwidth}
-%       \tableofcontents
-%     \end{column}
-%   \end{columns}
-% \end{frame}
+\begin{frame}
+   \tableofcontents
+\end{frame}
+
+\section{XML入門}
+
+\begin{frame}{ALPSによるシミュレーション --- ワークフロー}
+  \begin{center}
+    \includegraphics[height=0.8\textheight]{workflow.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}{XMLの基礎}
+  \begin{itemize}
+  \item XML = e{\color{red} X}tensible {\color{red} M}arckup {\color{red} L}anduage
+  \item 構造化文書を作成するのに適している
+  \item 「タグ」を使って、文章の構造を記述
+  \item 大文字と小文字は区別される
+  \item XMLの例: HTML (XHTML)
+  \begin{center}
+    \includegraphics[height=0.3\textheight]{xml1.pdf}
+  \end{center}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{XMLの文法}
+  \begin{itemize}
+  \item 「開始タグ」には対応する「終了タグ」が必要
+  \item ある要素の「開始タグ」と終了タグは共通の親ノードに含まれなければならない
+  \item XMLの「木」表示
+  \begin{center}
+    \includegraphics[width=\textwidth]{xml2.pdf}
+  \end{center}
+  \item XMLでは、ユーザが独自のタグ(要素の名前)を定義することが可能 \\
+    (参考: Document Type Definition (DTD), XML Schema)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{なぜXMLを使うのか?}
+  \begin{center}
+    \includegraphics[width=.8\textwidth]{xml3.pdf}
+  \end{center}
+  \begin{itemize}
+  \item 人間にはどちらが読みやすい?
+  \item 機械にはどちらがよみやすい?
+  \item 数年後に読んで理解できるのはどっち?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{データ形式の拡張性}
+  \begin{itemize}
+  \item 新しいパラメータを追加すると、、、
+  \begin{center}
+    \includegraphics[width=.8\textwidth]{xml4.pdf}
+  \end{center}
+  \item テキスト形式の場合、これまでのプログラムは動かなくなる
+  \item XMLの場合には問題ない (必要のないパラメータは読まれない)
+  \end{itemize}
+\end{frame}
+
+\section{ALPSシミュレーションの流れ}
+
+\begin{frame}{シミュレーションの入出力}
+  \begin{itemize}
+  \item 典型的には、一つのシミュレーションは複数のパラメータセットからなる \\ (異なる温度など)
+    \begin{itemize}
+    \item 「ジョブ(job)」: シミュレーション全体、「タスク」の集合
+    \item 「タスク(task)」(または「simulation」):– 一つのパラメータセットに対する計算、「ラン」の集合
+    \item 「ラン(run)」(または「clone」): 異なる乱数の種に対する個々の計算
+    \end{itemize}
+  \item XML入力ファイルと出力ファイル
+  \begin{center}
+    \includegraphics[width=.55\textwidth]{simulation1.pdf}
+  \end{center}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Job XML ファイル}
+  \begin{center}
+    \includegraphics[height=.6\textheight]{simulation2.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Task XML ファイル}
+  \begin{center}
+    \includegraphics[height=.6\textheight]{simulation3.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}{parameter2xml ツール}
+  \begin{itemize}
+  \item パラメータセットを簡易形式で書いて、parameter2xmlツールでXMLに変換する
+  \begin{center}
+    \includegraphics[height=.6\textheight]{simulation4.pdf}
+  \end{center}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{格子とモデルの指定}
+  \begin{itemize}
+  \item 格子とモデルを指定するための特別なパラメータ
+  \begin{center}
+    \includegraphics[height=4cm]{simulation5.pdf}
+  \end{center}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{パラメータファイルでの数式の使用}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      \begin{itemize}
+      \item パラメータの入出力のためのライブラリ
+        %\begin{itemize}
+        \item 改行, セミコロン, コンマで変数を区別
+        \item 四則演算、初等関数(sin, cos, expなど)が使える
+        \item $\pi$ (PI), 虚数単位(I)などを文字で指定
+        \item C 風, C++風のコメント
+        \item \{ \} で囲んだ変数は異なるセット
+        \item 「循環参照」がある場合にはエラーになる
+        %\end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{.5\textwidth}
+    \lstset{language={C++}}
+    \begin{lstlisting}
+LATTICE = "chain lattice";
+L = 16,
+SEED = 2873
+// C++ style comment
+SWEEPS = 4096;
+THERMALIZATION = SWEEPS/8;
+/* C style comment */
+{ T = 2; Sq = 2*PI/3; }
+{ T = 1.8; }
+    \end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{ALPSチュートリアル}
 
 \begin{frame}[fragile,shrink=10]
   \frametitle{準備}
