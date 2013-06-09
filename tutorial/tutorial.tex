@@ -1,3 +1,4 @@
+
 \title{ALPSアプリケーション実行チュートリアル}
 
 \begin{document}
@@ -148,6 +149,22 @@ THERMALIZATION = SWEEPS/8;
 
 \section{ALPSチュートリアル}
 
+\begin{frame}
+  \frametitle{ディレクトリ構成}
+  \begin{tabular}{ll}
+    /opt/nano/alps/alpsvars.sh & \\
+    \hspace*{3em} ALPS環境変数(\$ALPS\_HOME等)設定スクリプト \\
+    \$ALPS\_HOME/tutorials & \\
+    \hspace*{3em} アプリケーションのチュートリアル \\
+    \$ALPS\_HOME/tutorials/alpsize-* & \\
+    \hspace*{3em} ALPS化のチュートリアル (20130501-r5861以降)
+  \end{tabular}
+  \begin{alertblock}{}
+    alpsvars.shはALPSがインストールされたスパコン全てにあります \\
+    参考: {\footnotesize \url{http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled}}
+\end{alertblock}
+\end{frame}
+
 \begin{frame}[fragile,shrink=10]
   \frametitle{準備}
   \begin{enumerate}
@@ -155,18 +172,18 @@ THERMALIZATION = SWEEPS/8;
 \begin{semiverbatim}
 \$ ssh -X guestXX@phi.aics.riken.jp
 \end{semiverbatim}
-  \item<2-> 本日利用するチュートリアルをコピー
-\begin{semiverbatim}
-[guestXX@phi ~]\$ cp -r /opt/nano/alps/tutorials/mc-02-susceptibilities .
-[guestXX@phi ~]\$ cp -r /opt/nano/alps/tutorials/mc-03-magnetization .
-\end{semiverbatim}
-  \item<3-> 環境変数の設定
+  \item<2-> 環境変数の設定
 \begin{semiverbatim}
 [guestXX@phi ~]\$ echo "source /opt/nano/alps/alpsvars.sh" >> ~/.bashrc
 \end{semiverbatim}
-  \item<4-> phiXXへログイン
+  \item<3-> phiXXへログイン
 \begin{semiverbatim}
 [guestXX@phi ~]\$ ssh -X phiXX
+\end{semiverbatim}
+  \item<4-> 本日利用するチュートリアルをコピー
+\begin{semiverbatim}
+[guestXX@phiXX ~]\$ cp -r \$ALPS\_HOME/tutorials/mc-02-susceptibilities .
+[guestXX@phiXX ~]\$ cp -r \$ALPS\_HOME/tutorials/mc-03-magnetization .
 \end{semiverbatim}
   \end{enumerate}
   \begin{alertblock}{ALPS wikiのチュートリアル}
@@ -241,20 +258,13 @@ In [13]: plt.savefig('out.pdf')
   \end{enumerate}
 \end{frame}
 
-\begin{frame}
-  \frametitle{ディレクトリ構成}
-  \begin{tabular}{ll}
-    /opt/nano/alps/alpsvars.sh & \\
-    \hspace*{3em} ALPS環境変数(\$ALPS\_HOME等)設定スクリプト \\
-    \$ALPS\_HOME/tutorials & \\
-    \hspace*{3em} アプリケーションのチュートリアル \\
-    \$ALPS\_HOME/tutorials/alpsize-* & \\
-    \hspace*{3em} ALPS化のチュートリアル (20130501-r5861以降)
-  \end{tabular}
-  \begin{alertblock}{}
-    alpsvars.shはALPSがインストールされたスパコン全てにあります \\
-    参考: {\footnotesize \url{http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled}}
-\end{alertblock}
+\begin{frame}{実行結果の確認}
+  \begin{itemize}
+    \item 実行結果(JOB XMLファイル、TASK XMLファイル)は、webブラウザで直接開いて中身を見ること可能
+      \begin{itemize}
+      \item 例(Mac OS X): open -a safari parms2a.out.xml
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \section{ALPS Lattice \& Model チュートリアル}
