@@ -244,13 +244,16 @@ In [13]: plt.savefig('out.pdf')
 \begin{frame}
   \frametitle{ディレクトリ構成}
   \begin{tabular}{ll}
-    /opt/nano/alps/alpsvars.sh & ALPS設定スクリプト \\
-    /opt/nano/alps/tutorials & アプリケーションのチュートリアル \\
-    /opt/nano/alps/alpsize   & ALPS化のチュートリアル
+    /opt/nano/alps/alpsvars.sh & \\
+    \hspace*{3em} ALPS環境変数(\$ALPS\_HOME等)設定スクリプト \\
+    \$ALPS\_HOME/tutorials & \\
+    \hspace*{3em} アプリケーションのチュートリアル \\
+    \$ALPS\_HOME/tutorials/alpsize-* & \\
+    \hspace*{3em} ALPS化のチュートリアル (20130501-r5861以降)
   \end{tabular}
   \begin{alertblock}{}
     alpsvars.shはALPSがインストールされたスパコン全てにあります \\
-    参考: google ``List of ALPS Preinstalled Supercomputers''
+    参考: {\footnotesize \url{http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled}}
 \end{alertblock}
 \end{frame}
 
