@@ -1,4 +1,6 @@
 */*.xbb
+.DS_Store
+*/.DS_Store
 alpsize/alpsize-normal.aux
 alpsize/alpsize-normal.dvi
 alpsize/alpsize-normal.log
