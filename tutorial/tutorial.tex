@@ -198,10 +198,11 @@ THERMALIZATION = SWEEPS/8;
 \$ parameter2xml \textit{param}
 \$ loop \textit{param}.in.xml
 \end{semiverbatim}
-  \item \alert{Python} (新しい方法)
+  \item Python (新しい方法)
     \begin{itemize}
     \item パラメータの準備からグラフ作成まで統一的に
-    \item 対話的にもコマンドでも実行可能
+    \item 対話的にもバッチコマンドとしても実行可能
+    \item 現在、グラフの作成にはPythonを用いる
     \end{itemize}
   \item VisTrails
   \end{enumerate}
@@ -209,7 +210,7 @@ THERMALIZATION = SWEEPS/8;
     \begin{column}{.7\textwidth}
       \begin{center}
         \begin{alertblock}{}
-          Python(Python)で対話的に実習を行います
+          Python(ipython)での対話的実行
         \end{alertblock}
       \end{center}
     \end{column}
@@ -229,6 +230,11 @@ THERMALIZATION = SWEEPS/8;
  \$ ipython
 \end{semiverbatim}
   \end{enumerate}
+  \begin{center}
+    \begin{alertblock}
+      途中まで打ってTABで補完できます
+    \end{alertblock}
+  \end{center}
 \end{frame}
 
 \begin{frame}[fragile,shrink=5]
@@ -238,14 +244,14 @@ THERMALIZATION = SWEEPS/8;
 \begin{semiverbatim}
 In [1]: import pyalps
 \end{semiverbatim}
-  \item<3-> グラフを生成する準備
+  \item<3-> グラフの生成(Xで表示)
 \begin{semiverbatim}
 In [2]: import matplotlib.pyplot as plt
 In [3]: import pyalps.plot
 ...
 In [10]: plt.show()
 \end{semiverbatim}
-  \item<3-> Xの転送ができない場合
+  \item<3-> 直接PDFの生成
 \begin{semiverbatim}
 In [2]: import matplotlib
 In [3]: matplotlib.use('PDF')
@@ -255,6 +261,18 @@ In [5]: import pyalps.plot
 In [13]: plt.savefig('out.pdf')
 \end{semiverbatim}
   \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{ALPSチュートリアル: MC-02 (3)}
+  \begin{center}
+    \begin{block}{}
+      コマンドラインからの実演
+    \end{block}
+    \begin{block}{}
+      Pythonからの実演
+    \end{block}
+  \end{center}
 \end{frame}
 
 \begin{frame}{実行結果の確認}

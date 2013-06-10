@@ -33,3 +33,10 @@ Authors / 著者
 * Synge Todo (ISSP, Univ. of Tokyo) / 藤堂眞治 (東大物性研)
 * Haruhiko Matsuo (RIST) / 松尾春彦 (RIST)
 * Ryo Igarashi (ISSP, Univ. of Tokyo) / 五十嵐 亮 (東大物性研)
+
+License / ライセンス
+==========================
+
+このチュートリアル資料は、クリエイティブ・コモンズ 表示 3.0 非移植ライセンスの下に提供されています。<http://creativecommons.org/licenses/by/3.0/deed.ja>
+
+This turorial handout is licensed under a Creative Commons Attribution 3.0 Unported License. <http://creativecommons.org/licenses/by/3.0/>
