@@ -199,10 +199,11 @@ THERMALIZATION = SWEEPS/8;
 \$ parameter2xml \textit{param}
 \$ loop \textit{param}.in.xml
 \end{semiverbatim}
-  \item \alert{Python} (新しい方法)
+  \item Python (新しい方法)
     \begin{itemize}
     \item パラメータの準備からグラフ作成まで統一的に
     \item 対話的にもバッチコマンドとしても実行可能
+    \item 現在、グラフの作成にはPythonを用いる
     \end{itemize}
   \item VisTrails
   \end{enumerate}
@@ -231,9 +232,9 @@ THERMALIZATION = SWEEPS/8;
 \end{semiverbatim}
   \end{enumerate}
   \begin{center}
-    \begin{alertbox}
+    \begin{alertblock}
       途中まで打ってTABで補完できます
-    \end{alertbox}
+    \end{alertblock}
   \end{center}
 \end{frame}
 
@@ -261,6 +262,18 @@ In [5]: import pyalps.plot
 In [13]: plt.savefig('out.pdf')
 \end{semiverbatim}
   \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{ALPSチュートリアル: MC-02 (3)}
+  \begin{center}
+    \begin{block}{}
+      コマンドラインからの実演
+    \end{block}
+    \begin{block}{}
+      Pythonからの実演
+    \end{block}
+  \end{center}
 \end{frame}
 
 \begin{frame}{実行結果の確認}
