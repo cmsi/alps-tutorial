@@ -1,5 +1,4 @@
-\lstset{language={Python},
- backgroundcolor=\color{lime}}
+\lstset{language={Python2}}
 
 \title{ALPSチュートリアル: Introduction to Matplotlib}
 
@@ -25,9 +24,9 @@
 %% /opt/local//Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/matplotlib/mpl-data/matplotlibrc
 \item プロット時にウィンドウを開いて図を表示するには，Mac OS X の場合は次のような設定が必要
   \begin{lstlisting}
-  #backend : Agg
-  backend : MacOSX
-  \end{lstlisting}
+#backend : Agg
+backend : MacOSX
+\end{lstlisting}
 \item 逆にウィンドウを開きたくないなら Agg に設定する
 \item AGG: Anti-Grain Geometry. ベクトルデータを画像に描くライブラリ．C++ 用．
 \end{itemize}
@@ -40,19 +39,19 @@
 \begin{itemize}
 \item backend の設定は import matplotlib の直後にすること
       \begin{lstlisting}
-      >>> import matplotlib as mpl
-      >>> mpl.use('Agg')
-      \end{lstlisting}
+>>> import matplotlib as mpl
+>>> mpl.use('Agg')
+\end{lstlisting}
 \item グラフのサイズやフォントのサイズの設定
       \begin{lstlisting}
-      >>> import pylab
-      >>> params = {
-      ...     'legend.fontsize': 10
-      ...     'xtick.labelsize':  8
-      ...     'ytick.labelsize':  8
-      ...     'figure.figsize':  [width, height]}
-      >>> pyalps.rcParams.update(params)
-      \end{lstlisting}
+>>> import pylab
+>>> params = {
+...     'legend.fontsize': 10
+...     'xtick.labelsize':  8
+...     'ytick.labelsize':  8
+...     'figure.figsize':  [width, height]}
+>>> pyalps.rcParams.update(params)
+\end{lstlisting}
 \end{itemize}
 \end{frame}
 
