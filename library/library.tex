@@ -2,6 +2,8 @@
 
 \begin{document}
 
+\lstset{language={C++},showspaces=false,rulecolor=\color[cmyk]{0, 0.29,0.84,0}}
+
 \begin{frame}
   \titlepage
 \end{frame}
@@ -48,7 +50,6 @@
       \end{itemize}
     \end{column}
     \begin{column}{.5\textwidth}
-    \lstset{language={C++}}
     \begin{lstlisting}
 LATTICE = "chain lattice";
 L = 16,
@@ -59,7 +60,7 @@ THERMALIZATION = SWEEPS/8;
 /* C style comment */
 { T = 2; Sq = 2*PI/3; }
 { T = 1.8; }
-    \end{lstlisting}
+\end{lstlisting}
     \end{column}
   \end{columns}
 \end{frame}
@@ -81,7 +82,7 @@ int main() {
   }
   ...
 }
-  \end{lstlisting}
+\end{lstlisting}
 \end{frame}
 
 \section{ALPS/alea}
@@ -94,18 +95,18 @@ int main() {
 alps::RealObservable mag2("Magnetization^2");
 ...
 mag2 << m * m; // in each MC step
-    \end{lstlisting}
+\end{lstlisting}
   \item ビンニング解析を用いた平均値, エラー, 自己相関時間の評価
     \lstset{language={C++}}
     \begin{lstlisting}
 std::cout << mag2 << std::endl;
-    \end{lstlisting}
+\end{lstlisting}
   \item ジャックナイフ法を用いた非線形量のエラー評価
     \lstset{language={C++}}
     \begin{lstlisting}
 alps::RealObsEvaluator binder = mag2 * mag2 / mag4;
 std::cout << binder.mean() << ' ' << binder.error() << '\n';
-    \end{lstlisting}
+\end{lstlisting}
   \end{itemize}
 \end{frame}
 
@@ -137,7 +138,7 @@ std::cout << binder.mean() << ' ' << binder.error() << '\n';
 <LATTICE name="chain lattice" dimension="1">
   <BASIS><VECTOR> 1 </VECTOR></BASIS>
 </LATTICE>
-  \end{lstlisting}
+\end{lstlisting}
   \item ユニットセル
   \begin{lstlisting}
 <UNITCELL name="simple1d" dimension="1" vertices="1">
@@ -145,7 +146,7 @@ std::cout << binder.mean() << ' ' << binder.error() << '\n';
     <SOURCE vertex="1" offset="0"/><TARGET vertex="1" offset="1"/>
   </EDGE>
 </UNITCELL>
-  \end{lstlisting}
+\end{lstlisting}
   \end{itemize}
 \end{frame}
 
@@ -163,10 +164,10 @@ std::cout << binder.mean() << ' ' << binder.error() << '\n';
   </FINITELATTICE>
   <UNITCELL ref="simple1d"/>
 </LATTICEGRAPH>
-    \end{lstlisting}
+\end{lstlisting}
   \item より複雑な格子の作り方
     \begin{itemize}
-    \item ALPS Lattice HOWTO: http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO
+    \item ALPS Lattice HOWTO: \url{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO}
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -184,10 +185,10 @@ std::cout << binder.mean() << ' ' << binder.error() << '\n';
     \end{itemize}
     \begin{lstlisting}
 Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
-    \end{lstlisting}
+\end{lstlisting}
   \item 作成した局所ハミルトニアンは行列の形で取り出せる
-  \item ALPS Model HOWTO: http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO
-  \item あらかじめ用意されている模型: "spin", "boson Hubbard", "hardcore boson", "fermion Hubbard", "spinless fermions", "Kondo lattice", "t-J"
+  \item ALPS Model HOWTO: \url{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO}
+  \item あらかじめ用意されている模型: "spin", "boson Hubbard", "hardcore boson", "fermion Hubbard", "alternative fermion Hubbard", "spinless fermions", "Kondo lattice", "t-J"
   \end{itemize}
 \end{frame}
 

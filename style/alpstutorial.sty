@@ -2,14 +2,16 @@
 \author{CMSI神戸ハンズオン}
 
 % 講習会日時(4桁-2桁-2桁. 例: "2013-04-03")
-\date{2013-03-06}
+\date{2013-06-10}
 
 \institute{ALPS Collaboration \\ http://alps.comp-phys.org/}
 
 % しおりの文字化けを防ぐ
 \AtBeginDvi{\special{pdf:tounicode EUC-UCS2}}
 
-%% \usepackage{bxdpx-beamer}
+% navigation が正しく動くようにする
+% https://gist.github.com/zr-tex8r/4980892
+\usepackage{bxdpx-beamer}
 
 % 和文メトリックの調整（代わりに otf を読み込んでも良い）
 \usepackage{minijs}
@@ -24,28 +26,22 @@
   \setbeamercovered{transparent}
 }
 
-
 \usepackage[english]{babel}
-%% % or whatever
 
-%\usepackage[latin1]{inputenc}
-%% % or whatever
-
-
+% ALPS ロゴ
 \pgfdeclareimage[height=0.5cm]{university-logo}{alps}
 \logo{\pgfuseimage{university-logo}}
 
 % ソースコード表示用
 \usepackage{listings,jlisting}
-\lstset{
-  basicstyle={\ttfamily\footnotesize},
-  keywordstyle={\color{red}},
-  commentstyle=\color{blue},
-  tabsize=2,
-  breaklines=true,
-  backgroundcolor=\color[gray]{0.9},
-  frame=single,
-  number={left}}
+\input{python_listing.tex}
 
 % ページ番号の挿入
 \setbeamertemplate{footline}[frame number]
+
+% スライド下部にある不要な画像を消す
+%\setbeamertemplate{navigation symbols}{}
+
+% hyperref setting
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}

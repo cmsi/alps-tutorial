@@ -1,5 +1,4 @@
-\lstset{language={Python},
- backgroundcolor=\color{lime}}
+\lstset{language={Python2}}
 
 \title{ALPSチュートリアル: Python}
 
@@ -15,38 +14,69 @@
 \end{frame}
 
 \section{データ型}
-\begin{frame}[t]
+\begin{frame}[t, fragile]
 \frametitle{基本的なデータ型}
 
-\begin{itemize}
-   \item \textbf{数値}: int, (long), float, complex
-   \item \textbf{文字列}: 'hello,python'
-   \item \textbf{list}: a = [1, 2, 3]
-   \item \textbf{tuple}: b = (1, 2, 3)
-   \item \textbf{dictionary}: c = \{'apple': 100, 'orange': 200, 'pear': 300\}
-   \item \textbf{set}: set(1, 2, 3)
-   \item \textbf{bool}: True, False
-   \item \textbf{array}: numpy array([1,2,3])
-\end{itemize}
+\alert{このセクションでは Python で使われる基本的なデータ型を紹介しま
+す．} array は numpy モジュールで定義されている型で，Python がもともと持っ
+ている型ではありませんが，科学計算では非常に便利な性質を持つので紹介しま
+す．
+
+\begin{table}[hb]
+ \begin{tabular}{r|l} 
+  \textbf{数値}       & int, (long), float, complex \\
+  \textbf{文字列}     & 'hello,python' \\
+  \textbf{list}       & a = [1, 2, 3] \\
+  \textbf{tuple}      & b = (1, 2, 3) \\
+  \textbf{dictionary} & c = \{'apple': 100, 'orange': 200, 'pear': 300\} \\
+  \textbf{set}        & set([1, 2, 3]) \\
+  \textbf{bool}       & True, False \\
+  \textbf{array}      & numpy array([1,2,3]) \\
+ \end{tabular}
+\end{table}
 
 \end{frame}
 
 \begin{frame}[t,fragile]
 \frametitle{数値}
 
+整数, 倍精度浮動小数, 複素数の 3 種類あります．
+\alert{整数は Python のバージョンで扱いが変わります．}
+単精度浮動小数はありません．
+
 \begin{itemize}
-  \item int, long
-    \begin{itemize}
-    \item python3 では int,long は int に統合された
-    \item python2x と python3x では整数同士の演算で計算結果が違う:
-          python2:  -1/2 = -1, python3: -1/2 = -0.5
-    \end{itemize}
-  \item float は倍精度のみ
-  \item complex
-    \begin{itemize}
-       \item 'j' もしくは 'J' で虚数部を表す 2 + 3j
-       \item 実部 real(2+3j) = 2, 虚部 imag(2+3j) = 3  
-    \end{itemize}
+ \item int, (long)
+       \begin{itemize}
+	\item python3 では int,long は int に統合されました．
+	\item \alert{python2x と python3x では整数同士の演算で計算結果がちがいます!}
+
+	      python2:  -1/2 = -1, python3: -1/2 = -0.5
+
+       \end{itemize}
+ \item float は倍精度のみです．単精度はありません．
+ \item complex
+       \begin{itemize}
+	\item 'j' もしくは 'J' で虚数部を表す 2 + 3j
+	\item 実部 real(2+3j) = 2, 虚部 imag(2+3j) = 3  
+       \end{itemize}
+ \item 型変換を行えます．
+
+       \begin{columns}
+	\begin{column}{4cm}
+	 \begin{lstlisting}
+	  >>> a = 1.8
+	  >>> int(a)
+	  1
+	 \end{lstlisting}	 
+	\end{column}
+	\begin{column}{4cm}
+	 \begin{lstlisting}
+	  >>> a = 3
+	  >>> float(a)
+	  3.0
+	 \end{lstlisting}	 
+	\end{column}
+       \end{columns}
 \end{itemize}
 
 \end{frame}
@@ -55,38 +85,37 @@
 \frametitle{文字列}
 
 \begin{lstlisting}
->>> s = 'hello, world'   # 文字列の定義
->>> s.split(' ')
->>> ['hello,', 'world']  
->>> s.split(' ')[0] + ' ' + 'Haruhiko'     # 文字列の結合
->>> 'hello, Haruhiko'
->>> ' '.join(s.split(' ')[0], 'Haruhiko')  #
->>> 'hello, Haruhiko'
+>>> s = 'ab:cd:ef'   # 文字列の定義
+>>> s = s.split(':') # 指定した文字で文字列を分割
+>>> print s
+['ab', 'cd', 'ef']
+>>> '-'.join(s)      # 指定した文字で文字列同士を結合
+'ab-cd-ef'
+>>> 'a' + 'b' + 'c'  # 文字列を結合
+'abc'
 \end{lstlisting}
 
 \begin{itemize}
-  \item シングルクォートとダブルクォートの振る舞いは同じ（シェルでは違いますね）
+  \item シングルクォートもしくはダブルクォートで囲った文字列で定義できます．
   \item 複数行の文字列は '''...''' もしくは """...""" で囲む
-  \item 文字列のスライス: s[1:3] = 'el'
-  \item 文字列の分割 (split) と結合 (+, join)
 \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]
-\frametitle{list, tuple}
-\begin{lstlisting}
->>>a = [1,2,3,4,5] # list
->>>a[0]   # インデックスは 0 スタート
-1         # 要素 1 個だけなら返り値はスカラー
->>>a[2:4] # 2<=,<4 番目のの要素が返される．
-[3,4]     # 複数の要素なら返り値はリスト．
->>>b = (1,2,3,4,5) # tuple
->>>b[1:]           # ':' の値を省くこともできる
-(2, 3, 4, 5)
-\end{lstlisting}
-\begin{itemize}
-\item ここではリストの要素として数値のみを扱ったが，python オブジェクトなら何でも リストの要素として扱える
-\end{itemize}
+ \frametitle{list, tuple}
+ \begin{lstlisting}
+  >>>a = [1,2,3,4,5] # list
+  >>>a[0]   # インデックスは 0 スタート
+  1         # 要素 1 個だけなら返り値はスカラー
+  >>>a[2:4] # 2<=,<4 番目のの要素が返される．
+  [3,4]     # 複数の要素なら返り値はリスト．
+  >>>b = (1,2,3,4,5) # tuple
+  >>>b[1:]           # ':' の値を省くこともできる
+  (2, 3, 4, 5)
+ \end{lstlisting}
+ \begin{itemize}
+  \item ここではリストの要素として数値のみを扱ったが，python オブジェクトなら何でも リストの要素として扱える
+ \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]
@@ -393,9 +422,9 @@ c 2.159
 \frametitle{参考サイト}
 \begin{itemize}
 \item 科学技術計算のために python を始めよう
-      http://www.ike-dyn.ritsumei.ac.jp/\~{}uchida/scipy-lecture-notes/intro/index.html
-\item 初心者のはまりどころ http://webtech-walker.com/archive/2010/10/13191417.html
-\item Doug Hellmannさん http://doughellmann.com
+      \url{http://www.ike-dyn.ritsumei.ac.jp/~uchida/scipy-lecture-notes/intro/index.html}
+\item 初心者のはまりどころ \url{http://webtech-walker.com/archive/2010/10/13191417.html}
+\item Doug Hellmannさん \url{http://doughellmann.com}
       \begin{itemize}
       \item 標準モジュールなどの使い方が例とともに書いてあり分かりやすい
       \end{itemize}

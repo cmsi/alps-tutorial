@@ -16,16 +16,19 @@
 %   \end{columns}
 % \end{frame}
 
-\begin{frame}[fragile,shrink=15]
+\begin{frame}[fragile]
   \frametitle{ALPSがインストールされているシステム}
   \begin{itemize}
-  \item 物性研システムB
-  \item 京
-  \item 東大FX10
+  \item 物性研システムB (kashiwa), システムC (maki)
+  \item 京 (k)
+  \item 東大FX10 (oakleaf-fx)
+  \item 京大Cray XE6 (camphor)
+  \item 九大X86クラスタ (tatara)
   \item ...
+  \item 他にも順次インストール中 (アカウントをいただければ出張インストールします)
   \end{itemize}
 \begin{semiverbatim}
-\url{http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled}
+参考: {\footnotesize \url{http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled}}
 \end{semiverbatim}
 \end{frame}
 
@@ -63,7 +66,8 @@
 \end{semiverbatim}
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
-\$ wget http://alps.comp-phys.org/static/software/releases/alps-2.1.1-r6176-src-with-boost.tar.gz
+\$ wget http://alps.comp-phys.org/static/software/releases/\\
+alps-2.1.1-r6176-src-with-boost.tar.gz
 \$ tar zxf alps-2.1.1-r6176-src-with-boost.tar.gz
 \$ mkdir build && cd build
 \$ cmake ../alps-2.1.1-r6176-src-with-boost/alps
@@ -83,7 +87,8 @@
 \end{semiverbatim}
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
-\$ wget http://alps.comp-phys.org/static/software/releases/alps-2.1.1-r6176-src-with-boost.tar.gz
+\$ wget http://alps.comp-phys.org/static/software/releases/\\
+alps-2.1.1-r6176-src-with-boost.tar.gz
 \$ tar zxf alps-2.1.1-r6176-src-with-boost.tar.gz
 \$ mkdir build && cd build
 \$ cmake ../alps-2.1.1-r6176-src-with-boost/alps
