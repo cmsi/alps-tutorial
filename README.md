@@ -37,6 +37,4 @@ Authors / 著者
 License / ライセンス
 ==========================
 
-このチュートリアル資料は、クリエイティブ・コモンズ 表示 3.0 非移植ライセンスの下に提供されています。<http://creativecommons.org/licenses/by/3.0/deed.ja>
-
-This turorial handout is licensed under a Creative Commons Attribution 3.0 Unported License. <http://creativecommons.org/licenses/by/3.0/>
+This turorial handout is licensed under a Creative Commons Attribution 3.0 Unported License. / このチュートリアル資料は、クリエイティブ・コモンズ 表示 3.0 非移植ライセンスの下に提供されています。 (http://creativecommons.org/licenses/by/3.0/)
