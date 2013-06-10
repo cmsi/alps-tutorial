@@ -2,6 +2,8 @@
 
 \begin{document}
 
+\lstset{language={C++},showspaces=false,rulecolor=\color[cmyk]{0, 0.29,0.84,0}}
+
 \begin{frame}
   \titlepage
 \end{frame}
@@ -101,6 +103,7 @@
   \begin{center}
     \includegraphics[height=.6\textheight]{simulation4.pdf}
   \end{center}
+  \item pyalps (後述)では、pyalps.writeInputFiles() メソッドが利用できる
   \end{itemize}
 \end{frame}
 
@@ -130,7 +133,6 @@
       \end{itemize}
     \end{column}
     \begin{column}{.5\textwidth}
-    \lstset{language={C++}}
     \begin{lstlisting}
 LATTICE = "chain lattice";
 L = 16,
@@ -231,7 +233,7 @@ THERMALIZATION = SWEEPS/8;
 \end{semiverbatim}
   \end{enumerate}
   \begin{center}
-    \begin{alertblock}
+    \begin{alertblock}{}
       途中まで打ってTABで補完できます
     \end{alertblock}
   \end{center}
