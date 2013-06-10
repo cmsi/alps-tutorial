@@ -1,4 +1,3 @@
-
 \title{ALPSアプリケーション実行チュートリアル}
 
 \begin{document}
@@ -281,6 +280,23 @@ In [13]: plt.savefig('out.pdf')
     \item 実行結果(JOB XMLファイル、TASK XMLファイル)は、webブラウザで直接開いて中身を見ること可能
       \begin{itemize}
       \item 例(Mac OS X): open -a safari parms2a.out.xml
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{シミュレーションの並列実行}
+  \begin{itemize}
+    \item パラメータセットに関する並列実行が可能 (embarassingly parallel)
+    \item アプリケーションによって、ALPS parallelizing スケジューラか、ALPS/parapack スケジューラのいずれかが使われている (オプション -l により確認可)
+    \item ALPS parallelizaing スケジューラ (spinmc等)
+      \begin{itemize}
+        \item OpenMPスレッド並列には対応していない。MPI並列のみ
+        \item MPI実行例(4プロセス): \\ {\tt {\color{red} mpirun -np 4} \$ALPS\_HOME/bin/spinmc {\color{red} --mpi} parm2a.in.xml}
+      \end{itemize}
+    \item ALPS/parapack スケジューラ (loop等)
+      \begin{itemize}
+        \item OpenMPスレッド並列とMPI並列に対応。デフォルトで自動的にスレッド並列実行
+        \item ハイブリッド(OpenMP + MPI)実行例(4プロセス16スレッド): \\ {\tt {\color{red} mpirun -np 4} \$ALPS\_HOME/bin/loop {\color{red} --mpi} {\color{red} -r 16} parm2c.in.xml}
       \end{itemize}
   \end{itemize}
 \end{frame}
