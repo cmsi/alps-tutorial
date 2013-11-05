@@ -38,9 +38,9 @@ bash> alpspython
 
 \end{frame}
 
-\section{Preparing the simulation}
+\section{Preparing simulation}
 \begin{frame}[t,fragile]
- \frametitle{Importing the ALPS modules}
+ \frametitle{Importing ALPS modules}
 
 \begin{itemize}
  \item ALPS Python を Python のインタープリタから利用してみましょう．
@@ -109,9 +109,9 @@ ALPS.xsl parm1.in.xml parm1.task1.in.xml parm1.task2.in.xml parm1.task3.in.xml
 
 \end{frame}
 
-\section{Running the simulation}
+\section{Running simulation}
 \begin{frame}[t,fragile]
-\frametitle{Running the simulation on a serial machine}
+\frametitle{Running simulation on serial machine}
 \begin{lstlisting}
 >>> pyalps.runApplication('spinmc',
        input_file,Tmin=5,writexml=True)
@@ -129,7 +129,7 @@ Finished with everything.
 \end{frame}
 
 \begin{frame}[t,fragile]
-\frametitle{Running the simulation on a parallel machine}
+\frametitle{Running simulation on parallel machine}
 \begin{lstlisting}
 >>> pyalps.runApplication('spinmc',input_file,Tmin=5,writexml=True,MPI=4)
 \end{lstlisting}
@@ -139,9 +139,9 @@ Finished with everything.
 
 \end{frame}
 
-\section{Loading the simulation results}
+\section{Loading simulation results}
 \begin{frame}[t,fragile]
- \frametitle{Getting the result files}
+ \frametitle{Getting result files}
  \begin{lstlisting}
   >>> result_files = pyalps.getResultFiles(prefix='parm1')
   >>> print result_files
@@ -154,7 +154,7 @@ Finished with everything.
 \end{frame}
 
 \begin{frame}[t,fragile]
-\frametitle{Loading the results}
+\frametitle{Loading results}
 指定したファイル名のリストから，指定した物理量（複数可）を取り出す
 \begin{lstlisting}
 >>> data = pyalps.loadMeasurements(result_files,['|Magnetization|','Magnetization^2'])
@@ -191,7 +191,7 @@ array([0.083339021352 +/- 0.00038780838614], dtype=object)
 \end{lstlisting}
 \end{frame}
 
-\section{Plotting the results}
+\section{Plotting results}
 \begin{frame}[t,fragile]
 \frametitle{Plotting the results}
 \begin{lstlisting}

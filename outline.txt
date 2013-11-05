@@ -3,99 +3,149 @@
 * 3〜5枚毎に section (1枚/2分)
 * subsection は使わない
 
-- Getting Started (GettingStarted) - 藤堂 10min
-    - チュートリアル環境
-	- コーヒー・紅茶
-	- ネットワークの設定
-		- LANへの接続
-		- CMSI神戸Wiki
-	- 実習用ワークステーション
-		- SSH公開鍵の登録
-	- 実習用ワークステーションへのログイン
-		- phiフロントエンドへのログイン
-		- フロントエンドから実習ホスト(計算ノード)へのログイン
-	- 実習用ワークステーションの環境
-		- エディタ
-		- X11の動作確認 (グラフ表示用)
-		- 利用上の注意
+- Getting Started (GettingStarted) - 7枚
+
+- ALPSの概要 (overview) - 27枚
+    - TOC
     - ALPSチュートリアルスタッフ
-        - ALPSチュートリアル スタッフ
-	  	- 講師
-		- 主催
-		- 協力
-		- CMSI神戸ハンズオン スタッフ
-	- CMSI: 計算物質科学イニシアティブ 1
-	- CMSI: 計算物質科学イニシアティブ 2
-	- CMSI: 計算物質科学イニシアティブ 3
-	- CMSI: 計算物質科学イニシアティブ 4
-     - チュートリアルの概要
-        - 本日のALPSチュートリアルの目標
-	- スケジュール (2013/03/06 13:00-18:00)
-- ALPSの概要 (Overview) - 藤堂 40min
-    - 量子格子模型とは?
-        - Why quantum lattice models
-        - Experimental realization of QLM
-        - Finite-size scaling analysis
-    - ALPSとは?
-        - 計算量子統計物理の現状
-	- ALPSプロジェクト
+    - チュートリアルの流れ
+    - ALPSチュートリアルの目標
+    - 量子格子模型
+        - なぜQLMを考えるのか?
+    - ALPSプロジェクトの目標
+	- ALPSとは?
     	- ターゲット・オーディエンス
-	- ワークフロー
-	- ソフトウェアの階層構造
-	- 基盤となる技術
+	- ALPSによるシミュレーション -- ワークフロー
+	- ALPSの階層構造
+    - 基盤となる技術
 	- なぜC++を使うのか?
+	- ALPSの歴史
 	- ALPSの開発者
 	- 開発のためのインフラストラクチャ
-		web (wiki), trac, subversion, mailing list
-	- ライセンス
-    - 参考文献
-- ALPS Library (Library) - 藤堂 30min
-    - 全体構成
-    - ALPS/parameter
-    - ALPS/alea
-    - ALPS/lattice
-	Lattice XML
-    - ALPS/model
-	Model XML
-    - ALPS/scheduler
-    - HDF5とは?
-    - 参考文献
-- ALPSチュートリアル実習1 (Tutorial) - 五十嵐 20min
-  	ログインはできているはず
-    - ディレクトリ構成の説明 (/opt/nano/alps)
-    - チュートリアルファイルの置き場所 phi:/opt/nano/alps/tutorials
-    - 環境変数の設定 (source /opt/nano/alps/alpsvars.sh)
-    - ALPS wiki チュートリアル説明
-    - 実行シナリオの説明 (command line, python, vistrails)
-         実際には command line + ipython
-    - phi に実際にログインして MC-02 を実行
+	- ビルドシステム: CMake
+	- VCS (Version Control System)によるソース管理: Subversion
+	- BTS (Bug Tracking System)の利用: Trac
+	- Wikiによるマニュアル作成: MediaWiki
+	- メーリングリストの活用: Mailman
+	- ワークショップ
+	- ALPSの展開
+	- ALPS "cite-me"ライセンス
+        - 参考文献-1
+        - 参考文献-2
+
+- ALPSライブラリ (library) - 11枚
+    - TOC
+    - ALPSの階層構造
+    - サードパーティーのライブラリ
+    - ALPS/parameterライブラリ
+    - ALPS/parameterを使ったコード例
+    - ALPS/aleaライブラリ
+    - ALPS/latticeライブラリ
+	- 有限格子+ユニットセルの埋め込み - 1
+	- 有限格子+ユニットセルの埋め込み - 2
+    - ALPS/modelライブラリ
+
+- ALPSアプリケーション実行チュートリアル (turoial) 23枚
+    - TOC
+    - ALPSによるシミュレーション -- ワークフロー
+        - XMLの基礎
+        - XMLの文法
+	- なぜXMLを使うのか?
+	- データ形式の拡張性
+    − シミュレーションの入出力
+        - Job XMLファイル
+	- Task XMLファイル
+	- parameter2xmlツール
+	- 格子とモデルの指定
+	- パラメータファイルでの数式の利用
+    - ディレクトリ構成
+        - 準備
+        - ALPSの実行シナリオ
+	- ALPSチュートリアル: MC-02 (1)
+	- ALPSチュートリアル: MC-02 (2)
+	- ALPSチュートリアル: MC-02 (3)
+	- 実行結果の確認
+	- シミュレーションの並列実行
+    - ALPS Latticeチュートリアル
+        - ALPS Modelチュートリアル
+
     - matplotlib で出力を pdf にする方法
     - h5dump
     
-[休憩 14:50-15:10]
+- Python (python) 20枚
+    - TOC
+    - 基本的なデータ型
+        - 数値
+	- 文字列
+	- list, tuple
+	- listのメソッド
+	- listとtupleの違う点(1)
+	- listとtupleの違う点(2)
+	- listのコピー
+	- ネストされたlistのコピー
+	- 辞書型の使い方
+    - if-elif-else文の使い方
+	- for文の使い方
+	- while文の使い方
+    - 関数
+    − Pythonプログラムの階層構造
+	- モジュールの読み込み
+    - ファイルの読み書き
 
-- Python入門 (Python) - 松尾 50min
-    - python入門 (40min)
-        - データ型
-	- 条件分岐・ループ
-	- 関数・クラス
-	- module・パッケージ
-	- ファイル操作
-	- 参考文献
-    - alpspython
-        - load, flatten, collectXY
-	- どんな物理量があるか?
-	- 物理量の変換
-    - matplotlib (X11, pdf両方) + gnuplot (10min)
-        - 基本概念
-	- 環境設定
-	- モジュール
-	- プロット
-	- 複数のグラフの作成
-	- gnuplot (ipython 上でファイルを開いて出力)
-- ALPSチュートリアル実習2 (Tutorial) - 五十嵐 20min
-    - MC-03 を実行
-- アプリケーションのALPS化 (Alpsize) - 五十嵐 80min
+- Introduction to ALPS Python (pyalps) 15枚
+    - TOC
+    - Launching Python
+    - Importing ALPS modules
+        - Preparing parameter
+	- Preparing input XML files
+    - Running simulation on serial machine
+        - Running simulation on parallel machine
+    - Getting result files
+        - Loading results
+	- データ構造
+    - Plotting results
+        - Plotting in Python using matplotlib
+	- Converting to other formats
+    - Example of evaluating data
+
+- Intruduction to Matplotlib (matplotlib) 9枚
+    - TOC
+    - デフォルトの環境設定
+        - 動的に環境設定を行う
+    - 簡単な図をプロットしてみる
+        - 少し複雑な図をプロットしてみる
+        - 続き
+    - FigureとAxes
+        - Current Figure/Axes vs. オブジェクト指向
+
+- アプリケーションのALPS化 (alpsize) 27枚
+    - ALPSize全体の流れ
+    - CMake
+    - alpsizeの準備
+    - 00 CMake化(1)
+    - 00 CMake化(2)
+    - 00 CMake化(3)
+    - 01 Cプログラム
+    - 02 C++プログラム
+    - 03 STLの利用
+    - 04 Boostの利用(1)
+    - 04 Boostの利用(2)
+    - 05 ALPS Parameters
+    - Parameterライブラリ
+    - Parameterライブラリの利用法
+    - 06 ALPS Alea
+    - Aleaライブラリの利用法
+    - Tips: 出力を制御する
+    - 07 ALPS Lattice
+    - Latticeライブラリの利用法
+    - Latticeの定義
+    - Latticeライブラリの便利な関数
+    - 08 ALPS Scheduler (1)
+    - 08 ALPS Scheduler (2)
+    - 08 ALPS Scheduler (3)
+    - 08 ALPS Scheduler (4)
+    - ALPS Fortran
+
     - ALPS化の利点 (バカパラが簡単、他)
     - CMake入門
           ctest
@@ -104,15 +154,16 @@
     - ALPS Fortran
         alpsize の中にソースを追加しておく
     - 参考文献
-- ALPSのインストール (Installation) - 五十嵐 10min
-    - third-partyライブラリ
-      	   http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log にいろいろ情報あり
-    - cmake, make, ctest, make install
-    - alps がインストールされているスパコンリスト
-      	   http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled
-    - SX, PGIは×   
+
+- ALPSのインストール (installation) 5枚
+    - ALPSがインストールされているシステム
+    - ALPSの依存関係
+    - Debian系Linuxでのインストール
+    - Mac OS Xでのインストール
+
     - (Windows版, Mac版)
     - 困ったときは、、、mailing list, ALPSwiki, 次回の講習会
+
 - 実習 (以下のいずれかを行う)
     - もっと多くのチュートリアル
     - 自分のプログラムのALPS化 (C++ or Fortran)
