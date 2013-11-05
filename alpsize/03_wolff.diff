@@ -1,0 +1,117 @@
+--- alpsize-02-original-c/wolff.c	2013-05-01 14:14:04.000000000 +0900
++++ alpsize-03-basic-cpp/wolff.C	2013-05-01 14:14:03.000000000 +0900
+@@ -28,10 +28,10 @@
+ *
+ *****************************************************************************/
+ 
+-#include <math.h>
+-#include <stdio.h>
+-#include <stdlib.h>
+-#include <time.h>
++#include <cmath>
++#include <cstdlib>
++#include <ctime>
++#include <iostream>
+ 
+ #define L 32
+ #define N (L*L)
+@@ -41,48 +41,46 @@
+ #define SEED 93812
+ 
+ double random_01() {
+-  return (double)(rand()) / RAND_MAX;
++  return (double)(std::rand()) / RAND_MAX;
+ }
+ 
+ int main() {
+ 
+-  int x, y, k, s, mcs;
+-
+-  /* setting up square lattice */
++  // setting up square lattice
+   int nn[N][4];
+-  for (y = 0; y < L; ++y)
+-    for (x = 0; x < L; ++x) {
++  for (int y = 0; y < L; ++y)
++    for (int x = 0; x < L; ++x) {
+       nn[x+L*y][0] = ((x+L-1)%L) + L*y;
+       nn[x+L*y][1] = ((x+1)%L) + L*y;
+       nn[x+L*y][2] = x + L*((y+L-1)%L);
+       nn[x+L*y][3] = x + L*((y+1)%L);
+     }
+ 
+-  /* random number generator */
++  // random number generator
+   srand(SEED);
+ 
+-  /* spin configuration */
++  // spin configuration
+   int spin[N];
+-  for (s = 0; s < N; ++s) spin[s] = 1;
++  for (int s = 0; s < N; ++s) spin[s] = 1;
+   int sz = N;
+ 
+-  /* stack for uninspected sites */
++  // stack for uninspected sites
+   int stck[N];
+   int is = 0;
+ 
+-  /* connecting probability */
+-  double pc = 1 - exp(-2./T);
++  // connecting probability
++  double pc = 1 - std::exp(-2./T);
+ 
+-  /* measurement */
++  // measurement
+   double m = 0;
+   double m2 = 0;
+   double m4 = 0;
+ 
+-  /* timer */
+-  clock_t tm = clock();
++  // timer
++  std::clock_t tm = std::clock();
+ 
+-  for (mcs = 0; mcs < MCSTEP + MCTHRM; ++mcs) {
+-    s = random_01() * N;
++  for (int mcs = 0; mcs < MCSTEP + MCTHRM; ++mcs) {
++    int s = static_cast<int>(random_01() * N);
+     int so = spin[s];
+     spin[s] = -so;
+     stck[0] = s;
+@@ -91,7 +89,7 @@
+     while (is) {
+       ++cs;
+       int sc = stck[--is];
+-      for (k = 0; k < 4; ++k) {
++      for (int k = 0; k < 4; ++k) {
+         int sn = nn[sc][k];
+         if (spin[sn] == so && random_01() < pc) {
+           stck[is++] = sn;
+@@ -101,19 +99,19 @@
+     }
+     sz -= 2 * so * cs;
+     if (mcs >= MCTHRM) {
+-      double dsz = sz / (double)N;
++      double dsz = sz / static_cast<double>(N);
+       m += dsz;
+       m2 += dsz * dsz;
+       m4 += dsz * dsz * dsz * dsz;
+     }
+   }
+ 
+-  /* output results */
+-  printf("Magnetization = %f\n", m / MCSTEP);
+-  printf("Magnetization^2 = %f\n", m2 / MCSTEP);
+-  printf("Magnetization^4 = %f\n", m4 / MCSTEP);
+-  printf("Binder Ratio of Magnetization = %f\n", m2 * m2 / m4 / MCSTEP);
+-  fprintf(stderr, "Elapsed time = %f sec\n", difftime(clock(), tm) / CLOCKS_PER_SEC);
++  // output results
++  std::cout << "Magnetization = " << m / MCSTEP << std::endl;
++  std::cout << "Magnetization^2 = " << m2 / MCSTEP << std::endl;
++  std::cout << "Magnetization^4 = " << m4 / MCSTEP << std::endl;
++  std::cout << "Binder Ratio of Magnetization = " << m2 * m2 / m4 / MCSTEP << std::endl;
++  std::cerr << "Elapsed time = " << std::difftime(std::clock(), tm) / CLOCKS_PER_SEC << " sec\n";
+ 
+   return 0;
+ }
