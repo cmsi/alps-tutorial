@@ -1,0 +1,47 @@
+--- alpsize-07-alea/wolff.C	2013-05-01 14:14:04.000000000 +0900
++++ alpsize-08-lattice/wolff.C	2013-05-01 14:14:04.000000000 +0900
+@@ -30,7 +30,8 @@
+ 
+ #include <alps/alea.h>
+ #include <alps/parameter.h>
+-#include <boost/array.hpp>
++#include <alps/lattice.h>
++#include <boost/foreach.hpp>
+ #include <boost/random.hpp>
+ #include <boost/timer.hpp>
+ #include <cmath>
+@@ -41,22 +42,14 @@
+ int main() {
+ 
+   alps::Parameters params(std::cin);
+-  const int L = params.value_or_default("L", 32);
+-  const int N = L * L;
+   const double T = params.value_or_default("T", 2.2);
+   const int MCSTEP = params.value_or_default("SWEEPS", 1 << 15);
+   const int MCTHRM = params.value_or_default("THERMALIZATION", MCSTEP >> 3);
+   const unsigned int SEED = params.value_or_default("SEED", 93812);
+ 
+   // setting up square lattice
+-  std::vector<boost::array<int, 4> > nn(N);
+-  for (int y = 0; y < L; ++y)
+-    for (int x = 0; x < L; ++x) {
+-      nn[x+L*y][0] = ((x+L-1)%L) + L*y;
+-      nn[x+L*y][1] = ((x+1)%L) + L*y;
+-      nn[x+L*y][2] = x + L*((y+L-1)%L);
+-      nn[x+L*y][3] = x + L*((y+1)%L);
+-    }
++  alps::graph_helper<> graph(params);
++  const int N = graph.num_sites();
+ 
+   // random number generator
+   boost::mt19937 eng(SEED);
+@@ -93,8 +86,7 @@
+       ++cs;
+       int sc = stck.top();
+       stck.pop();
+-      for (int k = 0; k < 4; ++k) {
+-        int sn = nn[sc][k];
++      BOOST_FOREACH(alps::graph_helper<>::site_descriptor const& sn, graph.neighbors(sc)) {
+         if (spin[sn] == so && random_01() < pc) {
+           stck.push(sn);
+           spin[sn] = -so;

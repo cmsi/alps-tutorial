@@ -1,0 +1,67 @@
+--- alpsize-03-basic-cpp/wolff.C	2013-05-01 14:14:03.000000000 +0900
++++ alpsize-04-stl/wolff.C	2013-05-01 14:14:03.000000000 +0900
+@@ -32,6 +32,8 @@
+ #include <cstdlib>
+ #include <ctime>
+ #include <iostream>
++#include <stack>
++#include <vector>
+ 
+ #define L 32
+ #define N (L*L)
+@@ -44,10 +46,16 @@
+   return (double)(std::rand()) / RAND_MAX;
+ }
+ 
++struct vec4 {
++  int& operator[](int i) { return nn_[i]; }
++  int operator[](int i) const { return nn_[i]; }
++  int nn_[4];
++};
++
+ int main() {
+ 
+   // setting up square lattice
+-  int nn[N][4];
++  std::vector<vec4> nn(N);
+   for (int y = 0; y < L; ++y)
+     for (int x = 0; x < L; ++x) {
+       nn[x+L*y][0] = ((x+L-1)%L) + L*y;
+@@ -60,13 +68,11 @@
+   srand(SEED);
+ 
+   // spin configuration
+-  int spin[N];
+-  for (int s = 0; s < N; ++s) spin[s] = 1;
++  std::vector<int> spin(N, 1);
+   int sz = N;
+ 
+   // stack for uninspected sites
+-  int stck[N];
+-  int is = 0;
++  std::stack<int> stck;
+ 
+   // connecting probability
+   double pc = 1 - std::exp(-2./T);
+@@ -83,16 +89,16 @@
+     int s = static_cast<int>(random_01() * N);
+     int so = spin[s];
+     spin[s] = -so;
+-    stck[0] = s;
+-    is = 1;
++    stck.push(s);
+     int cs = 0;
+-    while (is) {
++    while (!stck.empty()) {
+       ++cs;
+-      int sc = stck[--is];
++      int sc = stck.top();
++      stck.pop();
+       for (int k = 0; k < 4; ++k) {
+         int sn = nn[sc][k];
+         if (spin[sn] == so && random_01() < pc) {
+-          stck[is++] = sn;
++          stck.push(sn);
+           spin[sn] = -so;
+         }
+       }
