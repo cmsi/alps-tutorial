@@ -2,24 +2,55 @@
 
 \begin{document}
 
+\lstset{language={sh},showspaces=false,rulecolor=\color[cmyk]{0, 0.29,0.84,0}}
+
 \begin{frame}
   \titlepage
 \end{frame}
 
-% \begin{frame}
-%   \begin{columns}[t]
-%     \begin{column}{.3\textwidth}
-%     \end{column}
-%     \begin{column}{.7\textwidth}
-%       \tableofcontents
-%     \end{column}
-%   \end{columns}
-% \end{frame}
+\begin{frame}
+  \begin{columns}[t]
+    \begin{column}{.3\textwidth}
+    \end{column}
+    \begin{column}{.7\textwidth}
+      \tableofcontents
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{ALPSize (ALPS化)のすすめ}
+\begin{frame}
+  \frametitle{ALPSライブラリを使用する利点}
+  \begin{itemize}
+  \item エラーバーと自己相関時間の自動計算 (ALPS/alea)
+  \item 自動並列化 \& ロードバランシング (ALPS/scheduler)
+  \item チェックポイント作成とリスタート機能 (ALPS/scheduler)
+  \item XML形式による計算結果の自動出力とこれらを扱うコマンドラインツール
+  \item 入力パラメータの柔軟な扱い (ALPS/parameter)
+  \item 擬似乱数生成器 (ALPS/random)
+  \item 格子の容易な取扱い (ALPS/lattice)
+  \item 量子ハミルトニアンの容易な取扱い (ALPS/model)
+  \end{itemize}
+\end{frame}
 
 \begin{frame}
-  \frametitle{ALPSize 全体の流れ}
+  \frametitle{ALPSビルド環境を使用する利点}
   \begin{itemize}
-  \item 01-04 C++でのプログラミング
+  \item コンパイラ \& 最適化オプションの自動設定
+  \item MPI \& OpenMP用オプションの自動設定
+  \item ライブラリ(Boost, BLAS/LAPACK, HDF5, FFTW, SQLite, Python等)の自動検出
+  \item ALPSライブラリを利用するためのオプションの自動設定
+  \item テスト用スクリプト
+  \item 京、FX10、その他代表的なスパコン用のビルド環境が整備されている
+  \item Windows用のバイナリ作成が可能
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{ALPSize実習}
+  \begin{itemize}
+  \item 00-01 ALPSビルド環境の利用
+  \item 02-04 C++でのプログラミング
   \item 05-07 ALPSライブラリ単体の利用
   \item \alert{08 ALPSスケジューラ}
   \end{itemize}
@@ -28,48 +59,85 @@
   \end{block}
 \end{frame}
 
-\begin{frame}
-  \frametitle{CMake}
+\section{ALPSビルド環境}
+\begin{frame}[c,fragile]
+  \frametitle{ビルド環境のセットアップ}
   \begin{itemize}
-  \item クロスプラットフォームなビルドツール\\
-    Windowsにも対応
-  \item Makefileを生成
-  \item 高速な並列ビルド
-  \item 簡単なテスト
+    \setlength{\itemsep}{1em}
+  \item 環境変数の設定
+    \begin{itemize}
+    \item {\color{red} ALPS\_HOME}: ALPSがインストールされているディレクトリ\\ (例: /opt/nano/alps/alps-20131104-r7230)
+    \item {\color{red} PATH}: ツール(parameter2xml)のパスを追加
+    \item {\color{red} LD\_LIBRARY\_PATH}: ALPSライブラリのパスを設定
+    \item {\color{red} PYTHONPATH}: ALPS Pythonモジュールのパスを追加
+    \end{itemize}
+  \item ALPSがプレインストールされている環境では、上記の設定を行うシェルスクリプトが用意されている. 例)
+\begin{lstlisting}
+$ source /opt/nano/alps/alpsvars.sh
+\end{lstlisting}
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{alpsizeの準備}
-\begin{semiverbatim}
-\$ mkdir -p alpsize/XX
-\$ cd alpsize/XX
-\end{semiverbatim}
-  \begin{block}{}
-    ソースディレクトリとビルド・テストディレクトリは分けましょう
-  \end{block}
+\begin{frame}[c,fragile]
+  \frametitle{Makeの利用}
+  \begin{itemize}
+  \item \$ALPS\_HOME/share/alps/include.mk に Makefile 用の変数設定ファイルが用意されている
+  \item Makefileの例
+\begin{lstlisting}
+include $(ALPS_HOME)/share/alps/include.mk
+hello: hello.C
+        $(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o hello hello.C $(LIBS)
+\end{lstlisting}
+  \item 実習
+\begin{lstlisting}
+$ cp -r $ALPS_HOME/tutorial/alpsize-00-make $HOME
+$ cd $HOME/alpsize-00-make
+$ make
+\end{lstlisting}
+  \item {\color{blue} CMake の利用を推奨}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{00 CMake化 (1)}
-  簡単なプログラムをCMakeを利用してビルドする
-\begin{semiverbatim}
-\$ cmake /opt/nano/alps/alpsize/00_cmake/
-\$ make
-\$ ctest
-\$ ./hello
-\end{semiverbatim}
+\begin{frame}
+  \frametitle{CMake}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item クロスプラットフォームなビルドツール \\
+    Windowsにも対応
+  \item Makefileを生成
+  \item 高速な並列ビルド
+  \item テスト環境
+  \item CMakeのインストールについては, \url{http://todo.issp.u-tokyo.ac.jp/ja/search?SearchableText=cmake}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,shrink=10]
-  \frametitle{00 CMake化 (2)}
+\begin{frame}[c,fragile]
+  \frametitle{01 CMake化 (1)}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item 簡単なプログラムをCMakeを利用してビルドする
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-01-cmake
+$ cd $HOME/alpsize-01-cmake
+$ cmake $ALPS_HOME/tutorial/alpsize-01-cmake
+$ make
+$ ctest
+$ ./hello
+\end{lstlisting}
+  \item {\color{red} CMakeではソースディレクトリ(\$ALPS\_HOME/tutorial/alpsize-01-cmake)とビルドディレクトリ(\$HOME/alpsize-01-cmake)は分けた方が良い}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,shrink=15]
+  \frametitle{CMakeLists.txtの中身}
+  \$ALPS\_HOME/tutorial/alpsize-01-cmake/CMakeLists.txt
 \begin{semiverbatim}
-\$ cat /opt/nano/alps/alpsize/00_CMake/CMakeLists.txt
 \alert<1>{cmake_minimum_required(VERSION 2.8 FATAL_ERROR)}
 \alert<1>{project(hello NONE)}
 
 # find ALPS Library
-\alert<1>{find_package(ALPS REQUIRED PATHS ${ALPS_ROOT_DIR} $ENV{ALPS_HOME} NO_SYSTEM_ENVIRONMENT_PATH)}
+\alert<1>{find_package(ALPS REQUIRED PATHS $\{ALPS_ROOT_DIR\} $ENV\{ALPS_HOME\}
+          NO_SYSTEM_ENVIRONMENT_PATH)}
 \alert<1>{message(STATUS "Found ALPS: ${ALPS_ROOT_DIR} (revision: ${ALPS_VERSION})")}
 \alert<1>{include(${ALPS_USE_FILE})}
 
@@ -83,7 +151,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{00 CMake化 (3)}
+  \frametitle{01 CMake化 (3)}
 add\_alps\_testは以下と同等
 \begin{semiverbatim}
 \$ ./hello /opt/nano/alps/alpsize/00_CMake/hello.ip > hello.tmp
@@ -99,36 +167,39 @@ hello, world
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{01 Cプログラム}
+  \frametitle{02 Cプログラム}
   Wolffアルゴリズムのプログラム
-\begin{semiverbatim}
-\$ cmake /opt/nano/alps/alpsize/01_original-c/
-\$ make
-\$ ctest
-\$ ./wolff
-\end{semiverbatim}
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-02-original-c
+$ cd $HOME/alpsize-02-original-c
+$ cmake $ALPS_HOME/tutorial/alpsize-02-original-c
+$ make
+$ ./wolff
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{02 C++プログラム}
+  \frametitle{03 C++プログラム}
   WolffアルゴリズムをC++で
-\begin{semiverbatim}
-\$ cmake /opt/nano/alps/alpsize/02_basic-cpp/
-\$ make
-\$ ctest
-\$ ./wolff
-\end{semiverbatim}
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-03-basic-cpp
+$ cd $HOME/alpsize-03-basic-cpp
+$ cmake $ALPS_HOME/tutorial/alpsize-03-basic-cpp
+$ make
+$ ./wolff
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{03 STLの利用}
-  STLを利用する
-\begin{semiverbatim}
-\$ cmake /opt/nano/alps/alpsize/03_stl/
-\$ make
-\$ ctest
-\$ ./wolff
-\end{semiverbatim}
+  \frametitle{04 STLの利用}
+  STL (C++ Standard Template Library)を利用する
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-04-stl
+$ cd $HOME/alpsize-04-stl
+$ cmake $ALPS_HOME/tutorial/alpsize-04-stl
+$ make
+$ ./wolff
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
