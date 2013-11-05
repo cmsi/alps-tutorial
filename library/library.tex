@@ -26,10 +26,10 @@
   \frametitle{サードパーティーのライブラリ}
   \begin{itemize}
     \setlength{\itemsep}{1em}
-  \item BLAS, LAPACK: 線形演算(行列対角化、特異値分解など)
-  \item MPI (Message Passing Interface): 並列計算のためのメッセージ通信
-  \item HDF5 (Hierarchical Data Format): プラットフォーム非依存のバイナリファイル格納形式
-  \item Boost C++ Library: 乱数, グラフ, シリアル化, など多くの有用なライブラリ群
+  \item \href{http://www.netlib.org/blas/}{BLAS}, \href{http://www.netlib.org/lapack/}{LAPACK}: 線形演算(行列対角化、特異値分解など) (オプション)
+  \item \href{http://www.mpi-forum.org/}{MPI} (Message Passing Interface): 並列計算のためのメッセージ通信 (オプション)
+  \item \href{http://www.hdfgroup.org/HDF5/}{HDF5} (Hierarchical Data Format): プラットフォーム非依存のバイナリファイル格納形式
+  \item \href{http://www.boost.org/}{Boost C++ Library}: 乱数, グラフ, シリアル化, など多くの有用なライブラリ群
   \end{itemize}
 \end{frame}
 
@@ -45,7 +45,8 @@
         \item 四則演算、初等関数(sin, cos, expなど)が使える
         \item $\pi$ (PI), 虚数単位(I)などを文字で指定
           \item C 風, C++風のコメント
-          \item \{ \} で囲んだ変数は異なるセット
+          \item \{ \} で囲まない変数は共通パラメータ
+          \item \{ \} で囲んだ変数は異なるパラメータセット
         %\end{itemize}
       \end{itemize}
     \end{column}
