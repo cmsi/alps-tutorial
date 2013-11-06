@@ -156,7 +156,7 @@ THERMALIZATION = SWEEPS/8;
     /opt/nano/alps/alpsvars.sh & \\
     \hspace*{3em} ALPS環境変数(\$ALPS\_HOME等)設定スクリプト \\
     \$ALPS\_HOME/tutorials & \\
-    \hspace*{3em} アプリケーションのチュートリアル \\
+    \hspace*{3em} アプリケーションのチュートリアル用入出力ファイル \\
     \$ALPS\_HOME/tutorials/alpsize-* & \\
     \hspace*{3em} ALPS化のチュートリアル (20130501-r5861以降)
   \end{tabular}
@@ -219,6 +219,20 @@ THERMALIZATION = SWEEPS/8;
   \end{columns}
 \end{frame}
 
+\begin{frame}
+  \frametitle{ALPSアプリケーションの一覧}
+  \begin{description}
+  \item[spinmc] 古典モンテカルロ法
+  \item[loop] 量子モンテカルロ法(ループアルゴリズム)
+  \item[dirloop\_sse] 量子モンテカルロ(向きつきループアルゴリズム)
+  \item[worm] 量子モンテカルロ(ワームアルゴリズム)
+  \item[sparsediag] 厳密対角化(Lanczos法)
+  \item[fulldiag] 厳密対角化(全対角化法)
+  \item[dmrg] 密度行列繰り込み群法
+  \item[dmft] 動的平均場法
+  \end{description}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{ALPSチュートリアル: MC-02 (1)}
   \begin{enumerate}
@@ -279,7 +293,7 @@ In [13]: plt.savefig('out.pdf')
 
 \begin{frame}{実行結果の確認}
   \begin{itemize}
-    \item 実行結果(JOB XMLファイル、TASK XMLファイル)は、webブラウザで直接開いて中身を見ること可能
+    \item 実行結果(JOB XMLファイル、TASK XMLファイル)は、webブラウザで直接開いて中身を見ることも可能
       \begin{itemize}
       \item 例(Mac OS X): open -a safari parms2a.out.xml
       \end{itemize}

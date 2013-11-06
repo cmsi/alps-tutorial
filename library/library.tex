@@ -26,10 +26,10 @@
   \frametitle{サードパーティーのライブラリ}
   \begin{itemize}
     \setlength{\itemsep}{1em}
-  \item BLAS, LAPACK: 線形演算(行列対角化、特異値分解など)
-  \item MPI (Message Passing Interface): 並列計算のためのメッセージ通信
-  \item HDF5 (Hierarchical Data Format): プラットフォーム非依存のバイナリファイル格納形式
-  \item Boost C++ Library: 乱数, グラフ, シリアル化, など多くの有用なライブラリ群
+  \item \href{http://www.netlib.org/blas/}{BLAS}, \href{http://www.netlib.org/lapack/}{LAPACK}: 線形演算(行列対角化、特異値分解など) (オプション)
+  \item \href{http://www.mpi-forum.org/}{MPI} (Message Passing Interface): 並列計算のためのメッセージ通信 (オプション)
+  \item \href{http://www.hdfgroup.org/HDF5/}{HDF5} (Hierarchical Data Format): プラットフォーム非依存のバイナリファイル格納形式
+  \item \href{http://www.boost.org/}{Boost C++ Library}: 乱数, グラフ, シリアル化, など多くの有用なライブラリ群
   \end{itemize}
 \end{frame}
 
@@ -45,7 +45,8 @@
         \item 四則演算、初等関数(sin, cos, expなど)が使える
         \item $\pi$ (PI), 虚数単位(I)などを文字で指定
           \item C 風, C++風のコメント
-          \item \{ \} で囲んだ変数は異なるセット
+          \item \{ \} で囲まない変数は共通パラメータ
+          \item \{ \} で囲んだ変数は異なるパラメータセット
         %\end{itemize}
       \end{itemize}
     \end{column}
@@ -87,7 +88,7 @@ int main() {
 
 \section{ALPS/alea}
 \begin{frame}[t,fragile]
-  \frametitle{ALPS/aleaライブラリ}
+  \frametitle{ALPS/aleaライブラリ(1)}
   \begin{itemize}
   \item マルコフ連鎖における平均値, 分散, 自己相関を計算するライブラリ
     \lstset{language={C++}}
@@ -101,17 +102,39 @@ mag2 << m * m; // in each MC step
     \begin{lstlisting}
 std::cout << mag2 << std::endl;
 \end{lstlisting}
+  \begin{itemize}
+  \item 出力
+\lstset{language={bash}}
+\begin{lstlisting}
+Magnetization^2: 1.5 +/- 0.707; tau = inf WARNING: check error convergence
+\end{lstlisting}
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/aleaライブラリ(2)}
+  \begin{itemize}
   \item ジャックナイフ法を用いた非線形量のエラー評価
     \lstset{language={C++}}
     \begin{lstlisting}
-alps::RealObsEvaluator binder = mag2 * mag2 / mag4;
-std::cout << binder.mean() << ' ' << binder.error() << '\n';
+alps::RealObsevaluator mag2eval(mag2);
+alps::RealObsevaluator mag4eval(mag4);
+alps::RealObsevaluator binder = mag2eval * mag2eval / mag4eval;
+std::cout << binder;
 \end{lstlisting}
+  \begin{itemize}
+  \item 出力
+\lstset{language={bash}}
+\begin{lstlisting}
+(Magnetization^2) * (Magnetization^2) / (Magnetization^4): 0.45 +/- 0.25 WARNING: check error convergence
+\end{lstlisting}
+  \end{itemize}
   \end{itemize}
 \end{frame}
 
 \section{ALPS/lattice}
-\begin{frame} [t,fragile]
+\begin{frame} [t,fragile,shrink]
   \frametitle{ALPS/latticeライブラリ}
   \begin{itemize}
     \setlength{\itemsep}{1em}
@@ -127,6 +150,7 @@ std::cout << binder.mean() << ' ' << binder.error() << '\n';
     \item 座標、パリティ、逆格子ベクトルなどの属性
     \end{itemize}
   \item あらかじめ用意されている格子: "chain lattice", "square lattice", "triangular lattice", "honeycomb lattice", "simple cubic lattice", など
+  \item ``printgraph'' で格子のチェック
   \end{itemize}
 \end{frame}
 
@@ -135,10 +159,22 @@ std::cout << binder.mean() << ' ' << binder.error() << '\n';
   \begin{itemize}
   \item 格子の指定
   \begin{lstlisting}
-<LATTICE name="chain lattice" dimension="1">
-  <BASIS><VECTOR> 1 </VECTOR></BASIS>
+<LATTICE name="2D" dimension="2">
+  <BASIS>
+    <VECTOR>   1 0 </VECTOR>
+    <VECTOR> 0.5 1 </VECTOR>
+  </BASIS>
 </LATTICE>
 \end{lstlisting}
+  \end{itemize}
+  \begin{center}
+    \includegraphics[height=0.3\textheight]{TutorialLatticeHOWTOLattice1}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{有限格子 + ユニットセルの埋め込み - 2}
+  \begin{itemize}
   \item ユニットセル
   \begin{lstlisting}
 <UNITCELL name="simple1d" dimension="1" vertices="1">
@@ -148,6 +184,9 @@ std::cout << binder.mean() << ' ' << binder.error() << '\n';
 </UNITCELL>
 \end{lstlisting}
   \end{itemize}
+  \begin{center}
+    \includegraphics[height=0.3\textheight]{TutorialLatticeHOWTOLattice1}
+  \end{center}
 \end{frame}
 
 \begin{frame}[t,fragile]
@@ -187,6 +226,7 @@ std::cout << binder.mean() << ' ' << binder.error() << '\n';
 Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
 \end{lstlisting}
   \item 作成した局所ハミルトニアンは行列の形で取り出せる
+  \item プラケット項などのn体相互作用は難しい
   \item ALPS Model HOWTO: \url{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO}
   \item あらかじめ用意されている模型: "spin", "boson Hubbard", "hardcore boson", "fermion Hubbard", "alternative fermion Hubbard", "spinless fermions", "Kondo lattice", "t-J"
   \end{itemize}
