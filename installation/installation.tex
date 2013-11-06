@@ -82,20 +82,50 @@ alps-2.1.1-r6176-src-with-boost.tar.gz
   \item 必要なライブラリを\href{http://www.macports.org/}{MacPorts}からインストール
 \begin{semiverbatim}
 \$ sudo port install cmake hdf5-18 openmpi
-\$ sudo port install py27-numpy py27-scipy py27-matplotlib python27
+\$ sudo port install py27-numpy py27-scipy \\
+py27-matplotlib python27
 \$ sudo port select --set python python27
 \end{semiverbatim}
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
-\$ wget http://alps.comp-phys.org/static/software/releases/\\
-alps-2.1.1-r6176-src-with-boost.tar.gz
+\$ wget http://todo.issp.u-tokyo.ac.jp/archive/\\
+alps-20131104-r7230.tar.gz
+\$ wget http://sourceforge.net/projects/boost/files/\\
+boost/1.54.0/boost_1_54_0.tar.bz2
 \$ tar zxf alps-2.1.1-r6176-src-with-boost.tar.gz
+\$ tar jxf boost_1_54_0.tar.bz2
 \$ mkdir build && cd build
-\$ cmake ../alps-2.1.1-r6176-src-with-boost/alps
+\$ vi alps-cmake.sh (see next page)
+\$ sh alps-cmake.sh
 \$ make && ctest && make install
 \end{semiverbatim}
   \end{enumerate}
 \end{frame}
+
+\begin{frame}[fragile,shrink=10]
+ \frametitle{Mac OS X用のCMakeの設定例 (alps-cmake.sh)}
+ \begin{semiverbatim}
+#!/bin/bash
+
+PREFIX=${HOME}/opt/alps
+ALPS_SRC=${HOME}/sources/archive/alps-20131104-r7230
+BOOST_SRC=${HOME}/sources/archive/boost_1_54_0
+
+cmake \\
+    -DCMAKE_BUILD_TYPE:STRING=Release \\
+    -DCMAKE_INSTALL_PREFIX:PATH=${PREFIX} \\
+    -DCMAKE_CXX_COMPILER:PATH=/opt/local/bin/g++-mp-4.8 \\
+    -DCMAKE_C_COMPILER:PATH=/opt/local/bin/gcc-mp-4.8 \\
+    -DCMAKE_BUILD_TYPE:STRING=${BUILD_TYPE} \\
+    -DBoost_ROOT_DIR:PATH=${BOOST_SRC} \\
+    -DALPS_ENABLE_OPENMP:BOOL=ON \\
+    -DALPS_ENABLE_OPENMP_WORKER:BOOL=ON \\
+    -DMPI_C_COMPILER:PATH=/opt/local/bin/openmpicc \\
+    -DMPI_CXX_COMPILER:PATH=/opt/local/bin/openmpicxx \\
+${ALPS_SRC}
+ \end{semiverbatim}
+\end{frame}
+
 \end{document}
 
 %%% Local Variables: 
