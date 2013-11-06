@@ -545,7 +545,7 @@ $ ./wolff wolff_params.in.xml
     \item save(alps::ODump\&) const;
       \begin{itemize}
         \item チェックポイントの書き出し. スピン配位などをバイナリ形式(xdr)で保存する
-        \item alps::ODump には, int, doulbe, std::vector 等ほとんど何でも書き込める
+        \item alps::ODump には, int, double, std::vector 等ほとんど何でも書き込める
         \item ユーザが宣言した構造体, クラスのインスタンスを書き込みたい場合には, 演算子をオーバーロードする
 \begin{lstlisting}
 dp << mcs << spin << sz;
