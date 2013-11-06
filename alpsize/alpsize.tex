@@ -482,6 +482,12 @@ Jtemp = param["J" + \alert{bond_type(b)}];
 \begin{frame}[fragile]
   \frametitle{09 ALPS Scheduler (2)}
   \begin{itemize}
+    \item メイン文: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/09-wolff.C}{worker.C})
+\begin{lstlisting}
+int main(int argc, char** argv) {
+  return alps::parapack::start(argc, argv);
+}
+\end{lstlisting}
     \item ビルド, テスト, (マルチスレッド)実行
 \begin{lstlisting}
 $ mkdir $HOME/alpsize-09-scheduler
@@ -489,8 +495,6 @@ $ cd $HOME/alpsize-09-scheduler
 $ cmake $ALPS_HOME/tutorials/alpsize-09-scheduler
 $ make
 $ ctest
-$ parameter2xml $ALPS_HOME/.../hello_params hello_params
-$ ./hello hello_params.in.xml
 $ parameter2xml $ALPS_HOME/.../wolff_params wolff_params
 $ ./wolff wolff_params.in.xml
 \end{lstlisting}
@@ -538,7 +542,7 @@ $ ./wolff wolff_params.in.xml
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{09 ALPS Scheduler (4)}
+  \frametitle{09 ALPS Scheduler (5)}
   \begin{itemize}
     \item save(alps::ODump\&) const;
       \begin{itemize}
@@ -561,36 +565,81 @@ dp >> mcs >> spin >> sz;
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{08 ALPS Scheduler (3)}
-\begin{semiverbatim}
-class wolff_evaluator : public alps::parapack::simple_evaluator \{
-public:
-  wolff_evaluator(alps::Parameters const&);
-  void evaluate(alps::ObservableSet& obs) const;
-\};
-\end{semiverbatim}
+  \frametitle{09 ALPS Scheduler (6)}
+  \begin{itemize}
+    \item Workerの基底クラス
+      \begin{itemize}
+      \item alps::parapack::abstract\_worker : 最も基本的な基底クラス
+      \item alps::parapack::mc\_worker : alps::rng\_helper を継承. 乱数生成器が利用可. 乱数生成器の状態のチェックポイントリスタートも自動的に行われる
+      \item alps::parapack::lattice\_mc\_worker$\langle\rangle$ : alps::graph\_helper を継承. ALPS/latticeライブラリの関数が利用可
+      \item alps::parapack::latticemodel\_mc\_worker$\langle\rangle$ : alps::protected model\_helper$\langle\rangle$ を継承. ALPS/modelライブラリの関数が利用可
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{08 ALPS Scheduler (4)}
-\begin{semiverbatim}
-#include <alps/parapack/parapack.h>
-
-int main(int argc, char** argv) \{
-  return alps::parapack::start(argc, argv);
-\}
-\end{semiverbatim}
+  \frametitle{09 ALPS Scheduler (7)}
+  \begin{itemize}
+    \item Evaluator: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/09-wolff_worker.h}{wolff\_worker.h}
+      \begin{itemize}
+      \item ALPS/parapackスケジューラでは, NUM\_CLONESパラメータを指定することで, 同じパラメータセットで乱数の種だけが異なるシミュレーション(Clone)を複数並列実行可 (ばかパラ)
+      \item 同じパラメータセットに属するCloneの測定量は, 終了時に自動的にマージされる
+      \item 非線形な物理量(例: ビンダー比, 相関長)の計算は、Cloneのマージが終わった後に行う必要がある
+      \item EvaluatorをWorkerと同じ名前でスケジューラに登録しておくと, Cloneのマージ後にevaluate関数が呼び出される
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{ALPS Fortran}
-  ALPS SchedulerをFortranプログラムに
+  \frametitle{09 ALPS Scheduler (8)}
+  \begin{itemize}
+    \item Workerの並列化 (OpenMP並列)
+      \begin{itemize}
+      \item CMake時に, -DALPS\_ENABLE\_OPENMP\_WORKER=ON が指定されていれば、Workerの中でOpenMP利用可
+      \end{itemize}
+    \item Workerの並列化 (MPI並列)
+      \begin{itemize}
+      \item Workerのコンストラクタを修正
+\begin{lstlisting}
+worker(mpi::communicator const&, alps::Parameters const&)
+\end{lstlisting}
+      \item コンストラクタに渡された mpi::communicator の中は自由に使ってよい.
+      \item {\color{red} PARAPACK\_REGISTER\_PARALLEL\_WORKER}マクロを用いてWorkerを登録
+      \end{itemize}
+    \item 実行時に -r オプションと -p オプションで, 総スレッド数とWorkerあたりのスレッド数を指定
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{10,11 ALPS Fortran}
+  \begin{itemize}
+  \item FortranプログラムをALPSに組み込む
+    \begin{itemize}
+      \item クラスの代わりにサブルーチン群を作成する (alps\_init, alps\_init\_observable, alps\_run, など)
+      \item サブルーチン間の状態の受け渡しは, common または module を利用する
+      \item C++ポインタの受け渡しに integer(2) を使う (caller変数)
+    \end{itemize}
+  \item チュートリアル
+  \begin{itemize}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ALPS_Fortran_Introduction/ja}{ALPS Fortran Introduction}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ALPS_Fortran_Application_Development/ja}{ALPS Fortran Application Development}
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{実習}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item 逐次プログラムのALPS化
+    \begin{itemize}
+      \item オリジナルコード: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/ising.C}{ising.C}
+    \end{itemize}
+  \item 並列プログラムのALPS化
+    \begin{itemize}
+      \item オリジナルコード: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/ising_parallel.C}{ising\_parallel.C}
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \end{document}
-
-%%% Local Variables: 
-%%% mode: japanese-latex
-%%% TeX-master: nil
-%%% coding: utf-8
-%%% End: 
