@@ -1,0 +1,62 @@
+--- alpsize-06-parameters/wolff.C	2013-05-01 14:14:03.000000000 +0900
++++ alpsize-07-alea/wolff.C	2013-05-01 14:14:04.000000000 +0900
+@@ -28,6 +28,7 @@
+ *
+ *****************************************************************************/
+ 
++#include <alps/alea.h>
+ #include <alps/parameter.h>
+ #include <boost/array.hpp>
+ #include <boost/random.hpp>
+@@ -73,14 +74,16 @@
+   double pc = 1 - std::exp(-2./T);
+ 
+   // measurement
+-  double m = 0;
+-  double m2 = 0;
+-  double m4 = 0;
++  alps::ObservableSet measurements;
++  measurements << alps::RealObservable("Magnetization");
++  measurements << alps::RealObservable("Magnetization^2");
++  measurements << alps::RealObservable("Magnetization^4");
+ 
+   // timer
+   boost::timer tm;
+ 
+   for (int mcs = 0; mcs < MCSTEP + MCTHRM; ++mcs) {
++    if (mcs == MCTHRM) measurements.reset(true);
+     int s = static_cast<int>(random_01() * N);
+     int so = spin[s];
+     spin[s] = -so;
+@@ -99,19 +102,21 @@
+       }
+     }
+     sz -= 2 * so * cs;
+-    if (mcs >= MCTHRM) {
+-      double dsz = sz / static_cast<double>(N);
+-      m += dsz;
+-      m2 += dsz * dsz;
+-      m4 += dsz * dsz * dsz * dsz;
+-    }
++    double dsz = sz / static_cast<double>(N);
++    measurements["Magnetization"] << dsz;
++    measurements["Magnetization^2"] << dsz * dsz;
++    measurements["Magnetization^4"] << dsz * dsz * dsz * dsz;
+   }
+ 
++  // calculate Binder parameter
++  alps::RealObsevaluator m2 = measurements["Magnetization^2"];
++  alps::RealObsevaluator m4 = measurements["Magnetization^4"];
++  alps::RealObsevaluator binder("Binder Ratio of Magnetization");
++  binder = m2 * m2 / m4;
++  measurements.addObservable(binder);
++
+   // output results
+-  std::cout << "Magnetization = " << m / MCSTEP << std::endl;
+-  std::cout << "Magnetization^2 = " << m2 / MCSTEP << std::endl;
+-  std::cout << "Magnetization^4 = " << m4 / MCSTEP << std::endl;
+-  std::cout << "Binder Ratio of Magnetization = " << m2 * m2 / m4 / MCSTEP << std::endl;
++  std::cout << measurements;
+   std::cerr << "Elapsed time = " << tm.elapsed() << " sec\n";
+ 
+   return 0;
