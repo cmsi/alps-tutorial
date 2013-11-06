@@ -134,7 +134,7 @@ std::cout << binder;
 \end{frame}
 
 \section{ALPS/lattice}
-\begin{frame} [t,fragile]
+\begin{frame} [t,fragile,shrink]
   \frametitle{ALPS/latticeライブラリ}
   \begin{itemize}
     \setlength{\itemsep}{1em}
@@ -150,6 +150,7 @@ std::cout << binder;
     \item 座標、パリティ、逆格子ベクトルなどの属性
     \end{itemize}
   \item あらかじめ用意されている格子: "chain lattice", "square lattice", "triangular lattice", "honeycomb lattice", "simple cubic lattice", など
+  \item ``printgraph'' で格子のチェック
   \end{itemize}
 \end{frame}
 
@@ -158,10 +159,22 @@ std::cout << binder;
   \begin{itemize}
   \item 格子の指定
   \begin{lstlisting}
-<LATTICE name="chain lattice" dimension="1">
-  <BASIS><VECTOR> 1 </VECTOR></BASIS>
+<LATTICE name="2D" dimension="2">
+  <BASIS>
+    <VECTOR>   1 0 </VECTOR>
+    <VECTOR> 0.5 1 </VECTOR>
+  </BASIS>
 </LATTICE>
 \end{lstlisting}
+  \end{itemize}
+  \begin{center}
+    \includegraphics[height=0.3\textheight]{TutorialLatticeHOWTOLattice1}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{有限格子 + ユニットセルの埋め込み - 2}
+  \begin{itemize}
   \item ユニットセル
   \begin{lstlisting}
 <UNITCELL name="simple1d" dimension="1" vertices="1">
@@ -171,6 +184,9 @@ std::cout << binder;
 </UNITCELL>
 \end{lstlisting}
   \end{itemize}
+  \begin{center}
+    \includegraphics[height=0.3\textheight]{TutorialLatticeHOWTOLattice1}
+  \end{center}
 \end{frame}
 
 \begin{frame}[t,fragile]
