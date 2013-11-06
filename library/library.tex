@@ -88,7 +88,7 @@ int main() {
 
 \section{ALPS/alea}
 \begin{frame}[t,fragile]
-  \frametitle{ALPS/aleaライブラリ}
+  \frametitle{ALPS/aleaライブラリ(1)}
   \begin{itemize}
   \item マルコフ連鎖における平均値, 分散, 自己相関を計算するライブラリ
     \lstset{language={C++}}
@@ -102,12 +102,34 @@ mag2 << m * m; // in each MC step
     \begin{lstlisting}
 std::cout << mag2 << std::endl;
 \end{lstlisting}
+  \begin{itemize}
+  \item 出力
+\lstset{language={bash}}
+\begin{lstlisting}
+Magnetization^2: 1.5 +/- 0.707; tau = inf WARNING: check error convergence
+\end{lstlisting}
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/aleaライブラリ(2)}
+  \begin{itemize}
   \item ジャックナイフ法を用いた非線形量のエラー評価
     \lstset{language={C++}}
     \begin{lstlisting}
-alps::RealObsEvaluator binder = mag2 * mag2 / mag4;
-std::cout << binder.mean() << ' ' << binder.error() << '\n';
+alps::RealObsevaluator mag2eval(mag2);
+alps::RealObsevaluator mag4eval(mag4);
+alps::RealObsevaluator binder = mag2eval * mag2eval / mag4eval;
+std::cout << binder;
 \end{lstlisting}
+  \begin{itemize}
+  \item 出力
+\lstset{language={bash}}
+\begin{lstlisting}
+(Magnetization^2) * (Magnetization^2) / (Magnetization^4): 0.45 +/- 0.25 WARNING: check error convergence
+\end{lstlisting}
+  \end{itemize}
   \end{itemize}
 \end{frame}
 
