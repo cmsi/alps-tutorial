@@ -44,14 +44,12 @@
 \begin{frame}
   \frametitle{ALPSize実習}
   \begin{itemize}
+    \setlength{\itemsep}{1em}
   \item 00-01 ALPSビルド環境の利用 (Make, CMake)
   \item 02-05 C++プログラミング
   \item 06-08 ALPSライブラリの利用
   \item 09 ALPSスケジューラの利用
   \end{itemize}
-  \begin{block}{}
-    ALPSスケジューラで単純な並列化と中断・再開
-  \end{block}
 \end{frame}
 
 \section{ALPSビルド環境}
@@ -108,7 +106,7 @@ $ make
 \end{frame}
 
 \begin{frame}[c,fragile]
-  \frametitle{01 CMake化 (1)}
+  \frametitle{01 CMake化}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item 簡単なプログラムをCMakeを利用してビルドする
@@ -148,7 +146,7 @@ $ ./hello
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{01 CMake化 (3)}
+  \frametitle{テストスクリプト}
 add\_alps\_testは以下と同等
 \begin{semiverbatim}
 \$ ./hello \$ALPS_HOME/tutorials/alpsize-00-CMake/hello.ip > hello.tmp

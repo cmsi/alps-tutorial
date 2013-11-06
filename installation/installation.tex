@@ -66,11 +66,16 @@
 \end{semiverbatim}
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
-\$ wget http://alps.comp-phys.org/static/software/releases/\\
-alps-2.1.1-r6176-src-with-boost.tar.gz
-\$ tar zxf alps-2.1.1-r6176-src-with-boost.tar.gz
+\$ cd $HOME
+\$ wget http://todo.issp.u-tokyo.ac.jp/archive/\\
+alps-20131104-r7230.tar.gz
+\$ wget http://sourceforge.net/projects/boost/files/\\
+boost/1.54.0/boost_1_54_0.tar.bz2
+\$ tar zxf alps-20131104-r7230.tar.gz
+\$ tar jxf boost_1_54_0.tar.bz2
 \$ mkdir build && cd build
-\$ cmake ../alps-2.1.1-r6176-src-with-boost/alps
+\$ cmake -DBoost_ROOT_DIR=$HOME/boost_1_54_0 \\
+  $HOME/alps-20131104-r7230
 \$ make && ctest && make install
 \end{semiverbatim}
   \end{enumerate}
@@ -83,7 +88,7 @@ alps-2.1.1-r6176-src-with-boost.tar.gz
 \begin{semiverbatim}
 \$ sudo port install cmake hdf5-18 openmpi
 \$ sudo port install py27-numpy py27-scipy \\
-py27-matplotlib python27
+  py27-matplotlib python27
 \$ sudo port select --set python python27
 \end{semiverbatim}
   \item ALPSのビルドとインストール
@@ -92,7 +97,7 @@ py27-matplotlib python27
 alps-20131104-r7230.tar.gz
 \$ wget http://sourceforge.net/projects/boost/files/\\
 boost/1.54.0/boost_1_54_0.tar.bz2
-\$ tar zxf alps-2.1.1-r6176-src-with-boost.tar.gz
+\$ tar zxf alps-20131104-r7230.tar.gz
 \$ tar jxf boost_1_54_0.tar.bz2
 \$ mkdir build && cd build
 \$ vi alps-cmake.sh (see next page)
