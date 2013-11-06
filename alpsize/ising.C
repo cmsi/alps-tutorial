@@ -2,7 +2,7 @@
 *
 * Tutorial: How to ALPSize your applications
 *
-* Copyright (C) 2005-2010 by Synge Todo <wistaria@comp-phys.org>
+* Copyright (C) 2005-2013 by Synge Todo <wistaria@comp-phys.org>
 *
 * Permission is hereby granted, free of charge, to any person or organization
 * obtaining a copy of the software and accompanying documentation covered by
@@ -34,7 +34,7 @@
 #include <boost/random.hpp>
 #include <boost/timer.hpp>
 
-#define L 32
+#define L 128
 #define T 1.0
 #define MCSTEP (1 << 15)
 #define MCTHRM (MCSTEP >> 3)
