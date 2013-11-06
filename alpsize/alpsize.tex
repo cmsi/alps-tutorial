@@ -8,14 +8,9 @@
   \titlepage
 \end{frame}
 
+\section*{Outline}
 \begin{frame}
-  \begin{columns}[t]
-    \begin{column}{.3\textwidth}
-    \end{column}
-    \begin{column}{.7\textwidth}
-      \tableofcontents
-    \end{column}
-  \end{columns}
+  \tableofcontents
 \end{frame}
 
 \section{ALPSize (ALPS化)のすすめ}
@@ -49,10 +44,10 @@
 \begin{frame}
   \frametitle{ALPSize実習}
   \begin{itemize}
-  \item 00-01 ALPSビルド環境の利用
-  \item 02-04 C++でのプログラミング
-  \item 05-07 ALPSライブラリ単体の利用
-  \item \alert{08 ALPSスケジューラ}
+  \item 00-01 ALPSビルド環境の利用 (Make, CMake)
+  \item 02-05 C++プログラミング
+  \item 06-08 ALPSライブラリの利用
+  \item 09 ALPSスケジューラの利用
   \end{itemize}
   \begin{block}{}
     ALPSスケジューラで単純な並列化と中断・再開
@@ -90,7 +85,7 @@ hello: hello.C
 \end{lstlisting}
   \item 実習
 \begin{lstlisting}
-$ cp -r $ALPS_HOME/tutorial/alpsize-00-make $HOME
+$ cp -r $ALPS_HOME/tutorials/alpsize-00-make $HOME
 $ cd $HOME/alpsize-00-make
 $ make
 \end{lstlisting}
@@ -107,6 +102,7 @@ $ make
   \item Makefileを生成
   \item 高速な並列ビルド
   \item テスト環境
+  \item ビルドルール, ライブラリ, 依存関係などは CMakeLists.txt に記述する
   \item CMakeのインストールについては, \url{http://todo.issp.u-tokyo.ac.jp/ja/search?SearchableText=cmake}
   \end{itemize}
 \end{frame}
@@ -119,18 +115,18 @@ $ make
 \begin{lstlisting}
 $ mkdir $HOME/alpsize-01-cmake
 $ cd $HOME/alpsize-01-cmake
-$ cmake $ALPS_HOME/tutorial/alpsize-01-cmake
+$ cmake $ALPS_HOME/tutorials/alpsize-01-cmake
 $ make
 $ ctest
 $ ./hello
 \end{lstlisting}
-  \item {\color{red} CMakeではソースディレクトリ(\$ALPS\_HOME/tutorial/alpsize-01-cmake)とビルドディレクトリ(\$HOME/alpsize-01-cmake)は分けた方が良い}
+  \item {\color{red} CMakeではソースディレクトリ(\$ALPS\_HOME/tutorials/alpsize-01-cmake)とビルドディレクトリ(\$HOME/alpsize-01-cmake)は別にする}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile,shrink=15]
-  \frametitle{CMakeLists.txtの中身}
-  \$ALPS\_HOME/tutorial/alpsize-01-cmake/CMakeLists.txt
+  \frametitle{CMakeLists.txtの例}
+  {\small \$ALPS\_HOME/tutorials/alpsize-01-cmake/CMakeLists.txt}
 \begin{semiverbatim}
 \alert<1>{cmake_minimum_required(VERSION 2.8 FATAL_ERROR)}
 \alert<1>{project(hello NONE)}
@@ -138,14 +134,15 @@ $ ./hello
 # find ALPS Library
 \alert<1>{find_package(ALPS REQUIRED PATHS $\{ALPS_ROOT_DIR\} $ENV\{ALPS_HOME\}
           NO_SYSTEM_ENVIRONMENT_PATH)}
-\alert<1>{message(STATUS "Found ALPS: ${ALPS_ROOT_DIR} (revision: ${ALPS_VERSION})")}
-\alert<1>{include(${ALPS_USE_FILE})}
+\alert<1>{message(STATUS "Found ALPS: $\{ALPS_ROOT_DIR\} (revision: $\{ALPS_VERSION\})")}
+\alert<1>{include($\{ALPS_USE_FILE\})}
 
 # enable C and C++ compilers
-\alert<2>{enable_language(CXX)}
+\alert<2>{enable_language(C CXX)}
 
 # rule for generating 'hello world' program
 \alert<3>{add_executable(hello hello.C)}
+\alert<3>{target_link_libraries(hello $\{ALPS_LIBRARIES\})}
 \alert<4>{add_alps_test(hello)}
 \end{semiverbatim}
 \end{frame}
@@ -154,90 +151,137 @@ $ ./hello
   \frametitle{01 CMake化 (3)}
 add\_alps\_testは以下と同等
 \begin{semiverbatim}
-\$ ./hello /opt/nano/alps/alpsize/00_CMake/hello.ip > hello.tmp
-\$ diff -u hello.tmp /opt/nano/alps/alpsize/00_CMake/hello.op
+\$ ./hello \$ALPS_HOME/tutorials/alpsize-00-CMake/hello.ip > hello.tmp
+\$ diff -u \$ALPS_HOME/tutorials/alpsize-00-CMake/hello.op hello.tmp
 \$ rm hello.tmp
 \end{semiverbatim}
-実行バイナリを期待される出力と比較するテスト
+実行結果(出力)を hello.op と比較
 \begin{semiverbatim}
-\$ cat /opt/nano/alps/alpsize/00_CMake/hello.op
+\$ cat \$ALPS_HOME/tutorials/alpsize-00-CMake/hello.op
 hello, world
 \end{semiverbatim}
-
 \end{frame}
 
+\section{C++プログラミング}
 \begin{frame}[fragile]
   \frametitle{02 Cプログラム}
-  Wolffアルゴリズムのプログラム
+  \begin{itemize}
+    \item Wolffアルゴリズム
+      \begin{itemize}
+        \item 2次元正方格子強磁性Ising模型のモンテカルロ計算
+        \item ランダムに選んだ点からクラスターを作成し, スピン反転
+        \item ソースコード: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/02-wolff.c}{wolff.c}
+      \end{itemize}
+    \item ビルドと実行
 \begin{lstlisting}
 $ mkdir $HOME/alpsize-02-original-c
 $ cd $HOME/alpsize-02-original-c
-$ cmake $ALPS_HOME/tutorial/alpsize-02-original-c
+$ cmake $ALPS_HOME/tutorials/alpsize-02-original-c
 $ make
 $ ./wolff
 \end{lstlisting}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{03 C++プログラム}
-  WolffアルゴリズムをC++で
+  \begin{itemize}
+    \item WolffアルゴリズムC++で書きなおす
+      \begin{itemize}
+        \item ヘッダファイル名, namespace, コメント形式
+        \item for 文中でのループ変数の宣言
+        \item iostream を用いた結果の出力
+        \item 修正点: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/03-wolff.diff}{wolff.diff}
+      \end{itemize}
+    \item ビルドと実行
 \begin{lstlisting}
 $ mkdir $HOME/alpsize-03-basic-cpp
 $ cd $HOME/alpsize-03-basic-cpp
-$ cmake $ALPS_HOME/tutorial/alpsize-03-basic-cpp
+$ cmake $ALPS_HOME/tutorials/alpsize-03-basic-cpp
 $ make
 $ ./wolff
 \end{lstlisting}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{04 STLの利用}
-  STL (C++ Standard Template Library)を利用する
+  \begin{itemize}
+    \item STL (C++ Standard Template Library)を利用する
+      \begin{itemize}
+        \item std::vector : 動的配列
+        \item std::stack : pop, push, top, empty メンバ関数
+        \item 修正点: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/04-wolff.diff}{wolff.diff}
+      \end{itemize}
+    \item ビルドと実行
 \begin{lstlisting}
 $ mkdir $HOME/alpsize-04-stl
 $ cd $HOME/alpsize-04-stl
-$ cmake $ALPS_HOME/tutorial/alpsize-04-stl
+$ cmake $ALPS_HOME/tutorials/alpsize-04-stl
 $ make
 $ ./wolff
 \end{lstlisting}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{04 Boostの利用 (1)}
-  Boostライブラリを利用する
-\begin{semiverbatim}
-\$ cmake /opt/nano/alps/alpsize/04_boost/
-\$ make
-\$ ctest
-\$ ./wolff
-\end{semiverbatim}
+  \frametitle{05 Boostの利用}
+  \begin{itemize}
+    \item Boostライブラリを利用する
+      \begin{itemize}
+        \item \href{http://boost.org/doc/html/array.html}{boost::array} : 固定長配列
+        \item \href{http://boost.org/doc/html/boost_random.html}{boost::random} : 擬似乱数生成器, 確率分布
+        \item boost::timer : ポータブルなタイマー
+        \item 修正点: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/05-wolff.diff}{wolff.diff}
+      \end{itemize}
+    \item ビルドとテスト
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-05-boost
+$ cd $HOME/alpsize-05-boost
+$ cmake $ALPS_HOME/tutorials/alpsize-05-boost
+$ make
+$ ctest
+\end{lstlisting}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,shrink=10]
-  \frametitle{04 Boostの利用 (2)}
-\begin{semiverbatim}
-...
-#include <boost/random.hpp>
-...
-// random number generator
-boost::mt19937 eng(SEED);
-boost::variate_generator<boost::mt19937&, boost::uniform_real<> >
-random_01(eng, boost::uniform_real<>());
-\end{semiverbatim}
+%% \begin{frame}[fragile,shrink=10]
+%%   \frametitle{04 Boostの利用 (2)}
+%% \begin{semiverbatim}
+%% ...
+%% #include <boost/random.hpp>
+%% ...
+%% // random number generator
+%% boost::mt19937 eng(SEED);
+%% boost::variate_generator<boost::mt19937&, boost::uniform_real<> >
+%% random_01(eng, boost::uniform_real<>());
+%% \end{semiverbatim}
+%% \end{frame}
+
+\section{ALPSライブラリの利用}
+\begin{frame}[fragile]
+  \frametitle{06 ALPS/parameters}
+  \begin{itemize}
+    \item ALPS/parameterライブラリを利用する
+      \begin{itemize}
+        \item 標準入力から, 変数名と値のペアを読み込む. 値は「式」でも良い
+        \item alps::Parameter, alps::Parameters, alps::ParameterList
+        \item デフォルト値の設定
+        \item 修正点: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/06-wolff.diff}{wolff.diff}
+      \end{itemize}
+    \item ビルドとテスト
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-06-parameters
+$ cd $HOME/alpsize-06-parameters
+$ cmake $ALPS_HOME/tutorials/alpsize-06-parameters
+$ make
+$ ctest
+\end{lstlisting}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{05 ALPS Parameters}
-  ALPS Parameterを利用する
-\begin{semiverbatim}
-\$ cmake /opt/nano/alps/alpsize/05_parameters/
-\$ make
-\$ ctest
-\$ ./wolff
-\end{semiverbatim}
-\end{frame}
-
-\begin{frame}[fragile] \frametitle{Parameterライブラリ}
+  \frametitle{ALPS/parameterライブラリ}
   プログラムに与えるパラメータを解釈するライブラリ
   \begin{columns}
     \begin{column}{6cm}
@@ -268,7 +312,7 @@ THERMALIZATION = \alert<1>{SWEEPS/8};
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile,shrink=5] \frametitle{Parameter ライブラリの利用法}
+\begin{frame}[fragile,shrink=5] \frametitle{ALPS/parameterライブラリの利用法}
 \begin{semiverbatim}
 #include <boost/foreach.hpp>
 #include <alps/parameter.h>
@@ -287,17 +331,26 @@ int main(int argc, char** argv) \{
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{06 ALPS Alea}
-  ALPS Aleaを利用する
-\begin{semiverbatim}
-\$ cmake /opt/nano/alps/alpsize/06_alea/
-\$ make
-\$ ctest
-\$ ./wolff
-\end{semiverbatim}
+  \frametitle{07 ALPS/alea}
+  \begin{itemize}
+    \item ALPS/aleaライブラリを利用する
+      \begin{itemize}
+        \item マルコフ連鎖における平均値, エラーバー, 自己相関を計算するライブラリ
+        \item 非線形な量についても, ジャックナイフ法を用いて正しいエラーバーを評価可能 (例: Binder比 $\langle m^2 \rangle^2 / \langle m^4 \rangle$)
+        \item 修正点: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/07-wolff.diff}{wolff.diff}
+      \end{itemize}
+    \item ビルドとテスト
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-07-alea
+$ cd $HOME/alpsize-07-alea
+$ cmake $ALPS_HOME/tutorials/alpsize-07-alea
+$ make
+$ ctest
+\end{lstlisting}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,shrink=10] \frametitle{Alea ライブラリの利用法}
+\begin{frame}[fragile,shrink=10] \frametitle{ALPS/aleaライブラリの利用法}
   マルコフ連鎖における平均値, 分散, 自己相関を計算するライブラリ
 \begin{semiverbatim}
 #include <alps/alea.h>
@@ -326,17 +379,26 @@ std::cout << 1./param["beta"] << " "
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{07 ALPS Lattice}
-  ALPS Latticeを利用する
-\begin{semiverbatim}
-\$ cmake /opt/nano/alps/alpsize/07_lattice/
-\$ make
-\$ ctest
-\$ ./wolff
-\end{semiverbatim}
+  \frametitle{08 ALPS/lattice}
+  \begin{itemize}
+    \item ALPS/latticeライブラリを利用する
+      \begin{itemize}
+        \item XMLにより任意の次元の任意の格子(グラフ)を生成可
+        \item サイト数, ボンド数, 全サイト, 全ボンド, 最近接サイト, etc へのアクセス関数
+        \item 修正点: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/08-wolff.diff}{wolff.diff}
+      \end{itemize}
+    \item ビルドとテスト
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-08-lattice
+$ cd $HOME/alpsize-08-lattice
+$ cmake $ALPS_HOME/tutorials/alpsize-08-lattice
+$ make
+$ ctest
+\end{lstlisting}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile] \frametitle{Lattice ライブラリの利用法}
+\begin{frame}[fragile] \frametitle{ALPS/latticeライブラリの利用法}
 \begin{semiverbatim}
 #include <alps/lattice.h>
 ...
@@ -350,7 +412,7 @@ class ising : public alps::graph_helper<> \{
 
 \end{frame}
 
-\begin{frame}[fragile,shrink=30] \frametitle{Lattice の定義}
+\begin{frame}[fragile,shrink=30] \frametitle{格子(graph)の定義}
 \begin{semiverbatim}
 <LATTICE name="square lattice" dimension="2">
   <PARAMETER name="a" default="1"/>
@@ -375,7 +437,7 @@ class ising : public alps::graph_helper<> \{
 \end{semiverbatim}
 \end{frame}
 
-\begin{frame}[fragile,shrink=10] \frametitle{Lattice ライブラリの便利な関数}
+\begin{frame}[fragile,shrink=10] \frametitle{ALPS/latticeライブラリの便利な関数}
 \begin{semiverbatim}
 std::vector<double> d(\alert{num_sites()});
 std::vector<double> J(\alert{num_bonds()});
@@ -399,37 +461,103 @@ Jtemp = param["J" + \alert{bond_type(b)}];
   \end{itemize}
 \end{frame}
 
+\section{ALPSスケジューラの利用}
 \begin{frame}[fragile]
-  \frametitle{08 ALPS Scheduler (1)}
-  ALPS Schedulerを利用する
-\begin{semiverbatim}
-\$ cmake /opt/nano/alps/alpsize/08_scheduler/
-\$ make
-\$ ctest
-\$ ./hello
-\$ ./wolff
-\end{semiverbatim}
+  \frametitle{09 ALPS Scheduler (1)}
+  \begin{itemize}
+    \item ALPSには3種類のスケジューラ. 本講習ではALPS/parapackスケジューラを使用
+    \item ユーザのシミュレーションコードをWorkerクラスにカプセル化 (例: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/09-hello_worker.h}{hello\_worker.h})
+    \item Workerクラスが実装しなければならない関数
+      \begin{itemize}
+        \item コンストラクタ、init\_obserbablesメンバー関数
+        \item runメンバー関数
+        \item is\_thermalized \& progressメンバ関数
+        \item save \& loadメンバ関数
+      \end{itemize}
+    \item PARAPACK\_REGISTER\_WORKERマクロを用いてWorkerをスケジューラに登録 (例: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/09-hello_worker.C}{hello\_worker.C})
+    \item 実行時にALGORITHMパラメータでWorkerを選択できる
+  \end{itemize}
 \end{frame}
-\begin{frame}[fragile,shrink=10]
-  \frametitle{08 ALPS Scheduler (2)}
-\begin{semiverbatim}
-class wolff_worker : public alps::parapack::lattice_mc_worker<> \{
-private:
-  typedef alps::parapack::lattice_mc_worker<> super_type;
 
-public:
-  wolff_worker(alps::Parameters const& params) : super_type(params);
-  virtual ~wolff_worker();
+\begin{frame}[fragile]
+  \frametitle{09 ALPS Scheduler (2)}
+  \begin{itemize}
+    \item ビルド, テスト, (マルチスレッド)実行
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-09-scheduler
+$ cd $HOME/alpsize-09-scheduler
+$ cmake $ALPS_HOME/tutorials/alpsize-09-scheduler
+$ make
+$ ctest
+$ parameter2xml $ALPS_HOME/.../hello_params hello_params
+$ ./hello hello_params.in.xml
+$ parameter2xml $ALPS_HOME/.../wolff_params wolff_params
+$ ./wolff wolff_params.in.xml
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
 
-  void init_observables(alps::Parameters const&, alps::ObservableSet& obs);
-  bool is_thermalized() const;
-  double progress() const;
+\begin{frame}[fragile]
+  \frametitle{09 ALPS Scheduler (3)}
+  \begin{itemize}
+    \item Workerの一生
+      \begin{itemize}
+        \item 初回: コンストラクタ $\Rightarrow$ {\color{red} init\_observables} $\Rightarrow$ run $\Rightarrow$ run $\Rightarrow$ run  $\Rightarrow$ $\cdots$ $\Rightarrow$ save $\Rightarrow$ デストラクタ
+        \item チェックポイントリスタート後: コンストラクタ $\Rightarrow$ {\color{red} load} $\Rightarrow$ run $\Rightarrow$ run $\Rightarrow$ run  $\Rightarrow$ $\cdots$ $\Rightarrow$ save  $\Rightarrow$ デストラクタ
+      \end{itemize}
+      \item init\_observablesは初回のみ呼び出される
+      \item progressの返り値が1に達する or 制限時間に達するまで run が繰り返し呼ばれる
+      \item 定期的にsave関数が呼ばれる
+  \end{itemize}
+\end{frame}
 
-  \alert{void run(alps::ObservableSet& obs);}
-  void save(alps::ODump& dp) const;
-  void load(alps::IDump& dp);
-\};
-\end{semiverbatim}
+\begin{frame}[fragile]
+  \frametitle{09 ALPS Scheduler (4)}
+  \begin{itemize}
+    \item コンストラクタ: worker(alps::Parameters const\&);
+      \begin{itemize}
+        \item パラメタの読み込み、配列の初期化など
+      \end{itemize}
+    \item init\_observables(alps::Parameters const\&, alps::ObservableSet\& obs);
+      \begin{itemize}
+        \item 物理量の宣言 \& 登録
+      \end{itemize}
+    \item run(alps::ObservableSet\&);
+      \begin{itemize}
+        \item 何らかの計算を1ステップだけ実行
+      \end{itemize}
+    \item bool is\_thermalized() const;
+      \begin{itemize}
+        \item この値がtrueの間だけ物理量が保存される. (falseからtrueに変わった時点でリセットされる)
+      \end{itemize}
+    \item double progress() const;
+      \begin{itemize}
+        \item 進捗状況を [0,1] で返す
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{09 ALPS Scheduler (4)}
+  \begin{itemize}
+    \item save(alps::ODump\&) const;
+      \begin{itemize}
+        \item チェックポイントの書き出し. スピン配位などをバイナリ形式(xdr)で保存する
+        \item alps::ODump には, int, doulbe, std::vector 等ほとんど何でも書き込める
+        \item ユーザが宣言した構造体, クラスのインスタンスを書き込みたい場合には, 演算子をオーバーロードする
+\begin{lstlisting}
+dp << mcs << spin << sz;
+\end{lstlisting}
+      \end{itemize}
+    \item load(alps::IDump\&);
+      \begin{itemize}
+        \item チェックポイントからの読み込み
+        \item 書き出しと同じ順序で読み込む
+\begin{lstlisting}
+dp >> mcs >> spin >> sz;
+\end{lstlisting}
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
