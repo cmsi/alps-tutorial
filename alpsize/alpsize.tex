@@ -472,32 +472,92 @@ Jtemp = param["J" + \alert{bond_type(b)}];
         \item コンストラクタ、init\_obserbablesメンバー関数
         \item runメンバー関数
         \item is\_thermalized \& progressメンバ関数
+        \item save \& loadメンバ関数
       \end{itemize}
     \item PARAPACK\_REGISTER\_WORKERマクロを用いてWorkerをスケジューラに登録 (例: \href{https://github.com/cmsi/alps-tutorial/blob/develop/alpsize/09-hello_worker.C}{hello\_worker.C})
     \item 実行時にALGORITHMパラメータでWorkerを選択できる
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,shrink=10]
-  \frametitle{08 ALPS Scheduler (2)}
-\begin{semiverbatim}
-class wolff_worker : public alps::parapack::lattice_mc_worker<> \{
-private:
-  typedef alps::parapack::lattice_mc_worker<> super_type;
+\begin{frame}[fragile]
+  \frametitle{09 ALPS Scheduler (2)}
+  \begin{itemize}
+    \item ビルド, テスト, (マルチスレッド)実行
+\begin{lstlisting}
+$ mkdir $HOME/alpsize-09-scheduler
+$ cd $HOME/alpsize-09-scheduler
+$ cmake $ALPS_HOME/tutorials/alpsize-09-scheduler
+$ make
+$ ctest
+$ parameter2xml $ALPS_HOME/.../hello_params hello_params
+$ ./hello hello_params.in.xml
+$ parameter2xml $ALPS_HOME/.../wolff_params wolff_params
+$ ./wolff wolff_params.in.xml
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
 
-public:
-  wolff_worker(alps::Parameters const& params) : super_type(params);
-  virtual ~wolff_worker();
+\begin{frame}[fragile]
+  \frametitle{09 ALPS Scheduler (3)}
+  \begin{itemize}
+    \item Workerの一生
+      \begin{itemize}
+        \item 初回: コンストラクタ $\Rightarrow$ {\color{red} init\_observables} $\Rightarrow$ run $\Rightarrow$ run $\Rightarrow$ run  $\Rightarrow$ $\cdots$ $\Rightarrow$ save $\Rightarrow$ デストラクタ
+        \item チェックポイントリスタート後: コンストラクタ $\Rightarrow$ {\color{red} load} $\Rightarrow$ run $\Rightarrow$ run $\Rightarrow$ run  $\Rightarrow$ $\cdots$ $\Rightarrow$ save  $\Rightarrow$ デストラクタ
+      \end{itemize}
+      \item init\_observablesは初回のみ呼び出される
+      \item progressの返り値が1に達する or 制限時間に達するまで run が繰り返し呼ばれる
+      \item 定期的にsave関数が呼ばれる
+  \end{itemize}
+\end{frame}
 
-  void init_observables(alps::Parameters const&, alps::ObservableSet& obs);
-  bool is_thermalized() const;
-  double progress() const;
+\begin{frame}[fragile]
+  \frametitle{09 ALPS Scheduler (4)}
+  \begin{itemize}
+    \item コンストラクタ: worker(alps::Parameters const\&);
+      \begin{itemize}
+        \item パラメタの読み込み、配列の初期化など
+      \end{itemize}
+    \item init\_observables(alps::Parameters const\&, alps::ObservableSet\& obs);
+      \begin{itemize}
+        \item 物理量の宣言 \& 登録
+      \end{itemize}
+    \item run(alps::ObservableSet\&);
+      \begin{itemize}
+        \item 何らかの計算を1ステップだけ実行
+      \end{itemize}
+    \item bool is\_thermalized() const;
+      \begin{itemize}
+        \item この値がtrueの間だけ物理量が保存される. (falseからtrueに変わった時点でリセットされる)
+      \end{itemize}
+    \item double progress() const;
+      \begin{itemize}
+        \item 進捗状況を [0,1] で返す
+      \end{itemize}
+  \end{itemize}
+\end{frame}
 
-  \alert{void run(alps::ObservableSet& obs);}
-  void save(alps::ODump& dp) const;
-  void load(alps::IDump& dp);
-\};
-\end{semiverbatim}
+\begin{frame}[fragile]
+  \frametitle{09 ALPS Scheduler (4)}
+  \begin{itemize}
+    \item save(alps::ODump\&) const;
+      \begin{itemize}
+        \item チェックポイントの書き出し. スピン配位などをバイナリ形式(xdr)で保存する
+        \item alps::ODump には, int, doulbe, std::vector 等ほとんど何でも書き込める
+        \item ユーザが宣言した構造体, クラスのインスタンスを書き込みたい場合には, 演算子をオーバーロードする
+\begin{lstlisting}
+dp << mcs << spin << sz;
+\end{lstlisting}
+      \end{itemize}
+    \item load(alps::IDump\&);
+      \begin{itemize}
+        \item チェックポイントからの読み込み
+        \item 書き出しと同じ順序で読み込む
+\begin{lstlisting}
+dp >> mcs >> spin >> sz;
+\end{lstlisting}
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
