@@ -6,16 +6,12 @@
   \titlepage
 \end{frame}
 
-% \begin{frame}
-%   \begin{columns}[t]
-%     \begin{column}{.3\textwidth}
-%     \end{column}
-%     \begin{column}{.7\textwidth}
-%       \tableofcontents
-%     \end{column}
-%   \end{columns}
-% \end{frame}
+\section*{Outline}
+\begin{frame}
+  \tableofcontents
+\end{frame}
 
+\section{ALPSがインストールされているシステム}
 \begin{frame}[fragile]
   \frametitle{ALPSがインストールされているシステム}
   \begin{itemize}
@@ -28,10 +24,11 @@
   \item 他にも順次インストール中 (アカウントをいただければ出張インストールします)
   \end{itemize}
 \begin{semiverbatim}
-参考: {\footnotesize \url{http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled}}
+参考: {\footnotesize \url{https://github.com/wistaria/installer/wiki}}
 \end{semiverbatim}
 \end{frame}
 
+\section{ALPSのインストール}
 \begin{frame}
   \frametitle{ALPSの依存関係}
   \begin{itemize}
@@ -67,15 +64,15 @@
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
 \$ cd $HOME
-\$ wget http://todo.issp.u-tokyo.ac.jp/archive/\\
-alps-20131104-r7230.tar.gz
+\$ wget http://exa.phys.s.u-tokyo.ac.jp/archive/source/\\
+  alps-20140207-r7338.tar.gz
 \$ wget http://sourceforge.net/projects/boost/files/\\
-boost/1.54.0/boost_1_54_0.tar.bz2
-\$ tar zxf alps-20131104-r7230.tar.gz
+  boost/1.54.0/boost_1_54_0.tar.bz2
+\$ tar zxf alps-20140207-r7338.tar.gz
 \$ tar jxf boost_1_54_0.tar.bz2
 \$ mkdir build && cd build
 \$ cmake -DBoost_ROOT_DIR=$HOME/boost_1_54_0 \\
-  $HOME/alps-20131104-r7230
+  $HOME/alps-20140207-r7338
 \$ make && ctest && make install
 \end{semiverbatim}
   \end{enumerate}
@@ -93,11 +90,11 @@ boost/1.54.0/boost_1_54_0.tar.bz2
 \end{semiverbatim}
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
-\$ wget http://todo.issp.u-tokyo.ac.jp/archive/\\
-alps-20131104-r7230.tar.gz
+\$ wget http://exa.phys.s.u-tokyo.ac.jp/archive/source/\\
+  alps-20140207-r7338.tar.gz
 \$ wget http://sourceforge.net/projects/boost/files/\\
-boost/1.54.0/boost_1_54_0.tar.bz2
-\$ tar zxf alps-20131104-r7230.tar.gz
+  boost/1.54.0/boost_1_54_0.tar.bz2
+\$ tar zxf alps-20140207-r7338.tar.gz
 \$ tar jxf boost_1_54_0.tar.bz2
 \$ mkdir build && cd build
 \$ vi alps-cmake.sh (see next page)
@@ -113,7 +110,7 @@ boost/1.54.0/boost_1_54_0.tar.bz2
 #!/bin/bash
 
 PREFIX=${HOME}/opt/alps
-ALPS_SRC=${HOME}/sources/archive/alps-20131104-r7230
+ALPS_SRC=${HOME}/sources/archive/alps-20140207-r7338
 BOOST_SRC=${HOME}/sources/archive/boost_1_54_0
 
 cmake \\
