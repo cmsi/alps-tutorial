@@ -163,7 +163,7 @@ THERMALIZATION = SWEEPS/8;
   \end{tabular}
   \begin{alertblock}{}
     alpsvars.shはALPSがインストールされたスパコン全てにあります \\
-    参考: {\footnotesize \url{http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled}}
+    参考: {\footnotesize \url{https://github.com/wistaria/installer/wiki}}
 \end{alertblock}
 \end{frame}
 
@@ -176,16 +176,16 @@ THERMALIZATION = SWEEPS/8;
 \end{semiverbatim}
   \item<2-> 環境変数の設定
 \begin{semiverbatim}
-[guestXX@phi ~]\$ echo "source /opt/nano/alps/alpsvars.sh" >> ~/.bashrc
+[guestXX@phi ~]\$ echo "source /opt/nano/alps/alpsvars.sh" \\
+                 >> $HOME/.bashrc
 \end{semiverbatim}
   \item<3-> phiXXへログイン
 \begin{semiverbatim}
 [guestXX@phi ~]\$ ssh -X phiXX
 \end{semiverbatim}
-  \item<4-> 本日利用するチュートリアルをコピー
+  \item<4-> チュートリアルをコピー
 \begin{semiverbatim}
-[guestXX@phiXX ~]\$ cp -r \$ALPS\_HOME/tutorials/mc-02-susceptibilities .
-[guestXX@phiXX ~]\$ cp -r \$ALPS\_HOME/tutorials/mc-03-magnetization .
+[guestXX@phiXX ~]\$ cp -rp /home/hands-on/alps/tutorials .
 \end{semiverbatim}
   \end{enumerate}
   \begin{alertblock}{ALPS wikiのチュートリアル}
