@@ -8,6 +8,7 @@
   \titlepage
 \end{frame}
 
+\section*{Outline}
 \begin{frame}
    \tableofcontents
 \end{frame}
@@ -162,7 +163,7 @@ THERMALIZATION = SWEEPS/8;
   \end{tabular}
   \begin{alertblock}{}
     alpsvars.shはALPSがインストールされたスパコン全てにあります \\
-    参考: {\footnotesize \url{http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled}}
+    参考: {\footnotesize \url{https://github.com/wistaria/installer/wiki}}
 \end{alertblock}
 \end{frame}
 
@@ -175,16 +176,16 @@ THERMALIZATION = SWEEPS/8;
 \end{semiverbatim}
   \item<2-> 環境変数の設定
 \begin{semiverbatim}
-[guestXX@phi ~]\$ echo "source /opt/nano/alps/alpsvars.sh" >> ~/.bashrc
+[guestXX@phi ~]\$ echo "source /opt/nano/alps/alpsvars.sh" \\
+                 >> $HOME/.bashrc
 \end{semiverbatim}
   \item<3-> phiXXへログイン
 \begin{semiverbatim}
 [guestXX@phi ~]\$ ssh -X phiXX
 \end{semiverbatim}
-  \item<4-> 本日利用するチュートリアルをコピー
+  \item<4-> チュートリアルをコピー
 \begin{semiverbatim}
-[guestXX@phiXX ~]\$ cp -r \$ALPS\_HOME/tutorials/mc-02-susceptibilities .
-[guestXX@phiXX ~]\$ cp -r \$ALPS\_HOME/tutorials/mc-03-magnetization .
+[guestXX@phiXX ~]\$ cp -rp /home/hands-on/alps/tutorials .
 \end{semiverbatim}
   \end{enumerate}
   \begin{alertblock}{ALPS wikiのチュートリアル}
@@ -307,12 +308,12 @@ In [13]: plt.savefig('out.pdf')
     \item ALPS parallelizaing スケジューラ (spinmc等)
       \begin{itemize}
         \item OpenMPスレッド並列には対応していない。MPI並列のみ
-        \item MPI実行例(4プロセス): \\ {\tt {\color{red} mpirun -np 4} \$ALPS\_HOME/bin/spinmc {\color{red} --mpi} parm2a.in.xml}
+        \item MPI実行例(4プロセス): \\ {\tt {\color{red} mpirun -np 4} spinmc {\color{red} --mpi} parm2a.in.xml}
       \end{itemize}
     \item ALPS/parapack スケジューラ (loop等)
       \begin{itemize}
         \item OpenMPスレッド並列とMPI並列に対応。デフォルトで自動的にスレッド並列実行
-        \item ハイブリッド(OpenMP + MPI)実行例(4プロセス16スレッド): \\ {\tt {\color{red} mpirun -np 4} \$ALPS\_HOME/bin/loop {\color{red} --mpi} {\color{red} -r 16} parm2c.in.xml}
+        \item 実行例(16スレッド): \\ {\tt loop {\color{red} -r 16} parm2c.in.xml}
       \end{itemize}
   \end{itemize}
 \end{frame}
