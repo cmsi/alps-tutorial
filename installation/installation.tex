@@ -70,8 +70,8 @@
 \$ tar zxf alps-20140524-r7462.tar.gz
 \$ tar jxf boost_1_54_0.tar.bz2
 \$ mkdir build && cd build
-\$ cmake -DBoost_ROOT_DIR=$HOME/boost_1_54_0 \\
-  $HOME/alps-20140524-r7462
+\$ cmake -DCMAKE_INSTALL_PREFIX=${HOME}/opt/alps \\
+  -DBoost_ROOT_DIR=$HOME/boost_1_54_0 $HOME/alps-20140524-r7462
 \$ make && ctest && make install
 \end{semiverbatim}
   \end{enumerate}
@@ -86,8 +86,8 @@
 \$ sudo port select --set gcc mp-gcc48
 \$ sudo port install openmpi-gcc48
 \$ sudo port select --set mpi openmpi-gcc48-fortran
-\$ sudo port install python27 py27-ipython py27-scipy py27-matplotlib
-\$ sudo port install cmake hdf5-18 +threadsafe wget
+\$ sudo port install python27 py27-ipython py27-scipy py27-matplotlib \\
+  py27-zmq py27-jinja2 cmake hdf5-18 +threadsafe wget
 \end{semiverbatim}
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
@@ -124,10 +124,10 @@ cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} \\
  \end{semiverbatim}
 \end{frame}
 
-\section{MateriApps}
+\section{MateriApps LIVE!}
 
 \begin{frame}
- \frametitle{MateriApps}
+ \frametitle{MateriApps LIVE!}
  \begin{itemize}
    \item USBメモリから直接ブートできる Linux システム (Debian Live)
    \item 代表的な物質科学公開ソフト・ツールがあらかじめインストールされている
