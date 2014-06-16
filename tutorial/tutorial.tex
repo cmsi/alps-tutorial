@@ -316,14 +316,14 @@ THERMALIZATION = SWEEPS/8;
 \begin{semiverbatim}
 \$ source /opt/nano/alps/alpsvars.sh
 \$ cd tutorials/ed-01-sparsediag
-\$ ipython notebook --no-browser --pylab inline --ip '*'
+\$ ipython notebook --no-browser --pylab inline
 \end{semiverbatim}
   \item<1-> 起動時に出力されるポート番号(8888等)を控えておく
   \item<1-> 手元のPCでもう一つポートフォワーディング付きでSSHセッションを開く
 \begin{semiverbatim}
 \$ ssh guest{\color{red}XX}@phi.aics.riken.jp -R 8888:phi.aics.riken.jp:8888
 \end{semiverbatim}
-  \item<1-> PCでブラウザを起動し、http://phi.aics.riken.jp:8888 を開く
+  \item<1-> PCでブラウザを起動し、http://localhost:8888 を開く
   \item<1-> ED-01\_SparseDiagonalization.ipynb を開き、[Shift+Return] で実行していく
   \end{enumerate}
   注: フロントエンドでの実行のため、他の人のジョブと干渉して遅くなる場合がある
