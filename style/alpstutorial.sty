@@ -35,6 +35,15 @@
 % ソースコード表示用
 \usepackage{listings,jlisting}
 \input{python_listing.tex}
+\lstset{showstringspaces=false}
+\lstset{showspaces=false}
+\lstset{showtabs=false}                 % show tabs within strings adding
+\lstset{literate={-}{-}1}
+\lstset{columns=flexible}
+\lstset{keepspaces=true}
+\makeatletter
+\def\lst@outputspace{{\ifx\lst@bkgcolor\empty\color{white}\else\lst@bkgcolor\fi{ }}}
+\makeatother
 
 % ページ番号の挿入
 \setbeamertemplate{footline}[frame number]
@@ -45,3 +54,10 @@
 % hyperref setting
 \definecolor{links}{HTML}{2A1B81}
 \hypersetup{colorlinks,linkcolor=,urlcolor=links}
+
+% アンダースコアが入っている文字列をバックスラッシュなしで与えられるようにする
+\usepackage[strings]{underscore}
+% ファイル名を与えたときに、githubへのリンクを作るコマンド
+\newcommand{\ALPSFilename}[1]{%
+\href{https://github.com/t-sakashita/rokko/tree/master/#1}{#1}}
+
