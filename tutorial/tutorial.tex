@@ -8,6 +8,7 @@
   \titlepage
 \end{frame}
 
+\section*{Outline}
 \begin{frame}
    \tableofcontents
 \end{frame}
@@ -154,42 +155,41 @@ THERMALIZATION = SWEEPS/8;
   \frametitle{ディレクトリ構成}
   \begin{tabular}{ll}
     /opt/nano/alps/alpsvars.sh & \\
-    \hspace*{3em} ALPS環境変数(\$ALPS\_HOME等)設定スクリプト \\
-    \$ALPS\_HOME/tutorials & \\
-    \hspace*{3em} アプリケーションのチュートリアル用入出力ファイル \\
-    \$ALPS\_HOME/tutorials/alpsize-* & \\
-    \hspace*{3em} ALPS化のチュートリアル (20130501-r5861以降)
+    \hspace*{3em} ALPS環境変数(\$PATH, \$ALPS\_HOME等)設定スクリプト \\
+    /opt/nano/alps/tutorials & \\
+    \hspace*{3em} アプリケーションのチュートリアル用入出力ファイル %% \\
+%%    \$ALPS\_HOME/tutorials/alpsize-* & \\
+%%    \hspace*{3em} ALPS化のチュートリアル (20130501-r5861以降)
   \end{tabular}
   \begin{alertblock}{}
     alpsvars.shはALPSがインストールされたスパコン全てにあります \\
-    参考: {\footnotesize \url{http://todo.issp.u-tokyo.ac.jp/ja/members/wistaria/log/alps-preinstalled}}
+    参考: {\footnotesize \url{https://github.com/wistaria/installer/wiki}}
 \end{alertblock}
 \end{frame}
 
-\begin{frame}[fragile,shrink=10]
+\begin{frame}[fragile]
   \frametitle{準備}
   \begin{enumerate}
-  \item<1-> phiへログイン
+  \item<1-> フロントエンドphiへログイン
 \begin{semiverbatim}
-\$ ssh -X guestXX@phi.aics.riken.jp
+\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
 \end{semiverbatim}
-  \item<2-> 環境変数の設定
+  \item<2-> チュートリアルをコピー
 \begin{semiverbatim}
-[guestXX@phi ~]\$ echo "source /opt/nano/alps/alpsvars.sh" >> ~/.bashrc
+[guestXX@phi ~]\$ cp -rp /opt/nano/alps/tutorials .
 \end{semiverbatim}
-  \item<3-> phiXXへログイン
+  \item<3-> 計算ノードphi{\color{red}YY}へログイン
 \begin{semiverbatim}
-[guestXX@phi ~]\$ ssh -X phiXX
+[guestXX@phi ~]\$ ssh -X phi{\color{red}YY}
 \end{semiverbatim}
-  \item<4-> 本日利用するチュートリアルをコピー
+  \item<4-> Xの転送ができるか確認
 \begin{semiverbatim}
-[guestXX@phiXX ~]\$ cp -r \$ALPS\_HOME/tutorials/mc-02-susceptibilities .
-[guestXX@phiXX ~]\$ cp -r \$ALPS\_HOME/tutorials/mc-03-magnetization .
+[guestXX@phiYY ~]\$ gnome-about
 \end{semiverbatim}
   \end{enumerate}
-  \begin{alertblock}{ALPS wikiのチュートリアル}
-    \url{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:Overview/ja}
-  \end{alertblock}
+%  \begin{alertblock}{ALPS wikiのチュートリアル}
+%    \url{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:Overview/ja}
+%  \end{alertblock}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -200,23 +200,29 @@ THERMALIZATION = SWEEPS/8;
 \$ parameter2xml \textit{param}
 \$ loop \textit{param}.in.xml
 \end{semiverbatim}
-  \item Python (新しい方法)
+  \item {\color{red}Python} (インタラクティブ or バッチ)
     \begin{itemize}
     \item パラメータの準備からグラフ作成まで統一的に
     \item 対話的にもバッチコマンドとしても実行可能
-    \item 現在、グラフの作成にはPythonを用いる
+    \item グラフの作成も、PythonのMatplotlibを用いる
+    \end{itemize}
+  \item {\color{red}IPython notebook}
+    \begin{itemize}
+    \item ブラウザ上でPythonコマンドを実行
+    \item 入力、出力を「ノートブック」としてまとめて保存
+    \item グラフの描画もブラウザ上で可能
     \end{itemize}
   \item VisTrails
   \end{enumerate}
-  \begin{columns}
-    \begin{column}{.7\textwidth}
-      \begin{center}
-        \begin{alertblock}{}
-          Python(ipython)での対話的実行
-        \end{alertblock}
-      \end{center}
-    \end{column}
-  \end{columns}
+  %% \begin{columns}
+  %%   \begin{column}{.7\textwidth}
+  %%     \begin{center}
+  %%       \begin{alertblock}{}
+  %%         Python(ipython)での対話的実行
+  %%       \end{alertblock}
+  %%     \end{center}
+  %%   \end{column}
+  %% \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -234,68 +240,100 @@ THERMALIZATION = SWEEPS/8;
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{ALPSチュートリアル: MC-02 (1)}
+  \frametitle{コマンドライン実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item<1-> Xの転送ができるか確認
+  \item<1-> 計算ノードにログイン
 \begin{semiverbatim}
- \$ gnome-about
+\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
+\$ ssh -X phi{\color{red}YY}
 \end{semiverbatim}
-  \item<1-> Pythonの実行
+  \item<1-> 環境変数の設定
 \begin{semiverbatim}
- \$ cd mc-02-susceptibilities
- \$ ipython
+\$ source /opt/nano/alps/alpsvars.sh
 \end{semiverbatim}
-  \end{enumerate}
-  \begin{center}
-    \begin{alertblock}{}
-      途中まで打ってTABで補完できます
-    \end{alertblock}
-  \end{center}
-\end{frame}
-
-\begin{frame}[fragile,shrink=5]
-  \frametitle{ALPSチュートリアル: MC-02 (2)}
-  \begin{enumerate}
-  \item<2-> ALPS共通の準備
+  \item<1-> 入力XMLファイルの準備
 \begin{semiverbatim}
-In [1]: import pyalps
+\$ cd tutorials/ed-01-sparsediag
+\$ parameter2xml parm1a
 \end{semiverbatim}
-  \item<3-> グラフの生成(Xで表示)
+  \item<1-> sparsediagの実行
 \begin{semiverbatim}
-In [2]: import matplotlib.pyplot as plt
-In [3]: import pyalps.plot
-...
-In [10]: plt.show()
+\$ sparsediag parm1a.in.xml
 \end{semiverbatim}
-  \item<3-> 直接PDFの生成
-\begin{semiverbatim}
-In [2]: import matplotlib
-In [3]: matplotlib.use('PDF')
-In [4]: import matplotlib.pyplot as plt
-In [5]: import pyalps.plot
-...
-In [13]: plt.savefig('out.pdf')
-\end{semiverbatim}
+  \item<1-> 結果はparm1a.task1.out.xmlに出力される
   \end{enumerate}
 \end{frame}
 
-\begin{frame}
-  \frametitle{ALPSチュートリアル: MC-02 (3)}
-  \begin{center}
-    \begin{block}{}
-      コマンドラインからの実演
-    \end{block}
-    \begin{block}{}
-      Pythonからの実演
-    \end{block}
-  \end{center}
+\begin{frame}[fragile]
+  \frametitle{Pythonでの対話的実行 (厳密対角化 ed-01)}
+  \begin{enumerate}
+  \item<1-> 計算ノードにログイン
+\begin{semiverbatim}
+\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
+\$ ssh -X phi{\color{red}YY}
+\end{semiverbatim}
+  \item<1-> 環境変数の設定
+\begin{semiverbatim}
+\$ source /opt/nano/alps/alpsvars.sh
+\end{semiverbatim}
+  \item<1-> IPythonの起動
+\begin{semiverbatim}
+\$ cd tutorials/ed-01-sparsediag
+\$ ipython
+\end{semiverbatim}
+  \item<1-> チュートリアルページにしたがって、コマンドを実行 (コマンドはTABで補完できます)
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Pythonでのバッチ実行 (厳密対角化 ed-01)}
+  \begin{enumerate}
+  \item<1-> 計算ノードにログイン
+\begin{semiverbatim}
+\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
+\$ ssh -X phi{\color{red}YY}
+\end{semiverbatim}
+  \item<1-> 環境変数の設定
+\begin{semiverbatim}
+\$ source /opt/nano/alps/alpsvars.sh
+\end{semiverbatim}
+  \item<1-> バッチ実行
+\begin{semiverbatim}
+\$ cd tutorials/ed-01-sparsediag
+\$ ipython tutorial1a.py
+\end{semiverbatim}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile,shrink=10]
+  \frametitle{IPython notebookでの実行 (厳密対角化 ed-01)}
+  \begin{enumerate}
+  \item<1-> フロントエンドにログイン
+\begin{semiverbatim}
+\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
+\end{semiverbatim}
+  \item<1-> IPython notebookサーバの起動
+\begin{semiverbatim}
+\$ source /opt/nano/alps/alpsvars.sh
+\$ cd tutorials/ed-01-sparsediag
+\$ ipython notebook --no-browser --pylab inline
+\end{semiverbatim}
+  \item<1-> 起動時に出力されるポート番号(8888等)を控えておく
+  \item<1-> 手元のPCでもう一つポートフォワーディング付きでSSHセッションを開く
+\begin{semiverbatim}
+\$ ssh guest{\color{red}XX}@phi.aics.riken.jp -R 8888:phi.aics.riken.jp:8888
+\end{semiverbatim}
+  \item<1-> PCでブラウザを起動し、http://localhost:8888 を開く
+  \item<1-> ED-01\_SparseDiagonalization.ipynb を開き、[Shift+Return] で実行していく
+  \end{enumerate}
+  注: フロントエンドでの実行のため、他の人のジョブと干渉して遅くなる場合がある
 \end{frame}
 
 \begin{frame}{実行結果の確認}
   \begin{itemize}
     \item 実行結果(JOB XMLファイル、TASK XMLファイル)は、webブラウザで直接開いて中身を見ることも可能
       \begin{itemize}
-      \item 例(Mac OS X): open -a safari parms2a.out.xml
+      \item 例: firefox parm1a.task1.out.xml
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -307,13 +345,38 @@ In [13]: plt.savefig('out.pdf')
     \item ALPS parallelizaing スケジューラ (spinmc等)
       \begin{itemize}
         \item OpenMPスレッド並列には対応していない。MPI並列のみ
-        \item MPI実行例(4プロセス): \\ {\tt {\color{red} mpirun -np 4} \$ALPS\_HOME/bin/spinmc {\color{red} --mpi} parm2a.in.xml}
+        \item MPI実行例(4プロセス): \\ {\tt {\color{red} mpirun -np 4} spinmc {\color{red} --mpi} parm2a.in.xml}
       \end{itemize}
     \item ALPS/parapack スケジューラ (loop等)
       \begin{itemize}
         \item OpenMPスレッド並列とMPI並列に対応。デフォルトで自動的にスレッド並列実行
-        \item ハイブリッド(OpenMP + MPI)実行例(4プロセス16スレッド): \\ {\tt {\color{red} mpirun -np 4} \$ALPS\_HOME/bin/loop {\color{red} --mpi} {\color{red} -r 16} parm2c.in.xml}
+        \item 実行例(16スレッド): \\ {\tt loop {\color{red} -r 16} parm2c.in.xml}
       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{厳密対角化チュートリアル}
+  \begin{itemize}
+  \item ed-01-sparsediag
+  \item ed-02-gaps
+  \item ed-03-1dspectra
+  \item ed-04-criticality
+  \item ed-05-nnn-chain
+  \item ed-06-fulldiag
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{モンテカルロ法チュートリアル}
+  \begin{itemize}
+  \item mc-01-autocorrelations
+  \item mc-01b-equilibration-and-convergence
+  \item mc-02-susceptibilities
+  \item mc-03-magnetization
+  \item mc-04-measurements
+  \item mc-05-bosons
+  \item mc-06-qwl
+  \item mc-07-phase-transition
+  \item mc-08-quantum-phase-transition
   \end{itemize}
 \end{frame}
 
@@ -346,9 +409,3 @@ In [13]: plt.savefig('out.pdf')
 \end{frame}
 
 \end{document}
-
-%%% Local Variables: 
-%%% mode: japanese-latex
-%%% TeX-master: nil
-%%% coding: utf-8
-%%% End: 

@@ -33,19 +33,21 @@
         - 参考文献-1
         - 参考文献-2
 
-- ALPSライブラリ (library) - 11枚
+- ALPSライブラリ (library) - 13枚
     - TOC
     - ALPSの階層構造
     - サードパーティーのライブラリ
     - ALPS/parameterライブラリ
     - ALPS/parameterを使ったコード例
-    - ALPS/aleaライブラリ
+    - ALPS/aleaライブラリ(1)
+        - ALPS/aleaライブラリ(2)
     - ALPS/latticeライブラリ
 	- 有限格子+ユニットセルの埋め込み - 1
 	- 有限格子+ユニットセルの埋め込み - 2
+	- 有限格子+ユニットセルの埋め込み - 3
     - ALPS/modelライブラリ
 
-- ALPSアプリケーション実行チュートリアル (turoial) 23枚
+- ALPSアプリケーション実行チュートリアル (turoial) 24枚
     - TOC
     - ALPSによるシミュレーション -- ワークフロー
         - XMLの基礎
@@ -61,6 +63,7 @@
     - ディレクトリ構成
         - 準備
         - ALPSの実行シナリオ
+        - ALPSアプリケーションの一覧
 	- ALPSチュートリアル: MC-02 (1)
 	- ALPSチュートリアル: MC-02 (2)
 	- ALPSチュートリアル: MC-02 (3)
@@ -69,9 +72,6 @@
     - ALPS Latticeチュートリアル
         - ALPS Modelチュートリアル
 
-    - matplotlib で出力を pdf にする方法
-    - h5dump
-    
 - Python (python) 20枚
     - TOC
     - 基本的なデータ型
@@ -118,52 +118,45 @@
     - FigureとAxes
         - Current Figure/Axes vs. オブジェクト指向
 
-- アプリケーションのALPS化 (alpsize) 27枚
-    - ALPSize全体の流れ
+- アプリケーションのALPS化 (alpsize) 35枚
+    - TOC
+    - ALPSライブラリを使用する利点
+    - ALPSビルド環境を使用する利点
+    - ALPSize実習
+    - ビルド環境のセットアップ
+    - Makeの利用
     - CMake
-    - alpsizeの準備
-    - 00 CMake化(1)
-    - 00 CMake化(2)
-    - 00 CMake化(3)
-    - 01 Cプログラム
-    - 02 C++プログラム
-    - 03 STLの利用
-    - 04 Boostの利用(1)
-    - 04 Boostの利用(2)
-    - 05 ALPS Parameters
-    - Parameterライブラリ
-    - Parameterライブラリの利用法
-    - 06 ALPS Alea
-    - Aleaライブラリの利用法
+    - 00 CMake化
+    - CMakeLists.txtの例
+    - テストスクリプト
+    - 02 Cプログラム
+    - 03 C++プログラム
+    - 04 STLの利用
+    - 05 Boostの利用
+    - 06 ALPS/parameter
+    - ALPS/parameterライブラリ
+    - ALPS/parameterライブラリの利用法
+    - 07 ALPS/alea
+    - ALPS/aleaライブラリの利用法
     - Tips: 出力を制御する
-    - 07 ALPS Lattice
-    - Latticeライブラリの利用法
-    - Latticeの定義
-    - Latticeライブラリの便利な関数
-    - 08 ALPS Scheduler (1)
-    - 08 ALPS Scheduler (2)
-    - 08 ALPS Scheduler (3)
-    - 08 ALPS Scheduler (4)
-    - ALPS Fortran
+    - 08 ALPS/lattice
+    - ALPS/latticeライブラリの利用法
+    - 格子(graph)の定義
+    - ALPS/latticeライブラリの便利な関数
+    - 09 ALPS Scheduler (1)
+    - 09 ALPS Scheduler (2)
+    - 09 ALPS Scheduler (3)
+    - 09 ALPS Scheduler (4)
+    - 09 ALPS Scheduler (5)
+    - 09 ALPS Scheduler (6)
+    - 09 ALPS Scheduler (7)
+    - 09 ALPS Scheduler (8)
+    - 10,11 ALPS Fortran
+    - 実習
 
-    - ALPS化の利点 (バカパラが簡単、他)
-    - CMake入門
-          ctest
-    - alpsizeのソースコードの置き場 phi:/opt/nano/alps/alpsize
-    - alpsize 00-08
-    - ALPS Fortran
-        alpsize の中にソースを追加しておく
-    - 参考文献
-
-- ALPSのインストール (installation) 5枚
+- ALPSのインストール (installation) 6枚
     - ALPSがインストールされているシステム
     - ALPSの依存関係
     - Debian系Linuxでのインストール
     - Mac OS Xでのインストール
-
-    - (Windows版, Mac版)
-    - 困ったときは、、、mailing list, ALPSwiki, 次回の講習会
-
-- 実習 (以下のいずれかを行う)
-    - もっと多くのチュートリアル
-    - 自分のプログラムのALPS化 (C++ or Fortran)
+    - Mac OS X用のCMakeの設定例(alps-cmake.sh)

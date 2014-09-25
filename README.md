@@ -30,7 +30,7 @@ How to generte PDF files / PDF生成方法
 Authors / 著者
 =================
 
-* Synge Todo (ISSP, Univ. of Tokyo) / 藤堂眞治 (東大物性研)
+* Synge Todo (Department of Physics, Univ. of Tokyo) / 藤堂眞治 (東大院理)
 * Haruhiko Matsuo (RIST) / 松尾春彦 (RIST)
 * Ryo Igarashi (ISSP, Univ. of Tokyo) / 五十嵐 亮 (東大物性研)
 

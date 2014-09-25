@@ -24,6 +24,7 @@ cp -fp pyalps/pyalps-normal.pdf $DIR/05_pyalps.pdf
 cp -fp matplotlib/matplotlib-normal.pdf $DIR/06_matplotlib.pdf
 cp -fp alpsize/alpsize-normal.pdf $DIR/07_alpsize.pdf
 cp -fp installation/installation-normal.pdf $DIR/08_installation.pdf
+cp -fp pyalps/crash_course_pyalps.ipynb python/python.ipynb $DIR
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
@@ -39,6 +40,7 @@ cp -fp pyalps/pyalps-wide.pdf $DIR/05_pyalps.pdf
 cp -fp matplotlib/matplotlib-wide.pdf $DIR/06_matplotlib.pdf
 cp -fp alpsize/alpsize-wide.pdf $DIR/07_alpsize.pdf
 cp -fp installation/installation-wide.pdf $DIR/08_installation.pdf
+cp -fp pyalps/crash_course_pyalps.ipynb python/python.ipynb $DIR
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
