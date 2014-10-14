@@ -44,7 +44,7 @@ parms = [{
         }]
 
 #write the input file and run the simulation
-input_file = pyalps.writeInputFiles('parm4',parms)
+input_file = pyalps.writeInputFiles('mc04',parms)
 res = pyalps.runApplication('dirloop_sse',input_file,Tmin=5)
 
 #load the magnetization and collect it as function of field h
