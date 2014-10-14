@@ -50,11 +50,11 @@ for t in [0.045, 0.05, 0.0525, 0.055, 0.0575, 0.06, 0.065]:
     )
 
 #write the input file and run the simulation
-input_file = pyalps.writeInputFiles('parm5b',parms)
+input_file = pyalps.writeInputFiles('mc05b',parms)
 res = pyalps.runApplication('worm',input_file,Tmin=5)
 
 #load the magnetization and collect it as function of field h
-data = pyalps.loadMeasurements(pyalps.getResultFiles(prefix='parm5b'),'Stiffness')
+data = pyalps.loadMeasurements(pyalps.getResultFiles(prefix='mc05b'),'Stiffness')
 rhos = pyalps.collectXY(data,x='t',y='Stiffness',foreach=['L'])
 
 # multiply with the system size for the scaling plot
