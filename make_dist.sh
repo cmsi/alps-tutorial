@@ -5,10 +5,11 @@ DATE=`grep '^\\\\date{' style/alpstutorial.sty | sed 's/\\\\date{//g' | sed 's/}
 if test -z "$DATE"; then
   echo "VERSION = NONE"
   BASE="alps-tutorial"
-
+  NOTEBOOK="alps-notebook"
 else  
   echo "VERSION = $DATE"
   BASE="alps-tutorial-$DATE"
+  NOTEBOOK="alps-notebook-$DATE"
 fi
 
 make default
@@ -42,3 +43,7 @@ cp -fp pyalps/crash_course_pyalps.ipynb python/python.ipynb $DIR
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
+
+# notebook
+tar zcf $NOTEBOOK.tgz notebook
+zip -r $NOTEBOOK.zip notebook
