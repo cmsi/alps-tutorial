@@ -14,6 +14,7 @@
 \end{frame}
 
 \section{XML入門}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}{ALPSによるシミュレーション --- ワークフロー}
   \begin{center}
@@ -70,6 +71,7 @@
 \end{frame}
 
 \section{ALPSシミュレーションの流れ}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}{シミュレーションの入出力}
   \begin{itemize}
@@ -122,7 +124,6 @@
   \begin{columns}[T]
     \begin{column}{.5\textwidth}
       \begin{itemize}
-      \item パラメータの入出力のためのライブラリ
         %\begin{itemize}
         \item 改行, セミコロン, コンマで変数を区別
         \item 四則演算、初等関数(sin, cos, expなど)が使える
@@ -152,44 +153,41 @@ THERMALIZATION = SWEEPS/8;
 \section{ALPSチュートリアル}
 
 \begin{frame}
-  \frametitle{ディレクトリ構成}
+  \frametitle{ディレクトリ構成 (例)}
   \begin{tabular}{ll}
     /opt/nano/alps/alpsvars.sh & \\
     \hspace*{3em} ALPS環境変数(\$PATH, \$ALPS\_HOME等)設定スクリプト \\
     /opt/nano/alps/tutorials & \\
-    \hspace*{3em} アプリケーションのチュートリアル用入出力ファイル %% \\
-%%    \$ALPS\_HOME/tutorials/alpsize-* & \\
-%%    \hspace*{3em} ALPS化のチュートリアル (20130501-r5861以降)
+    \hspace*{3em} アプリケーションのチュートリアル用入出力ファイル \\
+    /opt/nano/alps/notebook & \\
+    \hspace*{3em} iPythonノートブックによるチュートリアル
   \end{tabular}
   \begin{alertblock}{}
-    alpsvars.shはALPSがインストールされたスパコン全てにあります \\
-    参考: {\footnotesize \url{https://github.com/wistaria/installer/wiki}}
+    alpsvars.shはALPSがインストールされたスパコン全てに用意されています \\
+    {\footnotesize \url{https://github.com/wistaria/installer/wiki}}
 \end{alertblock}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{準備}
+  \frametitle{実習準備}
   \begin{enumerate}
-  \item<1-> フロントエンドphiへログイン
+  \item 実習システムにログイン
 \begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
+\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
 \end{semiverbatim}
-  \item<2-> チュートリアルをコピー
+  \item 環境変数の設定
 \begin{semiverbatim}
-[guestXX@phi ~]\$ cp -rp /opt/nano/alps/tutorials .
+\$ source /opt/nano/alps/alpsvars.sh
 \end{semiverbatim}
-  \item<3-> 計算ノードphi{\color{red}YY}へログイン
+  \item チュートリアルをコピー
 \begin{semiverbatim}
-[guestXX@phi ~]\$ ssh -X phi{\color{red}YY}
+\$ cp -rp /opt/nano/alps/tutorials/ .
 \end{semiverbatim}
-  \item<4-> Xの転送ができるか確認
+  \item iPythonノートブックをコピー
 \begin{semiverbatim}
-[guestXX@phiYY ~]\$ gnome-about
+\$ cp -rp /opt/nano/alps/notebook/ .
 \end{semiverbatim}
   \end{enumerate}
-%  \begin{alertblock}{ALPS wikiのチュートリアル}
-%    \url{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:Overview/ja}
-%  \end{alertblock}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -200,6 +198,7 @@ THERMALIZATION = SWEEPS/8;
 \$ parameter2xml \textit{param}
 \$ loop \textit{param}.in.xml
 \end{semiverbatim}
+  \item シェルスクリプト(バッチ処理)
   \item {\color{red}Python} (インタラクティブ or バッチ)
     \begin{itemize}
     \item パラメータの準備からグラフ作成まで統一的に
@@ -212,95 +211,113 @@ THERMALIZATION = SWEEPS/8;
     \item 入力、出力を「ノートブック」としてまとめて保存
     \item グラフの描画もブラウザ上で可能
     \end{itemize}
-  \item VisTrails
+  \item VisTrails (履歴管理ツール)
   \end{enumerate}
-  %% \begin{columns}
-  %%   \begin{column}{.7\textwidth}
-  %%     \begin{center}
-  %%       \begin{alertblock}{}
-  %%         Python(ipython)での対話的実行
-  %%       \end{alertblock}
-  %%     \end{center}
-  %%   \end{column}
-  %% \end{columns}
 \end{frame}
 
 \begin{frame}
-  \frametitle{ALPSアプリケーションの一覧}
+  \frametitle{ALPSアプリケーション}
   \begin{description}
+  \item[fulldiag] {\color{red} 厳密対角化(全対角化法)}
+  \item[sparsediag] {\color{red} 厳密対角化(Lanczos法)}
   \item[spinmc] 古典モンテカルロ法
-  \item[loop] 量子モンテカルロ法(ループアルゴリズム)
-  \item[dirloop\_sse] 量子モンテカルロ(向きつきループアルゴリズム)
+  \item[loop] {\color{red} 量子モンテカルロ法(ループアルゴリズム)}
+  \item[dirloop\_sse] {\color{red} 量子モンテカルロ(向き付きループアルゴリズム)}
   \item[worm] 量子モンテカルロ(ワームアルゴリズム)
-  \item[sparsediag] 厳密対角化(Lanczos法)
-  \item[fulldiag] 厳密対角化(全対角化法)
-  \item[dmrg] 密度行列繰り込み群法
-  \item[dmft] 動的平均場法
+  \item[dmrg,tebd] 密度行列繰り込み群
+  \item[hirshfye,interaction,hybridization] 動的平均場近似のQMCソルバ
   \end{description}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{コマンドライン実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item<1-> 計算ノードにログイン
+  \item 実習システムにログイン
 \begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
-\$ ssh -X phi{\color{red}YY}
+\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
 \end{semiverbatim}
-  \item<1-> 環境変数の設定
+  \item (必要に応じて)計算ノードにログイン
+  \item 環境変数の設定
 \begin{semiverbatim}
 \$ source /opt/nano/alps/alpsvars.sh
 \end{semiverbatim}
-  \item<1-> 入力XMLファイルの準備
+  \item 入力XMLファイルの準備
 \begin{semiverbatim}
 \$ cd tutorials/ed-01-sparsediag
 \$ parameter2xml parm1a
 \end{semiverbatim}
-  \item<1-> sparsediagの実行
+  \item sparsediagの実行
 \begin{semiverbatim}
-\$ sparsediag parm1a.in.xml
+\$ sparsediag --write-xml parm1a.in.xml
 \end{semiverbatim}
-  \item<1-> 結果はparm1a.task1.out.xmlに出力される
+  \item 結果はparm1a.task1.out.xmlに出力される
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{シェルスクリプトによる実行 (厳密対角化 ed-01)}
+  \begin{enumerate}
+  \item 実習システムにログイン
+\begin{semiverbatim}
+\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
+\end{semiverbatim}
+  \item (必要に応じて)計算ノードにログイン
+  \item シェルスクリプト(バッチファイル)の準備
+\begin{semiverbatim}
+\$ cd tutorials/ed-01-sparsediag
+\$ vi batch.sh
+\end{semiverbatim}
+  \item batch.sh の中身
+\begin{lstlisting}
+#!/bin/sh
+source /opt/nano/alps/alpsvars.sh
+parameter2xml parm1a
+sparsediag --write-xml parm1a.in.xml
+\end{lstlisting}
+  \item シェルスクリプトを実行 (あるいはバッチキューに投入)
+\begin{semiverbatim}
+\$ sh batch.sh
+\end{semiverbatim}
   \end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Pythonでの対話的実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item<1-> 計算ノードにログイン
+  \item 実習システムにログイン
 \begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
-\$ ssh -X phi{\color{red}YY}
+\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
 \end{semiverbatim}
-  \item<1-> 環境変数の設定
+  \item (必要に応じて)計算ノードにログイン
+  \item 環境変数の設定
 \begin{semiverbatim}
 \$ source /opt/nano/alps/alpsvars.sh
 \end{semiverbatim}
-  \item<1-> IPythonの起動
+  \item IPythonの起動
 \begin{semiverbatim}
 \$ cd tutorials/ed-01-sparsediag
 \$ ipython
 \end{semiverbatim}
-  \item<1-> チュートリアルページにしたがって、コマンドを実行 (コマンドはTABで補完できます)
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-01_SparseDiagonalization/ja#Python.E3.81.A7.E3.81.AE.E5.AE.9F.E8.A1.8C}{チュートリアルページ}にしたがって、コマンドを実行 (コマンドはTABで補完できる)
   \end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Pythonでのバッチ実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item<1-> 計算ノードにログイン
+  \item 実習システムにログイン
 \begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
-\$ ssh -X phi{\color{red}YY}
+\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
 \end{semiverbatim}
-  \item<1-> 環境変数の設定
+  \item (必要に応じて)計算ノードにログイン
+  \item 環境変数の設定
 \begin{semiverbatim}
 \$ source /opt/nano/alps/alpsvars.sh
 \end{semiverbatim}
-  \item<1-> バッチ実行
+  \item バッチ実行
 \begin{semiverbatim}
 \$ cd tutorials/ed-01-sparsediag
-\$ ipython tutorial1a.py
+\$ python tutorial1a.py
 \end{semiverbatim}
   \end{enumerate}
 \end{frame}
@@ -308,23 +325,23 @@ THERMALIZATION = SWEEPS/8;
 \begin{frame}[fragile,shrink=10]
   \frametitle{IPython notebookでの実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item<1-> フロントエンドにログイン
+  \item 実習システムにログイン
 \begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@phi.aics.riken.jp
+\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
 \end{semiverbatim}
-  \item<1-> IPython notebookサーバの起動
+  \item IPython notebookサーバの起動
 \begin{semiverbatim}
 \$ source /opt/nano/alps/alpsvars.sh
-\$ cd tutorials/ed-01-sparsediag
+\$ cd notebook/jp
 \$ ipython notebook --no-browser --pylab inline
 \end{semiverbatim}
-  \item<1-> 起動時に出力されるポート番号(8888等)を控えておく
-  \item<1-> 手元のPCでもう一つポートフォワーディング付きでSSHセッションを開く
+  \item 起動時に出力されるポート番号(8888等)を控えておく
+  \item 手元のPCでもう一つポートフォワーディング付きでSSHセッションを開く
 \begin{semiverbatim}
-\$ ssh guest{\color{red}XX}@phi.aics.riken.jp -R 8888:phi.aics.riken.jp:8888
+\$ ssh guest{\color{red}XX}@{\color{red}hostname} -L 8888:{\color{red}hostname}:8888
 \end{semiverbatim}
-  \item<1-> PCでブラウザを起動し、http://localhost:8888 を開く
-  \item<1-> ED-01\_SparseDiagonalization.ipynb を開き、[Shift+Return] で実行していく
+  \item PCでブラウザを起動し、http://localhost:8888 を開く
+  \item ED-01\_SparseDiagonalization.ipynb を開き、[Shift+Return] で実行していく
   \end{enumerate}
   注: フロントエンドでの実行のため、他の人のジョブと干渉して遅くなる場合がある
 \end{frame}
@@ -333,7 +350,8 @@ THERMALIZATION = SWEEPS/8;
   \begin{itemize}
     \item 実行結果(JOB XMLファイル、TASK XMLファイル)は、webブラウザで直接開いて中身を見ることも可能
       \begin{itemize}
-      \item 例: firefox parm1a.task1.out.xml
+      \item 例(Linux): firefox parm1a.task1.out.xml
+      \item 例(Mac OS X): open -a safari parm1a.task1.out.xml
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -357,12 +375,38 @@ THERMALIZATION = SWEEPS/8;
 
 \begin{frame}{厳密対角化チュートリアル}
   \begin{itemize}
-  \item ed-01-sparsediag
-  \item ed-02-gaps
-  \item ed-03-1dspectra
-  \item ed-04-criticality
-  \item ed-05-nnn-chain
-  \item ed-06-fulldiag
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-01_SparseDiagonalization/ja}{ED-01 Sparse Diagonalization (Lanczos)
+}
+
+    $S=1$の量子1次元系(サイト数4)について, Lanczos法により固有値を求め, 固有値, 相関関数などを出力する.
+
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-02_Gaps/ja}{ED-02 Spin gaps of 1D quantum systems}
+    
+    $S=1$の量子1次元系(サイト数4--14)について, Lanczos法で固有値計算を行う. 求めたエネルギー固有値からエネルギーギャップを求めプロットする.
+
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-03_Spectra/ja}{ED-03 Spectra of 1D quantum systems}
+
+    次の2種類の量子格子模型について, Lanczos法で固有値計算を行う.
+    \begin{itemize}
+      \item $S=1/2$量子1次元ハイゼンベルグ模型
+      \item $S=1/2$梯子系ハイゼンベルグ模型
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{厳密対角化チュートリアル}
+  \begin{itemize}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-04_Criticality/ja}{ED-04 Conformal field theory description of 1D critical spectra}
+
+    横磁場イジング模型について, Lancos 法を用いた固有値計算を行う. 相関関数の臨界指数とエネルギーギャップとの共形場理論から導かれる関係を数値計算から求めた固有値により実証する.
+
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-05_ED_Phase_Transition/ja}{ED-05 Phase transition in a frustrated spin chain}
+
+    次近接相互作用をもつハイゼンベルグ鎖について, Lanczos法を用いて固有値計算を行う. 得られたエネルギー固有値から臨界点を求める. さらに共形場理論を利用した解析も行う.
+
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-06_FullDiagonalization/ja}{ED-06 Full Diagonalization}
+
+    $S=1$の反強磁性ハイゼンベルグ鎖(8サイト)について全対角化を行う. 得られた固有値をもとにいくつかの物理量について熱力学的振る舞いをプロットする.
   \end{itemize}
 \end{frame}
 
@@ -383,7 +427,7 @@ THERMALIZATION = SWEEPS/8;
 \section{ALPS Lattice \& Model チュートリアル}
 
 \begin{frame}{ALPS Latticeチュートリアル}
-  ALPS Lattice HowTo: {\footnotesize \url{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO/ja}} \\
+  \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO/ja}{ALPS Lattice HowTo} \\
   \begin{itemize}
     \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO:SimpleGraphs/ja}{辺と頂点を単位として簡単なグラフを指定する方法}
     \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticesAndUnitCells/ja}{格子と単一セルを指定する方法}
@@ -397,7 +441,7 @@ THERMALIZATION = SWEEPS/8;
 \end{frame}
 
 \begin{frame}{ALPS Modelチュートリアル}
-  ALPS Model HowTo: {\footnotesize \url{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja}} \\
+  \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja}{ALPS Model HowTo} \\
   \begin{itemize}
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E3.83.87.E3.83.95.E3.82.A9.E3.83.AB.E3.83.88.E3.81.AE.E3.83.A2.E3.83.87.E3.83.AB.E3.83.A9.E3.82.A4.E3.83.96.E3.83.A9.E3.83.AA.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.80.80}{デフォルトのモデルライブラリファイル}
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E3.83.A2.E3.83.87.E3.83.AB.E3.83.A9.E3.82.A4.E3.83.96.E3.83.A9.E3.83.AA.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.81.AE.E6.A7.8B.E9.80.A0}{モデルライブラリファイルの構造}
