@@ -45,5 +45,8 @@ tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
 
 # notebook
-tar zcf $NOTEBOOK.tgz notebook
-zip -r $NOTEBOOK.zip notebook
+rm -rf notebook-$DATE && mkdir -p notebook-$DATE
+cp -rp notebook/* notebook-$DATE
+cp -rp pyalps/crash_course_pyalps.ipynb python/python.ipynb notebook-$DATE/jp/
+tar zcf $NOTEBOOK.tgz notebook-$DATE
+zip -r $NOTEBOOK.zip notebook-$DATE

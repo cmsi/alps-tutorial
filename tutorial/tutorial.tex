@@ -101,6 +101,22 @@
   \end{center}
 \end{frame}
 
+\begin{frame}{ALPSが作成するバイナリ形式ファイル}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item HDF5 (拡張子 {.h5})
+    \begin{itemize}
+    \item 実行結果や実行時情報は, Task毎にHDF5形式ファイルに保存される
+    \item pyalpsツールは, HDF5ファイルから計算結果を読み込む
+    \end{itemize}
+  \item XDR (拡張子 {.xdr})
+    \begin{itemize}
+    \item 実行途中のチェックポイント情報(スピン配位等)が定期的に保存される
+    \item シミュレーションのリスタート時は, 最後のチェックポイントから再開される
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{parameter2xml ツール}
   \begin{itemize}
   \item パラメータセットを簡易形式で書いて、parameter2xmlツールでXMLに変換する
@@ -485,6 +501,7 @@ sparsediag --write-xml parm1a.in.xml
 \end{frame}
 
 \section{ALPS Lattice \& Model チュートリアル}
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
 
 \begin{frame}{ALPS Latticeチュートリアル}
   \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO/ja}{ALPS Lattice HowTo} \\
