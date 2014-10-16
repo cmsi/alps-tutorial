@@ -2,6 +2,8 @@
 
 \begin{document}
 
+\lstset{language={C++},showspaces=false,rulecolor=\color[cmyk]{0, 0.29,0.84,0}}
+
 \begin{frame}
   \titlepage
 \end{frame}
@@ -11,17 +13,49 @@
   \tableofcontents
 \end{frame}
 
-
 \section{チュートリアルの概要}
+
+\begin{frame}
+  \frametitle{ALPSチュートリアル 資料}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item ALPSチュートリアル資料(日)
+    \begin{itemize}
+      \item PDF: {\footnotesize \url{http://sf.net/projects/alps-tutorial/files/}}
+      \item \TeX ソース: {\footnotesize \url{https://github.com/cmsi/alps-tutorial/}}
+    \end{itemize}
+  \item ALPSオフィシャルページ(英日): {\footnotesize \url{http://alps.comp-phys.org/}}
+  \item ALPS Developer Wiki (英): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
+  \item CMSI MateriApps: {\footnotesize \url{http://ma.cms-initiative.jp/}}
+    \begin{itemize}
+      \item ALPS web講習会: {\footnotesize \href{http://ma.cms-initiative.jp/ja/listapps/alps/ju6d5o/llgd83}{http://ma.cms-initiative.jp/jp/...}}
+    \end{itemize}
+  \item 藤堂眞治「``実験技術''としての量子多体系シミュレーションソフトウェアALPS」日本物理学会誌 (掲載予定)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{困った時は…}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item ALPSサポートチーム(日): {\footnotesize \href{mailto:alps@exa.phys.s.u-tokyo.ac.jp}{alps@exa.phys.s.u-tokyo.ac.jp}}
+  \item MateriApps ALPS フォーラム(日):
+
+    {\footnotesize \href{http://ma.cms-initiative.jp/ja/community/materiapps-messageboard/alps}{http://ma.cms-initiative.jp/ja/community/materiapps-...}}
+  \item ALPS User's Mailing List (英):
+
+    {\footnotesize \href{https://alps.comp-phys.org/mediawiki/index.php/Forum:Overview}{https://alps.comp-phys.org/mediawiki/index.php/Forum...}}
+  \end{itemize}
+\end{frame}
 
 \begin{frame}{ALPSチュートリアル スタッフ}
   \begin{itemize}
   \item チュートリアル資料作成・講師
     \begin{itemize}
-    \item 藤堂眞治 (東大院理/物性研) \ \href{mailto:wistaria@phys.s.u-tokyo.ac.jp}{wistaria@phys.s.u-tokyo.ac.jp}
-    \item 松尾春彦 (RIST) \ \href{mailto:halm@rist.or.jp}{halm@rist.or.jp}
-    \item 五十嵐亮 (東大物性研) \ \href{mailto:rigarash@issp.u-tokyo.ac.jp}{rigarash@issp.u-tokyo.ac.jp}
-    \item 本山裕一 (東大物性研) \ \href{mailto:y-motoyama@issp.u-tokyo.ac.jp}{y-motoyama@issp.u-tokyo.ac.jp}
+    \item 藤堂眞治 (東大院理/物性研)
+    \item 松尾春彦 (RIST)
+    \item 五十嵐亮 (東大物性研)
+    \item 本山裕一 (東大物性研)
+    \item 諏訪秀麿 (東大院理)
     \end{itemize}
   \item 主催
     \begin{itemize}
@@ -38,11 +72,9 @@
   \frametitle{チュートリアルの流れ}
   \begin{tabular}{|l|l|c|c|c|}
         \hline
-        Getting Started & {\tt 00\_gettingstarted} & {\footnotesize\color{red} ○} & {\footnotesize\color{blue} ○} & {\footnotesize\color{green} ○} \\
+        ALPSの概要 & {\tt 01\_overview} & {\footnotesize\color{red} ○} & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
         \hline
-        ALPSの概要 & {\tt 01\_overview} & {\footnotesize\color{red} ◎} & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
-        \hline
-        ALPSライブラリ & {\tt 02\_library} & {\footnotesize\color{red} ○} & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
+        ALPSのインストール & {\tt 02\_installation} & {\footnotesize\color{red} ◎} & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
         \hline
         アプリケーション実習(1) & {\tt 03\_tutorial} & {\footnotesize\color{red} ◎} & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
         \hline
@@ -56,11 +88,9 @@
         \hline
         アプリケーションのALPS化 & {\tt 07\_alpsize} & {\footnotesize\color{red} } & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
         \hline
-        ALPSのインストール & {\tt 08\_installation} & {\footnotesize\color{red} ○} & {\footnotesize\color{blue} ○} & {\footnotesize\color{green} ○} \\
-        \hline
   \end{tabular}
   
-  {\footnotesize\color{red} ○}: ユーザコース、{\footnotesize\color{blue} ○}: 開発者コース {\footnotesize\color{green} ○}: 集中コース
+  {\footnotesize\color{red} ○}: ユーザコース, {\footnotesize\color{blue} ○}: 開発者コース {\footnotesize\color{green} ○}: 集中コース
 \end{frame}
 
 \begin{frame}
@@ -77,6 +107,8 @@
 \end{frame}
 
 \section{量子格子模型とは?}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
 \begin{frame}{量子格子模型: Quantum Lattice Models}
   \begin{columns}[T]
     \begin{column}{.8\textwidth}
@@ -134,6 +166,7 @@
 %\end{frame}
   
 \section{ALPSプロジェクト}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}
   \frametitle{ALPSプロジェクトの目標}
@@ -196,21 +229,8 @@
   \end{itemize}
 \end{frame}
 
-\section{ALPSによるシミュレーション}
-
-\begin{frame}{ALPSによるシミュレーション --- ワークフロー}
-  \begin{center}
-    \includegraphics[height=0.8\textheight]{workflow.pdf}
-  \end{center}
-\end{frame}
-
-\begin{frame}{ALPSの階層構造}
-  \begin{center}
-    \includegraphics[height=0.65\textheight]{hierarchy.pdf}
-  \end{center}
-\end{frame}
-
 \section{ALPSの開発}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}
   \frametitle{基盤となる技術}
@@ -250,16 +270,16 @@
   \item 2002年 ALPSプロジェクト始動
   \item 2004年 バージョン1.0, 第1回 Users Workshop
   \item 2010年 バージョン2.0
-  \item 2011年7月現在
+  \item 2014年10月現在
     \begin{itemize}
-      \item ソースコード: C++ 310,000行, Python 19,000行, Fortran 10,000行
+      \item ソースコード: C++ 396,000行, Python 39,000行, Fortran 10,000行
       \item 開発者: 約30名(7ヶ国)
     \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{ALPSの開発者 (2011.5現在)}
+  \frametitle{ALPSの開発者}
   \begin{columns}[T]
     \begin{column}{.34\textwidth}
       \begin{itemize}
@@ -327,6 +347,28 @@
       \end{itemize}
     \end{column}
   \end{columns}
+\end{frame}
+
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
+
+\begin{frame}
+  \frametitle{ALPSの展開}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item 上方展開 (大規模化・高性能化・並列化)
+    \begin{itemize}
+    \item 量子モンテカルロ法(ALPS/looper)の超並列化
+    \item 高並列スケジューラ(ALPS/parapack)のハイブリッド多重並列化
+    \item Fortran, C プログラムのための API 作成
+    \end{itemize}
+  \item 下方展開 (裾野を広げる)
+    \begin{itemize}
+    \item 実験家・理論家による幅広い利用の促進
+    \item Windows/Macintosh 用バイナリインストーラの開発
+    \item ワークフロー・履歴管理システムとの統合
+    \item GUI (グラフィカルユーザインターフェース)の開発
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -430,6 +472,8 @@
   \end{itemize}
 \end{frame}
 
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
 \begin{frame}
   \frametitle{ワークショップ}
   \begin{itemize}
@@ -437,33 +481,13 @@
   \item ALPS developers workshop
     \begin{itemize}
       \item 今後の開発方針についてブレインストーミング・ディスカッション
-      \item 年 1〜2 回
+      \item 年1回程度
     \end{itemize}
   \item ALPS users workshop / tutorial
     \begin{itemize}
       \item アルゴリズムについてのレビュートーク
       \item Wiki のチュートリアルを用いて ALPS の実習
-      \item CMSI神戸ハンズオン: 3ヶ月毎にALPSチュートリアルを開催予定
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{ALPSの展開}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item 上方展開 (大規模化・高性能化・並列化)
-    \begin{itemize}
-    \item 量子モンテカルロ法(ALPS/looper)の超並列化
-    \item 高並列スケジューラ(ALPS/parapack)のハイブリッド多重並列化
-    \item Fortran, C プログラムのための API 作成
-    \end{itemize}
-  \item 下方展開 (裾野を広げる)
-    \begin{itemize}
-    \item 実験家・理論家による幅広い利用の促進
-    \item Windows/Macintosh 用バイナリインストーラの開発
-    \item ワークフロー・履歴管理システムとの統合
-    \item GUI (グラフィカルユーザインターフェース)の開発
+      \item CMSIハンズオン: 年4回程度, 神戸や柏にてALPSチュートリアルを開催中
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -477,10 +501,10 @@
   \item Non-commercial academic use の場合自由に利用可能
   \item 自由に再配布可
   \item ユーザが変更を施したコードも同じライセンスの下で再配布可
-  \item ALPSを用いた研究成果を公表する場合には acknowledgement と論文の引用が義務 (ALPSをユーザーコードのテストのみに使った場合を含む)
+  \item ALPSを用いた研究成果を公表する場合には, acknowledgement と論文の引用をお願いします
     \begin{minipage}{.9\textwidth}
     \begin{block}{}
-      1. In any scientific publication based wholly or in part on the
+      In any scientific publication based wholly or in part on the
       Library, the use of the Library must be acknowledged and the
       publications listed in the accompanying CITATIONS.txt document
       must be cited.
@@ -491,42 +515,339 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{参考文献 - 1}
+  \frametitle{参考文献}
   \begin{itemize}
   \item ALPS papers
     \begin{itemize}
+    \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
+    \item A.~F. Albuquerque et al. {\it The ALPS project release 1.3: open source software for strongly correlated systems}, \href{http://dx.doi.org/10.1016/j.jmmm.2006.10.304}{J. Mag. Mag. Mat. 310, 1187 (2007)}.
     \item F. Alet et al. {\it The ALPS Project: Open Source Software for
       Strongly Correlated Systems}, \href{http://jpsj.ipap.jp/link?JPSJS/74S/30}{J. Phys. Soc. Jpn. Suppl. 74, 30 (2005)}.
-    \item A.~F. Albuquerque et al. {\it The ALPS project release 1.3: open source software for strongly correlated systems}, \href{http://dx.doi.org/10.1016/j.jmmm.2006.10.304}{J. Mag. Mag. Mat. 310, 1187 (2007)}.
-    \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
     \end{itemize}
   \end{itemize}
 \end{frame}
 
+\section{ALPSの構成}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
+\begin{frame}{ALPSの階層構造}
+  \begin{center}
+    \includegraphics[height=0.65\textheight]{hierarchy.pdf}
+  \end{center}
+\end{frame}
+
 \begin{frame}
-  \frametitle{参考文献 - 2}
+  \frametitle{サードパーティーのライブラリ}
   \begin{itemize}
-  \item ALPS wiki: \url{http://alps.comp-phys.org/}
+    \setlength{\itemsep}{1em}
+  \item \href{http://www.netlib.org/blas/}{BLAS}, \href{http://www.netlib.org/lapack/}{LAPACK}: 線形演算(行列対角化, 特異値分解など) (オプション)
+  \item \href{http://www.mpi-forum.org/}{MPI} (Message Passing Interface): 並列計算のためのメッセージ通信 (オプション)
+  \item \href{http://www.hdfgroup.org/HDF5/}{HDF5} (Hierarchical Data Format): プラットフォーム非依存のバイナリファイル格納形式
+  \item \href{http://www.boost.org/}{Boost C++ Library}: 乱数, グラフ, シリアル化, など多くの有用なライブラリ群
+  \end{itemize}
+\end{frame}
+
+\section{ALPSライブラリ}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/parameterライブラリ}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      \begin{itemize}
+      \item パラメータの入出力のためのライブラリ
+        %\begin{itemize}
+        \item 改行, セミコロン, コンマで変数を区別
+        \item 四則演算, 初等関数(sin, cos, expなど)が使える
+        \item $\pi$ (PI), 虚数単位(I)
+          \item C 風, C++風のコメント
+          \item \{ \} で囲まない変数は共通パラメータ
+          \item \{ \} で囲んだ変数は異なるパラメータセット
+        %\end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{.5\textwidth}
+    \begin{lstlisting}
+LATTICE = "chain lattice";
+L = 16,
+SEED = 2873
+// C++ style comment
+SWEEPS = 4096;
+THERMALIZATION = SWEEPS/8;
+/* C style comment */
+{ T = 2; Sq = 2*PI/3; }
+{ T = 1.8; }
+\end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
+
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/parameterを使ったコード例}
+  \lstset{language={C++}}
+  \begin{lstlisting}
+#include <boost/foreach.hpp>
+#include <alps/parameter.h>
+int main() {
+  std::ifstream fin;
+  fin.open("parameters.txt");
+  alps::ParameterList plist(fin);
+  BOOST_FOREACH(alps::Parameters& p, plist) {
+    double a = p["a"];
+    double b = p.value_or_default("b", 0.5);
+    ...
+  }
+  ...
+}
+\end{lstlisting}
+\end{frame}
+
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/aleaライブラリ}
+  \begin{itemize}
+  \item マルコフ連鎖における平均値, 分散, 自己相関を計算するライブラリ
+    \lstset{language={C++}}
+    \begin{lstlisting}
+alps::RealObservable mag2("Magnetization^2");
+...
+mag2 << m * m; // at each MC step
+\end{lstlisting}
+  \item ビンニング解析を用いた平均値, エラー, 自己相関時間の評価
+    \lstset{language={C++}}
+    \begin{lstlisting}
+std::cout << mag2 << std::endl;
+\end{lstlisting}
+  \item 出力
+\lstset{language={bash}}
+\begin{lstlisting}
+Magnetization^2: 3.142 +/- 0.001; tau = 10.3
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
+
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/aleaライブラリ}
+  \begin{itemize}
+  \item ジャックナイフ法を用いた非線形量のエラー評価
+    \lstset{language={C++}}
+    \begin{lstlisting}
+alps::RealObsevaluator mag2eval(mag2);
+alps::RealObsevaluator mag4eval(mag4);
+alps::RealObsevaluator binder = mag2eval * mag2eval / mag4eval;
+std::cout << binder;
+\end{lstlisting}
+  \item 出力
+\lstset{language={bash}}
+\begin{lstlisting}
+(Magnetization^2) * (Magnetization^2) / (Magnetization^4): 0.453 +/- 0.005
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
+\begin{frame} [t,fragile,shrink]
+  \frametitle{ALPS/latticeライブラリ}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item 「格子構造」は数学的には「グラフ」で表現できる
     \begin{itemize}
-      \item ALPSオフィシャルページ (英/日)
+    \item site $\Leftrightarrow$ vertex
+    \item bond $\Leftrightarrow$ edge
     \end{itemize}
-  \item ALPS developer wiki: \url{http://alps.comp-phys.org/trac/}
+  \item Boost Graph Library に対する「ラッパー」を提供
     \begin{itemize}
-      \item 開発者向け情報
+    \item XMLによる「格子構造」の入出力
+    \item 「ユニットセル」による繰り返し構造の指定
+    \item 座標, パリティ, 逆格子ベクトルなどの属性
     \end{itemize}
-  \item ALPSチュートリアル資料: \url{https://github.com/cmsi/alps-tutorial}
+  \item あらかじめ用意されている格子: "chain lattice", "square lattice", "triangular lattice", "honeycomb lattice", "simple cubic lattice", など
+  % \item ``printgraph'' で格子のチェック
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{有限格子 + ユニットセルの埋め込み}
+  \begin{itemize}
+  \item 格子の指定
+  \begin{lstlisting}
+<LATTICE name="2D" dimension="2">
+  <BASIS>
+    <VECTOR>   1 0 </VECTOR>
+    <VECTOR> 0.5 1 </VECTOR>
+  </BASIS>
+</LATTICE>
+\end{lstlisting}
+  \end{itemize}
+  \begin{center}
+    \includegraphics[height=0.3\textheight]{TutorialLatticeHOWTOLattice1}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t, fragile]
+  \frametitle{有限格子 + ユニットセルの埋め込み}
+  \begin{itemize}
+  \item ユニットセル
+  \begin{lstlisting}
+<UNITCELL name="simple1d" dimension="1" vertices="1">
+  <EDGE>
+    <SOURCE vertex="1" offset="0"/><TARGET vertex="1" offset="1"/>
+  </EDGE>
+</UNITCELL>
+\end{lstlisting}
+  \end{itemize}
+  \begin{center}
+    \includegraphics[height=0.25\textheight]{TutorialLatticeHOWTOLatticegraph3}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{有限格子 + ユニットセルの埋め込み}
+  \begin{itemize}
+  \item サイズ, 境界条件の指定
+    \begin{lstlisting}
+<LATTICEGRAPH name = "chain lattice">
+  <FINITELATTICE>
+    <LATTICE ref="chain lattice"/>
+    <PARAMETER name="L"/>
+    <EXTENT size ="L"/>
+    <BOUNDARY type="periodic"/>
+  </FINITELATTICE>
+  <UNITCELL ref="simple1d"/>
+</LATTICEGRAPH>
+\end{lstlisting}
+  \item より複雑な格子の作り方
     \begin{itemize}
-      \item 日本語の情報
-    \end{itemize}
-  \item CMSI MateriApps: \url{http://ma.cms-initiative.jp/}
-    \begin{itemize}
-      \item 計算物質科学アプリケーションポータル
-    \end{itemize}
-  \item Re: command not found: \url{http://todo.issp.u-tokyo.ac.jp/Members/wistaria/log}
-    \begin{itemize}
-      \item Linux, Mac OS X などに関するソフトウェアのインストール記録
+    \item ALPS Lattice HOWTO: {\small \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO/ja}{http://alps.comp-phys.org/mediawiki/ index.php/Tutorials:LatticeHOWTO/ja}}
     \end{itemize}
   \end{itemize}
+\end{frame}
+
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/modelライブラリ}
+  \begin{itemize}
+%    \setlength{\itemsep}{1em}
+  \item XMLを使ってハミルトニアンを定義する
+    \begin{itemize}  
+    \item 量子数や演算子の定義
+    \item シンボリックな表現を使って, ハミルトニアンのサイト項やボンド項を定義
+    \end{itemize}
+    \begin{lstlisting}
+Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
+\end{lstlisting}
+  \item 作成した局所ハミルトニアンは行列の形で取り出せる
+  \item プラケット項などの多サイトにわたる相互作用には未対応
+  \item ALPS Model HOWTO: {\small \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja}{http://alps.comp-phys.org/mediawiki/ index.php/Tutorials:ModelHOWTO/ja}}
+  \item あらかじめ用意されている模型: "spin", "boson Hubbard", "hardcore boson", "fermion Hubbard", "alternative fermion Hubbard", "spinless fermions", "Kondo lattice", "t-J"
+  \end{itemize}
+\end{frame}
+
+% \section{ALPS/scheduler}
+
+% \section{HDF5とは?}
+
+\section{ALPSアプリケーション}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
+\begin{frame}
+  \frametitle{ALPSアプリケーション}
+  \begin{description}
+  \item[fulldiag] {\color{red} 厳密対角化(全対角化法)}
+  \item[sparsediag] {\color{red} 厳密対角化(Lanczos法)}
+  \item[spinmc] {\color{red} 古典モンテカルロ法}
+  \item[loop] {\color{red} 量子モンテカルロ法(ループアルゴリズム)}
+  \item[dirloop\_sse] {\color{red} 量子モンテカルロ(向き付きループアルゴリズム)}
+  \item[worm] 量子モンテカルロ(ワームアルゴリズム)
+  \item[dmrg,tebd] 密度行列繰り込み群
+  \item[hirshfye,interaction,hybridization] 動的平均場近似のQMCソルバ
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \frametitle{厳密対角化}
+  \begin{description}
+  \item[fulldiag] 厳密対角化(全対角化法)
+    \begin{itemize}
+    \item ハウスホルダー法を用いて量子格子模型の全てのエネルギー固有値と固有状態を計算
+    \item 任意の温度における物理量を数値誤差の範囲で厳密に計算
+    \end{itemize}
+  \item[sparsediag] 厳密対角化(Lanczos法)
+    \begin{itemize}
+    \item ランチョス法を用いて, 基底状態と少数の低励起状態を求める
+    \end{itemize}
+  \end{description}
+  \begin{itemize}
+  \item 全磁化などの保存量や系の並進対称性などを利用して, ヒルベルト空間の次元を削減
+  \item 任意の局所的な演算子の期待値, 対角および非対角演算子の相関関数, 構造因子などの測定が可能
+  \item 並列固有値ソルバライブラリRokkoと, それに基づく並列厳密対角化パッケージALPS/Baristaを開発中
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{古典モンテカルロ法}
+  \begin{description}
+  \item[spinmc] 古典モンテカルロ法
+    \begin{itemize}
+      \item メトロポリス法あるいはクラスターアルゴリズム
+      \item 古典スピン模型のモンテカルロシミュレーション
+      \item 磁場中のイジング模型, XY模型, ハイゼンベルグ模型, ポッツ模型
+    \end{itemize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \frametitle{量子モンテカルロ法}
+  \begin{description}
+  \item[loop] 量子モンテカルロ法(ループアルゴリズム)
+    \begin{itemize}
+      \item 連続虚時間ループアルゴリズム
+      \item 時間反転対称性を持つ系(零磁場の場合、横磁場イジング模型など)に有効
+      \item 2点相関関数(グリーン関数を含む)の計算
+    \end{itemize}
+  \item[dirloop\_sse] 量子モンテカルロ(向き付きループアルゴリズム)
+    \begin{itemize}
+      \item SSE (Stochastic Series Expansion)表示
+      \item 磁場中スピン模型, ボーズハバード模型などに有効
+    \end{itemize}
+  \item[worm] 量子モンテカルロ(ワームアルゴリズム)
+    \begin{itemize}
+      \item 連続虚時間表示ワームアルゴリズム
+      \item 非常に強い磁場が存在する場合などに有効
+    \end{itemize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \frametitle{密度行列繰り込み群・動的平均場}
+  \begin{description}
+  \item[dmrg,tebd] 密度行列繰り込み群
+    \begin{itemize}
+      \item 一次元系・擬一次元系の基底状態および低励起状態を計算
+      \item 局所的な物理量や2点相関関数の測定
+      \item エンタングルメントエントロピーの測定
+    \end{itemize}
+  \item[hirshfye,interaction,hybridization] 動的平均場近似のQMCソルバ
+    \begin{itemize}
+      \item 系の自己エネルギーの波数依存性を無視することで, 多体フェルミオン模型を不純物問題に帰着
+      \item Hirsch-Fye法{\tt hirshfye}
+      \item 相互作用展開{\tt interaction}
+      \item 混成状態展開{\tt hybridization}
+    \end{itemize}
+  \end{description}
+\end{frame}
+
+\begin{frame}{ALPSによるシミュレーション --- ワークフロー}
+  \begin{center}
+    \includegraphics[height=0.8\textheight]{workflow.pdf}
+  \end{center}
 \end{frame}
 
 \end{document}
