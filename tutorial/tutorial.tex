@@ -13,13 +13,28 @@
    \tableofcontents
 \end{frame}
 
-\section{XML入門}
+\section{ALPSシミュレーションの流れ}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}{ALPSによるシミュレーション --- ワークフロー}
   \begin{center}
     \includegraphics[height=0.8\textheight]{workflow.pdf}
   \end{center}
+\end{frame}
+
+\begin{frame}{シミュレーションの入出力}
+  \begin{itemize}
+  \item 典型的には、一つのシミュレーションは複数のパラメータセットからなる \\ (異なる温度など)
+    \begin{itemize}
+    \item 「ジョブ(job)」: シミュレーション全体、「タスク」の集合
+    \item 「タスク(task)」(または「simulation」):– 一つのパラメータセットに対する計算、「ラン」の集合
+    \item 「ラン(run)」(または「clone」): 異なる乱数の種に対する個々の計算
+    \end{itemize}
+  \item XML入力ファイルと出力ファイル
+  \begin{center}
+    \includegraphics[width=.55\textwidth]{simulation1.pdf}
+  \end{center}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{XMLの基礎}
@@ -34,6 +49,8 @@
   \end{center}
   \end{itemize}
 \end{frame}
+
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
 
 \begin{frame}{XMLの文法}
   \begin{itemize}
@@ -70,23 +87,7 @@
   \end{itemize}
 \end{frame}
 
-\section{ALPSシミュレーションの流れ}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
-
-\begin{frame}{シミュレーションの入出力}
-  \begin{itemize}
-  \item 典型的には、一つのシミュレーションは複数のパラメータセットからなる \\ (異なる温度など)
-    \begin{itemize}
-    \item 「ジョブ(job)」: シミュレーション全体、「タスク」の集合
-    \item 「タスク(task)」(または「simulation」):– 一つのパラメータセットに対する計算、「ラン」の集合
-    \item 「ラン(run)」(または「clone」): 異なる乱数の種に対する個々の計算
-    \end{itemize}
-  \item XML入力ファイルと出力ファイル
-  \begin{center}
-    \includegraphics[width=.55\textwidth]{simulation1.pdf}
-  \end{center}
-  \end{itemize}
-\end{frame}
 
 \begin{frame}{Job XML ファイル}
   \begin{center}
@@ -151,6 +152,7 @@ THERMALIZATION = SWEEPS/8;
 \end{frame}
 
 \section{ALPSチュートリアル}
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
 
 \begin{frame}
   \frametitle{ディレクトリ構成 (例)}
@@ -179,6 +181,10 @@ THERMALIZATION = SWEEPS/8;
 \begin{semiverbatim}
 \$ source /opt/nano/alps/alpsvars.sh
 \end{semiverbatim}
+  \item ALPSが動くかどうか確認
+\begin{semiverbatim}
+\$ pconfig
+\end{semiverbatim}
   \item チュートリアルをコピー
 \begin{semiverbatim}
 \$ cp -rp /opt/nano/alps/tutorials/ .
@@ -186,6 +192,46 @@ THERMALIZATION = SWEEPS/8;
   \item iPythonノートブックをコピー
 \begin{semiverbatim}
 \$ cp -rp /opt/nano/alps/notebook/ .
+\end{semiverbatim}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{実習準備 (ローカル環境を使う場合)}
+  \begin{enumerate}
+  \item 環境変数の設定
+\begin{semiverbatim}
+\$ source $HOME/alps/bin/alpsvars.sh
+\end{semiverbatim}
+  \item ALPSが動くかどうか確認
+\begin{semiverbatim}
+\$ pconfig
+\end{semiverbatim}
+  \item チュートリアル\href{http://sf.net/projects/alps-tutorial/files/}{SourceForge}からダウンロード
+\begin{semiverbatim}
+\$ tar zxf tutorials-20140623-r7482.tgz
+\end{semiverbatim}
+  \item iPythonノートブックを\href{http://sf.net/projects/alps-tutorial/files/}{SourceForge}からダウンロード
+\begin{semiverbatim}
+\$ tar zxf alps-notebook-20141016.tgz
+\end{semiverbatim}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{実習準備 (MateriApps LIVE!を使う場合)}
+  \begin{enumerate}
+  \item ALPSが動くかどうか確認
+\begin{semiverbatim}
+\$ pconfig
+\end{semiverbatim}
+  \item チュートリアルをコピー
+\begin{semiverbatim}
+\$ cp -rp /usr/share/alps/tutorials/ .
+\end{semiverbatim}
+  \item iPythonノートブックを\href{http://sf.net/projects/alps-tutorial/files/}{SourceForge}からダウンロード
+\begin{semiverbatim}
+\$ tar zxf alps-notebook-20141016.tgz
 \end{semiverbatim}
   \end{enumerate}
 \end{frame}
@@ -199,13 +245,13 @@ THERMALIZATION = SWEEPS/8;
 \$ loop \textit{param}.in.xml
 \end{semiverbatim}
   \item シェルスクリプト(バッチ処理)
-  \item {\color{red}Python} (インタラクティブ or バッチ)
+  \item Python (対話的 or バッチ)
     \begin{itemize}
     \item パラメータの準備からグラフ作成まで統一的に
     \item 対話的にもバッチコマンドとしても実行可能
     \item グラフの作成も、PythonのMatplotlibを用いる
     \end{itemize}
-  \item {\color{red}IPython notebook}
+  \item IPython notebook
     \begin{itemize}
     \item ブラウザ上でPythonコマンドを実行
     \item 入力、出力を「ノートブック」としてまとめて保存
@@ -220,7 +266,7 @@ THERMALIZATION = SWEEPS/8;
   \begin{description}
   \item[fulldiag] {\color{red} 厳密対角化(全対角化法)}
   \item[sparsediag] {\color{red} 厳密対角化(Lanczos法)}
-  \item[spinmc] 古典モンテカルロ法
+  \item[spinmc] {\color{red} 古典モンテカルロ法}
   \item[loop] {\color{red} 量子モンテカルロ法(ループアルゴリズム)}
   \item[dirloop\_sse] {\color{red} 量子モンテカルロ(向き付きループアルゴリズム)}
   \item[worm] 量子モンテカルロ(ワームアルゴリズム)
@@ -268,6 +314,7 @@ THERMALIZATION = SWEEPS/8;
 \$ vi batch.sh
 \end{semiverbatim}
   \item batch.sh の中身
+\lstset{language={bash}}
 \begin{lstlisting}
 #!/bin/sh
 source /opt/nano/alps/alpsvars.sh
@@ -275,9 +322,7 @@ parameter2xml parm1a
 sparsediag --write-xml parm1a.in.xml
 \end{lstlisting}
   \item シェルスクリプトを実行 (あるいはバッチキューに投入)
-\begin{semiverbatim}
-\$ sh batch.sh
-\end{semiverbatim}
+  \item 物性研スパコンでのジョブスクリプトの書き方 ⇒ \href{http://www.issp.u-tokyo.ac.jp/supercom/for-users/x92nxz/alps}{[LINK]}
   \end{enumerate}
 \end{frame}
 
@@ -338,12 +383,27 @@ sparsediag --write-xml parm1a.in.xml
   \item 起動時に出力されるポート番号(8888等)を控えておく
   \item 手元のPCでもう一つポートフォワーディング付きでSSHセッションを開く
 \begin{semiverbatim}
-\$ ssh guest{\color{red}XX}@{\color{red}hostname} -L 8888:{\color{red}hostname}:8888
+\$ ssh guest{\color{red}XX}@{\color{red}hostname} -L 8888:localhost:8888
 \end{semiverbatim}
   \item PCでブラウザを起動し、http://localhost:8888 を開く
   \item ED-01\_SparseDiagonalization.ipynb を開き、[Shift+Return] で実行していく
   \end{enumerate}
   注: フロントエンドでの実行のため、他の人のジョブと干渉して遅くなる場合がある
+\end{frame}
+
+\begin{frame}[fragile,c]
+  \frametitle{IPython notebookでの実行 (ローカル環境を使う場合)}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item IPython notebookの起動
+\begin{semiverbatim}
+\$ source \$HOME/alps/alpsvars.sh
+\$ cd notebook/jp
+\$ ipython notebook --pylab inline
+\end{semiverbatim}
+  \item Mac OS X の場合は, {\tt ipython-2.7}を使う
+  \item MateriApps LIVE!の場合は, 1行目は不要
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{実行結果の確認}
@@ -360,7 +420,7 @@ sparsediag --write-xml parm1a.in.xml
   \begin{itemize}
     \item パラメータセットに関する並列実行が可能 (embarassingly parallel)
     \item アプリケーションによって、ALPS parallelizing スケジューラか、ALPS/parapack スケジューラのいずれかが使われている (オプション -l により確認可)
-    \item ALPS parallelizaing スケジューラ (spinmc等)
+    \item ALPS parallelizing スケジューラ (spinmc等)
       \begin{itemize}
         \item OpenMPスレッド並列には対応していない。MPI並列のみ
         \item MPI実行例(4プロセス): \\ {\tt {\color{red} mpirun -np 4} spinmc {\color{red} --mpi} parm2a.in.xml}
