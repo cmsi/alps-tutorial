@@ -9,13 +9,12 @@ Table of Contents / 内容
 ============================
 
 * Overview of ALPS Project / ALPSの概要
-* ALPS Library / ALPSライブラリ
+* Installation of ALPS / ALPSのインストール
 * Tutorial for running ALPS applications / ALPSアプリケーション実行チュートリアル
 * Python
 * Introduction to ALPS Python / ALPS Python入門
 * Introduction to Matplotlib / Matplotlib入門
 * How to ``alpsize'' your application / アプリケーションのALPS化
-* Installation of ALPS / ALPSのインストール
 
 How to generte PDF files / PDF生成方法
 ==============================================
