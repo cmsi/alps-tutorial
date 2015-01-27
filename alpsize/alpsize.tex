@@ -13,6 +13,161 @@
   \tableofcontents
 \end{frame}
 
+\section{ALPSの開発}
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
+
+\begin{frame}
+  \frametitle{基盤となる技術}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item C++によるジェネリック・プログラミング
+    \begin{itemize}
+    \item C++標準テンプレートライブラリ
+    \item Boost C++ ライブラリ \url{http://www.boost.org/}
+    \item ALPS独自のクラス, ジェネリック・アルゴリズムを実装
+    \item 柔軟性, 再利用性, 高信頼性, 高性能を同時に達成
+    \end{itemize}
+  \item XML, HDF5 \url{http://www.hdfgroup.org/HDF5/}による入出力
+    \begin{itemize}
+    \item 可搬性, 自己記述性, 変換が容易
+    \end{itemize}
+  \item 量子格子模型に対する最新のシミュレーション手法
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{なぜC++を使うのか?}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      \centering \includegraphics[width=4.5cm]{modern-cxx.pdf}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \centering \includegraphics[width=4.5cm]{cxx-template.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{ALPSの展開}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item 上方展開 (大規模化・高性能化・並列化)
+    \begin{itemize}
+    \item 量子モンテカルロ法(ALPS/looper)の超並列化
+    \item 高並列スケジューラ(ALPS/parapack)のハイブリッド多重並列化
+    \item Fortran, C プログラムのための API 作成
+    \end{itemize}
+  \item 下方展開 (裾野を広げる)
+    \begin{itemize}
+    \item 実験家・理論家による幅広い利用の促進
+    \item Windows/Macintosh 用バイナリインストーラの開発
+    \item ワークフロー・履歴管理システムとの統合
+    \item GUI (グラフィカルユーザインターフェース)の開発
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{開発のためのインフラストラクチャ}
+  \begin{itemize}
+  \item ソースコードの規模, 開発体制が大きくなると今までの方法では破綻する
+  \item 開発・サポートのためのツールを一から作りあげるのは非現実的
+  \item フリーソフトウェアの利用
+    \begin{itemize}
+    \item ビルドシステム: CMake
+    \item ソースコードの管理: Subversion
+    \item プロジェクト管理・バグ追跡: Trac
+    \item ドキュメント作成: MediaWiki
+    \item メーリングリスト: Mailman
+    \end{itemize}
+  \item Linux ワークステーションが1台あれば, これらの環境を整えるのは現在では比較的容易
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{ビルドシステム: CMake}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item Makefileを生成するためのユーティリティー (configureスクリプトに対応)
+    \begin{itemize}
+    \item Windows の Visual C++ 用ソリューションファイル, Mac OS X の Xcode 用プロジェクトファイルの生成も可能
+    \end{itemize}
+  \item 設定は CMakeLists.txt に記述する
+  \item テスト(CTest)やバイナリ配布(CPack)の機能もある
+  \item ファイルの依存関係の自動検出
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{VCS (Version Control System)によるソース管理: Subversion}
+  \begin{itemize}
+  \item 開発者が複数になると, ディレクトリ名やログファイルによるバージョン管理はすぐに破綻する
+  \item ソースコードをサーバー上で一括管理
+    \begin{itemize}
+    \item ネットワーク経由でソースを check out/check in
+    \end{itemize}
+  \item 更新毎に一意なバージョン番号を付与
+  \item 全ての修正履歴を保存
+  \item 複数人が同時に更新した場合に衝突を回避するしくみ
+  \item ブランチ・マージ・タグ付けなどが可能
+  \item 開発者が一人, 公開の予定がない場合でも積極的に使うべき
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{BTS (Bug Tracking System) の利用: Trac}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item プロジェクト管理とバグ追跡のためのツール
+  \item Web ブラウザからアクセス・操作
+    \begin{itemize}
+    \item 開発者の情報共有のための wiki
+    \item Subversion との連携 (ソース, 修正履歴の web 上での閲覧)
+    \item プロジェクト管理 (ロードマップ, マイルストーンの管理)
+    \item チケットシステム: バグやタスクの登録, 担当者の決定, 修正状況の追跡
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Wikiによるマニュアル作成: MediaWiki}
+  \begin{itemize}
+  \item もともとはウィキペディアのために開発された
+  \item Wiki とは?
+    \begin{itemize}
+    \item Webブラウザを利用してWeb文書を書き換えるシステム
+    \item ネットワーク上のどこからでも書き換えができる
+    \item 共同作業が容易
+    \item Webブラウザがあれば編集作業が行える
+    \item HTMLよりも簡潔な書式
+    \item 文書間のリンクの作成が容易
+    \end{itemize}
+  \item ALPS Wiki のコンテンツ
+    \begin{itemize}
+    \item ニュース, インストール方法, ALPSに関連する論文, 発表資料, ライブラリリファレンスマニュアル, チュートリアル
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{メーリングリストの活用: Mailman}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item 開発者メーリングリスト
+    \begin{itemize}
+    \item 開発方針に関する意見交換, リリーススケジュール調整, 担当者調整等
+    \item Trac チケットの変更ログも自動的にここに流れる
+    \end{itemize}
+  \item ユーザメーリングリスト
+    \begin{itemize}
+    \item Web からの自動登録
+    \item 開発者 + ユーザコミュニティーによるサポートの場
+    \item FAQ ⇒ Wiki ドキュメントへ反映
+    \item バグレポート, 要望など ⇒ Trac チケットへ
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
 \section{ALPSize (ALPS化)のすすめ}
 \begin{frame}
   \frametitle{ALPSライブラリを使用する利点}

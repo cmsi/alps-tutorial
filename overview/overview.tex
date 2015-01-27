@@ -13,24 +13,34 @@
   \tableofcontents
 \end{frame}
 
-\section{チュートリアルの概要}
+\section{参考資料 / Reference Materials}
 
-\begin{frame}
-  \frametitle{ALPSチュートリアル 資料}
+\begin{frame}{ALPS参考資料}
+  \begin{itemize}
+    %\setlength{\itemsep}{1em}
+  \item ALPSチュートリアル資料
+    \begin{itemize}
+    \item CMSIハンズオン資料 (en/jp)
+      
+      [PDF]: : {\footnotesize \url{http://sf.net/projects/alps-tutorial/files/}}
+      
+      [\TeX soruce]: {\footnotesize \url{https://github.com/cmsi/alps-tutorial/}}
+      
+    \item ALPSオフィシャルページ Turorials (en/jp): {\footnotesize \url{http://alps.comp-phys.org/}}
+    \end{itemize}
+  \item ALPS Developer Wiki (en): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
+  \item CMSI MateriApps (jp/en): {\footnotesize \url{http://ma.cms-initiative.jp/}}
+  \item 藤堂,「``実験技術''としての量子多体シミュレーションソフトウェアALPS」日本物理学会誌掲載予定(jp) \href{http://exa.phys.s.u-tokyo.ac.jp/archive/alps-jps-2015.pdf}{[preprint]}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ALPS Papers}
   \begin{itemize}
     \setlength{\itemsep}{1em}
-  \item ALPSチュートリアル資料(日)
-    \begin{itemize}
-      \item PDF: {\footnotesize \url{http://sf.net/projects/alps-tutorial/files/}}
-      \item \TeX ソース: {\footnotesize \url{https://github.com/cmsi/alps-tutorial/}}
-    \end{itemize}
-  \item ALPSオフィシャルページ(英日): {\footnotesize \url{http://alps.comp-phys.org/}}
-  \item ALPS Developer Wiki (英): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
-  \item CMSI MateriApps: {\footnotesize \url{http://ma.cms-initiative.jp/}}
-    \begin{itemize}
-      \item ALPS web講習会: {\footnotesize \href{http://ma.cms-initiative.jp/ja/listapps/alps/ju6d5o/llgd83}{http://ma.cms-initiative.jp/jp/...}}
-    \end{itemize}
-  \item 藤堂眞治「``実験技術''としての量子多体系シミュレーションソフトウェアALPS」日本物理学会誌 (掲載予定)
+  \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
+  \item A.~F. Albuquerque et al. {\it The ALPS project release 1.3: open source software for strongly correlated systems}, \href{http://dx.doi.org/10.1016/j.jmmm.2006.10.304}{J. Mag. Mag. Mat. 310, 1187 (2007)}.
+  \item F. Alet et al. {\it The ALPS Project: Open Source Software for
+      Strongly Correlated Systems}, \href{http://jpsj.ipap.jp/link?JPSJS/74S/30}{J. Phys. Soc. Jpn. Suppl. 74, 30 (2005)}.
   \end{itemize}
 \end{frame}
 
@@ -44,6 +54,23 @@
   \item ALPS User's Mailing List (英):
 
     {\footnotesize \href{https://alps.comp-phys.org/mediawiki/index.php/Forum:Overview}{https://alps.comp-phys.org/mediawiki/index.php/Forum...}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ワークショップ}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item ALPS developers workshop
+    \begin{itemize}
+      \item 今後の開発方針についてブレインストーミング・ディスカッション
+      \item 年1回程度
+    \end{itemize}
+  \item ALPS users workshop / tutorial
+    \begin{itemize}
+      \item アルゴリズムについてのレビュートーク
+      \item Wiki のチュートリアルを用いて ALPS の実習
+      \item CMSIハンズオン: 年4回程度, 神戸や柏にてALPSチュートリアルを開催中
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -109,7 +136,7 @@
 \section{量子格子模型とは?}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}{量子格子模型: Quantum Lattice Models}
+\begin{frame}{量子格子模型 / Quantum Lattice Models}
   \begin{columns}[T]
     \begin{column}{.8\textwidth}
       \begin{itemize}
@@ -130,7 +157,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{なぜQLMを考えるのか?}
+\begin{frame}{なぜQLMを考えるのか? / Why quantum lattice models?}
   \begin{columns}[T]
     \begin{column}{.2\textwidth}
       \includegraphics[width=\textwidth]{ising-tc.png} \\
@@ -165,7 +192,7 @@
 %\begin{frame}{Finite-size scaling analysis}
 %\end{frame}
   
-\section{ALPSプロジェクト}
+\section{ALPSプロジェクト / ALPS Project}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}
@@ -189,7 +216,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{ALPSとは?}
+\begin{frame}{ALPSとは? / What's ALPS?}
   ALPS = \alert{A}lgorithms and \alert{L}ibraries for \alert{P}hysics \alert{S}imulations
   %\begin{columns}[T]
     %\begin{column}{.7\textwidth}
@@ -211,7 +238,7 @@
   %\end{columns}
 \end{frame}
 
-\begin{frame}{ターゲット・オーディエンス}
+\begin{frame}{ターゲット・オーディエンス / Target Audience}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item 実験家
@@ -227,40 +254,6 @@
     \end{itemize}
   \item 計算機科学者, 学生, $\cdots$
   \end{itemize}
-\end{frame}
-
-\section{ALPSの開発}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
-
-\begin{frame}
-  \frametitle{基盤となる技術}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item C++によるジェネリック・プログラミング
-    \begin{itemize}
-    \item C++標準テンプレートライブラリ
-    \item Boost C++ ライブラリ \url{http://www.boost.org/}
-    \item ALPS独自のクラス, ジェネリック・アルゴリズムを実装
-    \item 柔軟性, 再利用性, 高信頼性, 高性能を同時に達成
-    \end{itemize}
-  \item XML, HDF5 \url{http://www.hdfgroup.org/HDF5/}による入出力
-    \begin{itemize}
-    \item 可搬性, 自己記述性, 変換が容易
-    \end{itemize}
-  \item 量子格子模型に対する最新のシミュレーション手法
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{なぜC++を使うのか?}
-  \begin{columns}[T]
-    \begin{column}{.5\textwidth}
-      \centering \includegraphics[width=4.5cm]{modern-cxx.pdf}
-    \end{column}
-    \begin{column}{.5\textwidth}
-      \centering \includegraphics[width=4.5cm]{cxx-template.pdf}
-    \end{column}
-  \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -349,149 +342,6 @@
   \end{columns}
 \end{frame}
 
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
-
-\begin{frame}
-  \frametitle{ALPSの展開}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item 上方展開 (大規模化・高性能化・並列化)
-    \begin{itemize}
-    \item 量子モンテカルロ法(ALPS/looper)の超並列化
-    \item 高並列スケジューラ(ALPS/parapack)のハイブリッド多重並列化
-    \item Fortran, C プログラムのための API 作成
-    \end{itemize}
-  \item 下方展開 (裾野を広げる)
-    \begin{itemize}
-    \item 実験家・理論家による幅広い利用の促進
-    \item Windows/Macintosh 用バイナリインストーラの開発
-    \item ワークフロー・履歴管理システムとの統合
-    \item GUI (グラフィカルユーザインターフェース)の開発
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{開発のためのインフラストラクチャ}
-  \begin{itemize}
-  \item ソースコードの規模, 開発体制が大きくなると今までの方法では破綻する
-  \item 開発・サポートのためのツールを一から作りあげるのは非現実的
-  \item フリーソフトウェアの利用
-    \begin{itemize}
-    \item ビルドシステム: CMake
-    \item ソースコードの管理: Subversion
-    \item プロジェクト管理・バグ追跡: Trac
-    \item ドキュメント作成: MediaWiki
-    \item メーリングリスト: Mailman
-    \end{itemize}
-  \item Linux ワークステーションが1台あれば, これらの環境を整えるのは現在では比較的容易
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{ビルドシステム: CMake}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item Makefileを生成するためのユーティリティー (configureスクリプトに対応)
-    \begin{itemize}
-    \item Windows の Visual C++ 用ソリューションファイル, Mac OS X の Xcode 用プロジェクトファイルの生成も可能
-    \end{itemize}
-  \item 設定は CMakeLists.txt に記述する
-  \item テスト(CTest)やバイナリ配布(CPack)の機能もある
-  \item ファイルの依存関係の自動検出
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{VCS (Version Control System)によるソース管理: Subversion}
-  \begin{itemize}
-  \item 開発者が複数になると, ディレクトリ名やログファイルによるバージョン管理はすぐに破綻する
-  \item ソースコードをサーバー上で一括管理
-    \begin{itemize}
-    \item ネットワーク経由でソースを check out/check in
-    \end{itemize}
-  \item 更新毎に一意なバージョン番号を付与
-  \item 全ての修正履歴を保存
-  \item 複数人が同時に更新した場合に衝突を回避するしくみ
-  \item ブランチ・マージ・タグ付けなどが可能
-  \item 開発者が一人, 公開の予定がない場合でも積極的に使うべき
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{BTS (Bug Tracking System) の利用: Trac}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item プロジェクト管理とバグ追跡のためのツール
-  \item Web ブラウザからアクセス・操作
-    \begin{itemize}
-    \item 開発者の情報共有のための wiki
-    \item Subversion との連携 (ソース, 修正履歴の web 上での閲覧)
-    \item プロジェクト管理 (ロードマップ, マイルストーンの管理)
-    \item チケットシステム: バグやタスクの登録, 担当者の決定, 修正状況の追跡
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Wikiによるマニュアル作成: MediaWiki}
-  \begin{itemize}
-  \item もともとはウィキペディアのために開発された
-  \item Wiki とは?
-    \begin{itemize}
-    \item Webブラウザを利用してWeb文書を書き換えるシステム
-    \item ネットワーク上のどこからでも書き換えができる
-    \item 共同作業が容易
-    \item Webブラウザがあれば編集作業が行える
-    \item HTMLよりも簡潔な書式
-    \item 文書間のリンクの作成が容易
-    \end{itemize}
-  \item ALPS Wiki のコンテンツ
-    \begin{itemize}
-    \item ニュース, インストール方法, ALPSに関連する論文, 発表資料, ライブラリリファレンスマニュアル, チュートリアル
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{メーリングリストの活用: Mailman}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item 開発者メーリングリスト
-    \begin{itemize}
-    \item 開発方針に関する意見交換, リリーススケジュール調整, 担当者調整等
-    \item Trac チケットの変更ログも自動的にここに流れる
-    \end{itemize}
-  \item ユーザメーリングリスト
-    \begin{itemize}
-    \item Web からの自動登録
-    \item 開発者 + ユーザコミュニティーによるサポートの場
-    \item FAQ ⇒ Wiki ドキュメントへ反映
-    \item バグレポート, 要望など ⇒ Trac チケットへ
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
-
-\begin{frame}
-  \frametitle{ワークショップ}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item ALPS developers workshop
-    \begin{itemize}
-      \item 今後の開発方針についてブレインストーミング・ディスカッション
-      \item 年1回程度
-    \end{itemize}
-  \item ALPS users workshop / tutorial
-    \begin{itemize}
-      \item アルゴリズムについてのレビュートーク
-      \item Wiki のチュートリアルを用いて ALPS の実習
-      \item CMSIハンズオン: 年4回程度, 神戸や柏にてALPSチュートリアルを開催中
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
 \begin{frame}
 \frametitle{ALPS``cite-me''ライセンス}
 %\begin{itemize}
@@ -512,19 +362,6 @@
     \end{minipage}
   \end{itemize}
 %\end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{参考文献}
-  \begin{itemize}
-  \item ALPS papers
-    \begin{itemize}
-    \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
-    \item A.~F. Albuquerque et al. {\it The ALPS project release 1.3: open source software for strongly correlated systems}, \href{http://dx.doi.org/10.1016/j.jmmm.2006.10.304}{J. Mag. Mag. Mat. 310, 1187 (2007)}.
-    \item F. Alet et al. {\it The ALPS Project: Open Source Software for
-      Strongly Correlated Systems}, \href{http://jpsj.ipap.jp/link?JPSJS/74S/30}{J. Phys. Soc. Jpn. Suppl. 74, 30 (2005)}.
-    \end{itemize}
-  \end{itemize}
 \end{frame}
 
 \section{ALPSの構成}
@@ -837,14 +674,14 @@ Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
   \item[hirshfye,interaction,hybridization] 動的平均場近似のQMCソルバ
     \begin{itemize}
       \item 系の自己エネルギーの波数依存性を無視することで, 多体フェルミオン模型を不純物問題に帰着
-      \item Hirsch-Fye法{\tt hirshfye}
-      \item 相互作用展開{\tt interaction}
-      \item 混成状態展開{\tt hybridization}
+      \item Hirsch-Fye法 ({\tt hirshfye})
+      \item 相互作用展開 ({\tt interaction})
+      \item 混成状態展開 ({\tt hybridization})
     \end{itemize}
   \end{description}
 \end{frame}
 
-\begin{frame}{ALPSによるシミュレーション --- ワークフロー}
+\begin{frame}{ALPSシミュレーションのワークフロー}
   \begin{center}
     \includegraphics[height=0.8\textheight]{workflow.pdf}
   \end{center}
