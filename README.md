@@ -1,4 +1,4 @@
-alps-tutorial
-=============
+tutorials branch
+================
 
-Tutorial materials for ALPS Library/Application (http://alps.comp-phys.org)
+This branch contains tutorial materials from alps/tutorials directory
