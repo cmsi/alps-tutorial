@@ -5,10 +5,12 @@ DATE=`grep '^\\\\date{' style/alpstutorial.sty | sed 's/\\\\date{//g' | sed 's/}
 if test -z "$DATE"; then
   echo "VERSION = NONE"
   BASE="alps-tutorial"
+  BASE_EN="alps-tutorial-en"
   NOTEBOOK="alps-notebook"
 else  
   echo "VERSION = $DATE"
   BASE="alps-tutorial-$DATE"
+  BASE_EN="alps-tutorial-en-$DATE"
   NOTEBOOK="alps-notebook-$DATE"
 fi
 
@@ -40,6 +42,24 @@ cp -fp pyalps/pyalps-wide.pdf $DIR/05_pyalps.pdf
 cp -fp matplotlib/matplotlib-wide.pdf $DIR/06_matplotlib.pdf
 cp -fp alpsize/alpsize-wide.pdf $DIR/07_alpsize.pdf
 cp -fp pyalps/crash_course_pyalps.ipynb python/python.ipynb $DIR
+
+tar zcf $DIR.tgz $DIR
+zip -r $DIR.zip $DIR
+
+DIR="$BASE_EN"
+rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR
+
+cp -fp overview/overview-en-normal.pdf $DIR/01_overview-en.pdf
+cp -fp tutorial/tutorial-en-normal.pdf $DIR/03_tutorial-en.pdf
+
+tar zcf $DIR.tgz $DIR
+zip -r $DIR.zip $DIR
+
+DIR="$BASE_EN-wide"
+rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR
+
+cp -fp overview/overview-en-wide.pdf $DIR/01_overview_en.pdf
+cp -fp tutorial/tutorial-en-wide.pdf $DIR/03_tutorial_en.pdf
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR

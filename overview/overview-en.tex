@@ -1,3 +1,5 @@
+%-*- coding:utf-8 -*-
+
 \title{ALPS Tutorial -- Overview}
 
 \begin{document}
@@ -9,14 +11,14 @@
 \end{frame}
 
 \section*{Outline}
-\begin{frame}
+\begin{frame}[t,fragile]
   \tableofcontents
 \end{frame}
 
 \section{Reference Materials / 参考資料}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}{ALPS Reference Materials}
+\begin{frame}[t,fragile]{ALPS Reference Materials}
   \begin{itemize}
     %\setlength{\itemsep}{1em}
   \item ALPS Tutorial Materials
@@ -35,7 +37,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{ALPS Papers}
+\begin{frame}[t,fragile]{ALPS Papers}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
@@ -45,7 +47,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Need help?}
+\begin{frame}[t,fragile]{Need help?}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item Japanese ALPS Support Team: {\footnotesize \href{mailto:alps@exa.phys.s.u-tokyo.ac.jp}{alps@exa.phys.s.u-tokyo.ac.jp}}
@@ -61,7 +63,7 @@
 \section{Quantum Lattice Models / 量子格子模型}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}{Quantum Lattice Models}
+\begin{frame}[fragile]{Quantum Lattice Models}
   \begin{columns}[T]
     \begin{column}{.8\textwidth}
       \begin{itemize}
@@ -82,7 +84,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Why quantum lattice models?}
+\begin{frame}[t,fragile]{Why quantum lattice models?}
   \begin{columns}[T]
     \begin{column}{.2\textwidth}
       \includegraphics[width=\textwidth]{ising-tc.png} \\
@@ -114,7 +116,7 @@
 \section{ALPS Project / ALPSプロジェクト}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{Goal of ALPS Project}
   \begin{itemize}
     \setlength{\itemsep}{1em}
@@ -135,7 +137,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{What is ALPS?}
+\begin{frame}[t,fragile]{What is ALPS?}
   ALPS = \alert{A}lgorithms and \alert{L}ibraries for \alert{P}hysics \alert{S}imulations
   %\begin{columns}[T]
     %\begin{column}{.7\textwidth}
@@ -159,7 +161,7 @@
   %\end{columns}
 \end{frame}
 
-\begin{frame}{Target Audience}
+\begin{frame}[t,fragile]{Target Audience}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item Experimental physicists
@@ -177,7 +179,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{History of ALPS}
   \begin{itemize}
   \item mid 1990's: start development of PALMC++, DMRG, looper
@@ -192,7 +194,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Contributors}
   \begin{columns}[T]
     \begin{column}{.33\textwidth}
@@ -265,7 +267,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
 \frametitle{ALPS ``Cite-me'' License}
 %\begin{itemize}
 %\item ALPS Library License, ALPS Application License
@@ -286,7 +288,7 @@
 %\end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{Distinct Features of ALPS}
   \begin{itemize}
   \item {\em Any} lattices
@@ -309,7 +311,7 @@
 \section{ALPS Applications / ALPSアプリケーション}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{ALPS Applications}
   \begin{description}
   \item[fulldiag] Exact diagonalization (full diagonalization)
@@ -323,7 +325,7 @@
   \end{description}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{Exact Diagonalization}
   \begin{description}
   \item[fulldiag] Exact diagonalization (full diagonalization)
@@ -342,7 +344,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{Classical Monte Carlo}
   \begin{description}
   \item[spinmc] Classical Monte Carlo
@@ -354,7 +356,7 @@
   \end{description}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{Quantum Monte Carlo}
   \begin{description}
   \item[loop] QMC (Loop Algorithm)
@@ -376,7 +378,7 @@
   \end{description}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{DMRG$\cdot$DMFT}
   \begin{description}
   \item[dmrg,tebd] DMRG (Density Matrix Renormalization Group
