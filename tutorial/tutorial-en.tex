@@ -40,7 +40,7 @@
       {\footnotesize \tt /opt/spire/alps/alpsvars.sh}
     \end{itemize}
   \item For complete list of {\color{red} {\em ALPS-ready} supercomputers} and location of setup script, please refer to \url{https://github.com/wistaria/MateriAppsInstaller}
-  \item On {\color {blue} MateriApps LIVE!}, setup script is not needed as enviroment variables are set by default
+  \item On {\color {blue} MateriApps LIVE!}, setup script is not needed as environment variables are set by default
   \end{itemize}
 \end{frame}
 
@@ -152,25 +152,10 @@ $ python tutorial2full.py
 \begin{frame}[t,fragile]{Two Ways to Prepare Input Files}
   \begin{enumerate}
     \setlength{\itemsep}{1em}
-  \item create within Python script: ex) tutorial2a.py
-    \lstset{language={python}}
-    {\small
-    \begin{lstlisting}
-28  import pyalps
-    ...
-34  parms = []
-35  for t in [0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.25, 1.5, 1.75, 2.0]:
-36      parms.append(
-37          { 
-38            'LATTICE'        : "chain lattice", 
-39            'T'              : t,
-    ...
-45            'L'              : 60
-46          }
-47      )
-    ...
-51  input_file = pyalps.writeInputFiles('parm2a',parms)
-\end{lstlisting}}
+  \item create within Python script: ex) \href{https://github.com/cmsi/alps-tutorial/blob/tutorials/tutorials/mc-02-susceptibilities/tutorial2a.py}{tutorial2a.py}
+    %\begin{center}
+      \includegraphics[height=.72\textheight]{tutorial2a-1.pdf}
+    %\end{center}
   \end{enumerate}
 \end{frame}
 
@@ -230,12 +215,27 @@ THERMALIZATION = SWEEPS/8;
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}[t,fragile]{Running ALPS Applications}
+  \begin{enumerate}
+  \item from Python script: ex) \href{https://github.com/cmsi/alps-tutorial/blob/tutorials/tutorials/mc-02-susceptibilities/tutorial2a.py}{tutorial2a.py}
+    \includegraphics[height=.08\textheight]{tutorial2a-2.pdf}
+  \item from command line
+\begin{lstlisting}
+$ spinmc --Tmin=5 param2a.in.xml
+\end{lstlisting}
+  \item parallel (MPI) execution (parameter parallelization)
+\begin{lstlisting}
+$ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
+\end{lstlisting}
+  \end{enumerate}
 \end{frame}
 
 \section{Plotting Simulation Results / 結果のプロット}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}[t,fragile]{Plotting Simulation Results}
+    \begin{center}
+      \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
+    \end{center}
 \end{frame}
 
 \section{Further Tutorials / いろいろなチュートリアル}
