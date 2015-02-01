@@ -1,3 +1,5 @@
+%-*- coding:utf-8 -*-
+
 \title{ALPSチュートリアル -- ALPSの概要}
 
 \begin{document}
@@ -9,13 +11,14 @@
 \end{frame}
 
 \section*{Outline}
-\begin{frame}
+\begin{frame}[t,fragile]
   \tableofcontents
 \end{frame}
 
 \section{参考資料 / Reference Materials}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}{ALPS参考資料}
+\begin{frame}[t,fragile]{ALPS参考資料}
   \begin{itemize}
     %\setlength{\itemsep}{1em}
   \item ALPSチュートリアル資料
@@ -34,7 +37,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{ALPS Papers}
+\begin{frame}[t,fragile]{ALPS Papers}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
@@ -44,7 +47,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{困った時は…}
+\begin{frame}[t,fragile]{困った時は…}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item ALPSサポートチーム(日): {\footnotesize \href{mailto:alps@exa.phys.s.u-tokyo.ac.jp}{alps@exa.phys.s.u-tokyo.ac.jp}}
@@ -57,7 +60,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{ワークショップ}
+\begin{frame}[t,fragile]{ワークショップ}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item ALPS developers workshop
@@ -74,7 +77,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{ALPSチュートリアル スタッフ}
+\begin{frame}[t,fragile]{ALPSチュートリアル スタッフ}
   \begin{itemize}
   \item チュートリアル資料作成・講師
     \begin{itemize}
@@ -95,7 +98,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{チュートリアルの流れ}
   \begin{tabular}{|l|l|c|c|c|}
         \hline
@@ -120,7 +123,7 @@
   {\footnotesize\color{red} ○}: ユーザコース, {\footnotesize\color{blue} ○}: 開発者コース {\footnotesize\color{green} ○}: 集中コース
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{ALPSチュートリアルの目標}
   \begin{itemize}
     \setlength{\itemsep}{1em}
@@ -133,17 +136,18 @@
   \end{itemize}
 \end{frame}
 
-\section{量子格子模型とは?}
+\section{量子格子模型 / Quantum Lattice Models}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}{量子格子模型 / Quantum Lattice Models}
+\begin{frame}[t,fragile]{量子格子模型 / Quantum Lattice Models}
   \begin{columns}[T]
     \begin{column}{.8\textwidth}
       \begin{itemize}
       \item 量子スピン模型(XXZ模型) \begin{equation*} {\cal H} = \frac{J^{xy}}{2}
         \sum_{\langle i,j \rangle} (S^+_i S^-_j + S^-_i S^+_j) + J^z
         \sum_{\langle i,j \rangle} S^z_i S^z_j \end{equation*}
-      \item Hubbard模型 \begin{equation*} {\cal H} = -t \sum_{\langle i,j \rangle \sigma}
+      \item Hubbard模型 (fermionic / bosonic)
+        \begin{equation*} {\cal H} = -t \sum_{\langle i,j \rangle \sigma}
         (c^\dagger_{i\sigma} c_{j\sigma} + \mbox{h.c.}) + U \sum_{i}
         n_{i\uparrow} n_{i\downarrow} \end{equation*}
       \item t-J模型 \begin{equation*} {\cal H} = -t \sum_{\langle i,j \rangle \sigma}
@@ -157,7 +161,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{なぜQLMを考えるのか? / Why quantum lattice models?}
+\begin{frame}[t,fragile]{なぜQLMを考えるのか? / Why quantum lattice models?}
   \begin{columns}[T]
     \begin{column}{.2\textwidth}
       \includegraphics[width=\textwidth]{ising-tc.png} \\
@@ -186,16 +190,16 @@
   \end{columns}
 \end{frame}
 
-%\begin{frame}{実験室で実現されているQLM}
+%\begin{frame}[t,fragile]{実験室で実現されているQLM}
 %\end{frame}
 
-%\begin{frame}{Finite-size scaling analysis}
+%\begin{frame}[t,fragile]{Finite-size scaling analysis}
 %\end{frame}
   
 \section{ALPSプロジェクト / ALPS Project}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{ALPSプロジェクトの目標}
   \begin{itemize}
     \setlength{\itemsep}{1em}
@@ -216,7 +220,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{ALPSとは? / What's ALPS?}
+\begin{frame}[t,fragile]{ALPSとは? / What's ALPS?}
   ALPS = \alert{A}lgorithms and \alert{L}ibraries for \alert{P}hysics \alert{S}imulations
   %\begin{columns}[T]
     %\begin{column}{.7\textwidth}
@@ -238,7 +242,7 @@
   %\end{columns}
 \end{frame}
 
-\begin{frame}{ターゲット・オーディエンス / Target Audience}
+\begin{frame}[t,fragile]{ターゲット・オーディエンス / Target Audience}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item 実験家
@@ -256,7 +260,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{ALPSの歴史}
   \begin{itemize}
   \item 1990年代中頃 ALPSの前身となる PALM C++, DMRG, looper などが開発される
@@ -271,7 +275,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{ALPSの開発者}
   \begin{columns}[T]
     \begin{column}{.34\textwidth}
@@ -342,7 +346,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
 \frametitle{ALPS``cite-me''ライセンス}
 %\begin{itemize}
 %\item ALPS Library License, ALPS Application License
@@ -367,13 +371,13 @@
 \section{ALPSの構成}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}{ALPSの階層構造}
+\begin{frame}[t,fragile]{ALPSの階層構造}
   \begin{center}
     \includegraphics[height=0.65\textheight]{hierarchy.pdf}
   \end{center}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{サードパーティーのライブラリ}
   \begin{itemize}
     \setlength{\itemsep}{1em}
@@ -489,7 +493,7 @@ std::cout << binder;
 
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame} [t,fragile,shrink]
+\begin{frame}[t,fragile,shrink]
   \frametitle{ALPS/latticeライブラリ}
   \begin{itemize}
     \setlength{\itemsep}{1em}

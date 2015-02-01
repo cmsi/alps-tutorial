@@ -67,12 +67,16 @@
   \begin{columns}[T]
     \begin{column}{.8\textwidth}
       \begin{itemize}
-      \item Quantum spin model (XXZ model) \begin{equation*} {\cal H} = \frac{J^{xy}}{2}
-        \sum_{\langle i,j \rangle} (S^+_i S^-_j + S^-_i S^+_j) + J^z
-        \sum_{\langle i,j \rangle} S^z_i S^z_j \end{equation*}
-      \item Hubbard model \begin{equation*} {\cal H} = -t \sum_{\langle i,j \rangle \sigma}
-        (c^\dagger_{i\sigma} c_{j\sigma} + \mbox{h.c.}) + U \sum_{i}
-        n_{i\uparrow} n_{i\downarrow} \end{equation*}
+      \item Quantum spin model (XXZ model)
+        \begin{equation*} {\cal H} = \frac{J^{xy}}{2}
+          \sum_{\langle i,j \rangle} (S^+_i S^-_j + S^-_i S^+_j) + J^z
+          \sum_{\langle i,j \rangle} S^z_i S^z_j
+        \end{equation*}
+      \item Hubbard model (fermionic / bosonic)
+        \begin{equation*} {\cal H} = -t \sum_{\langle i,j \rangle \sigma}
+          (c^\dagger_{i\sigma} c_{j\sigma} + \mbox{h.c.}) + U \sum_{i}
+          n_{i\uparrow} n_{i\downarrow}
+        \end{equation*}
       \item t-J model\begin{equation*} {\cal H} = -t \sum_{\langle i,j \rangle \sigma}
         (c^\dagger_{i\sigma} c_{j\sigma} + \mbox{h.c.}) + J \sum_{i,j}
         ({\bf S}_i \cdot {\bf S}_j - n_{i} n_{j} / 4) \end{equation*}
@@ -116,26 +120,26 @@
 \section{ALPS Project / ALPSプロジェクト}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}[t,fragile]
-  \frametitle{Goal of ALPS Project}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item The status quo
-    \begin{itemize}
-    \item Individual code for each project
-    \item Model specific implementations
-    \item Growing complexity of methods
-    \item Inputs/Outputs in non-portable formats
-    \end{itemize}
-  \item Goal of ALPS project
-    \begin{itemize}
-    \item ``Community code'' based on state-of-the-art simulation algorithms
-    \item C++ Libraries and Framework for large-scale parallel computation
-    \item Proposal of portable Inputs/Outputs formats and generic data-analysis tools
-    \item Simulation software useful also for non-experts, such as experimentalists
-    \end{itemize}
-  \end{itemize}
-\end{frame}
+%% \begin{frame}[t,fragile]
+%%   \frametitle{Goal of ALPS Project}
+%%   \begin{itemize}
+%%     \setlength{\itemsep}{1em}
+%%   \item The status quo
+%%     \begin{itemize}
+%%     \item Individual code for each project
+%%     \item Model specific implementations
+%%     \item Growing complexity of methods
+%%     \item Inputs/Outputs in non-portable formats
+%%     \end{itemize}
+%%   \item Goal of ALPS project
+%%     \begin{itemize}
+%%     \item ``Community code'' based on state-of-the-art simulation algorithms
+%%     \item C++ Libraries and Framework for large-scale parallel computation
+%%     \item Proposal of portable Inputs/Outputs formats and generic data-analysis tools
+%%     \item Simulation software useful also for non-experts, such as experimentalists
+%%     \end{itemize}
+%%   \end{itemize}
+%% \end{frame}
 
 \begin{frame}[t,fragile]{What is ALPS?}
   ALPS = \alert{A}lgorithms and \alert{L}ibraries for \alert{P}hysics \alert{S}imulations
@@ -161,6 +165,18 @@
   %\end{columns}
 \end{frame}
 
+\begin{frame}[t,fragile]{Modeling of Spin Ladder Material: Na$_2$Fe$_2$(C$_2$O$_4$)$_3$(H$_2$O)$_2$}
+  \begin{center}
+    \includegraphics[height=.8\textheight]{ladder.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t,fragile]{Supersolid in Extended Bose Hubbard Model}
+  \begin{center}
+    \includegraphics[height=.8\textheight]{supersolid.pdf}
+  \end{center}
+\end{frame}
+
 \begin{frame}[t,fragile]{Target Audience}
   \begin{itemize}
     \setlength{\itemsep}{1em}
@@ -179,93 +195,93 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t,fragile]
-  \frametitle{History of ALPS}
-  \begin{itemize}
-  \item mid 1990's: start development of PALMC++, DMRG, looper
-  \item 2002: start of ALPS project
-  \item 2004: version 1.0 released, 1st Users Workshop
-  \item 2010: version 2.0 released
-  \item as of Oct. 2014
-    \begin{itemize}
-      \item source code: C++ 396,000 lines, Python lines, Fortran 10,000 lines
-      \item developers: c.a. 30 (from 7 countries)
-    \end{itemize}
-  \end{itemize}
-\end{frame}
+%% \begin{frame}[t,fragile]
+%%   \frametitle{History of ALPS}
+%%   \begin{itemize}
+%%   \item mid 1990's: start development of PALMC++, DMRG, looper
+%%   \item 2002: start of ALPS project
+%%   \item 2004: version 1.0 released, 1st Users Workshop
+%%   \item 2010: version 2.0 released
+%%   \item as of Oct. 2014
+%%     \begin{itemize}
+%%       \item source code: C++ 396,000 lines, Python lines, Fortran 10,000 lines
+%%       \item developers: c.a. 30 (from 7 countries)
+%%     \end{itemize}
+%%   \end{itemize}
+%% \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Contributors}
-  \begin{columns}[T]
-    \begin{column}{.33\textwidth}
-      \begin{itemize}
-      \item Austria
-        \begin{itemize}
-        \item H. G. Evertz
-        \end{itemize}
-      \item France
-        \begin{itemize}
-        \item O. Parcollet
-        \end{itemize}
-      \item Germany
-        \begin{itemize}
-        \item S. Fuchs
-        \item G. Guertler
-        \item D. Koop
-        \item U. Schollw\"ock
-        \item S. Trebst
-        \item S. Wessel
-        \end{itemize}
-      \item Poland
-        \begin{itemize}
-        \item G. Pawlowski
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-    \begin{column}{.31\textwidth}
-      \begin{itemize}
-      \item Switerland
-        \begin{itemize}
-        \item B. Bauer
-        \item L. Gamper
-        \item J. Gukelberger
-        \item A. Hehn
-        \item S. V. Isakov
-        \item P. N. Ma
-        \item P. Mates
-        \item J. D. Picon
-        \item L. Pollet
-        \item B. Surer
-        \item M. Troyer
-        \item P. Werner
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-    \begin{column}{.39\textwidth}
-      \begin{itemize}
-      \item Japan
-        \begin{itemize}
-        \item Ryo Igarashi
-        \item Hal Matsuo
-        \item Yuichi Motoyama
-        \item Hidemaro Suwa
-        \item Synge Todo
-        \end{itemize}
-      \item USA
-        \begin{itemize}
-        \item L. D. Carr
-        \item A. Feiguin
-        \item J. Freire
-        \item E. Gull
-        \item E. Santos
-        \item V. W. Scarlola
-        \item C. Silva
-        \item M. L. Wall
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
+%% \begin{frame}[t,fragile,shrink]
+%%   \frametitle{Contributors}
+%%   \begin{columns}[T]
+%%     \begin{column}{.33\textwidth}
+%%       \begin{itemize}
+%%       \item Austria
+%%         \begin{itemize}
+%%         \item H. G. Evertz
+%%         \end{itemize}
+%%       \item France
+%%         \begin{itemize}
+%%         \item O. Parcollet
+%%         \end{itemize}
+%%       \item Germany
+%%         \begin{itemize}
+%%         \item S. Fuchs
+%%         \item G. Guertler
+%%         \item D. Koop
+%%         \item U. Schollw\"ock
+%%         \item S. Trebst
+%%         \item S. Wessel
+%%         \end{itemize}
+%%       \item Poland
+%%         \begin{itemize}
+%%         \item G. Pawlowski
+%%         \end{itemize}
+%%       \end{itemize}
+%%     \end{column}
+%%     \begin{column}{.31\textwidth}
+%%       \begin{itemize}
+%%       \item Switerland
+%%         \begin{itemize}
+%%         \item B. Bauer
+%%         \item L. Gamper
+%%         \item J. Gukelberger
+%%         \item A. Hehn
+%%         \item S. V. Isakov
+%%         \item P. N. Ma
+%%         \item P. Mates
+%%         \item J. D. Picon
+%%         \item L. Pollet
+%%         \item B. Surer
+%%         \item M. Troyer
+%%         \item P. Werner
+%%         \end{itemize}
+%%       \end{itemize}
+%%     \end{column}
+%%     \begin{column}{.39\textwidth}
+%%       \begin{itemize}
+%%       \item Japan
+%%         \begin{itemize}
+%%         \item Ryo Igarashi
+%%         \item Hal Matsuo
+%%         \item Yuichi Motoyama
+%%         \item Hidemaro Suwa
+%%         \item Synge Todo
+%%         \end{itemize}
+%%       \item USA
+%%         \begin{itemize}
+%%         \item L. D. Carr
+%%         \item A. Feiguin
+%%         \item J. Freire
+%%         \item E. Gull
+%%         \item E. Santos
+%%         \item V. W. Scarlola
+%%         \item C. Silva
+%%         \item M. L. Wall
+%%         \end{itemize}
+%%       \end{itemize}
+%%     \end{column}
+%%   \end{columns}
+%% \end{frame}
 
 \begin{frame}[t,fragile]
 \frametitle{ALPS ``Cite-me'' License}
@@ -274,10 +290,10 @@
   \begin{itemize}
   \item Based on GNU General Public License 2 (GPL2)
   \item Free for non-commercial academic use
-  \item User’s code can be redistributed freely under the same license
+  \item User's code can be redistributed freely under the same license
   \item Acknowledgment and citation requirement
     \begin{minipage}{.9\textwidth}
-    \begin{block}{}
+    \begin{block}{ALPS Library / Application License (excerpt)}
       In any scientific publication based wholly or in part on the
       Library, the use of the Library must be acknowledged and the
       publications listed in the accompanying CITATIONS.txt document

@@ -114,7 +114,7 @@ $ python tutorial2full.py
     \item ``Task'': calculation for a particular set of parameters.  Set of ``runs''
     \item ``Run'' (or ``clone''): independent calulations on the same parameter set but with different random seeds
     \end{itemize}
-  \item XML input/output files (share same basename)
+  \item XML input/output files (share the same basename)
   \begin{center}
     \includegraphics[width=.55\textwidth]{simulation1.pdf}
   \end{center}
@@ -238,10 +238,45 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
     \end{center}
 \end{frame}
 
-\section{Further Tutorials / いろいろなチュートリアル}
+\section{Further Tutorials / もっとチュートリアル}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}[t,fragile]{Further Tutorials}
+  \begin{itemize}
+  \item The following extension is easily done by changing parameter file:
+    \begin{itemize}
+    \item More temperature points?
+    \item System size dependence?
+    \item Spin-1 chain?
+    \item Ising (easy-axis) anisotropy?
+    \item Other lattices, such as square lattice, etc?
+    \end{itemize}
+  \item More tutorials on ED, MC, QMC, DMRG, DMFT are available at ``\href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:Overview}{ALPS Tutorials}''!
+  \item To define your special lattices and/or models, visit at \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO}{ALPS Lattice HowTo} and \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO}{ALPS Model HowTo}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{ALPS Lattice Tutorials}
+  \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO}{ALPS Lattice HowTo} \\
+  \begin{itemize}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO:SimpleGraphs}{How to specify a simple graph in terms of vertices and edges}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticesAndUnitCells}{How to specify lattices and unit cells}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticesAndGraphs}{How to specify graphs corresponding to a lattice with a unit cell}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO:Library}{How to create a library of lattices and graphs}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHowto:CheckLattice}{How to check a graph generated from a lattice definition}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{ALPS Model Tutorials}
+  \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO}{ALPS Model HowTo} \\
+  \begin{itemize}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO#The_default_model_libary_file}{The default model libary file}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO#General_structure_of_a_model_library_file}{General structure of a model library file}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO#The_basis_of_a_single_site}{The basis of a single site}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO#The_basis_of_the_full_lattice_model}{The basis of the full lattice model}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO#Quantum_operators}{Quantum operators}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO#Hamiltonian_descriptions}{Hamiltonian descriptions}
+  \end{itemize}
 \end{frame}
 
 \end{document}
