@@ -18,9 +18,9 @@
 \section{Reference Materials / 参考資料}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}[t,fragile]{ALPS Reference Materials}
+\begin{frame}[t,fragile]{ALPS reference materials}
   \begin{itemize}
-    %\setlength{\itemsep}{1em}
+    \setlength{\itemsep}{1em}
   \item ALPS Tutorial Materials
     \begin{itemize}
     \item CMSI Hands-on Materials (jp/en)
@@ -31,13 +31,13 @@
       
     \item ALPS Tutorials on Official Wegpage (en/jp): {\footnotesize \url{http://alps.comp-phys.org/}}
     \end{itemize}
-  \item ALPS Developer Wiki (en): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
+  % \item ALPS Developer Wiki (en): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
   \item CMSI MateriApps (jp/en): {\footnotesize \url{http://ma.cms-initiative.jp/}}
   \item 藤堂,「``実験技術''としての量子多体シミュレーションソフトウェアALPS」日本物理学会誌掲載予定(jp) \href{http://exa.phys.s.u-tokyo.ac.jp/archive/alps-jps-2015.pdf}{\footnotesize [preprint]}
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t,fragile]{ALPS Papers}
+\begin{frame}[t,fragile]{ALPS papers}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
@@ -63,10 +63,11 @@
 \section{Quantum Lattice Models / 量子格子模型}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
-\begin{frame}[fragile]{Quantum Lattice Models}
+\begin{frame}[fragile]{Quantum lattice models}
   \begin{columns}[T]
     \begin{column}{.8\textwidth}
       \begin{itemize}
+        \setlength{\itemsep}{-.5em}
       \item Quantum spin model (XXZ model)
         \begin{equation*} {\cal H} = \frac{J^{xy}}{2}
           \sum_{\langle i,j \rangle} (S^+_i S^-_j + S^-_i S^+_j) + J^z
@@ -165,19 +166,19 @@
   %\end{columns}
 \end{frame}
 
-\begin{frame}[t,fragile]{Modeling of Spin Ladder Material: Na$_2$Fe$_2$(C$_2$O$_4$)$_3$(H$_2$O)$_2$}
+\begin{frame}[fragile]{Modeling spin ladder material: Na$_2$Fe$_2$(C$_2$O$_4$)$_3$(H$_2$O)$_2$}
   \begin{center}
     \includegraphics[height=.8\textheight]{ladder.pdf}
   \end{center}
 \end{frame}
 
-\begin{frame}[t,fragile]{Supersolid in Extended Bose Hubbard Model}
+\begin{frame}[fragile]{Supersolid in extended bosonic Hubbard model}
   \begin{center}
     \includegraphics[height=.8\textheight]{supersolid.pdf}
   \end{center}
 \end{frame}
 
-\begin{frame}[t,fragile]{Target Audience}
+\begin{frame}[t,fragile]{Target audience}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item Experimental physicists
@@ -284,7 +285,7 @@
 %% \end{frame}
 
 \begin{frame}[t,fragile]
-\frametitle{ALPS ``Cite-me'' License}
+\frametitle{``Cite-me'' license}
 %\begin{itemize}
 %\item ALPS Library License, ALPS Application License
   \begin{itemize}
@@ -304,31 +305,31 @@
 %\end{itemize}
 \end{frame}
 
+\section{ALPS Applications / ALPSアプリケーション}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
 \begin{frame}[t,fragile]
-  \frametitle{Distinct Features of ALPS}
+  \frametitle{Distinct features of ALPS}
   \begin{itemize}
-  \item {\em Any} lattices
+  \item {\em \color{red} Any} lattices
     \begin{itemize}
     \item define lattice structure by XML format
     \item construct a lattice by repeating unit cell
     \item any finite graph (set of vertices and edges) can also be defined
     \end{itemize}
-  \item {\em Any} lattice Hamiltonians
+  \item {\em \color{red} Any} lattice Hamiltonians (models)
     \begin{itemize}
     \item define quantum numbers, operators by XML format
     \item define Hamiltonian by using symbolic expressions
     \end{itemize}
-  \item Various state-of-the-art solvers (applications): ED, CMC, QMC, DMRG, DMFT, etc
-  \item Common input format for all ALPS applications
-  \item Portable output format and python evaluation/plotting tools
+  \item Various {\em \color{red} state-of-the-art} solvers (applications): ED, CMC, QMC, DMRG, DMFT
+  \item Common input format for {\em \color{red} all} ALPS applications
+  \item {\em \color{red} Portable} output format and python evaluation/plotting tools
   \end{itemize}
 \end{frame}
 
-\section{ALPS Applications / ALPSアプリケーション}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
-
 \begin{frame}[t,fragile]
-  \frametitle{ALPS Applications}
+  \frametitle{ALPS applications}
   \begin{description}
   \item[fulldiag] Exact diagonalization (full diagonalization)
   \item[sparsediag] Exact diagonalization (Lanczos method)
@@ -342,7 +343,7 @@
 \end{frame}
 
 \begin{frame}[t,fragile]
-  \frametitle{Exact Diagonalization}
+  \frametitle{Exact diagonalization / classical Monte Carlo}
   \begin{description}
   \item[fulldiag] Exact diagonalization (full diagonalization)
     \begin{itemize}
@@ -353,16 +354,6 @@
     \begin{itemize}
     \item Ground state and a few low-lying excitations by using Lanczos method
     \end{itemize}
-  \end{description}
-  \begin{itemize}
-  \item Reduce dimension of Hilbert space based on symmetries (conserved quantities such as total magnetization, translation symmetry, etc)
-  \item Expectation values of any local operators, correlation functions of diagonal and off-diagonal operators, structure factors
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]
-  \frametitle{Classical Monte Carlo}
-  \begin{description}
   \item[spinmc] Classical Monte Carlo
     \begin{itemize}
       \item Metropolis method and cluster algorithm
@@ -370,6 +361,10 @@
       \item Ising model in a magnetic field, XY model, Heisenberg model, Potts model
     \end{itemize}
   \end{description}
+  %% \begin{itemize}
+  %% \item Reduce dimension of Hilbert space based on symmetries (conserved quantities such as total magnetization, translation symmetry, etc)
+  %% \item Expectation values of any local operators, correlation functions of diagonal and off-diagonal operators, structure factors
+  %% \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]
@@ -395,15 +390,15 @@
 \end{frame}
 
 \begin{frame}[t,fragile]
-  \frametitle{DMRG$\cdot$DMFT}
+  \frametitle{DMRG / DMFT}
   \begin{description}
-  \item[dmrg,tebd] DMRG (Density Matrix Renormalization Group
+  \item[dmrg,tebd] DMRG
     \begin{itemize}
       \item Ground state and low-lying excitations of (quasi-)one-dimensional systems
       \item expectation value of local operators and two-point functions
       \item measurement of entanglement entropy
     \end{itemize}
-  \item[hirshfye,interaction,hybridization] QMC solver for DMFT (Dynamical Mean-Field Theory)
+  \item[hirshfye,interaction,hybridization] QMC solver for DMFT
     \begin{itemize}
       \item Reduces many-body fermion models into impurity problems by ignoring dependence on wave number dependence of self-energy
       \item Hirsch-Fye method ({\tt hirshfye})
