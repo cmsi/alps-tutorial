@@ -32,7 +32,7 @@ tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
 
 DIR="$BASE-wide"
-rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR
+rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR/jp $DIR/en
 
 cp -fp overview/overview-wide.pdf $DIR/jp/01_overview.pdf
 cp -fp installation/installation-wide.pdf $DIR/jp/02_installation.pdf
