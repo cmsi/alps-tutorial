@@ -238,6 +238,26 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
     \end{center}
 \end{frame}
 
+\begin{frame}[t,fragile]{How to get the list of physical quantities}
+  \begin{enumerate}
+    \setlength{\itemsep}{1em}
+  \item Read \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Documentation:Overview}{ALPS applications reference documentation}: ex)
+    \begin{itemize}
+    \item spinmc: {\footnotesize \href{http://alps.comp-phys.org/mediawiki/index.php/Documentation:ClassicalMCSimulations}{http://alps.comp-phys.org/mediawiki/in...}}
+    \item loop: {\footnotesize \href{http://exa.phys.s.u-tokyo.ac.jp/en/projects/alps-looper}{http://exa.phys.s.u-tokyo.ac.jp/en/p...}}
+    \end{itemize}
+  \item Write your own Python script: ex) \href{https://gist.github.com/wistaria/71cb8d7a22f45bfe256d}{list-measurements.py}
+    \lstset{language={Python},basicstyle=\small}
+\begin{lstlisting}
+import pyalps
+data = pyalps.loadMeasurements(
+       pyalps.getResultFiles(prefix='parm2c'))
+{ item.props['observable'] for item in pyalps.flatten(data) }
+\end{lstlisting}
+  \item (advanced) Use h5dump utility to peek at the contents of *.h5 files
+  \end{enumerate}
+\end{frame}
+
 \section{Further Tutorials / もっとチュートリアル}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
