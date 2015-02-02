@@ -26,7 +26,6 @@ cp -fp python/python-normal.pdf $DIR/04_python.pdf
 cp -fp pyalps/pyalps-normal.pdf $DIR/05_pyalps.pdf
 cp -fp matplotlib/matplotlib-normal.pdf $DIR/06_matplotlib.pdf
 cp -fp alpsize/alpsize-normal.pdf $DIR/07_alpsize.pdf
-cp -fp pyalps/crash_course_pyalps.ipynb python/python.ipynb $DIR
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
@@ -41,7 +40,6 @@ cp -fp python/python-wide.pdf $DIR/04_python.pdf
 cp -fp pyalps/pyalps-wide.pdf $DIR/05_pyalps.pdf
 cp -fp matplotlib/matplotlib-wide.pdf $DIR/06_matplotlib.pdf
 cp -fp alpsize/alpsize-wide.pdf $DIR/07_alpsize.pdf
-cp -fp pyalps/crash_course_pyalps.ipynb python/python.ipynb $DIR
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
@@ -65,8 +63,13 @@ tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
 
 # notebook
-rm -rf notebook-$DATE && mkdir -p notebook-$DATE
-cp -rp notebook/* notebook-$DATE
-cp -rp pyalps/crash_course_pyalps.ipynb python/python.ipynb notebook-$DATE/jp/
-tar zcf $NOTEBOOK.tgz notebook-$DATE
-zip -r $NOTEBOOK.zip notebook-$DATE
+if test -z "$DATE"; then
+  tar zcf $NOTEBOOK.tgz notebook
+  zip -r $NOTEBOOK.zip notebook
+else
+  rm -rf notebook-$DATE && mkdir -p notebook-$DATE
+  cp -rp notebook/* notebook-$DATE
+  tar zcf $NOTEBOOK.tgz notebook-$DATE
+  zip -r $NOTEBOOK.zip notebook-$DATE
+fi
+
