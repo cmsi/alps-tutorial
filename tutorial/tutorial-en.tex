@@ -16,7 +16,7 @@
 \end{frame}
 
 \section{Workflow of ALPS Simulation / ALPSシミュレーションの流れ}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}{Workflow of ALPS simulation}
   \begin{center}
@@ -40,7 +40,7 @@
       {\footnotesize \tt /opt/spire/alps/alpsvars.sh}
     \end{itemize}
   \item For complete list of {\color{red} {\em ALPS-ready} supercomputers} and location of setup script, please refer to \url{https://github.com/wistaria/MateriAppsInstaller}
-  \item On {\color {blue} MateriApps LIVE!}, setup script is not needed as environment variables are set by default
+  \item On \href{http://cmsi.github.io/MateriAppsLive/}{MateriApps LIVE!}, setup script is not needed as environment variables are set by default
   \end{itemize}
 \end{frame}
 
@@ -105,7 +105,7 @@ $ python tutorial2full.py
 \end{frame}
 
 \section{Preparation of Input Files / 入力ファイルの準備}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]{Inputs/Outputs of ALPS simulation}
   \begin{itemize}
@@ -164,7 +164,7 @@ $ python tutorial2full.py
   \begin{enumerate}
     \setlength{\itemsep}{1em}
     \setcounter{enumi}{1}
-  \item prepare parameter file in text-base simplified format and transform by using {\tt parameter2xml} tool: ex) parameter2xml myjob
+  \item prepare parameter file in text-base simplified format and transform into XMLs by {\tt parameter2xml} tool: ex) parameter2xml myjob
     \begin{center}
       \includegraphics[height=.6\textheight]{simulation4.pdf}
     \end{center}
@@ -213,7 +213,7 @@ THERMALIZATION = SWEEPS/8;
 \end{frame}
 
 \section{Running ALPS Applications / ALPSアプリケーションの実行}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]{Running ALPS applications}
   \begin{enumerate}
@@ -231,7 +231,7 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
 \end{frame}
 
 \section{Plotting Simulation Results / 結果のプロット}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]{Plotting simulation results}
     \begin{center}
@@ -260,7 +260,7 @@ data = pyalps.loadMeasurements(
 \end{frame}
 
 \section{Further Tutorials / もっとチュートリアル}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]{Still hungry?}
   \begin{itemize}

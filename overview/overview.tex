@@ -1,6 +1,6 @@
 %-*- coding:utf-8 -*-
 
-\title{ALPSチュートリアル -- ALPSの概要}
+\title{ALPSチュートリアル -- 概要}
 
 \begin{document}
 
@@ -16,11 +16,11 @@
 \end{frame}
 
 \section{参考資料 / Reference Materials}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]{ALPS参考資料}
   \begin{itemize}
-    %\setlength{\itemsep}{1em}
+    \setlength{\itemsep}{1em}
   \item ALPSチュートリアル資料
     \begin{itemize}
     \item CMSIハンズオン資料 (en/jp)
@@ -29,15 +29,15 @@
       
       [\TeX soruce]: {\footnotesize \url{https://github.com/cmsi/alps-tutorial/}}
       
-    \item ALPSオフィシャルページ Turorials (en/jp): {\footnotesize \url{http://alps.comp-phys.org/}}
+    \item ALPSオフィシャルページTurorials (en/jp): {\footnotesize \url{http://alps.comp-phys.org/}}
     \end{itemize}
-  \item ALPS Developer Wiki (en): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
+  % \item ALPS Developer Wiki (en): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
   \item CMSI MateriApps (jp/en): {\footnotesize \url{http://ma.cms-initiative.jp/}}
-  \item 藤堂,「``実験技術''としての量子多体シミュレーションソフトウェアALPS」日本物理学会誌掲載予定(jp) \href{http://exa.phys.s.u-tokyo.ac.jp/archive/alps-jps-2015.pdf}{[preprint]}
+  \item 藤堂,「``実験技術''としての量子多体シミュレーションソフトウェアALPS」日本物理学会誌掲載予定(jp) \href{http://exa.phys.s.u-tokyo.ac.jp/archive/alps-jps-2015.pdf}{\footnotesize [preprint]}
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t,fragile]{ALPS Papers}
+\begin{frame}[t,fragile]{ALPS論文}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
@@ -60,22 +60,22 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t,fragile]{ワークショップ}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item ALPS developers workshop
-    \begin{itemize}
-      \item 今後の開発方針についてブレインストーミング・ディスカッション
-      \item 年1回程度
-    \end{itemize}
-  \item ALPS users workshop / tutorial
-    \begin{itemize}
-      \item アルゴリズムについてのレビュートーク
-      \item Wiki のチュートリアルを用いて ALPS の実習
-      \item CMSIハンズオン: 年4回程度, 神戸や柏にてALPSチュートリアルを開催中
-    \end{itemize}
-  \end{itemize}
-\end{frame}
+%% \begin{frame}[t,fragile]{ワークショップ}
+%%   \begin{itemize}
+%%     \setlength{\itemsep}{1em}
+%%   \item ALPS developers workshop
+%%     \begin{itemize}
+%%       \item 今後の開発方針についてブレインストーミング・ディスカッション
+%%       \item 年1回程度
+%%     \end{itemize}
+%%   \item ALPS users workshop / tutorial
+%%     \begin{itemize}
+%%       \item アルゴリズムについてのレビュートーク
+%%       \item Wiki のチュートリアルを用いて ALPS の実習
+%%       \item CMSIハンズオン: 年4回程度, 神戸や柏にてALPSチュートリアルを開催中
+%%     \end{itemize}
+%%   \end{itemize}
+%% \end{frame}
 
 \begin{frame}[t,fragile]{ALPSチュートリアル スタッフ}
   \begin{itemize}
@@ -100,49 +100,54 @@
 
 \begin{frame}[t,fragile]
   \frametitle{チュートリアルの流れ}
+             {\footnotesize\color{red} ◎}: 初心者コース (1〜2時間)
+
+             {\footnotesize\color{blue} ◎}: 中級者コース (半日)
+
+             {\footnotesize\color{green} ◎}: 開発者コース (半日〜全日) \\[1em]
+             
   \begin{tabular}{|l|l|c|c|c|}
         \hline
         ALPSの概要 & {\tt 01\_overview} & {\footnotesize\color{red} ○} & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
         \hline
-        ALPSのインストール & {\tt 02\_installation} & {\footnotesize\color{red} ◎} & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
+        ALPSのインストール & {\tt 02\_installation} & {\footnotesize\color{red} } & {\footnotesize\color{blue} ○} & {\footnotesize\color{green} ◎} \\
         \hline
-        アプリケーション実習(1) & {\tt 03\_tutorial} & {\footnotesize\color{red} ◎} & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
+        アプリケーション実習(1) & {\tt 03\_tutorial} & {\footnotesize\color{red} ◎} & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ○} \\
         \hline
-        Python入門 & {\tt 04\_python} & {\footnotesize\color{red} ○} & {\footnotesize\color{blue} ○} & {\footnotesize\color{green} ◎} \\
+        Python入門 & {\tt 04\_python} & {\footnotesize\color{red}} & {\footnotesize\color{blue} ○} & {\footnotesize\color{green} ○} \\
         \hline
-        ALPS Python入門 & {\tt 05\_pyalps} & {\footnotesize\color{red} ○} & {\footnotesize\color{blue} ○} & {\footnotesize\color{green} ◎} \\
+        ALPS Python入門 & {\tt 05\_pyalps} & {\footnotesize\color{red} } & {\footnotesize\color{blue} ○} & {\footnotesize\color{green} ○} \\
         \hline
-        Matplotlib入門 & {\tt 06\_matplotlib} & {\footnotesize\color{red} ○} & {\footnotesize\color{blue} ○} & {\footnotesize\color{green} ◎} \\
+        Matplotlib入門 & {\tt 06\_matplotlib} & {\footnotesize\color{red} } & {\footnotesize\color{blue} ○} & {\footnotesize\color{green} ○} \\
         \hline
-        アプリケーション実習(2) & & {\footnotesize\color{red} ◎} & {\footnotesize\color{blue} } & {\footnotesize\color{green} ◎} \\
+        アプリケーション実習(2) & & {\footnotesize\color{red} } & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} } \\
         \hline
-        アプリケーションのALPS化 & {\tt 07\_alpsize} & {\footnotesize\color{red} } & {\footnotesize\color{blue} ◎} & {\footnotesize\color{green} ◎} \\
+        アプリケーションのALPS化 & {\tt 07\_alpsize} & {\footnotesize\color{red} } & {\footnotesize\color{blue} } & {\footnotesize\color{green} ◎} \\
         \hline
   \end{tabular}
-  
-  {\footnotesize\color{red} ○}: ユーザコース, {\footnotesize\color{blue} ○}: 開発者コース {\footnotesize\color{green} ○}: 集中コース
 \end{frame}
 
 \begin{frame}[t,fragile]
   \frametitle{ALPSチュートリアルの目標}
   \begin{itemize}
     \setlength{\itemsep}{1em}
-    \item ALPSの概要を知る \ [{\footnotesize\color{red} ○}{\footnotesize\color{blue} ○}{\footnotesize\color{green} ○}]
-    \item ALPSアプリケーションの実行方法を学ぶ  \ [{\footnotesize\color{red} ○}{\footnotesize\color{blue} ー}{\footnotesize\color{green} ○}]
-    \item ALPS Pythonツールを使った結果の解析方法を学ぶ  \ [{\footnotesize\color{red} ○}{\footnotesize\color{blue} ー}{\footnotesize\color{green} ○}]
-    \item ALPSライブラリの仕組みを学ぶ \ [{\footnotesize\color{red} ー}{\footnotesize\color{blue} ○}{\footnotesize\color{green} ○}]
-    \item ユーザアプリケーションの作成方法を学ぶ  \ [{\footnotesize\color{red} ー}{\footnotesize\color{blue} ○}{\footnotesize\color{green} ○}]
+    \item ALPSの概要を知る \ [{\footnotesize\color{red} ○}{\footnotesize\color{blue} ◎}{\footnotesize\color{green} ◎}]
+    \item ALPSアプリケーションの実行方法を学ぶ  \ [{\footnotesize\color{red} ◎}{\footnotesize\color{blue} ◎}{\footnotesize\color{green} ○}]
+    \item ALPS Pythonツールを使った結果の解析方法を学ぶ  \ [{\footnotesize\color{red} ○}{\footnotesize\color{blue} ○}{\footnotesize\color{green} ○}]
+    \item ALPSライブラリの仕組みを学ぶ \ [{\footnotesize\color{red} ー}{\footnotesize\color{blue} ー}{\footnotesize\color{green} ○}]
+    \item ユーザアプリケーションの作成方法を学ぶ \ [{\footnotesize\color{red} ー}{\footnotesize\color{blue} ー}{\footnotesize\color{green} ◎}]
     \item (ALPSチュートリアルの問題点を洗い出し改良する) \ [{\footnotesize\color{red} ◎}{\footnotesize\color{blue} ◎}{\footnotesize\color{green} ◎}] 
   \end{itemize}
 \end{frame}
 
 \section{量子格子模型 / Quantum Lattice Models}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
-\begin{frame}[t,fragile]{量子格子模型 / Quantum Lattice Models}
+\begin{frame}[fragile]{量子格子模型 / Quantum Lattice Models}
   \begin{columns}[T]
     \begin{column}{.8\textwidth}
       \begin{itemize}
+        \setlength{\itemsep}{-.5em}
       \item 量子スピン模型(XXZ模型) \begin{equation*} {\cal H} = \frac{J^{xy}}{2}
         \sum_{\langle i,j \rangle} (S^+_i S^-_j + S^-_i S^+_j) + J^z
         \sum_{\langle i,j \rangle} S^z_i S^z_j \end{equation*}
@@ -161,7 +166,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}[t,fragile]{なぜQLMを考えるのか? / Why quantum lattice models?}
+\begin{frame}[t,fragile]{なぜ量子格子模型を考えるのか?}
   \begin{columns}[T]
     \begin{column}{.2\textwidth}
       \includegraphics[width=\textwidth]{ising-tc.png} \\
@@ -197,7 +202,7 @@
 %\end{frame}
   
 \section{ALPSプロジェクト / ALPS Project}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]
   \frametitle{ALPSプロジェクトの目標}
@@ -220,19 +225,16 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t,fragile]{ALPSとは? / What's ALPS?}
+\begin{frame}[t,fragile]{ALPSとは?}
   ALPS = \alert{A}lgorithms and \alert{L}ibraries for \alert{P}hysics \alert{S}imulations
   %\begin{columns}[T]
     %\begin{column}{.7\textwidth}
       \begin{itemize}
-      \item 量子スピン系, 電子系など強相関量子格子模型のシミュレーショ
-        ンためのオープンソースソフトウェアの開発を目指す国際共同プロジェ
-        クト
+      \item 量子スピン系, 電子系など強相関量子格子模型のシミュレーションのためのオープンソースソフトウェアの開発を目指す国際共同プロジェクト
         %\begin{itemize}
         \item ALPSライブラリ = C++による格子模型のための汎用ライブラリ群
         \item ALPSアプリケーション = 最新のアルゴリズムに基づくアプリケーション群: QMC, DMRG, ED, DMFT等
-        \item ALPSフレームワーク = 汎用入出力形式, 解析ツール, スケジュー
-          ラなど, 大規模並列シミュレーションのための環境
+        \item ALPSフレームワーク = 汎用入出力形式, 解析ツール, スケジューラなど, 大規模並列シミュレーションのための環境
         %\end{itemize}
       \end{itemize}
     %\end{column}
@@ -242,7 +244,19 @@
   %\end{columns}
 \end{frame}
 
-\begin{frame}[t,fragile]{ターゲット・オーディエンス / Target Audience}
+\begin{frame}[fragile]{Modeling spin ladder material: Na$_2$Fe$_2$(C$_2$O$_4$)$_3$(H$_2$O)$_2$}
+  \begin{center}
+    \includegraphics[height=.8\textheight]{ladder.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Supersolid in extended bosonic Hubbard model}
+  \begin{center}
+    \includegraphics[height=.8\textheight]{supersolid.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}[t,fragile]{ターゲット・オーディエンス}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item 実験家
@@ -347,7 +361,7 @@
 \end{frame}
 
 \begin{frame}[t,fragile]
-\frametitle{ALPS``cite-me''ライセンス}
+\frametitle{``Cite-me''ライセンス}
 %\begin{itemize}
 %\item ALPS Library License, ALPS Application License
   \begin{itemize}
@@ -357,7 +371,7 @@
   \item ユーザが変更を施したコードも同じライセンスの下で再配布可
   \item ALPSを用いた研究成果を公表する場合には, acknowledgement と論文の引用をお願いします
     \begin{minipage}{.9\textwidth}
-    \begin{block}{}
+    \begin{block}{ALPS Library / Application License (excerpt)}
       In any scientific publication based wholly or in part on the
       Library, the use of the Library must be acknowledged and the
       publications listed in the accompanying CITATIONS.txt document
@@ -368,8 +382,28 @@
 %\end{itemize}
 \end{frame}
 
-\section{ALPSの構成}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\begin{frame}[t,fragile]
+  \frametitle{ALPSの特徴}
+  \begin{itemize}
+  \item {\color{red} 任意の}格子
+    \begin{itemize}
+    \item XMLフォーマットによる格子構造の定義
+    \item ユニットセルの繰り返しによる格子生成
+    \item 格子を任意の有限グラフ(頂点と辺の集合)として定義することも可能
+    \end{itemize}
+  \item {\color{red} 任意の}ハミルトニアン(模型)
+    \begin{itemize}
+    \item XMLフォーマットによる量子数、演算子の定義
+    \item 数式によるハミルトニアンの定義
+    \end{itemize}
+  \item 様々な{\color{red} 最新の}解法(アプリケーション): ED, CMC, QMC, DMRG, DMFT
+  \item {\color{red} 全ての}ALPSアプリケーションに共通の入力形式
+  \item {\color{red} 汎用的な}出力形式、Pythonによる解析・グラフ作成ツール
+  \end{itemize}
+\end{frame}
+
+\section{ALPSライブラリ / ALPS Libraries}
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]{ALPSの階層構造}
   \begin{center}
@@ -387,9 +421,6 @@
   \item \href{http://www.boost.org/}{Boost C++ Library}: 乱数, グラフ, シリアル化, など多くの有用なライブラリ群
   \end{itemize}
 \end{frame}
-
-\section{ALPSライブラリ}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}[t,fragile]
   \frametitle{ALPS/parameterライブラリ}
@@ -423,7 +454,7 @@ THERMALIZATION = SWEEPS/8;
   \end{columns}
 \end{frame}
 
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]
   \frametitle{ALPS/parameterを使ったコード例}
@@ -444,8 +475,6 @@ int main() {
 }
 \end{lstlisting}
 \end{frame}
-
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
 
 \begin{frame}[t,fragile]
   \frametitle{ALPS/aleaライブラリ}
@@ -470,7 +499,7 @@ Magnetization^2: 3.142 +/- 0.001; tau = 10.3
   \end{itemize}
 \end{frame}
 
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]
   \frametitle{ALPS/aleaライブラリ}
@@ -491,7 +520,7 @@ std::cout << binder;
   \end{itemize}
 \end{frame}
 
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile,shrink]
   \frametitle{ALPS/latticeライブラリ}
@@ -570,7 +599,7 @@ std::cout << binder;
   \end{itemize}
 \end{frame}
 
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]
   \frametitle{ALPS/modelライブラリ}
@@ -595,25 +624,25 @@ Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
 
 % \section{HDF5とは?}
 
-\section{ALPSアプリケーション}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\section{ALPSアプリケーション / ALPS Applications}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
-\begin{frame}
+\begin{frame}[t,fragile]
   \frametitle{ALPSアプリケーション}
   \begin{description}
-  \item[fulldiag] {\color{red} 厳密対角化(全対角化法)}
-  \item[sparsediag] {\color{red} 厳密対角化(Lanczos法)}
-  \item[spinmc] {\color{red} 古典モンテカルロ法}
-  \item[loop] {\color{red} 量子モンテカルロ法(ループアルゴリズム)}
-  \item[dirloop\_sse] {\color{red} 量子モンテカルロ(向き付きループアルゴリズム)}
+  \item[fulldiag] 厳密対角化(全対角化法)
+  \item[sparsediag] 厳密対角化(Lanczos法)
+  \item[spinmc] 古典モンテカルロ法
+  \item[loop] 量子モンテカルロ法(ループアルゴリズム)
+  \item[dirloop\_sse] 量子モンテカルロ(向き付きループアルゴリズム)
   \item[worm] 量子モンテカルロ(ワームアルゴリズム)
   \item[dmrg,tebd] 密度行列繰り込み群
   \item[hirshfye,interaction,hybridization] 動的平均場近似のQMCソルバ
   \end{description}
 \end{frame}
 
-\begin{frame}
-  \frametitle{厳密対角化}
+\begin{frame}[t,fragile]
+  \frametitle{厳密対角化・古典モンテカルロ法}
   \begin{description}
   \item[fulldiag] 厳密対角化(全対角化法)
     \begin{itemize}
@@ -624,17 +653,6 @@ Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
     \begin{itemize}
     \item ランチョス法を用いて, 基底状態と少数の低励起状態を求める
     \end{itemize}
-  \end{description}
-  \begin{itemize}
-  \item 全磁化などの保存量や系の並進対称性などを利用して, ヒルベルト空間の次元を削減
-  \item 任意の局所的な演算子の期待値, 対角および非対角演算子の相関関数, 構造因子などの測定が可能
-  \item 並列固有値ソルバライブラリRokkoと, それに基づく並列厳密対角化パッケージALPS/Baristaを開発中
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{古典モンテカルロ法}
-  \begin{description}
   \item[spinmc] 古典モンテカルロ法
     \begin{itemize}
       \item メトロポリス法あるいはクラスターアルゴリズム
@@ -647,18 +665,18 @@ Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
 \begin{frame}
   \frametitle{量子モンテカルロ法}
   \begin{description}
-  \item[loop] 量子モンテカルロ法(ループアルゴリズム)
+  \item[loop] ループアルゴリズム量子モンテカルロ
     \begin{itemize}
       \item 連続虚時間ループアルゴリズム
       \item 時間反転対称性を持つ系(零磁場の場合、横磁場イジング模型など)に有効
       \item 2点相関関数(グリーン関数を含む)の計算
     \end{itemize}
-  \item[dirloop\_sse] 量子モンテカルロ(向き付きループアルゴリズム)
+  \item[dirloop\_sse] 向き付きループアルゴリズム量子モンテカルロ
     \begin{itemize}
       \item SSE (Stochastic Series Expansion)表示
       \item 磁場中スピン模型, ボーズハバード模型などに有効
     \end{itemize}
-  \item[worm] 量子モンテカルロ(ワームアルゴリズム)
+  \item[worm] ワームアルゴリズム量子モンテカルロ
     \begin{itemize}
       \item 連続虚時間表示ワームアルゴリズム
       \item 非常に強い磁場が存在する場合などに有効
@@ -683,12 +701,6 @@ Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
       \item 混成状態展開 ({\tt hybridization})
     \end{itemize}
   \end{description}
-\end{frame}
-
-\begin{frame}{ALPSシミュレーションのワークフロー}
-  \begin{center}
-    \includegraphics[height=0.8\textheight]{workflow.pdf}
-  \end{center}
 \end{frame}
 
 \end{document}
