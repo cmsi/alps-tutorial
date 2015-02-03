@@ -233,9 +233,11 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]{Plotting simulation results}
-    \begin{center}
-      \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
-    \end{center}
+  \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
+  \begin{itemize}
+  \item If you want to execute Python command row by row on termial, {\color{red}\tt ipython} is more convenient than {\tt python} (tab completion, command history, etc)
+  \item Use {\color{red}\tt plt.ion()} to reflect plot commands immediately.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]{Three ways to get the list of physical quantities}

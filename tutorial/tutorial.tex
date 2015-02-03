@@ -317,9 +317,11 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]{シミュレーション結果のプロット}
-    \begin{center}
-      \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
-    \end{center}
+  \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
+  \begin{itemize}
+  \item ターミナルから一行ずつ実行する場合、{\color{red}\tt ipython}が便利(tab補完、コマンド履歴など)
+  \item {\color{red}\tt plt.ion()}を使うとコマンドの結果が図にすぐに反映される
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]{測定物理量の一覧の取得}
