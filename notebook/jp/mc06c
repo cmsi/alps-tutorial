@@ -1,7 +1,0 @@
-LATTICE="simple cubic lattice"
-MODEL="spin"
-local_S=1/2
-J=1
-CUTOFF  = 500
-{L = 4}
-
