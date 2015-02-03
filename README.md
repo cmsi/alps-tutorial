@@ -8,9 +8,9 @@ ALPS講習会のための日本語資料
 Table of Contents / 内容
 ============================
 
-* Overview of ALPS Project / ALPSの概要
+* ALPS Tutorial - Overview / ALPSチュートリアル - 概要
 * Installation of ALPS / ALPSのインストール
-* Tutorial for running ALPS applications / ALPSアプリケーション実行チュートリアル
+* ALPS Application Tutorial / ALPSアプリケーションチュートリアル
 * Python
 * Introduction to ALPS Python / ALPS Python入門
 * Introduction to Matplotlib / Matplotlib入門

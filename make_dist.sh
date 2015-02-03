@@ -5,71 +5,51 @@ DATE=`grep '^\\\\date{' style/alpstutorial.sty | sed 's/\\\\date{//g' | sed 's/}
 if test -z "$DATE"; then
   echo "VERSION = NONE"
   BASE="alps-tutorial"
-  BASE_EN="alps-tutorial-en"
   NOTEBOOK="alps-notebook"
 else  
   echo "VERSION = $DATE"
   BASE="alps-tutorial-$DATE"
-  BASE_EN="alps-tutorial-en-$DATE"
   NOTEBOOK="alps-notebook-$DATE"
 fi
 
-make default
+make -j4 default
 
 DIR="$BASE"
-rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR
+rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR/ja $DIR/en
 
-cp -fp overview/overview-normal.pdf $DIR/01_overview.pdf
-cp -fp installation/installation-normal.pdf $DIR/02_installation.pdf
-cp -fp tutorial/tutorial-normal.pdf $DIR/03_tutorial.pdf
-cp -fp python/python-normal.pdf $DIR/04_python.pdf
-cp -fp pyalps/pyalps-normal.pdf $DIR/05_pyalps.pdf
-cp -fp matplotlib/matplotlib-normal.pdf $DIR/06_matplotlib.pdf
-cp -fp alpsize/alpsize-normal.pdf $DIR/07_alpsize.pdf
+cp -fp overview/overview-normal.pdf $DIR/ja/01_overview.pdf
+cp -fp installation/installation-normal.pdf $DIR/ja/02_installation.pdf
+cp -fp tutorial/tutorial-normal.pdf $DIR/ja/03_tutorial.pdf
+cp -fp python/python-normal.pdf $DIR/ja/04_python.pdf
+cp -fp pyalps/pyalps-normal.pdf $DIR/ja/05_pyalps.pdf
+cp -fp matplotlib/matplotlib-normal.pdf $DIR/ja/06_matplotlib.pdf
+cp -fp alpsize/alpsize-normal.pdf $DIR/ja/07_alpsize.pdf
+
+cp -fp python/python.ipynb $DIR/ja
+cp -fp pyalps/crash_course_pyalps.ipynb $DIR/ja
+
+cp -fp overview/overview-en-normal.pdf $DIR/en/01_overview.pdf
+cp -fp tutorial/tutorial-en-normal.pdf $DIR/en/03_tutorial.pdf
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
 
 DIR="$BASE-wide"
-rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR
+rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR/ja $DIR/en
 
-cp -fp overview/overview-wide.pdf $DIR/01_overview.pdf
-cp -fp installation/installation-wide.pdf $DIR/02_installation.pdf
-cp -fp tutorial/tutorial-wide.pdf $DIR/03_tutorial.pdf
-cp -fp python/python-wide.pdf $DIR/04_python.pdf
-cp -fp pyalps/pyalps-wide.pdf $DIR/05_pyalps.pdf
-cp -fp matplotlib/matplotlib-wide.pdf $DIR/06_matplotlib.pdf
-cp -fp alpsize/alpsize-wide.pdf $DIR/07_alpsize.pdf
+cp -fp overview/overview-wide.pdf $DIR/ja/01_overview.pdf
+cp -fp installation/installation-wide.pdf $DIR/ja/02_installation.pdf
+cp -fp tutorial/tutorial-wide.pdf $DIR/ja/03_tutorial.pdf
+cp -fp python/python-wide.pdf $DIR/ja/04_python.pdf
+cp -fp pyalps/pyalps-wide.pdf $DIR/ja/05_pyalps.pdf
+cp -fp matplotlib/matplotlib-wide.pdf $DIR/ja/06_matplotlib.pdf
+cp -fp alpsize/alpsize-wide.pdf $DIR/ja/07_alpsize.pdf
 
-tar zcf $DIR.tgz $DIR
-zip -r $DIR.zip $DIR
+cp -fp python/python.ipynb $DIR/ja
+cp -fp pyalps/crash_course_pyalps.ipynb $DIR/ja
 
-DIR="$BASE_EN"
-rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR
-
-cp -fp overview/overview-en-normal.pdf $DIR/01_overview-en.pdf
-cp -fp tutorial/tutorial-en-normal.pdf $DIR/03_tutorial-en.pdf
+cp -fp overview/overview-en-wide.pdf $DIR/en/01_overview.pdf
+cp -fp tutorial/tutorial-en-wide.pdf $DIR/en/03_tutorial.pdf
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
-
-DIR="$BASE_EN-wide"
-rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR
-
-cp -fp overview/overview-en-wide.pdf $DIR/01_overview_en.pdf
-cp -fp tutorial/tutorial-en-wide.pdf $DIR/03_tutorial_en.pdf
-
-tar zcf $DIR.tgz $DIR
-zip -r $DIR.zip $DIR
-
-# notebook
-if test -z "$DATE"; then
-  tar zcf $NOTEBOOK.tgz notebook
-  zip -r $NOTEBOOK.zip notebook
-else
-  rm -rf notebook-$DATE && mkdir -p notebook-$DATE
-  cp -rp notebook/* notebook-$DATE
-  tar zcf $NOTEBOOK.tgz notebook-$DATE
-  zip -r $NOTEBOOK.zip notebook-$DATE
-fi
-

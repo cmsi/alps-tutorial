@@ -23,17 +23,17 @@
     \setlength{\itemsep}{1em}
   \item ALPSチュートリアル資料
     \begin{itemize}
-    \item CMSIハンズオン資料 (en/jp)
+    \item CMSIハンズオン資料(日/英)
       
-      [PDF]: : {\footnotesize \url{http://sf.net/projects/alps-tutorial/files/}}
+      [PDF]: {\footnotesize \url{http://sf.net/projects/alps-tutorial/files/}}
       
       [\TeX soruce]: {\footnotesize \url{https://github.com/cmsi/alps-tutorial/}}
       
-    \item ALPSオフィシャルページTurorials (en/jp): {\footnotesize \url{http://alps.comp-phys.org/}}
+    \item ALPSオフィシャルページTurorials (英/日): {\footnotesize \url{http://alps.comp-phys.org/}}
     \end{itemize}
   % \item ALPS Developer Wiki (en): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
-  \item CMSI MateriApps (jp/en): {\footnotesize \url{http://ma.cms-initiative.jp/}}
-  \item 藤堂,「``実験技術''としての量子多体シミュレーションソフトウェアALPS」日本物理学会誌掲載予定(jp) \href{http://exa.phys.s.u-tokyo.ac.jp/archive/alps-jps-2015.pdf}{\footnotesize [preprint]}
+  \item CMSI MateriApps (日/英): {\footnotesize \url{http://ma.cms-initiative.jp/}}
+  \item 藤堂,「``実験技術''としての量子多体シミュレーションソフトウェアALPS」日本物理学会誌掲載予定(日) \href{http://exa.phys.s.u-tokyo.ac.jp/archive/alps-jps-2015.pdf}{\footnotesize [preprint]}
   \end{itemize}
 \end{frame}
 
@@ -50,8 +50,8 @@
 \begin{frame}[t,fragile]{困った時は…}
   \begin{itemize}
     \setlength{\itemsep}{1em}
-  \item ALPSサポートチーム(日): {\footnotesize \href{mailto:alps@exa.phys.s.u-tokyo.ac.jp}{alps@exa.phys.s.u-tokyo.ac.jp}}
-  \item MateriApps ALPS フォーラム(日):
+  \item 日本ALPSサポートチーム: {\footnotesize \href{mailto:alps@exa.phys.s.u-tokyo.ac.jp}{alps@exa.phys.s.u-tokyo.ac.jp}}
+  \item MateriApps ALPS フォーラム(日/英):
 
     {\footnotesize \href{http://ma.cms-initiative.jp/ja/community/materiapps-messageboard/alps}{http://ma.cms-initiative.jp/ja/community/materiapps-...}}
   \item ALPS User's Mailing List (英):
@@ -59,23 +59,6 @@
     {\footnotesize \href{https://alps.comp-phys.org/mediawiki/index.php/Forum:Overview}{https://alps.comp-phys.org/mediawiki/index.php/Forum...}}
   \end{itemize}
 \end{frame}
-
-%% \begin{frame}[t,fragile]{ワークショップ}
-%%   \begin{itemize}
-%%     \setlength{\itemsep}{1em}
-%%   \item ALPS developers workshop
-%%     \begin{itemize}
-%%       \item 今後の開発方針についてブレインストーミング・ディスカッション
-%%       \item 年1回程度
-%%     \end{itemize}
-%%   \item ALPS users workshop / tutorial
-%%     \begin{itemize}
-%%       \item アルゴリズムについてのレビュートーク
-%%       \item Wiki のチュートリアルを用いて ALPS の実習
-%%       \item CMSIハンズオン: 年4回程度, 神戸や柏にてALPSチュートリアルを開催中
-%%     \end{itemize}
-%%   \end{itemize}
-%% \end{frame}
 
 \begin{frame}[t,fragile]{ALPSチュートリアル スタッフ}
   \begin{itemize}
@@ -143,7 +126,7 @@
 \section{量子格子模型 / Quantum Lattice Models}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
-\begin{frame}[fragile]{量子格子模型 / Quantum Lattice Models}
+\begin{frame}[fragile]{量子格子模型}
   \begin{columns}[T]
     \begin{column}{.8\textwidth}
       \begin{itemize}
@@ -195,62 +178,31 @@
   \end{columns}
 \end{frame}
 
-%\begin{frame}[t,fragile]{実験室で実現されているQLM}
-%\end{frame}
-
-%\begin{frame}[t,fragile]{Finite-size scaling analysis}
-%\end{frame}
-  
 \section{ALPSプロジェクト / ALPS Project}
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
-\begin{frame}[t,fragile]
-  \frametitle{ALPSプロジェクトの目標}
+\begin{frame}[t,fragile]{ALPSとは?}
+  ALPS = \alert{A}lgorithms and \alert{L}ibraries for \alert{P}hysics \alert{S}imulations
   \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item 量子統計物理分野の現状
+  \item 量子スピン系, 電子系など強相関量子格子模型のシミュレーションのためのオープンソースソフトウェアの開発を目指す国際共同プロジェクト
     \begin{itemize}
-    \item 研究グループ毎に異なるコードを開発
-    \item シミュレーションを行う模型毎に異なる実装
-    \item アルゴリズムはますます複雑になりソフトウェア開発が長期化
-    \item 可搬性・互換性のない入出力形式
+    \item ALPSライブラリ = C++による格子模型のための汎用ライブラリ群
+    \item ALPSアプリケーション = 最新のアルゴリズムに基づくアプリケーション群: QMC, DMRG, ED, DMFT等
+    \item ALPSフレームワーク = 汎用入出力形式, 解析ツール, スケジューラなど, 大規模並列シミュレーションのための環境
     \end{itemize}
-  \item ALPSプロジェクトの目標
-    \begin{itemize}
-    \item 最新のアルゴリズムを用いた``community code''の開発
-    \item 大規模並列計算などのためのC++ライブラリ・フレームワーク開発
-    \item 統一入出力形式の提案とそれにもとづくデータ解析ツールの作成
-    \item 計算物理の専門家だけでなく, 理論家・実験家にも使えるシミュレーションソフトウェア
-    \end{itemize}
+  \item 2002年開発開始
+  \item 開発者: 20+名 (7+ヶ国)
+  \item ソースコード: C++, Python, Fortran (400,000+行)
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t,fragile]{ALPSとは?}
-  ALPS = \alert{A}lgorithms and \alert{L}ibraries for \alert{P}hysics \alert{S}imulations
-  %\begin{columns}[T]
-    %\begin{column}{.7\textwidth}
-      \begin{itemize}
-      \item 量子スピン系, 電子系など強相関量子格子模型のシミュレーションのためのオープンソースソフトウェアの開発を目指す国際共同プロジェクト
-        %\begin{itemize}
-        \item ALPSライブラリ = C++による格子模型のための汎用ライブラリ群
-        \item ALPSアプリケーション = 最新のアルゴリズムに基づくアプリケーション群: QMC, DMRG, ED, DMFT等
-        \item ALPSフレームワーク = 汎用入出力形式, 解析ツール, スケジューラなど, 大規模並列シミュレーションのための環境
-        %\end{itemize}
-      \end{itemize}
-    %\end{column}
-    %\begin{column}{.3\textwidth}
-      %\includegraphics[width=1.2\textwidth]{simulation.pdf}
-    %\end{column}
-  %\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Modeling spin ladder material: Na$_2$Fe$_2$(C$_2$O$_4$)$_3$(H$_2$O)$_2$}
+\begin{frame}[fragile]{はしご格子スピン系のモデリング: Na$_2$Fe$_2$(C$_2$O$_4$)$_3$(H$_2$O)$_2$}
   \begin{center}
     \includegraphics[height=.8\textheight]{ladder.pdf}
   \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Supersolid in extended bosonic Hubbard model}
+\begin{frame}[fragile]{拡張ボーズ・ハバード模型における超固体相}
   \begin{center}
     \includegraphics[height=.8\textheight]{supersolid.pdf}
   \end{center}
@@ -275,95 +227,7 @@
 \end{frame}
 
 \begin{frame}[t,fragile]
-  \frametitle{ALPSの歴史}
-  \begin{itemize}
-  \item 1990年代中頃 ALPSの前身となる PALM C++, DMRG, looper などが開発される
-  \item 2002年 ALPSプロジェクト始動
-  \item 2004年 バージョン1.0, 第1回 Users Workshop
-  \item 2010年 バージョン2.0
-  \item 2014年10月現在
-    \begin{itemize}
-      \item ソースコード: C++ 396,000行, Python 39,000行, Fortran 10,000行
-      \item 開発者: 約30名(7ヶ国)
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]
-  \frametitle{ALPSの開発者}
-  \begin{columns}[T]
-    \begin{column}{.34\textwidth}
-      \begin{itemize}
-      \item Austria
-        \begin{itemize}
-        \item H. G. Evertz
-        \end{itemize}
-      \item France
-        \begin{itemize}
-        \item O. Parcollet
-        \end{itemize}
-      \item Germany
-        \begin{itemize}
-        \item S. Fuchs
-        \item G. Guertler
-        \item D. Koop
-        \item U. Schollw\"ock
-        \item S. Trebst
-        \item S. Wessel
-        \end{itemize}
-      \item Poland
-        \begin{itemize}
-        \item G. Pawlowski
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-    \begin{column}{.34\textwidth}
-      \begin{itemize}
-      \item Switerland
-        \begin{itemize}
-        \item B. Bauer
-        \item L. Gamper
-        \item J. Gukelberger
-        \item A. Hehn
-        \item S. V. Isakov
-        \item P. N. Ma
-        \item P. Mates
-        \item J. D. Picon
-        \item L. Pollet
-        \item B. Surer
-        \item M. Troyer
-        \item P. Werner
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-    \begin{column}{.35\textwidth}
-      \begin{itemize}
-      \item Japan
-        \begin{itemize}
-        \item 五十嵐 亮
-        \item 松尾春彦
-        \item 藤堂眞治
-        \end{itemize}
-      \item USA
-        \begin{itemize}
-        \item L. D. Carr
-        \item A. Feiguin
-        \item J. Freire
-        \item E. Gull
-        \item E. Santos
-        \item V. W. Scarlola
-        \item C. Silva
-        \item M. L. Wall
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[t,fragile]
 \frametitle{``Cite-me''ライセンス}
-%\begin{itemize}
-%\item ALPS Library License, ALPS Application License
   \begin{itemize}
   \item GNU General Public License 2 (GPL2) を基本としたライセンス
   \item Non-commercial academic use の場合自由に利用可能
@@ -371,7 +235,7 @@
   \item ユーザが変更を施したコードも同じライセンスの下で再配布可
   \item ALPSを用いた研究成果を公表する場合には, acknowledgement と論文の引用をお願いします
     \begin{minipage}{.9\textwidth}
-    \begin{block}{ALPS Library / Application License (excerpt)}
+    \begin{block}{ALPSライブラリ/アプリケーションライセンスより抜粋}
       In any scientific publication based wholly or in part on the
       Library, the use of the Library must be acknowledged and the
       publications listed in the accompanying CITATIONS.txt document
@@ -379,7 +243,6 @@
     \end{block}
     \end{minipage}
   \end{itemize}
-%\end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]
@@ -415,10 +278,10 @@
   \frametitle{サードパーティーのライブラリ}
   \begin{itemize}
     \setlength{\itemsep}{1em}
-  \item \href{http://www.netlib.org/blas/}{BLAS}, \href{http://www.netlib.org/lapack/}{LAPACK}: 線形演算(行列対角化, 特異値分解など) (オプション)
-  \item \href{http://www.mpi-forum.org/}{MPI} (Message Passing Interface): 並列計算のためのメッセージ通信 (オプション)
-  \item \href{http://www.hdfgroup.org/HDF5/}{HDF5} (Hierarchical Data Format): プラットフォーム非依存のバイナリファイル格納形式
   \item \href{http://www.boost.org/}{Boost C++ Library}: 乱数, グラフ, シリアル化, など多くの有用なライブラリ群
+  \item \href{http://www.hdfgroup.org/HDF5/}{HDF5} (Hierarchical Data Format): プラットフォーム非依存のバイナリファイル格納形式
+  \item \href{http://www.mpi-forum.org/}{MPI} (Message Passing Interface): 並列計算のためのメッセージ通信 (オプション)
+  \item \href{http://www.netlib.org/blas/}{BLAS}, \href{http://www.netlib.org/lapack/}{LAPACK}: 線形演算(行列対角化, 特異値分解など) (オプション)
   \end{itemize}
 \end{frame}
 
@@ -537,7 +400,7 @@ std::cout << binder;
     \item 「ユニットセル」による繰り返し構造の指定
     \item 座標, パリティ, 逆格子ベクトルなどの属性
     \end{itemize}
-  \item あらかじめ用意されている格子: "chain lattice", "square lattice", "triangular lattice", "honeycomb lattice", "simple cubic lattice", など
+  \item あらかじめ用意されている格子: ``hain lattice", ``square lattice", ``triangular lattice", ``honeycomb lattice", ``simple cubic lattice", など
   % \item ``printgraph'' で格子のチェック
   \end{itemize}
 \end{frame}
@@ -616,7 +479,7 @@ Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
   \item 作成した局所ハミルトニアンは行列の形で取り出せる
   \item プラケット項などの多サイトにわたる相互作用には未対応
   \item ALPS Model HOWTO: {\small \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja}{http://alps.comp-phys.org/mediawiki/ index.php/Tutorials:ModelHOWTO/ja}}
-  \item あらかじめ用意されている模型: "spin", "boson Hubbard", "hardcore boson", "fermion Hubbard", "alternative fermion Hubbard", "spinless fermions", "Kondo lattice", "t-J"
+  \item あらかじめ用意されている模型: ``spin", ``boson Hubbard", ``hardcore boson", ``fermion Hubbard", ``alternative fermion Hubbard", ``spinless fermions", ``Kondo lattice", ``t-J"
   \end{itemize}
 \end{frame}
 

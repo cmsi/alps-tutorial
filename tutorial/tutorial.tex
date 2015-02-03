@@ -61,8 +61,7 @@ $ pconfig
 \end{lstlisting}
   \item チュートリアルに使用するファイルをコピー
 \begin{lstlisting}
-$ mkdir $HOME/tutorials
-$ cp -rp $ALPS_HOME/tutorials/* $HOME/tutorials/
+$ cp -rp $ALPS_HOME/tutorials $HOME
 \end{lstlisting}
   \end{enumerate}
 \end{frame}
@@ -80,8 +79,7 @@ $ pconfig
 \end{lstlisting}
   \item チュートリアルに使用するファイルをコピー
 \begin{lstlisting}
-$ mkdir $HOME/tutorials
-$ cp -rp $ALPS_HOME/tutorials/* $HOME/tutorials/
+$ cp -rp $ALPS_HOME/tutorials $HOME
 \end{lstlisting}
   \end{enumerate}
 \end{frame}
@@ -95,8 +93,7 @@ $ pconfig
 \end{lstlisting}
   \item チュートリアルに使用するファイルをコピー
 \begin{lstlisting}
-$ mkdir $HOME/tutorials
-$ cp -rp /usr/share/alps/tutorials/* $HOME/tutorials/
+$ cp -rp /usr/share/alps/tutorials $HOME
 \end{lstlisting}
   \end{enumerate}
 \end{frame}
@@ -125,9 +122,9 @@ $ python tutorial2full.py
   \item 様々な反強磁性ハイゼンベルグ模型の帯磁率の温度依存性
     \begin{itemize}
     \item tutorial2a.py: 古典ハイゼンベルグ模型(一次元鎖)
-    \item tutorial2b.py: 古典ハイゼンベルグ模型(二本足梯子)
+    \item tutorial2b.py: 古典ハイゼンベルグ模型(二本足はしご)
     \item tutorial2c.py: $S=1/2$古典ハイゼンベルグ模型(一次元鎖)
-    \item tutorial2d.py: $S=1/2$量子ハイゼンベルグ模型(二本足梯子)
+    \item tutorial2d.py: $S=1/2$量子ハイゼンベルグ模型(二本足はしご)
     \end{itemize}
   \item 問題
     \begin{itemize}
@@ -320,9 +317,11 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
 \subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}[t,fragile]{シミュレーション結果のプロット}
-    \begin{center}
-      \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
-    \end{center}
+  \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
+  \begin{itemize}
+  \item ターミナルから一行ずつ実行する場合、{\color{red}\tt ipython}が便利(tab補完、コマンド履歴など)
+  \item {\color{red}\tt plt.ion()}を使うとコマンドの結果が図にすぐに反映される
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]{測定物理量の一覧の取得}
@@ -584,7 +583,7 @@ $ ipython notebook --pylab inline
     次の2種類の量子格子模型について, Lanczos法で固有値計算を行う.
     \begin{itemize}
       \item $S=1/2$量子1次元ハイゼンベルグ模型
-      \item $S=1/2$梯子系ハイゼンベルグ模型
+      \item $S=1/2$はしご格子ハイゼンベルグ模型
     \end{itemize}
   \end{itemize}
 \end{frame}
