@@ -1,4 +1,6 @@
-\title{ALPSアプリケーション実行チュートリアル}
+%-*- coding:utf-8 -*-
+
+\title{ALPSアプリケーションチュートリアル}
 
 \begin{document}
 
@@ -9,22 +11,136 @@
 \end{frame}
 
 \section*{Outline}
-\begin{frame}
+\begin{frame}[t,fragile]
    \tableofcontents
 \end{frame}
 
-\section{ALPSシミュレーションの流れ}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\section{ALPSシミュレーションの流れ / Workflow of ALPS Simulation}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
-\begin{frame}{ALPSによるシミュレーション --- ワークフロー}
+\begin{frame}{ALPSシミュレーションのワークフロー}
   \begin{center}
     \includegraphics[height=0.8\textheight]{workflow.pdf}
   \end{center}
 \end{frame}
 
-\begin{frame}{シミュレーションの入出力}
+\begin{frame}[t,fragile]{ALPSセットアップ・スクリプト}
   \begin{itemize}
-  \item 典型的には、一つのシミュレーションは複数のパラメータセットからなる \\ (異なる温度など)
+    % \setlength{\itemsep}{1em}
+  \item 環境変数{\tt ALPS\_HOME}, {\tt PATH}, {\tt LD\_LIBRARY\_PATH}, {\tt PYTHONPATH}などを適切に設定するためのスクリプト「{\color {red}alpsvars.sh}」があらかじめ用意されている
+  \item alpsvars.shのインストール場所
+    \begin{itemize}
+    \item psi.issp.u-tokyo.ac.jp:
+      {\footnotesize \tt /opt/MateriApps/alps/alpsvars.sh}
+    \item phi.aics.riken.jp:
+      {\footnotesize \tt /home/materiapps/alps/alpsvars.sh}
+    \item kashiwa.issp.u-tokyo.ac.jp:
+      {\footnotesize \tt /home/issp/materiapps/alps/alpsvars.sh}
+    \item k.aics.riken.jp:
+      {\footnotesize \tt /opt/spire/alps/alpsvars.sh}
+    \end{itemize}
+  \item {\color{red} ALPSがインストールされているスパコン}の一覧とセットアップ・スクリプトの場所については、以下を参照 {\footnotesize \url{https://github.com/wistaria/MateriAppsInstaller}}
+  \item \href{http://cmsi.github.io/MateriAppsLive/}{MateriApps LIVE!}では、環境変数はあらかじめ設定されているため、セットアップ・スクリプトは不要
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{チュートリアル実行の準備}
+  \begin{enumerate}
+  \item ワークステーションにSSHログイン
+\begin{lstlisting}
+$ ssh -YC username@hostname
+\end{lstlisting}
+  \item 環境変数のセットアップ
+\begin{lstlisting}
+$ source /somewhere/alpsvars.sh
+\end{lstlisting}
+  \item ALPSツールが正しく動くかどうか確認
+\begin{lstlisting}
+$ pconfig
+\end{lstlisting}
+  \item チュートリアルに使用するファイルをコピー
+\begin{lstlisting}
+$ cp -rp $ALPS_HOME/tutorials $HOME
+\end{lstlisting}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{チュートリアル実行の準備 (ローカル環境を使う場合)}
+  \begin{enumerate}
+  \item 環境変数のセットアップ
+\begin{lstlisting}
+$ source $HOME/alps/alpsvars.sh
+\end{lstlisting}
+  \item ALPSツールが正しく動くかどうか確認
+\begin{lstlisting}
+$ pconfig
+\end{lstlisting}
+  \item チュートリアルに使用するファイルをコピー
+\begin{lstlisting}
+$ cp -rp $ALPS_HOME/tutorials $HOME
+\end{lstlisting}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{チュートリアル実行の準備 (MateriApps LIVE!を使う場合)}
+  \begin{enumerate}
+  \item ALPSツールが正しく動くかどうか確認
+\begin{lstlisting}
+$ pconfig
+\end{lstlisting}
+  \item チュートリアルに使用するファイルをコピー
+\begin{lstlisting}
+$ cp -rp /usr/share/alps/tutorials $HOME
+\end{lstlisting}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{はじめてのALPSシミュレーション}
+  \begin{itemize}
+    \item Pythonからのシミュレーションの実行 (\href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:MC-02_Susceptibilities}{mc-02-susceptibilities})
+\begin{lstlisting}
+$ cd $HOME/tutorials/mc-02-susceptibilities
+$ python tutorial2a.py
+$ python tutorial2b.py
+$ python tutorial2c.py
+$ python tutorial2d.py
+$ python tutorial2full.py
+\end{lstlisting}
+    \item Pythonスクリプトを実行するたびに、結果のグラフが表示される
+    \item グラフのウィンドウを閉じるとスクリプトは終了
+    \item 最後のスクリプトは、全ての計算結果を一枚のグラフに表示
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{いったい何を計算したの?}
+  \begin{itemize}
+  \item 様々な反強磁性ハイゼンベルグ模型の帯磁率の温度依存性
+    \begin{itemize}
+    \item tutorial2a.py: 古典ハイゼンベルグ模型(一次元鎖)
+    \item tutorial2b.py: 古典ハイゼンベルグ模型(二本足はしご)
+    \item tutorial2c.py: $S=1/2$古典ハイゼンベルグ模型(一次元鎖)
+    \item tutorial2d.py: $S=1/2$量子ハイゼンベルグ模型(二本足はしご)
+    \end{itemize}
+  \item 問題
+    \begin{itemize}
+      \item 古典系と量子系とふるまいの違い
+      \item 格子構造による帯磁率のふるまいの違い
+      \item 帯磁率のふるまいの違いの原因は?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{入力ファイルの準備 / Preparation of Input Files}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+
+\begin{frame}{ALPSシミュレーションの入出力}
+  \begin{itemize}
+  \item 典型的には、一つのシミュレーションは複数のパラメータセットからなる(異なる温度など)
     \begin{itemize}
     \item 「ジョブ(job)」: シミュレーション全体、「タスク」の集合
     \item 「タスク(task)」(または「simulation」):– 一つのパラメータセットに対する計算、「ラン」の集合
@@ -36,6 +152,8 @@
   \end{center}
   \end{itemize}
 \end{frame}
+
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}{XMLの基礎}
   \begin{itemize}
@@ -50,7 +168,7 @@
   \end{itemize}
 \end{frame}
 
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}●}}
 
 \begin{frame}{XMLの文法}
   \begin{itemize}
@@ -60,8 +178,7 @@
   \begin{center}
     \includegraphics[width=\textwidth]{xml2.pdf}
   \end{center}
-  \item XMLでは、ユーザが独自のタグ(要素の名前)を定義することが可能 \\
-    (参考: Document Type Definition (DTD), XML Schema)
+  \item XMLでは、ユーザが独自のタグ(要素の名前)を定義することが可能 (参考: Document Type Definition (DTD), XML Schema)
   \end{itemize}
 \end{frame}
 
@@ -87,9 +204,9 @@
   \end{itemize}
 \end{frame}
 
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
 
-\begin{frame}{Job XML ファイル}
+\begin{frame}{Job XML ファイル(マスターファイル)}
   \begin{center}
     \includegraphics[height=.6\textheight]{simulation2.pdf}
   \end{center}
@@ -101,7 +218,7 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{ALPSが作成するバイナリ形式ファイル}
+\begin{frame}{ALPSによって生成されるバイナリ形式ファイル}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item HDF5 (拡張子 {.h5})
@@ -117,37 +234,39 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{parameter2xml ツール}
-  \begin{itemize}
-  \item パラメータセットを簡易形式で書いて、parameter2xmlツールでXMLに変換する
-  \begin{center}
-    \includegraphics[height=.6\textheight]{simulation4.pdf}
-  \end{center}
-  \item pyalps (後述)では、pyalps.writeInputFiles() メソッドが利用できる
-  \end{itemize}
+\begin{frame}[t,fragile]{入力ファイルの準備}
+  \begin{enumerate}
+    \setlength{\itemsep}{1em}
+  \item Pythonスクリプトによる生成: 例) \href{https://github.com/cmsi/alps-tutorial/blob/tutorials/tutorials/mc-02-susceptibilities/tutorial2a.py}{tutorial2a.py}
+    %\begin{center}
+      \includegraphics[height=.72\textheight]{tutorial2a-1.pdf}
+    %\end{center}
+  \end{enumerate}
 \end{frame}
 
-\begin{frame}{格子とモデルの指定}
-  \begin{itemize}
-  \item 格子とモデルを指定するための特別なパラメータ
-  \begin{center}
-    \includegraphics[height=4cm]{simulation5.pdf}
-  \end{center}
-  \end{itemize}
+\begin{frame}[t,fragile]{入力ファイルの準備}
+  \begin{enumerate}
+    \setlength{\itemsep}{1em}
+    \setcounter{enumi}{1}
+  \item 簡易テキスト形式で作成し、{\tt parameter2xml}ツールでXMLに変換: 例) parameter2xml myjob
+    \begin{center}
+      \includegraphics[height=.6\textheight]{simulation4.pdf}
+    \end{center}
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}[t,fragile]
-  \frametitle{パラメータファイルでの数式の使用}
+  \frametitle{Simplified parameter file format}
   \begin{columns}[T]
     \begin{column}{.5\textwidth}
       \begin{itemize}
         %\begin{itemize}
-        \item 改行, セミコロン, コンマで変数を区別
-        \item 四則演算、初等関数(sin, cos, expなど)が使える
-        \item $\pi$ (PI), 虚数単位(I)などを文字で指定
+        \item 改行、セミコロン、コンマで変数を区別
+        \item \{ \}で囲んだ変数は異なるパラメータセット
+        \item \{ \}の前の変数は共通パラメータ
+        \item $\pi$ (PI), 虚数単位(I)
         \item C 風, C++風のコメント
-        \item \{ \} で囲んだ変数は異なるセット
-        \item 「循環参照」がある場合にはエラーになる
+        \item 「循環参照」がある場合にはエラーとなる
         %\end{itemize}
       \end{itemize}
     \end{column}
@@ -167,99 +286,74 @@ THERMALIZATION = SWEEPS/8;
   \end{columns}
 \end{frame}
 
-\section{ALPSチュートリアル}
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
-
-\begin{frame}
-  \frametitle{ディレクトリ構成 (例)}
-  \begin{tabular}{ll}
-    /opt/nano/alps/alpsvars.sh & \\
-    \hspace*{3em} ALPS環境変数(\$PATH, \$ALPS\_HOME等)設定スクリプト \\
-    /opt/nano/alps/tutorials & \\
-    \hspace*{3em} アプリケーションのチュートリアル用入出力ファイル \\
-    /opt/nano/alps/notebook & \\
-    \hspace*{3em} iPythonノートブックによるチュートリアル
-  \end{tabular}
-  \begin{alertblock}{}
-    alpsvars.shはALPSがインストールされたスパコン全てに用意されています \\
-    {\footnotesize \url{https://github.com/wistaria/installer/wiki}}
-\end{alertblock}
+\begin{frame}{格子とモデルの指定}
+  \begin{itemize}
+  \item 格子とモデルを指定するための特別なパラメータ
+  \begin{center}
+    \includegraphics[height=4.5cm]{simulation5.pdf}
+  \end{center}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{実習準備}
+\section{ALPSアプリケーションの実行 / Running ALPS Applications}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+
+\begin{frame}[t,fragile]{ALPSアプリケーションの実行方法}
   \begin{enumerate}
-  \item 実習システムにログイン
-\begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
-\end{semiverbatim}
-  \item 環境変数の設定
-\begin{semiverbatim}
-\$ source /opt/nano/alps/alpsvars.sh
-\end{semiverbatim}
-  \item ALPSが動くかどうか確認
-\begin{semiverbatim}
-\$ pconfig
-\end{semiverbatim}
-  \item チュートリアルをコピー
-\begin{semiverbatim}
-\$ cp -rp /opt/nano/alps/tutorials/ .
-\end{semiverbatim}
-  \item iPythonノートブックをコピー
-\begin{semiverbatim}
-\$ cp -rp /opt/nano/alps/notebook/ .
-\end{semiverbatim}
+  \item Pythonスクリプトから: 例) \href{https://github.com/cmsi/alps-tutorial/blob/tutorials/tutorials/mc-02-susceptibilities/tutorial2a.py}{tutorial2a.py}
+    \includegraphics[height=.08\textheight]{tutorial2a-2.pdf}
+  \item コマンドラインから
+\begin{lstlisting}
+$ spinmc --Tmin=5 param2a.in.xml
+\end{lstlisting}
+  \item parallel (MPI) execution (parameter parallelization)
+\begin{lstlisting}
+$ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
+\end{lstlisting}
   \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{実習準備 (ローカル環境を使う場合)}
+\section{結果のプロット / Plotting Simulation Results}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+
+\begin{frame}[t,fragile]{シミュレーション結果のプロット}
+  \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
+  \begin{itemize}
+  \item ターミナルから一行ずつ実行する場合、{\color{red}\tt ipython}が便利(tab補完、コマンド履歴など)
+  \item {\color{red}\tt plt.ion()}を使うとコマンドの結果が図にすぐに反映される
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{測定物理量の一覧の取得}
   \begin{enumerate}
-  \item 環境変数の設定
-\begin{semiverbatim}
-\$ source $HOME/alps/bin/alpsvars.sh
-\end{semiverbatim}
-  \item ALPSが動くかどうか確認
-\begin{semiverbatim}
-\$ pconfig
-\end{semiverbatim}
-  \item チュートリアル\href{http://sf.net/projects/alps-tutorial/files/}{SourceForge}からダウンロード
-\begin{semiverbatim}
-\$ tar zxf tutorials-20140623-r7482.tgz
-\end{semiverbatim}
-  \item iPythonノートブックを\href{http://sf.net/projects/alps-tutorial/files/}{SourceForge}からダウンロード
-\begin{semiverbatim}
-\$ tar zxf alps-notebook-20141016.tgz
-\end{semiverbatim}
+    \setlength{\itemsep}{1em}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Documentation:Overview}{ALPS applications reference documentation}: 例)
+    \begin{itemize}
+    \item spinmc: {\footnotesize \href{http://alps.comp-phys.org/mediawiki/index.php/Documentation:ClassicalMCSimulations}{http://alps.comp-phys.org/mediawiki/in...}}
+    \item loop: {\footnotesize \href{http://exa.phys.s.u-tokyo.ac.jp/en/projects/alps-looper}{http://exa.phys.s.u-tokyo.ac.jp/en/p...}}
+    \end{itemize}
+  \item Pythonスクリプトによる一覧の取得: 例) \href{https://gist.github.com/wistaria/71cb8d7a22f45bfe256d}{list-measurements.py}
+    \lstset{language={Python},basicstyle=\small}
+\begin{lstlisting}
+import pyalps
+data = pyalps.loadMeasurements(
+       pyalps.getResultFiles(prefix='parm2c'))
+{ item.props['observable'] for item in pyalps.flatten(data) }
+\end{lstlisting}
+  \item (上級者向け) h5dumpユーリティティを利用して *.h5 ファイルの中を見る
   \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{実習準備 (MateriApps LIVE!を使う場合)}
-  \begin{enumerate}
-  \item ALPSが動くかどうか確認
-\begin{semiverbatim}
-\$ pconfig
-\end{semiverbatim}
-  \item チュートリアルをコピー
-\begin{semiverbatim}
-\$ cp -rp /usr/share/alps/tutorials/ .
-\end{semiverbatim}
-  \item iPythonノートブックを\href{http://sf.net/projects/alps-tutorial/files/}{SourceForge}からダウンロード
-\begin{semiverbatim}
-\$ tar zxf alps-notebook-20141016.tgz
-\end{semiverbatim}
-  \end{enumerate}
-\end{frame}
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}ー}}
 
-\begin{frame}[fragile]
+\begin{frame}[t,fragile]
   \frametitle{ALPSの実行シナリオ}
   \begin{enumerate}
-  \item コマンドライン(旧来からの方法)
-\begin{semiverbatim}
-\$ parameter2xml \textit{param}
-\$ loop \textit{param}.in.xml
-\end{semiverbatim}
+  \item コマンドライン
+\begin{lstlisting}
+$ parameter2xml param
+$ loop param.in.xml
+\end{lstlisting}
   \item シェルスクリプト(バッチ処理)
   \item Python (対話的 or バッチ)
     \begin{itemize}
@@ -277,63 +371,47 @@ THERMALIZATION = SWEEPS/8;
   \end{enumerate}
 \end{frame}
 
-\begin{frame}
-  \frametitle{ALPSアプリケーション}
-  \begin{description}
-  \item[fulldiag] {\color{red} 厳密対角化(全対角化法)}
-  \item[sparsediag] {\color{red} 厳密対角化(Lanczos法)}
-  \item[spinmc] {\color{red} 古典モンテカルロ法}
-  \item[loop] {\color{red} 量子モンテカルロ法(ループアルゴリズム)}
-  \item[dirloop\_sse] {\color{red} 量子モンテカルロ(向き付きループアルゴリズム)}
-  \item[worm] 量子モンテカルロ(ワームアルゴリズム)
-  \item[dmrg,tebd] 密度行列繰り込み群
-  \item[hirshfye,interaction,hybridization] 動的平均場近似のQMCソルバ
-  \end{description}
-\end{frame}
-
-\begin{frame}[fragile]
+\begin{frame}[t,fragile]
   \frametitle{コマンドライン実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item 実習システムにログイン
-\begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
-\end{semiverbatim}
-  \item (必要に応じて)計算ノードにログイン
-  \item 環境変数の設定
-\begin{semiverbatim}
-\$ source /opt/nano/alps/alpsvars.sh
-\end{semiverbatim}
+  \item ワークステーションにログイン
+\begin{lstlisting}
+$ ssh -YC username@hostname
+\end{lstlisting}
+  \item 環境変数のセットアップ
+\begin{lstlisting}
+$ source /somewhere/alpsvars.sh
+\end{lstlisting}
   \item 入力XMLファイルの準備
-\begin{semiverbatim}
-\$ cd tutorials/ed-01-sparsediag
-\$ parameter2xml parm1a
-\end{semiverbatim}
+\begin{lstlisting}
+$ cd tutorials/ed-01-sparsediag
+$ parameter2xml parm1a
+\end{lstlisting}
   \item sparsediagの実行
-\begin{semiverbatim}
-\$ sparsediag --write-xml parm1a.in.xml
-\end{semiverbatim}
+\begin{lstlisting}
+$ sparsediag --write-xml parm1a.in.xml
+\end{lstlisting}
   \item 結果はparm1a.task1.out.xmlに出力される
   \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}[t,fragile]
   \frametitle{シェルスクリプトによる実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item 実習システムにログイン
-\begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
-\end{semiverbatim}
-  \item (必要に応じて)計算ノードにログイン
+  \item ワークステーションにログイン
+\begin{lstlisting}
+$ ssh -YC username@hostname
+\end{lstlisting}
   \item シェルスクリプト(バッチファイル)の準備
-\begin{semiverbatim}
-\$ cd tutorials/ed-01-sparsediag
-\$ vi batch.sh
-\end{semiverbatim}
+\begin{lstlisting}
+$ cd tutorials/ed-01-sparsediag
+$ vi batch.sh
+\end{lstlisting}
   \item batch.sh の中身
 \lstset{language={bash}}
 \begin{lstlisting}
 #!/bin/sh
-source /opt/nano/alps/alpsvars.sh
+source /somewhere/alpsvars.sh
 parameter2xml parm1a
 sparsediag --write-xml parm1a.in.xml
 \end{lstlisting}
@@ -342,87 +420,84 @@ sparsediag --write-xml parm1a.in.xml
   \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}[t,fragile]
   \frametitle{Pythonでの対話的実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item 実習システムにログイン
-\begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
-\end{semiverbatim}
-  \item (必要に応じて)計算ノードにログイン
-  \item 環境変数の設定
-\begin{semiverbatim}
-\$ source /opt/nano/alps/alpsvars.sh
-\end{semiverbatim}
+  \item ワークステーションにSSHログイン
+\begin{lstlisting}
+$ ssh -YC username@hostname
+\end{lstlisting}
+  \item 環境変数のセットアップ
+\begin{lstlisting}
+$ source /somewhere/alpsvars.sh
+\end{lstlisting}
   \item IPythonの起動
-\begin{semiverbatim}
-\$ cd tutorials/ed-01-sparsediag
-\$ ipython
-\end{semiverbatim}
+\begin{lstlisting}
+$ cd tutorials/ed-01-sparsediag
+$ ipython
+\end{lstlisting}
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-01_SparseDiagonalization/ja#Python.E3.81.A7.E3.81.AE.E5.AE.9F.E8.A1.8C}{チュートリアルページ}にしたがって、コマンドを実行 (コマンドはTABで補完できる)
   \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}[t,fragile]
   \frametitle{Pythonでのバッチ実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item 実習システムにログイン
-\begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
-\end{semiverbatim}
-  \item (必要に応じて)計算ノードにログイン
-  \item 環境変数の設定
-\begin{semiverbatim}
-\$ source /opt/nano/alps/alpsvars.sh
-\end{semiverbatim}
+  \item ワークステーションにSSHログイン
+\begin{lstlisting}
+$ ssh -YC username@hostname
+\end{lstlisting}
+  \item 環境変数のセットアップ
+\begin{lstlisting}
+$ source /somewhere/alpsvars.sh
+\end{lstlisting}
   \item バッチ実行
-\begin{semiverbatim}
-\$ cd tutorials/ed-01-sparsediag
-\$ python tutorial1a.py
-\end{semiverbatim}
+\begin{lstlisting}
+$ cd tutorials/ed-01-sparsediag
+$ python tutorial1a.py
+\end{lstlisting}
   \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile,shrink=10]
+\begin{frame}[t,fragile,shrink=10]
   \frametitle{IPython notebookでの実行 (厳密対角化 ed-01)}
   \begin{enumerate}
-  \item 実習システムにログイン
-\begin{semiverbatim}
-\$ ssh -X guest{\color{red}XX}@{\color{red}hostname}
-\end{semiverbatim}
+  \item ワークステーションにSSHログイン
+\begin{lstlisting}
+$ ssh -YC username@hostname
+\end{lstlisting}
   \item IPython notebookサーバの起動
-\begin{semiverbatim}
-\$ source /opt/nano/alps/alpsvars.sh
-\$ cd notebook/jp
-\$ ipython notebook --no-browser --pylab inline
-\end{semiverbatim}
+\begin{lstlisting}
+$ source /somewhere/alpsvars.sh
+$ cd notebook/jp
+$ ipython notebook --no-browser --pylab inline
+\end{lstlisting}
   \item 起動時に出力されるポート番号(8888等)を控えておく
   \item 手元のPCでもう一つポートフォワーディング付きでSSHセッションを開く
-\begin{semiverbatim}
-\$ ssh guest{\color{red}XX}@{\color{red}hostname} -L 8888:localhost:8888
-\end{semiverbatim}
+\begin{lstlisting}
+$ ssh username@hostname -L 8888:localhost:8888
+\end{lstlisting}
   \item PCでブラウザを起動し、http://localhost:8888 を開く
   \item ED-01\_SparseDiagonalization.ipynb を開き、[Shift+Return] で実行していく
   \end{enumerate}
-  注: フロントエンドでの実行のため、他の人のジョブと干渉して遅くなる場合がある
 \end{frame}
 
-\begin{frame}[fragile,c]
+\begin{frame}[t,fragile]
   \frametitle{IPython notebookでの実行 (ローカル環境を使う場合)}
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item IPython notebookの起動
-\begin{semiverbatim}
-\$ source \$HOME/alps/alpsvars.sh
-\$ cd notebook/jp
-\$ ipython notebook --pylab inline
-\end{semiverbatim}
+\begin{lstlisting}
+$ source $HOME/alps/alpsvars.sh
+$ cd notebook/jp
+$ ipython notebook --pylab inline
+\end{lstlisting}
   \item Mac OS X の場合は, {\tt ipython-2.7}を使う
   \item MateriApps LIVE!の場合は, 1行目は不要
   \end{itemize}
 \end{frame}
 
-\begin{frame}{実行結果の確認}
+\begin{frame}[t,fragile]{実行結果の確認}
   \begin{itemize}
     \item 実行結果(JOB XMLファイル、TASK XMLファイル)は、webブラウザで直接開いて中身を見ることも可能
       \begin{itemize}
@@ -432,7 +507,7 @@ sparsediag --write-xml parm1a.in.xml
   \end{itemize}
 \end{frame}
 
-\begin{frame}{シミュレーションの並列実行}
+\begin{frame}[t,fragile]{シミュレーションの並列実行}
   \begin{itemize}
     \item パラメータセットに関する並列実行が可能 (embarassingly parallel)
     \item アプリケーションによって、ALPS parallelizing スケジューラか、ALPS/parapack スケジューラのいずれかが使われている (オプション -l により確認可)
@@ -449,7 +524,50 @@ sparsediag --write-xml parm1a.in.xml
   \end{itemize}
 \end{frame}
 
-\begin{frame}{厳密対角化チュートリアル}
+\section{もっとチュートリアル / Further Tutorials}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+
+\begin{frame}[t,fragile]{より高度なチュートリアル}
+  \begin{itemize}
+  \item パラメータファイルを変更することで、以下のようなシミュレーションが実行可能:
+    \begin{itemize}
+    \item 温度点の追加
+    \item システムサイズの追加
+    \item スピン1の鎖
+    \item イジング的(容易軸的)な異方性
+    \item 他の格子構造(二次元正方格子など)
+    \end{itemize}
+  \item ED, MC, QMC, DMRG, DMFTに関する様々なチュートリアル: \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:Overview}{ALPS Tutorials}
+  \item 格子構造やハミルトニアンを自分で定義するには: \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO}{ALPS Lattice HowTo}、\href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO}{ALPS Model HowTo}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{ALPS格子チュートリアル}
+  \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO/ja}{ALPS Lattice HowTo} \\
+  \begin{itemize}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO:SimpleGraphs/ja}{辺と頂点を単位として簡単なグラフを指定する方法}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticesAndUnitCells/ja}{格子と単一セルを指定する方法}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticesAndGraphs/ja}{単位格子に対応するグラフを指定する方法}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO:Library/ja}{格子とグラフのライブラリの生成方法}
+    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHowto:CheckLattice/ja}{格子の定義から生成されたグラフを確認する方法}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{ALPS模型チュートリアル}
+  \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO}{ALPS Model HowTo} \\
+  \begin{itemize}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E3.83.87.E3.83.95.E3.82.A9.E3.83.AB.E3.83.88.E3.81.AE.E3.83.A2.E3.83.87.E3.83.AB.E3.83.A9.E3.82.A4.E3.83.96.E3.83.A9.E3.83.AA.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.80.80}{デフォルトのモデルライブラリファイル}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E3.83.A2.E3.83.87.E3.83.AB.E3.83.A9.E3.82.A4.E3.83.96.E3.83.A9.E3.83.AA.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.81.AE.E6.A7.8B.E9.80.A0}{モデルライブラリファイルの構造}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E5.8D.98.E4.B8.80.E3.82.B5.E3.82.A4.E3.83.88.E3.81.AE.E5.9F.BA.E5.BA.95}{単一サイトの基底}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E5.AE.8C.E5.85.A8.E6.A0.BC.E5.AD.90.E3.83.A2.E3.83.87.E3.83.AB.E3.81.AE.E5.9F.BA.E5.BA.95}{完全格子モデルの基底}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E9.87.8F.E5.AD.90.E6.BC.94.E7.AE.97.E5.AD.90}{量子演算子}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E3.83.8F.E3.83.9F.E3.83.AB.E3.83.88.E3.83.8B.E3.82.A2.E3.83.B3.E3.81.AE.E5.8F.96.E6.89.B1.E3.81.84}{ハミルトニアンの取扱い}
+  \end{itemize}
+\end{frame}
+
+\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}ー}}
+
+\begin{frame}[t,fragile]{厳密対角化チュートリアル}
   \begin{itemize}
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-01_SparseDiagonalization/ja}{ED-01 Sparse Diagonalization (Lanczos)
 }
@@ -465,12 +583,12 @@ sparsediag --write-xml parm1a.in.xml
     次の2種類の量子格子模型について, Lanczos法で固有値計算を行う.
     \begin{itemize}
       \item $S=1/2$量子1次元ハイゼンベルグ模型
-      \item $S=1/2$梯子系ハイゼンベルグ模型
+      \item $S=1/2$はしご格子ハイゼンベルグ模型
     \end{itemize}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{厳密対角化チュートリアル}
+\begin{frame}[t,fragile]{厳密対角化チュートリアル}
   \begin{itemize}
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-04_Criticality/ja}{ED-04 Conformal field theory description of 1D critical spectra}
 
@@ -486,7 +604,7 @@ sparsediag --write-xml parm1a.in.xml
   \end{itemize}
 \end{frame}
 
-\begin{frame}{モンテカルロ法チュートリアル}
+\begin{frame}[t,fragile]{モンテカルロ法チュートリアル}
   \begin{itemize}
   \item mc-01-autocorrelations
   \item mc-01b-equilibration-and-convergence
@@ -497,35 +615,6 @@ sparsediag --write-xml parm1a.in.xml
   \item mc-06-qwl
   \item mc-07-phase-transition
   \item mc-08-quantum-phase-transition
-  \end{itemize}
-\end{frame}
-
-\section{ALPS Lattice \& Model チュートリアル}
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}}
-
-\begin{frame}{ALPS Latticeチュートリアル}
-  \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO/ja}{ALPS Lattice HowTo} \\
-  \begin{itemize}
-    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO:SimpleGraphs/ja}{辺と頂点を単位として簡単なグラフを指定する方法}
-    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticesAndUnitCells/ja}{格子と単一セルを指定する方法}
-    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticesAndGraphs/ja}{単位格子に対応するグラフを指定する方法}
-    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO:Library/ja}{格子とグラフのライブラリの生成方法}
-    \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHowto:CheckLattice/ja}{格子の定義から生成されたグラフを確認する方法}
-      \begin{itemize}
-      \item lattice2xmlツール、あるいは(wxPythonとVTKがインストールされている環境では) lattice-preview 格子可視化ツールも利用可
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{ALPS Modelチュートリアル}
-  \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja}{ALPS Model HowTo} \\
-  \begin{itemize}
-  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E3.83.87.E3.83.95.E3.82.A9.E3.83.AB.E3.83.88.E3.81.AE.E3.83.A2.E3.83.87.E3.83.AB.E3.83.A9.E3.82.A4.E3.83.96.E3.83.A9.E3.83.AA.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.80.80}{デフォルトのモデルライブラリファイル}
-  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E3.83.A2.E3.83.87.E3.83.AB.E3.83.A9.E3.82.A4.E3.83.96.E3.83.A9.E3.83.AA.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.81.AE.E6.A7.8B.E9.80.A0}{モデルライブラリファイルの構造}
-  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E5.8D.98.E4.B8.80.E3.82.B5.E3.82.A4.E3.83.88.E3.81.AE.E5.9F.BA.E5.BA.95}{単一サイトの基底}
-  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E5.AE.8C.E5.85.A8.E6.A0.BC.E5.AD.90.E3.83.A2.E3.83.87.E3.83.AB.E3.81.AE.E5.9F.BA.E5.BA.95}{完全格子モデルの基底}
-  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E9.87.8F.E5.AD.90.E6.BC.94.E7.AE.97.E5.AD.90}{量子演算子}
-  \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja\#.E3.83.8F.E3.83.9F.E3.83.AB.E3.83.88.E3.83.8B.E3.82.A2.E3.83.B3.E3.81.AE.E5.8F.96.E6.89.B1.E3.81.84}{ハミルトニアンの取扱い}
   \end{itemize}
 \end{frame}
 
