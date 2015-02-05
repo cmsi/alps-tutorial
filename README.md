@@ -17,7 +17,7 @@ Table of Contents / 内容
 * Introduction to Matplotlib / Matplotlib入門
 * How to ``alpsize'' your application / アプリケーションのALPS化
 
-Github repository of alps-torial
+Github repository of alps-tutorial
 ===================================
 
 All the LaTeX sources and figures of ALPS tutorial materials available on Github:
