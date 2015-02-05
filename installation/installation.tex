@@ -12,6 +12,8 @@
 \end{frame}
 
 \section{ALPSがインストールされているシステム}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
 \begin{frame}[fragile]
   \frametitle{ALPSがインストールされているシステム}
   \begin{itemize}
@@ -29,24 +31,26 @@
 \end{frame}
 
 \section{ALPSのインストール}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
 \begin{frame}
   \frametitle{ALPSの依存関係}
   \begin{itemize}
-  \item<1-> 必須のもの\\
+  \item 必須のもの\\
     \begin{tabular}{ll}
       CMake & \url{http://www.cmake.org/} \\
       Boost & \url{http://www.boost.org/} \\
       HDF5  & \url{http://www.hdfgroup.org/HDF5/} \\
-      BLAS/LAPACK & \url{http://www.netlib.org/} \\
     \end{tabular}
-  \item<2-> 結果の解析に必要なもの \\
+  \item 結果の解析に必要なもの \\
     \begin{tabular}{ll}
+      BLAS/LAPACK & \url{http://www.netlib.org/} \\
       Python & \url{http://www.python.org/} \\
       Numpy & \url{http://www.numpy.org} \\
       Scipy & \url{http://www.scipy.org} \\
       Matplotlib & \url{http://matplotlib.org/}
     \end{tabular}
-  \item<3-> あるとよいもの \\
+  \item あるとよいもの \\
     \begin{tabular}{ll}
       MPI & \url{http://www.mpi-forum.org/} \\
     \end{tabular}
@@ -54,84 +58,99 @@
 \end{frame}
 
 \begin{frame}[fragile,shrink=10]
-  \frametitle{Debian系Linuxでのインストール}
+  \frametitle{Debian系Linuxへのインストール}
   \begin{enumerate}
-  \item 必要なライブラリをapt-getする
+  \item 必要なライブラリをapt-getでインストール(rootでの作業)
 \begin{semiverbatim}
-# apt-get install cmake-curses-gui libhdf5-dev liblapack-dev mpi-default-dev
-# apt-get install python-matplotlib python-scipy
+$ sudo apt-get install cmake-curses-gui libhdf5-dev \\
+  liblapack-dev mpi-default-dev python-matplotlib \\
+  python-scipy boost-all-dev
 \end{semiverbatim}
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
-\$ cd $HOME
-\$ wget http://exa.phys.s.u-tokyo.ac.jp/archive/source/\\
-  alps-20140207-r7338.tar.gz
-\$ wget http://sourceforge.net/projects/boost/files/\\
-  boost/1.54.0/boost_1_54_0.tar.bz2
-\$ tar zxf alps-20140207-r7338.tar.gz
-\$ tar jxf boost_1_54_0.tar.bz2
+\$ wget -O - http://exa.phys.s.u-tokyo.ac.jp/archive/source/\\
+  alps-20140623-r7482.tar.gz | tar zxf -
 \$ mkdir build && cd build
-\$ cmake -DBoost_ROOT_DIR=$HOME/boost_1_54_0 \\
-  $HOME/alps-20140207-r7338
-\$ make && ctest && make install
+\$ cmake -DCMAKE_INSTALL_PREFIX=${HOME}/alps \\
+  $HOME/alps-20140623-r7482
+\$ make
+\$ ctest
+\$ make install
 \end{semiverbatim}
   \end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile,shrink=10]
-  \frametitle{Mac OS Xでのインストール}
+  \frametitle{Mac OS X (Marvericks)でのインストール}
   \begin{enumerate}
-  \item 必要なライブラリを\href{http://www.macports.org/}{MacPorts}からインストール
+  \item Xcodeコマンドラインツールをインストール(rootでの作業)
 \begin{semiverbatim}
-\$ sudo port install cmake hdf5-18 openmpi
-\$ sudo port install py27-numpy py27-scipy \\
-  py27-matplotlib python27
-\$ sudo port select --set python python27
+\$ sudo xcode-select —install
+\end{semiverbatim}
+  \item 必要なライブラリを\href{http://www.macports.org/}{MacPorts}でインストール(rootでの作業)
+\begin{semiverbatim}
+\$ sudo port install gcc48
+\$ sudo port select --set gcc mp-gcc48
+\$ sudo port install openmpi-gcc48
+\$ sudo port select --set mpi openmpi-gcc48-fortran
+\$ sudo port install python27 py27-ipython py27-scipy py27-matplotlib \\
+  py27-zmq py27-jinja2 cmake hdf5-18 +threadsafe wget
 \end{semiverbatim}
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
-\$ wget http://exa.phys.s.u-tokyo.ac.jp/archive/source/\\
-  alps-20140207-r7338.tar.gz
-\$ wget http://sourceforge.net/projects/boost/files/\\
-  boost/1.54.0/boost_1_54_0.tar.bz2
-\$ tar zxf alps-20140207-r7338.tar.gz
-\$ tar jxf boost_1_54_0.tar.bz2
+\$ wget -O - http://exa.phys.s.u-tokyo.ac.jp/archive/source/\\
+  alps-20140623-r7482.tar.gz | tar zxf -
+\$ wget -O - http://sourceforge.net/projects/boost/files/\\
+  boost/1.54.0/boost_1_54_0.tar.bz2 | tar jxf -
 \$ mkdir build && cd build
-\$ vi alps-cmake.sh (see next page)
-\$ sh alps-cmake.sh
-\$ make && ctest && make install
+\$ cmake -DCMAKE_INSTALL_PREFIX=${HOME}/alps \\
+  -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc \\
+  -DCMAKE_Fortran_COMPILER=gfortran \\
+  -DBoost_ROOT_DIR=$HOME/boost_1_54_0 \\
+  -DPYTHON_INTERPRETER=python2.7 $HOME/alps-20140623-r7482
+\$ make
+\$ ctest
+\$ make install
 \end{semiverbatim}
   \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile,shrink=10]
- \frametitle{Mac OS X用のCMakeの設定例 (alps-cmake.sh)}
- \begin{semiverbatim}
-#!/bin/bash
+%% \begin{frame}[fragile,shrink=10]
+%%  \frametitle{Mac OS X用のCMakeの設定例 (alps-cmake.sh)}
+%%  \begin{semiverbatim}
+%% #!/bin/bash
+%% PREFIX=${HOME}/opt/alps
+%% ALPS_SRC=${HOME}/sources/archive/alps-20140623-r7482
+%% BOOST_SRC=${HOME}/sources/archive/boost_1_54_0
 
-PREFIX=${HOME}/opt/alps
-ALPS_SRC=${HOME}/sources/archive/alps-20140207-r7338
-BOOST_SRC=${HOME}/sources/archive/boost_1_54_0
+%% cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} \\
+%%   -DCMAKE_BUILD_TYPE=Release \\
+%%   -DALPS_ENABLE_OPENMP=ON -DALPS_ENABLE_OPENMP_WORKER=ON \\
+%%   -DPYTHON_INTERPRETER=python2.7 \\
+%%   ${ALPS_SRC}
+%%  \end{semiverbatim}
+%% \end{frame}
 
-cmake \\
-    -DCMAKE_BUILD_TYPE:STRING=Release \\
-    -DCMAKE_INSTALL_PREFIX:PATH=${PREFIX} \\
-    -DCMAKE_CXX_COMPILER:PATH=/opt/local/bin/g++-mp-4.8 \\
-    -DCMAKE_C_COMPILER:PATH=/opt/local/bin/gcc-mp-4.8 \\
-    -DCMAKE_BUILD_TYPE:STRING=${BUILD_TYPE} \\
-    -DBoost_ROOT_DIR:PATH=${BOOST_SRC} \\
-    -DALPS_ENABLE_OPENMP:BOOL=ON \\
-    -DALPS_ENABLE_OPENMP_WORKER:BOOL=ON \\
-    -DMPI_C_COMPILER:PATH=/opt/local/bin/openmpicc \\
-    -DMPI_CXX_COMPILER:PATH=/opt/local/bin/openmpicxx \\
-${ALPS_SRC}
- \end{semiverbatim}
+\section{MateriApps LIVE!}
+\subsection*{{\protect\color{red}●}{\protect\color{blue}●}}
+
+\begin{frame}
+ \frametitle{MateriApps LIVE!}
+ \begin{itemize}
+   \item \url{http://cmsi.github.io/MateriAppsLive/}
+   \item USBメモリから直接ブートできる Linux システム (Debian Live Linux)
+   \item ALPSもすでにインストール済
+   \item MateriApps LIVE! USBからのブート
+     \begin{itemize}
+     \item 展示会・講習会などでモニター配布中
+     \item \href{https://github.com/cmsi/MateriAppsLive/wiki/HowToMakeLiveUSB}{自分でUSBへ書き込み}
+     \end{itemize}
+   \item 仮想マシンでMateriApps LIVE!を利用
+     \begin{itemize}
+     \item ISOイメージをダウンロード、仮想マシン(\href{https://github.com/cmsi/MateriAppsLive/wiki/Using-MateriApps-LIVE!-by-VMWare}{VMWare}, \href{https://github.com/cmsi/MateriAppsLive/wiki/KnownProblems}{VirtualBox}等)をブート
+     \item 仮想マシン用イメージ(VMWare, VirtualBox, AWS)準備中
+     \end{itemize}
+ \end{itemize}
 \end{frame}
 
 \end{document}
-
-%%% Local Variables: 
-%%% mode: japanese-latex
-%%% TeX-master: nil
-%%% coding: utf-8
-%%% End: 

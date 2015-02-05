@@ -1,10 +1,10 @@
 % 講習会名 (例: "CMSI神戸ハンズオン")
-\author{CMSI神戸ハンズオン}
+\author{CMSI Hands-on / CMSIハンズオン}
 
 % 講習会日時(4桁-2桁-2桁. 例: "2013-04-03")
-\date{2014-02-25}
+\date{2015-02-04}
 
-\institute{ALPS Collaboration \\ http://alps.comp-phys.org/}
+\institute{ALPS Collaboration \\ \url{http://alps.comp-phys.org/}}
 
 % しおりの文字化けを防ぐ
 \AtBeginDvi{\special{pdf:tounicode EUC-UCS2}}
@@ -29,12 +29,21 @@
 \usepackage[english]{babel}
 
 % ALPS ロゴ
-\pgfdeclareimage[height=0.5cm]{university-logo}{alps}
-\logo{\pgfuseimage{university-logo}}
+%\pgfdeclareimage[height=0.5cm]{university-logo}{alps}
+%\logo{\pgfuseimage{university-logo}}
 
 % ソースコード表示用
 \usepackage{listings,jlisting}
 \input{python_listing.tex}
+\lstset{showstringspaces=false}
+\lstset{showspaces=false}
+\lstset{showtabs=false}                 % show tabs within strings adding
+\lstset{literate={-}{-}1}
+\lstset{columns=flexible}
+\lstset{keepspaces=true}
+\makeatletter
+\def\lst@outputspace{{\ifx\lst@bkgcolor\empty\color{white}\else\lst@bkgcolor\fi{ }}}
+\makeatother
 
 % ページ番号の挿入
 \setbeamertemplate{footline}[frame number]
@@ -45,3 +54,12 @@
 % hyperref setting
 \definecolor{links}{HTML}{2A1B81}
 \hypersetup{colorlinks,linkcolor=,urlcolor=links}
+
+% アンダースコアが入っている文字列をバックスラッシュなしで与えられるようにする
+\usepackage[strings]{underscore}
+
+% ファイル名を与えたときに、githubへのリンクを作るコマンド
+% \newcommand{\ALPSFilename}[1]{%
+% \href{https://somewhere/#1}{#1}}
+
+\newcommand{\redb}{\color{red}$\Large\bullet$}
