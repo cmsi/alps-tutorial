@@ -1,9 +1,10 @@
 ALPS/tutorial
 =============
 
-Japanese tutorial materials for ALPS Library/Application (http://alps.comp-phys.org)
+CMSI hands-on materials for ALPS Library/Application / CMSI ALPS講習会のための資料
 
-ALPS講習会のための日本語資料
+* ALPS on MateriApps: http://ma.cms-initiative.jp/ja/listapps/alps
+* ALPS: http://alps.comp-phys.org
 
 Table of Contents / 内容
 ============================
@@ -16,22 +17,29 @@ Table of Contents / 内容
 * Introduction to Matplotlib / Matplotlib入門
 * How to ``alpsize'' your application / アプリケーションのALPS化
 
+Github repository of alps-torial
+===================================
+
+All the LaTeX sources and figures of ALPS tutorial materials available on Github:
+
+* https://github.com/cmsi/alps-tutorial
+
 How to generte PDF files / PDF生成方法
 ==============================================
 
 * sh make_dist.sh
 
-生成済のPDFファイル / Pre-generated PDF files
+Pre-generated PDF files / 生成済のPDFファイル
 ======================================================
+
+Pre-generated PDF files (normal screen and wide screen versions) are available at SourceForge:
 
 * http://sourceforge.net/projects/alps-tutorial/files/
 
 Authors / 著者
-=================
+====================
 
-* Synge Todo (Department of Physics, Univ. of Tokyo) / 藤堂眞治 (東大院理)
-* Haruhiko Matsuo (RIST) / 松尾春彦 (RIST)
-* Ryo Igarashi (ISSP, Univ. of Tokyo) / 五十嵐 亮 (東大物性研)
+CMSI hands-on materials for ALPS Library/Application are written and maintained by [Japanese ALPS suppor team](https://github.com/cmsi/alps-tutorial/graphs/contributors?type=a)
 
 License / ライセンス
 ==========================
