@@ -1,20 +1,21 @@
 BASENAME = alpsize
 SRC = ${BASENAME}.tex ../style/*.sty ../style/*.bb
+PLATEX = platex -shell-escape -interaction=nonstopmode
 
 default: ${BASENAME}-wide.pdf ${BASENAME}-normal.pdf
 
 ${BASENAME}-wide.dvi: ${BASENAME}-wide.tex ${SRC}
-	TEXINPUTS=.:../style//: platex -shell-escape ${BASENAME}-wide.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-wide.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-wide.tex
+	TEXINPUTS=.:../style//: ${PLATEX} ${BASENAME}-wide.tex
+	TEXINPUTS=.:../style//: ${PLATEX} ${BASENAME}-wide.tex
+	TEXINPUTS=.:../style//: ${PLATEX} ${BASENAME}-wide.tex
 
 ${BASENAME}-wide.pdf: ${BASENAME}-wide.dvi
 	TEXINPUTS=.:../style//: dvipdfmx ${BASENAME}-wide.dvi
 
 ${BASENAME}-normal.dvi: ${BASENAME}-normal.tex ${SRC}
-	TEXINPUTS=.:../style//: platex -shell-escape ${BASENAME}-normal.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-normal.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-normal.tex
+	TEXINPUTS=.:../style//: ${PLATEX} ${BASENAME}-normal.tex
+	TEXINPUTS=.:../style//: ${PLATEX} ${BASENAME}-normal.tex
+	TEXINPUTS=.:../style//: ${PLATEX} ${BASENAME}-normal.tex
 
 ${BASENAME}-normal.pdf: ${BASENAME}-normal.dvi
 	TEXINPUTS=.:../style//: dvipdfmx ${BASENAME}-normal.dvi
