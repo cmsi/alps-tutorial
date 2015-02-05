@@ -1,0 +1,54 @@
+% name of tutorial: (ex: "CMSI Kobe Hands-on")
+\author{CMSI Hands-on}
+
+% date (4-2-2. ex: "2013-04-03")
+\date{2015-02-04}
+
+\institute{ALPS Collaboration \\ \url{http://alps.comp-phys.org/}}
+
+% make navigation work fine
+% https://gist.github.com/zr-tex8r/4980892
+\usepackage{bxdpx-beamer}
+
+\mode<presentation>
+{
+  \usetheme{Antibes}
+  \usecolortheme{rose}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+
+% ALPS logo
+%\pgfdeclareimage[height=0.5cm]{university-logo}{alps}
+%\logo{\pgfuseimage{university-logo}}
+
+% source code presentation
+\usepackage{listings}
+\input{python_listing.tex}
+\lstset{showstringspaces=false}
+\lstset{showspaces=false}
+\lstset{showtabs=false}                 % show tabs within strings adding
+\lstset{literate={-}{-}1}
+\lstset{columns=flexible}
+\lstset{keepspaces=true}
+\makeatletter
+\def\lst@outputspace{{\ifx\lst@bkgcolor\empty\color{white}\else\lst@bkgcolor\fi{ }}}
+\makeatother
+
+% insert page number
+\setbeamertemplate{footline}[frame number]
+
+% hyperref setting
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+
+% user underscore without '\'
+\usepackage[strings]{underscore}
+
+\newcommand{\redb}{{\protect\color{red}\large$\bullet$}}
+\newcommand{\redm}{{\protect\color{red}\large$-$}}
+\newcommand{\blueb}{{\protect\color{blue}\large$\bullet$}}
+\newcommand{\bluem}{{\protect\color{blue}\large$-$}}
+\newcommand{\greenb}{{\protect\color{green}\large$\bullet$}}
+\newcommand{\greenm}{{\protect\color{green}\large$-$}}

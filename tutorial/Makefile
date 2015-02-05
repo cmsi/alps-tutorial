@@ -19,21 +19,15 @@ ${BASENAME}-normal.dvi: ${BASENAME}-normal.tex ${SRC} ${BASENAME}.tex
 ${BASENAME}-normal.pdf: ${BASENAME}-normal.dvi
 	TEXINPUTS=.:../style//: dvipdfmx ${BASENAME}-normal.dvi
 
-${BASENAME}-en-wide.dvi: ${BASENAME}-en-wide.tex ${SRC} ${BASENAME}-en.tex
-	TEXINPUTS=.:../style//: platex -shell-escape ${BASENAME}-en-wide.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-en-wide.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-en-wide.tex
+${BASENAME}-en-wide.pdf: ${BASENAME}-en-wide.tex ${SRC} ${BASENAME}-en.tex
+	TEXINPUTS=.:../style//: pdflatex ${BASENAME}-en-wide.tex
+	TEXINPUTS=.:../style//: pdflatex ${BASENAME}-en-wide.tex
+	TEXINPUTS=.:../style//: pdflatex ${BASENAME}-en-wide.tex
 
-${BASENAME}-en-wide.pdf: ${BASENAME}-en-wide.dvi
-	TEXINPUTS=.:../style//: dvipdfmx ${BASENAME}-en-wide.dvi
-
-${BASENAME}-en-normal.dvi: ${BASENAME}-en-normal.tex ${SRC} ${BASENAME}-en.tex
-	TEXINPUTS=.:../style//: platex -shell-escape ${BASENAME}-en-normal.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-en-normal.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-en-normal.tex
-
-${BASENAME}-en-normal.pdf: ${BASENAME}-en-normal.dvi
-	TEXINPUTS=.:../style//: dvipdfmx ${BASENAME}-en-normal.dvi
+${BASENAME}-en-normal.pdf: ${BASENAME}-en-normal.tex ${SRC} ${BASENAME}-en.tex
+	TEXINPUTS=.:../style//: pdflatex ${BASENAME}-en-normal.tex
+	TEXINPUTS=.:../style//: pdflatex ${BASENAME}-en-normal.tex
+	TEXINPUTS=.:../style//: pdflatex ${BASENAME}-en-normal.tex
 
 clean:
 	rm -f ${BASENAME}*.aux ${BASENAME}*.dvi ${BASENAME}*.log ${BASENAME}*.nav ${BASENAME}*.out ${BASENAME}*.snm ${BASENAME}*.toc ${BASENAME}*.vrb
