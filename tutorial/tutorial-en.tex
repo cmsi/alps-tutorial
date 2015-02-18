@@ -67,6 +67,40 @@ $ cp -rp $ALPS_HOME/tutorials $HOME
 \end{frame}
 
 \begin{frame}[t,fragile]
+  \frametitle{Preparation for running tutorials}
+  In the case of using ALPS installed in \verb+$HOME+ by yourself
+  \begin{enumerate}
+  \item Set up environment variables
+\begin{lstlisting}
+$ source $HOME/alps/bin/alpsvars.sh
+\end{lstlisting}
+  \item Confirm that ALPS tools work correctly
+\begin{lstlisting}
+$ pconfig
+\end{lstlisting}
+  \item Copy tutorial files
+\begin{lstlisting}
+$ cp -rp $ALPS_HOME/tutorials $HOME
+\end{lstlisting}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{Preparation for running tutorials}
+  In the case of using MateriApps LIVE!
+  \begin{enumerate}
+  \item Confirm that ALPS tools work correctly
+\begin{lstlisting}
+$ pconfig
+\end{lstlisting}
+  \item Copy tutorial files
+\begin{lstlisting}
+$ cp -rp /usr/share/alps/tutorials $HOME
+\end{lstlisting}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[t,fragile]
   \frametitle{Miki's first ALPS simulation}
   \begin{itemize}
     \item Run simulations from Python (\href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:MC-02_Susceptibilities}{mc-02-susceptibilities})
