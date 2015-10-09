@@ -64,15 +64,14 @@
 \begin{semiverbatim}
 $ sudo apt-get install cmake-curses-gui libhdf5-dev \\
   liblapack-dev mpi-default-dev python-matplotlib \\
-  python-scipy boost-all-dev
+  python-scipy libboost-all-dev
 \end{semiverbatim}
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
-\$ wget -O - http://exa.phys.s.u-tokyo.ac.jp/archive/source/\\
-  alps-20140623-r7482.tar.gz | tar zxf -
+\$ wget -O - http://exa.phys.s.u-tokyo.ac.jp/archive/MateriApps/apt/pool/non-free/a/alps/alps_20150402~r7566.orig.tar.gz | tar zxf -
 \$ mkdir build && cd build
 \$ cmake -DCMAKE_INSTALL_PREFIX=${HOME}/alps \\
-  $HOME/alps-20140623-r7482
+  $HOME/alps-20150402~r7566
 \$ make
 \$ ctest
 \$ make install
