@@ -1,4 +1,4 @@
-ALPS/tutorial
+ALPS Tutorial
 =============
 
 CCMS hands-on materials for ALPS Library/Application / CCMS ALPS講習会のための資料
@@ -9,13 +9,13 @@ CCMS hands-on materials for ALPS Library/Application / CCMS ALPS講習会のた�
 Table of Contents / 内容
 ============================
 
-1. ALPS Tutorial - Overview / ALPSチュートリアル - 概要
+1. Overview / 概要
 2. Installation of ALPS / ALPSのインストール
-3. ALPS Application Tutorial (1) / ALPSアプリケーションチュートリアル(1)
+3. Application Tutorial (1) / アプリケーション実習(1)
 4. Introduction to Python / Python入門
 5. Introduction to ALPS Python / ALPS Python入門
-6. ALPS Application Tutorial (2) / ALPSアプリケーションチュートリアル(2)
-7. How to ``alpsize'' your application / アプリケーションのALPS化
+6. Application Tutorial (2) / アプリケーション実習(2)
+7. ``Alpsize'' your application / アプリケーションのALPS化
 
 Github repository of alps-tutorial
 ===================================
