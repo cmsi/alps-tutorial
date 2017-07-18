@@ -19,16 +19,17 @@ rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR/ja $DIR/en
 
 cp -fp overview/overview-normal.pdf $DIR/ja/01_overview.pdf
 cp -fp installation/installation-normal.pdf $DIR/ja/02_installation.pdf
-cp -fp tutorial/tutorial-normal.pdf $DIR/ja/03_tutorial.pdf
+cp -fp tutorial/tutorial1-normal.pdf $DIR/ja/03_tutorial1.pdf
 cp -fp python/python-normal.pdf $DIR/ja/04_python.pdf
 cp -fp pyalps/pyalps-normal.pdf $DIR/ja/05_pyalps.pdf
-cp -fp alpsize/alpsize-normal.pdf $DIR/ja/06_alpsize.pdf
+cp -fp tutorial/tutorial2-normal.pdf $DIR/ja/06_tutorial2.pdf
+cp -fp alpsize/alpsize-normal.pdf $DIR/ja/07_alpsize.pdf
 
 cp -fp python/python.ipynb $DIR/ja
 cp -fp pyalps/crash_course_pyalps.ipynb $DIR/ja
 
 cp -fp overview/overview-en-normal.pdf $DIR/en/01_overview.pdf
-cp -fp tutorial/tutorial-en-normal.pdf $DIR/en/03_tutorial.pdf
+cp -fp tutorial/tutorial2-en-normal.pdf $DIR/en/06_tutorial2.pdf
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR
@@ -38,16 +39,17 @@ rm -rf $DIR $DIR.tgz $DIR.zip && mkdir -p $DIR/ja $DIR/en
 
 cp -fp overview/overview-wide.pdf $DIR/ja/01_overview.pdf
 cp -fp installation/installation-wide.pdf $DIR/ja/02_installation.pdf
-cp -fp tutorial/tutorial-wide.pdf $DIR/ja/03_tutorial.pdf
+cp -fp tutorial/tutorial1-wide.pdf $DIR/ja/03_tutorial1.pdf
 cp -fp python/python-wide.pdf $DIR/ja/04_python.pdf
 cp -fp pyalps/pyalps-wide.pdf $DIR/ja/05_pyalps.pdf
-cp -fp alpsize/alpsize-wide.pdf $DIR/ja/06_alpsize.pdf
+cp -fp tutorial/tutorial2-wide.pdf $DIR/ja/06_tutorial2.pdf
+cp -fp alpsize/alpsize-wide.pdf $DIR/ja/07_alpsize.pdf
 
 cp -fp python/python.ipynb $DIR/ja
 cp -fp pyalps/crash_course_pyalps.ipynb $DIR/ja
 
 cp -fp overview/overview-en-wide.pdf $DIR/en/01_overview.pdf
-cp -fp tutorial/tutorial-en-wide.pdf $DIR/en/03_tutorial.pdf
+cp -fp tutorial/tutorial2-en-wide.pdf $DIR/en/06_tutorial2.pdf
 
 tar zcf $DIR.tgz $DIR
 zip -r $DIR.zip $DIR

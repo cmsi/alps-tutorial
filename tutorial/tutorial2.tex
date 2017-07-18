@@ -1,6 +1,6 @@
 %-*- coding:utf-8 -*-
 
-\title{ALPSチュートリアル -- アプリケーション実習}
+\title{ALPSチュートリアル -- アプリケーション実習(2)}
 
 \begin{document}
 
@@ -15,218 +15,8 @@
    \tableofcontents
 \end{frame}
 
-\section{最初のシミュレーション / First My ALPS Simulation}
-\subsection*{\redb\whiteb\greenm}
-
-\begin{frame}[t,fragile]{シミュレーションの前に -- 共通の操作}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item ターミナルを開く
-    \begin{itemize}
-    \item MateriAps LIVE!では、スタートメニュー ⇒「Accessories」⇒「LXTerminal」
-    \item macOSでは「ターミナル」アプリケーションを開く
-    \item リモートのワークステーションを使う場合には、手元でターミナルを開き、SSHログインする
-    \end{itemize}
-
-  \item パスの設定
-    \begin{itemize}
-    \item MateriAps LIVE!ではパスは設定済み
-    \item その他の環境では alpsvars.sh を実行する必要がある。
-
-      例) ALPSのインストール先が /usr/local の場合
-\begin{lstlisting}
-$ source /usr/local/alps/bin/alpsvars.sh
-\end{lstlisting}
-    \end{itemize}
-    
-  \item チュートリアルファイルのコピー
-    \begin{itemize}
-    \item MateriApps LIVE!では、チュートリアルファイルは /usr/share/alps/tutorials/ にある
-    \item その他の環境では、ALPSのインストール先に tutorials ディレクトリがあるはず
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]{二次元強磁性イジング模型の相転移シミュレーション(1)}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item 相転移を起こす磁性体の最も単純化した模型
-    \[
-      {\cal H} = - J \sum_{\langle i,j \rangle} \sigma_i \sigma_j \qquad (\sigma = \pm 1)
-      \]
-    \item 臨界温度( $T_{\rm c}=2.269\cdots$)で連続相転移が起こる
-    \item 高温 ($T > T_{\rm c}$): 常磁性相、エントロピーの効果で長距離秩序なし
-    \item 低温 ($T < T_{\rm c}$): 強磁性相、相互作用の効果で長距離秩序が現れる
-    \item 臨界点で比熱や帯磁率は発散 (臨界現象)
-    \item simplemc による古典モンテカルロ法(メトロポリス法)による平衡状態のシミュレーション
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]{二次元強磁性イジング模型の相転移シミュレーション(2)}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item チュートリアルファイルのコピー
-\begin{lstlisting}
-$ cp -r /usr/share/alps/tutorials $HOME
-$ cd $HOME/tutorials/mc-09-snapshot
-\end{lstlisting}
-  \item パラメータの変換 (一群のXMLファイル parm9a.*.in.xml の生成)
-\begin{lstlisting}
-$ parameter2xml parm9a
-\end{lstlisting}
-  \item シミュレーションの実行
-\begin{lstlisting}
-$ simplemc parm9a.in.xml
-\end{lstlisting}
-\item 結果のプロット
-\begin{lstlisting}
-$ python plot9a.py
-\end{lstlisting}
-\item プロットウインドウ(3枚)を閉じる
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]{パラメータファイルの中身 (parm9a)}
-  \begin{itemize}
-    \setlength{\itemsep}{1em}
-  \item ``less parm9a'' で中身を見てみる
-    \begin{itemize}
-    \item \verb+LATTICE="square lattice"+ : 正方格子を指定
-    \item \verb+J=1+ : 強磁性相互作用 ($J>0$)
-    \item \verb+ALGORITHM="ising"+ : イジング模型のシミュレータを使う
-    \item \verb+SWEEPS=65536+ : モンテカルロステップ数
-    \item \verb+L=8+ : 格子の一辺の長さ ($L=8, 16, 24$)
-    \item \verb+{ T = 5.0 }+ : シミュレーションする温度のリスト
-    \end{itemize}
-  \item 中括弧に入っていないのは共通パラメータ
-  \item 中括弧ごとにシミュレーションが実行される(温度毎に XML ファイル(*.task*.*)が作られる)
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile,shrink]{プロットファイルの中身 (plot9a.py)}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item データファイルからの結果の抽出
-\begin{lstlisting}
-data = pyalps.loadMeasurements(pyalps.getResultFiles(prefix='parm9a'),
-  ['Specific Heat','Magnetization Density^2','Binder Ratio of Magnetization'])
-\end{lstlisting}
-  \item システムサイズごとに整理
-\begin{lstlisting}
-for item in pyalps.flatten(data):
-    item.props['L'] = int(item.props['L'])
-magnetization2 = pyalps.collectXY(data, x='T',y='Magnetization Density^2’,
-  foreach=['L'])
-magnetization2.sort(key=lambda item: item.props['L'])
-\end{lstlisting}
-  \item matplotlib をつかってプロット
-\begin{lstlisting}
-pyplot.figure()
-alpsplot.plot(magnetization2)
-\end{lstlisting}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]{イジング模型のスナップショット(スピン状態)の可視化}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item 常磁性相、臨界点近傍、強磁性相でのスピン状態を実際に見てみる
-  \item パラメータファイル(parm9b)に、パラメタ SNAPSHOT\_INTERVAL が追加されている
-  \item パラメータの変換
-\begin{lstlisting}
-$ parameter2xml parm9b
-\end{lstlisting}
-  \item シミュレーションの実行
-\begin{lstlisting}
-$ simplemc parm9b.in.xml
-\end{lstlisting}
-\item スナップショットの変換
-\begin{lstlisting}
-$ snap2vtk parm9b.*.snap
-\end{lstlisting}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]{ParaViewによるスナップショットの可視化(1)}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item ParaView を起動 (スタートメニュー⇒「Education」⇒「ParaView Viewer」
-  \item file ⇒ open ⇒ parm9b.task1.clone1.16384.vtk を選択 ⇒ OK ⇒ Apply
-    \begin{itemize}
-    \item filters ⇒ common ⇒ glyph (あるいは地球儀のような形のアイコンをクリック)
-    \item Glyph Type = Box, X Length = 0.08, Y Length = 0.08, Maximum Number of Points = 20000 ⇒ Apply
-    \end{itemize}
-  \item OpenGL window の右上の水平分割アイコンをクリック
-  \item file ⇒ open ⇒ parm9b.task2.clone1.16384.vtk を選択 ⇒ OK ⇒ Apply
-    \begin{itemize}
-    \item filters ⇒ common ⇒ glyph (あるいは地球儀のような形のアイコンをクリック)
-    \item Glyph を同様に設定
-    \end{itemize}
-  \item OpenGL window の右上の水平分割アイコンをクリック
-  \item file ⇒ open ⇒ parm9b.task3.clone1.16384.vtk を選択 ⇒ OK ⇒ Apply
-    \begin{itemize}
-      \item filters ⇒ common ⇒ glyph (あるいは地球儀のような形のアイコンをクリック)
-      \item Glyph を同様に設定
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]{ParaViewによるスナップショットの可視化(2)}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item カメラのリンク
-    \begin{itemize}
-    \item ウインドウのサイズが同じになるように調整
-    \item 真ん中のウインドウをクリック ⇒ Tools ⇒ Add Camera Link ⇒ 左のウインドウをクリック
-    \item (あるいは 真ん中のウインドウ右クリック ⇒ Link Camera... を選択 ⇒ 左のウインドウをクリック)
-    \item 同様に右のウインドウも左のウィンドウとリンク
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]{二次元古典XY模型のスピン渦の可視化}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item パラメータファイルの変換・シミュレーションの実行・スナップショットの変換
-\begin{lstlisting}
-$ parameter2xml parm9c
-$ simplemc parm9c.in.xml
-$ snap2vtk parm9c.*.snap
-\end{lstlisting}
-パラメータファイル中で\verb+ALGORITHM="xy"+となっていることに注意
-  \item ParaView による可視化
-    \begin{itemize}
-      \item file ⇒ open ⇒ parm9c.task1.clone1.16384.vtk を選択 ⇒ OK
-      \item properties タブ ⇒ Apply
-      \item Glyph を追加
-      \item Glyph Type = Arrow, Tip Radius = 0.2, Shaft Radius = 0.06, Translate = -0.1 0 0, Scale = 0.2 0.2 0.2 -> Apply
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]{二次元三角格子反強磁性古典ハイゼンベルグ模型}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item パラメータファイルの変換・シミュレーションの実行・スナップショットの変換
-\begin{lstlisting}
-$ parameter2xml parm9d
-$ simplemc parm9d.in.xml
-$ snap2vtk parm9d.*.snap
-\end{lstlisting}
-パラメータ\verb+LATTICE+, \verb+J+, \verb+ALGORITHM+, \verb+H+に注目
-  \item ParaView による可視化
-    \begin{itemize}
-      \item file ⇒ open ⇒ parm9d.task1.clone1.16384.vtkを選択 ⇒  OK
-      \item properties タブ ⇒ Apply
-      \item Glyph を追加し Arrow を設定
-      \item Displayタグ ⇒ Color by ⇒ Glyph Vector ⇒ Z ⇒ Properties タグ
-      \item もう一枚 (parm9d.task2.clone1.16384.vtk) も表示、カメラをリンク
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
 \section{ALPSシミュレーションの流れ / Workflow of ALPS Simulation}
-\subsection*{\redb\whiteb\greenb}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}{ALPSシミュレーションのワークフロー}
   \begin{center}
@@ -272,7 +62,7 @@ $ python tutorial2full.py
 \end{frame}
 
 \section{入力ファイルの準備 / Preparation of Input Files}
-\subsection*{\redb\whiteb\greenb}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}{ALPSシミュレーションの入出力}
   \begin{itemize}
@@ -340,7 +130,7 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
-\subsection*{\redb\whiteb\greenb}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}{Job XML ファイル(マスターファイル)}
   \begin{center}
@@ -432,7 +222,7 @@ THERMALIZATION = SWEEPS/8;
 \end{frame}
 
 \section{ALPSアプリケーションの実行 / Running ALPS Applications}
-\subsection*{\redb\whiteb\greenb}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}[t,fragile]{ALPSアプリケーションの実行方法}
   \begin{enumerate}
@@ -450,7 +240,7 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
 \end{frame}
 
 \section{結果のプロット / Plotting Simulation Results}
-\subsection*{\redb\whiteb\greenb}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}[t,fragile]{シミュレーション結果のプロット}
   \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
@@ -665,7 +455,7 @@ $ ipython notebook --pylab inline
 \end{frame}
 
 \section{もっとチュートリアル / Further Tutorials}
-\subsection*{\redb\whiteb\greenb}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}[t,fragile]{より高度なチュートリアル}
   \begin{itemize}
