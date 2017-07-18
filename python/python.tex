@@ -1,6 +1,6 @@
 \lstset{language={Python2}}
 
-\title{ALPSチュートリアル: Python}
+\title{ALPSチュートリアル: Python入門}
 
 \begin{document}
 
@@ -13,7 +13,30 @@
   \tableofcontents
 \end{frame}
 
+\section{Pythonの実行}
+\subsection*{\redm\whiteb\greenb}
+
+\begin{frame}[t, fragile]
+\frametitle{Pythonの実行}
+
+\begin{itemize}
+\item ターミナル(LXTerminal)の中で python と入力しリターンキーを押すと Python インタプリタが起動します.
+  \begin{itemize}
+  \item 各行を入力しリターンキーを押すと、入力内容がすぐさま実行されます.
+  \item Python を終了するには Ctrl-D を入力する.
+  \end{itemize}
+\item Interactive Python (ipython)では、矢印キー(↑)や Ctrl-R で履歴検索ができたり、Tab キーで関数名の補完ができて便利
+  \begin{itemize}
+  \item MateriApps LIVE!のLXTerminalでは、背景が黒、ipythonのプロンプトが青で表示され見辛くなっています.
+  \item LXTerminalの「Edit」メニューから「Preferences」を開き、背景を白、文字色を黒に設定し直すことをおすすめします.
+  \end{itemize}
+\item 以下、頭行の\verb+>>>+は Python の出力するプロンプトです. 入力する必要はありません.
+\end{itemize}
+\end{frame}
+
 \section{データ型}
+\subsection*{\redm\whiteb\greenb}
+
 \begin{frame}[t, fragile]
 \frametitle{基本的なデータ型}
 
@@ -37,22 +60,13 @@
 
 \end{frame}
 
-\begin{frame}[t,fragile,shrink]
+\begin{frame}[t,fragile]
 \frametitle{数値}
 
 整数, 倍精度浮動小数, 複素数の 3 種類あります．
-\alert{整数は Python のバージョンで扱いが変わります．}
-単精度浮動小数はありません．
 
 \begin{itemize}
  \item int, (long)
-       \begin{itemize}
-	\item python3 では int,long は int に統合されました．
-	\item \alert{python2x と python3x では整数同士の演算で計算結果がちがいます!}
-
-	      python2:  -1/2 = -1, python3: -1/2 = -0.5
-
-       \end{itemize}
  \item float は倍精度のみです．単精度はありません．
  \item complex
        \begin{itemize}
@@ -63,18 +77,18 @@
 
        \begin{columns}
 	\begin{column}{4cm}
-	 \begin{lstlisting}
-	  >>> a = 1.8
-	  >>> int(a)
-	  1
-	 \end{lstlisting}	 
+\begin{lstlisting}
+>>> a = 1.8
+>>> int(a)
+1
+\end{lstlisting}	 
 	\end{column}
 	\begin{column}{4cm}
-	 \begin{lstlisting}
-	  >>> a = 3
-	  >>> float(a)
-	  3.0
-	 \end{lstlisting}	 
+\begin{lstlisting}
+>>> a = 3
+>>> float(a)
+3.0
+\end{lstlisting}	 
 	\end{column}
        \end{columns}
 \end{itemize}
@@ -117,6 +131,8 @@
   \item ここではリストの要素として数値のみを扱ったが，python オブジェクトなら何でも リストの要素として扱える
  \end{itemize}
 \end{frame}
+
+\subsection*{\redm\whitem\greenb}
 
 \begin{frame}[t,fragile]
 \frametitle{list のメソッド}
@@ -240,6 +256,7 @@ TypeError: 'tuple' object does not support item assignment
 
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}[t,fragile]
 \frametitle{辞書型の使い方}
@@ -262,7 +279,10 @@ TypeError: 'tuple' object does not support item assignment
 \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
+
 \section{制御フロー}
+\subsection*{\redm\whitem\greenb}
 
 \begin{frame}[t,fragile]
 \frametitle{if-elif-else 文の使い方}
@@ -329,7 +349,10 @@ while a in range(10):
 \end{itemize}
 
 \end{frame}
+
 \section{関数}
+\subsection*{\redm\whiteb\greenb}
+
 \begin{frame}[t,fragile]
 \frametitle{関数}
 \begin{lstlisting}
@@ -348,7 +371,9 @@ while a in range(10):
 \end{itemize}
 \end{frame}
 
-\section{モジュール}
+\section{モジュール(ライブラリ)}
+\subsection*{\redm\whiteb\greenb}
+
 \begin{frame}[t]
 \frametitle{Python プログラムの階層構造}
 \begin{itemize}
@@ -382,6 +407,8 @@ while a in range(10):
 \end{frame}
 
 \section{ファイルの読み書き}
+\subsection*{\redm\whitem\greenb}
+
 \begin{frame}[t,fragile]
 \frametitle{ファイルの読み書き}
 \begin{columns}
@@ -417,19 +444,183 @@ c 2.159
 \end{itemize}
 \end{frame}
 
+%% \section{環境設定}
+%% \begin{frame}[t,fragile]
+%% \frametitle{デフォルトの環境設定}
+%% 図の中で使われる文字のサイズや，図の縦・横のサイズなどをあらかじめ設定しておくことができます．
+%% \begin{itemize}
+%% \item matplotlib \$\{HOME\}/.matplotlib/matplotlibrc で設定する
+%% \begin{itemize}
+%% \item テンプレを \$PYTHONHOME/lib/site-packages/matplotlib/mpl-data/matplotlibrc からコピーして使う
+%% %% /opt/local//Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/matplotlib/mpl-data/matplotlibrc
+%% \item プロット時にウィンドウを開いて図を表示するには，Mac OS X の場合は次のような設定が必要
+%%   \begin{lstlisting}
+%% #backend : Agg
+%% backend : MacOSX
+%% \end{lstlisting}
+%% \item 逆にウィンドウを開きたくないなら Agg に設定する
+%% \item AGG: Anti-Grain Geometry. ベクトルデータを画像に描くライブラリ．C++ 用．
+%% \end{itemize}
+%% \end{itemize}
+
+%% \end{frame}
+
+%% \begin{frame}[t,fragile]
+%% \frametitle{動的に環境設定を行う}
+%% \begin{itemize}
+%% \item backend の設定は import matplotlib の直後にすること
+%%       \begin{lstlisting}
+%% >>> import matplotlib as mpl
+%% >>> mpl.use('Agg')
+%% \end{lstlisting}
+%% \item グラフのサイズやフォントのサイズの設定
+%%       \begin{lstlisting}
+%% >>> import pylab
+%% >>> params = {
+%% ...     'legend.fontsize': 10
+%% ...     'xtick.labelsize':  8
+%% ...     'ytick.labelsize':  8
+%% ...     'figure.figsize':  [width, height]}
+%% >>> pyalps.rcParams.update(params)
+%% \end{lstlisting}
+%% \end{itemize}
+%% \end{frame}
+
+\section{Matplotlib入門}
+\subsection*{\redm\whiteb\greenb}
+
+\begin{frame}[t,fragile]
+\frametitle{簡単な図をプロットしてみる}
+\begin{columns}
+\begin{column}{6cm}
+$y = x^2$ のプロット
+\begin{lstlisting}
+>>> import pylab as pl
+>>> x = range(-10,10)
+>>> y = [i*i for i in x]
+# シンボルの色を赤(r)，形を丸(o)に設定
+>>> pl.plot(x, y, 'ro')
+...[<matplotlib.lines.Line2D at 0x114c82710>]
+# 拡張子で保存のファイル形式が決まる
+>>> pl.savefig('x2.pdf') 
+>>> pl.show()
+\end{lstlisting}
+\end{column}
+
+\begin{column}{6cm}
+\includegraphics[width=\textwidth]{x2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection*{\redm\whitem\greenb}
+
+\begin{frame}[t,fragile]
+\frametitle{少し複雑な図をプロットしてみる}
+\begin{lstlisting}
+>>> import math as m       # cos を使うため
+>>> x = range(-10,10)
+>>> y1 = [i*i for i in x]
+>>> y2 = [i*i*i for i in x]
+>>> y3 = [m.cos(2 * m.pi * i/20) for i in x]
+# 図を上下 2 段に並べてプロットします
+>>> pl.subplot(211)        # 上側の図を書き始めます
+>>> pl.plot(x, y1, 'ro')   # 1 つのグラフに
+>>> pl.plot(x, y2, 'b^')   # 2 つのデータセットをプロット
+>>> pl.title('$x^2$ and $x^3$')   # 図のタイトル．TeX も Ok!
+>>> pl.legend(('$y1$', '$y2$'), numpoints=1)  # 凡例
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t,fragile]
+\frametitle{続き}
+\begin{columns}
+\begin{column}{6cm}
+\begin{lstlisting}
+# 下側の図を書き始めます
+>>> pl.subplot(212)        
+>>> pl.plot(x, y3, 'gs')
+>>> pl.title('$\cos(x)$')
+>>> pl.xlabel('x')
+>>> pl.ylabel('y')
+>>> pl.savefig('x3.pdf') 
+>>> pl.show()
+\end{lstlisting}
+\end{column}
+\begin{column}{6cm}
+出来上がり!
+\begin{center}
+\includegraphics[width=\textwidth]{x3.pdf}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+%\section{Figure と Axes}
+\begin{frame}[t,fragile]
+\frametitle{Figure と Axes}
+Matplotlib の描画領域には 2 つの座標系があります．
+Figure と Axes です．1 つの Figure は 1枚の紙で，そこに複数のグラフ (Axes) を描くというイメージです．
+
+Subplot は Axes の特殊なものです．subplot(col,row,pos) で描画位置を指定できます．
+
+\begin{center}
+\includegraphics[scale=0.4]{fig_ax.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[t,fragile]
+\frametitle{Current Figure/Axes vs. オブジェクト指向}
+今まで紹介してきたプロットは，暗黙のうちに Current Figure/Axes への操作を行っていました．複数の Figure を同時に扱いたい場合はオブジェクト指向的なプロット方法が便利です．
+
+\begin{columns}
+\begin{column}{.52\textwidth}
+\begin{lstlisting}
+import pylab as pl
+
+pl.figure() 
+pl.plot(pl.rand(1000), 'o')
+
+pl.figure()
+pl.plot(pl.rand(1000), '^')
+
+pl.show()
+\end{lstlisting}
+\end{column}
+
+\begin{column}{.52\textwidth}
+\begin{lstlisting}
+import pylab as pl
+fig1 = pl.figure() 
+fig2 = pl.figure()
+
+ax1 = fig1.add_subplot(111)  
+ax2 = fig2.add_subplot(111)  
+
+ax1.plot(pl.rand(1000), 'o')
+ax2.plot(pl.rand(1000), '^')
+
+pl.show()
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
 \section{参考文献}
+\subsection*{\redm\whiteb\greenb}
+
 \begin{frame}[t]
 \frametitle{参考文献}
 \begin{itemize}
 \item 科学技術計算のために python を始めよう
-      \url{http://www.ike-dyn.ritsumei.ac.jp/~uchida/scipy-lecture-notes/intro/index.html}
+  \url{http://www.ike-dyn.ritsumei.ac.jp/~uchida/scipy-lecture-notes/intro/index.html}
 \item 初心者のはまりどころ \url{http://webtech-walker.com/archive/2010/10/13191417.html}
 \item Doug Hellmannさん \url{http://doughellmann.com}
-      \begin{itemize}
-      \item 標準モジュールなどの使い方が例とともに書いてあり分かりやすい
-      \end{itemize}
+  \begin{itemize}
+  \item 標準モジュールなどの使い方が例とともに書いてあり分かりやすい
+  \end{itemize}
+\item matplotlib入門 \url{http://yubais.net/doc/matplotlib/}
 \end{itemize}
-
 \end{frame}
 
 

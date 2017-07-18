@@ -5,5 +5,4 @@ default clean distclean:
 	(cd tutorial && make $@)
 	(cd python && make $@)
 	(cd pyalps && make $@)
-	(cd matplotlib && make $@)
 	(cd alpsize && make $@)
