@@ -31,14 +31,14 @@ How to generte PDF files / PDF生成方法
 Pre-generated PDF files / 生成済のPDFファイル
 ======================================================
 
-Pre-generated PDF files (normal screen and wide screen versions) are available at SourceForge:
+Pre-generated PDF files (normal screen and wide screen versions) are available at
 
-* [http://sourceforge.net/projects/alps-tutorial/files](http://sourceforge.net/projects/alps-tutorial/files)
+* https://github.com/cmsi/alps-tutorial/releases
 
 Authors / 著者
 ====================
 
-CMSI hands-on materials for ALPS Library/Application are written and maintained by [Japanese ALPS suppor team](https://github.com/cmsi/alps-tutorial/graphs/contributors?type=a)
+CCMS hands-on materials for ALPS Library/Application are written and maintained by [Japan ALPS support team](https://github.com/cmsi/alps-tutorial/graphs/contributors?type=a)
 
 License / ライセンス
 ==========================
