@@ -14,8 +14,8 @@
 \end{frame}
 
 \section{ALPS python}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
  \frametitle{Launching Python}
  \begin{itemize}
@@ -32,8 +32,8 @@ $ python
 \end{frame}
 
 \section{パラメータの準備}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
  \frametitle{Importing ALPS modules}
 
@@ -58,10 +58,9 @@ al.CycleMarkers
 ...            
 \end{lstlisting}
 \end{itemize}
- 
 \end{frame}
 
-
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Preparing parameter}
 
@@ -85,6 +84,7 @@ al.CycleMarkers
 % [ {'LATTICE': "square lattice", 'T': t,  'J': 1 ,'THERMALIZATION': 1000, 'SWEEPS': 100000,'UPDATE': "cluster", 'MODEL': "Ising", 'L': 8} for t in [1.5,2,2.5]]
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Preparing input XML files}
 パラメータから XML 形式の入力ファイルを作成する
@@ -105,8 +105,8 @@ ALPS.xsl parm1.in.xml parm1.task1.in.xml parm1.task2.in.xml parm1.task3.in.xml
 \end{frame}
 
 \section{シミュレーションの実行}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Running simulation on serial machine}
 \begin{lstlisting}
@@ -121,11 +121,9 @@ Finished with everything.
 \begin{itemize}
 \item 実行が終了すると parm1.out.xml, parm1.task1.out.h5, $\cdots$ といったファイルが出力されている
 \end{itemize}
- 
 \end{frame}
 
 \subsection*{\redm\whitem\greenb}
-
 \begin{frame}[t,fragile]
 \frametitle{Running simulation on parallel machine}
 \begin{lstlisting}
@@ -134,12 +132,11 @@ Finished with everything.
 \begin{itemize}
 \item MPI=4 で MPI プロセス 4 並列でシミュレーションを実行することを指示
 \end{itemize}
-
 \end{frame}
 
 \section{実行結果の読み込み}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
  \frametitle{Getting result files}
 \begin{lstlisting}
@@ -153,6 +150,7 @@ Finished with everything.
  \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Loading results}
 指定したファイル名のリストから，指定した物理量(複数可)を取り出す
@@ -168,6 +166,7 @@ props={'observable': 'Magnetization^2', 'THERMALIZATION': 10000.0, 'J': -1.0, ..
 \end{lstlisting}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{データの構造}
 シミュレーション結果を表すクラス
@@ -192,8 +191,8 @@ array([0.083339021352 +/- 0.00038780838614], dtype=object)
 \end{frame}
 
 \section{結果のプロット}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Plotting the results}
 \begin{lstlisting}
@@ -212,6 +211,7 @@ array([0.986621683313 +/- 5.59763992999e-05,
 \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Plotting in Python using matplotlib}
 \begin{lstlisting}
@@ -226,6 +226,7 @@ array([0.986621683313 +/- 5.59763992999e-05,
 \includegraphics[scale=0.2]{ising.pdf}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Converting to other formats}
 ほかのデータフォーマットに変換できる
@@ -244,12 +245,11 @@ text 形式の出力例
 2.0	0.912126100521 +/- 0.000350201474667
 2.5	0.603552651599 +/- 0.00146115425377
 \end{lstlisting}
-
 \end{frame}
 
 \section{結果の評価}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Example of evaluating data}
 binder 比 $<m^2>/<|m|>^2$ の計算をしてみる
