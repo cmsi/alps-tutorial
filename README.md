@@ -15,12 +15,12 @@ Table of Contents / 内容
 4. Introduction to Python / Python入門
 5. Introduction to ALPS Python / ALPS Python入門
 6. Application Tutorial (2) / アプリケーション実習(2)
-7. ``Alpsize'' your application / アプリケーションのALPS化
+7. "Alpsize" your application / アプリケーションのALPS化
 
 Github repository of alps-tutorial
 ===================================
 
-All the LaTeX sources and figures of ALPS tutorial materials are available on Github:
+All LaTeX sources and figures of ALPS tutorial materials are available on Github:
 
 * https://github.com/cmsi/alps-tutorial
 
@@ -39,7 +39,7 @@ Pre-generated PDF files (normal screen and wide screen versions) are available a
 Authors / 著者
 ====================
 
-CCMS hands-on materials for ALPS Library/Application are written and maintained by [Japan ALPS support team](https://github.com/cmsi/alps-tutorial/graphs/contributors?type=a)
+CCMS hands-on materials for ALPS Library/Application are written and maintained by [Japanese ALPS support team](https://github.com/cmsi/alps-tutorial/graphs/contributors?type=a) <alps@exa.phys.s.u-tokyo.ac.jp>
 
 License / ライセンス
 ==========================
