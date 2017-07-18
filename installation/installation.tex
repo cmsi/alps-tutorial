@@ -46,10 +46,11 @@
    \item MateriApps LIVE! VirtualBox版: VirtualBox仮想化アプリにMateriApps LIVE!仮想ハードディスクイメージ(OVA)をインポートし, 仮想マシン上で起動
      \begin{itemize}
      \item 動作が少し遅く、メモリがより多く必要であるが、簡単・確実
+     \item \alert{本チュートリアルではこちらを利用} [\href{https://www.slideshare.net/cms\_initiative/materiapps-live-65694832}{設定方法}]
      \end{itemize}
    \item MateriApps LIVE! ブート用USB: MateriApps LIVE! ブートイメージが格納されたUSBメモリから直接起動
      \begin{itemize}
-     \item 起動がうまくいかないことも多い
+     \item PCによっては起動がうまくいかないことも
      \end{itemize}
  \end{itemize}
 \end{frame}
@@ -81,7 +82,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,shrink=10]
+\begin{frame}[fragile,shrink]
   \frametitle{Debian系Linuxへのインストール例}
   \begin{enumerate}
   \item 必要なライブラリをapt-getでインストール(rootでの作業)
@@ -93,11 +94,12 @@ $ sudo apt-get install cmake-curses-gui libhdf5-dev \\
   \item ALPS webページからソースをダウンロードして展開
   \item ALPSのビルドとインストール
 \begin{semiverbatim}
-\$ mkdir build && cd build
-\$ cmake -DCMAKE_INSTALL_PREFIX=${HOME}/alps $HOME/somewhere/alps...
-\$ make
-\$ ctest
-\$ make install
+$ mkdir build && cd build
+$ cmake -DCMAKE_INSTALL_PREFIX=${HOME}/alps \\
+  $HOME/somewhere/alps...
+$ make
+$ ctest
+$ make install
 \end{semiverbatim}
   \end{enumerate}
 \end{frame}
@@ -107,26 +109,27 @@ $ sudo apt-get install cmake-curses-gui libhdf5-dev \\
   \begin{enumerate}
   \item Xcodeコマンドラインツールをインストール
 \begin{semiverbatim}
-\$ sudo xcode-select —install
+$ sudo xcode-select —install
 \end{semiverbatim}
   \item MateriApps Installerをダウンロード
 \begin{semiverbatim}
-\$ wget https://github.com/wistaria/MateriAppsInstaller/archive/master.tar.gz
-\$ tar zxvf master.tar.gz
+$ wget https://github.com/wistaria/MateriAppsInstaller/\\
+  archive/master.tar.gz
+$ tar zxvf master.tar.gz
 \end{semiverbatim}
   \item 
     必要なライブラリを\href{http://www.macports.org/}{MacPorts}でインストール(rootでの作業)
 \begin{semiverbatim}
-\$ sudo sudo sh MateriAppsInstaller-master/macosx/ports.sh
+$ sudo sh MateriAppsInstaller-master/macosx/ports.sh
 \end{semiverbatim}
   \item BoostとALPSのビルド
 \begin{semiverbatim}
-\$ mkdir -p $HOME/materiapps $HOME/build
-\$ sh MateriAppsInstaller-master/00_env/default.sh
-\$ sh MateriAppsInstaller-master/25_boost/macos.sh
-\$ sh MateriAppsInstaller-master/25_boost/link.sh
-\$ sh MateriAppsInstaller-master/70_alps/macos.sh
-\$ sh MateriAppsInstaller-master/70_alps/link.sh
+$ mkdir -p $HOME/materiapps $HOME/build
+$ sh MateriAppsInstaller-master/00_env/default.sh
+$ sh MateriAppsInstaller-master/25_boost/macos.sh
+$ sh MateriAppsInstaller-master/25_boost/link.sh
+$ sh MateriAppsInstaller-master/70_alps/macos.sh
+$ sh MateriAppsInstaller-master/70_alps/link.sh
 \end{semiverbatim}
   \end{enumerate}
 \end{frame}
