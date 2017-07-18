@@ -279,9 +279,9 @@ TypeError: 'tuple' object does not support item assignment
 \begin{frame}[t,fragile]
 \frametitle{if-elif-else 文の使い方}
 if-elif-else で条件分岐を作れる.
-コロン\verb|:| とインデントの深さ（文頭の空白の数）でブロックを表現する.
+インデントの深さ（文頭の空白の数）でブロックを表現する.
 \begin{lstlisting}[stepnumber=1]
->>>if a > 0:
+>>>if a > 0: # コロン : を忘れずに
 >>>    print '0'
 >>>elif a == 0:
 >>>    print '1'
@@ -298,11 +298,13 @@ if-elif-else で条件分岐を作れる.
 \end{lstlisting}
 \end{frame}
 
-\subsection*{\redm\whitem\greenb}
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{for 文の使い方}
+\verb|in| の後ろにあるシーケンス（リストやタプルなど）の中身を, 先頭から順に\verb|i| へと代入しながら, ブロックを繰り返し実行する.
+ブロックはインデントの深さ（文頭の空白の数）で表現する.
 \begin{lstlisting}
->>>for i in ('a', 'b', 'c', 'd'):
+>>>for i in ('a', 'b', 'c', 'd'): # コロン : を忘れずに
 >>>    print i,    # コンマで改行を抑制している
 a b c d
 \end{lstlisting}
@@ -326,7 +328,7 @@ a b c d
 \frametitle{while 文の使い方}
 \begin{lstlisting}
 a = 0
-while a in range(10):
+while a in range(10): # コロン : を忘れずに
     a += 1
     if a < 3:
         continue
@@ -349,7 +351,7 @@ while a in range(10):
 \begin{frame}[t,fragile]
 \frametitle{関数}
 \begin{lstlisting}
->>> def f(x, y):
+>>> def f(x, y): # コロン : を忘れずに
 >>> ....z = x * y  # 空白 4 つのインデント!
 >>> ....for i in [1, 2, 3]:
 >>> ....    z += i
@@ -359,7 +361,7 @@ while a in range(10):
 12
 \end{lstlisting}
 \begin{itemize}
-\item def 関数名(変数,...): で関数が定義できる
+\item def 関数名(引数,...): で関数が定義できる
 \item Python ではインデント (ここの例では空白4つ) によりスコープを制御する
 \end{itemize}
 \end{frame}
@@ -464,7 +466,7 @@ c 2.159
       る. 
 \item 読み込んだストリングを浮動小数点にキャストしている. 
 \end{itemize}
-  上の例では\verb|with open() as f| と同様に, for 文の終了とともにファイルは自動で閉じられる. 
+  上の例では\verb|with open() as f:| と同様に, for 文の終了とともにファイルは自動で閉じられる. 
 \end{frame}
 
 %% \section{環境設定}
@@ -534,6 +536,8 @@ $y = x^2$ のプロット
 \includegraphics[width=\textwidth]{x2.pdf}
 \end{column}
 \end{columns}
+\verb|ro| に \verb|-| を付け加えるとシンボルが実線で結ばれる.
+他のシンボルなどは \verb|pl.plot?| としてヘルプを参照.
 \end{frame}
 
 \subsection*{\redm\whitem\greenb}
@@ -546,12 +550,13 @@ $y = x^2$ のプロット
 >>> y2 = [i*i*i for i in x]
 >>> y3 = [m.cos(2 * m.pi * i/20) for i in x]
 # 図を上下 2 段に並べてプロットします
->>> pl.subplot(211)        # 上側の図を書き始める
+>>> pl.subplot(211)        # 上側の図を書き始める. 2行1列の1つ目.
 >>> pl.plot(x, y1, 'ro')   # 1 つのグラフに
->>> pl.plot(x, y2, 'b^')   # 2 つのデータセットをプロット
+>>> pl.plot(x, y2, 'b^')   # 2 つのデータセットをプロット. 青(b)の上向き三角(^)
 >>> pl.title('$x^2$ and $x^3$')   # 図のタイトル. TeX も Ok!
 >>> pl.legend(('$y1$', '$y2$'), numpoints=1)  # 凡例
 \end{lstlisting}
+次のページへ続く
 \end{frame}
 
 \subsection*{\redm\whitem\greenb}
@@ -560,9 +565,9 @@ $y = x^2$ のプロット
 \begin{columns}
 \begin{column}{6cm}
 \begin{lstlisting}
-# 下側の図を書き始める
->>> pl.subplot(212)        
->>> pl.plot(x, y3, 'gs')
+# 下側の図を書き始める.
+>>> pl.subplot(212) # 2行1列の2つ目
+>>> pl.plot(x, y3, 'gs') # 緑(g) の四角(s)
 >>> pl.title('$\cos(x)$')
 >>> pl.xlabel('x')
 >>> pl.ylabel('y')
