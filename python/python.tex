@@ -14,11 +14,10 @@
 \end{frame}
 
 \section{Pythonの実行}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t, fragile]
 \frametitle{Pythonの実行}
-
 \begin{itemize}
 \item ターミナル(LXTerminal)の中で python と入力しリターンキーを押すと Python インタプリタが起動する.
   \begin{itemize}
@@ -35,11 +34,10 @@
 \end{frame}
 
 \section{データ型}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t, fragile]
 \frametitle{基本的なデータ型}
-
 \alert{このセクションでは Python で使われる基本的なデータ型を紹介する. } array は numpy モジュールで定義されている型で, Python がもともと持っ
 ている型ではないが, 科学計算では非常に便利な性質を持つので紹介する. 
 
@@ -55,12 +53,11 @@
   \textbf{array}      & numpy array([1,2,3]) \\
  \end{tabular}
 \end{table}
-
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{数値}
-
 整数, 倍精度浮動小数, 複素数の 3 種類ある. 
 
 \begin{itemize}
@@ -90,12 +87,11 @@
 	\end{column}
        \end{columns}
 \end{itemize}
-
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{文字列}
-
 \begin{lstlisting}
 >>> s = 'ab:cd:ef'   # 文字列の定義
 >>> s = s.split(':') # 指定した文字で文字列を分割
@@ -113,6 +109,7 @@
 \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
  \frametitle{list, tuple}
  \begin{lstlisting}
@@ -131,7 +128,6 @@
 \end{frame}
 
 \subsection*{\redm\whitem\greenb}
-
 \begin{frame}[t,fragile]
 \frametitle{list のメソッド}
 \begin{lstlisting}
@@ -154,9 +150,7 @@
 \end{itemize}
 \end{frame}
 
-
-
-
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{list と tuple の違う点(1)}
 \begin{lstlisting}
@@ -172,6 +166,7 @@ list
 \end{lstlisting}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{list と tuple の違う点(2)}
 \begin{lstlisting}
@@ -188,9 +183,9 @@ TypeError: 'tuple' object does not support item assignment
 \item tuple の要素の値は変更できない. 
 \item tuple は辞書のキーに登録できる. list は不可. 
 \end{itemize}
-
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{list のコピー}
 浅いコピーと深いコピーの 2 種類ある
@@ -217,9 +212,9 @@ TypeError: 'tuple' object does not support item assignment
 \end{lstlisting}
 \end{column}
 \end{columns}
-
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{ネストされた list のコピー}
 \begin{columns}
@@ -254,11 +249,9 @@ TypeError: 'tuple' object does not support item assignment
 \item ネストされているとスライス ':' で返されるのがアドレスになってしまう
 \item ネストされた list で深いコピーをするには copy モジュールの deepcopy を使う
 \end{itemize}
-
 \end{frame}
 
 \subsection*{\redm\whiteb\greenb}
-
 \begin{frame}[t,fragile]
 \frametitle{辞書型の使い方}
 \begin{lstlisting}
@@ -280,11 +273,9 @@ TypeError: 'tuple' object does not support item assignment
 \end{itemize}
 \end{frame}
 
-\subsection*{\redm\whitem\greenb}
-
 \section{制御フロー}
-\subsection*{\redm\whitem\greenb}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{if-elif-else 文の使い方}
 if-elif-else で条件分岐を作れる.
@@ -305,9 +296,9 @@ if-elif-else で条件分岐を作れる.
 \begin{lstlisting}
 >>>val = val1 if cond1 else val2
 \end{lstlisting}
-
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{for 文の使い方}
 \begin{lstlisting}
@@ -330,6 +321,7 @@ a b c d
 \end{lstlisting}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{while 文の使い方}
 \begin{lstlisting}
@@ -349,12 +341,11 @@ while a in range(10):
 \item "val in シークエンス:" というフレーズは while だけでなく if, for など至る所で使える.
 \item continue, break も同じく if, for などでも使える.
 \end{itemize}
-
 \end{frame}
 
 \section{関数}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{関数}
 \begin{lstlisting}
@@ -374,8 +365,8 @@ while a in range(10):
 \end{frame}
 
 \section{モジュール(ライブラリ)}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t]
 \frametitle{Python プログラムの階層構造}
 \begin{itemize}
@@ -389,6 +380,7 @@ while a in range(10):
 \includegraphics[width=\textwidth]{module.pdf}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{モジュールの読み込み}
 \begin{lstlisting}
@@ -405,12 +397,11 @@ while a in range(10):
 \item fff モジュール中の ggg 関数を呼び出している. 
 \item 呼び出し方により名前空間の階層が変わる. 
 \end{itemize}
-
 \end{frame}
 
 \section{ファイルの読み書き}
-\subsection*{\redm\whitem\greenb}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{ファイルの読み書き}
 \begin{columns}
@@ -519,8 +510,8 @@ c 2.159
 %% \end{frame}
 
 \section{Matplotlib入門}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{簡単な図をプロットしてみる}
 \begin{columns}
@@ -546,7 +537,6 @@ $y = x^2$ のプロット
 \end{frame}
 
 \subsection*{\redm\whitem\greenb}
-
 \begin{frame}[t,fragile]
 \frametitle{少し複雑な図をプロットしてみる}
 \begin{lstlisting}
@@ -564,6 +554,7 @@ $y = x^2$ のプロット
 \end{lstlisting}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{続き}
 \begin{columns}
@@ -588,7 +579,7 @@ $y = x^2$ のプロット
 \end{columns}
 \end{frame}
 
-%\section{Figure と Axes}
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Figure と Axes}
 Matplotlib の描画領域には 2 つの座標系がある. 
@@ -601,6 +592,7 @@ Subplot は Axes の特殊なものです. subplot(col,row,pos) で描画位置�
 \end{center}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Current Figure/Axes vs. オブジェクト指向}
 今まで紹介してきたプロットは, 暗黙のうちに Current Figure/Axes への操作を行っていた. 複数の Figure を同時に扱いたい場合はオブジェクト指向的なプロット方法が便利.
@@ -639,8 +631,8 @@ pl.show()
 \end{frame}
 
 \section{参考文献}
-\subsection*{\redm\whiteb\greenb}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t]
 \frametitle{参考文献}
 \begin{itemize}
@@ -654,6 +646,5 @@ pl.show()
 \item matplotlib入門 \url{http://yubais.net/doc/matplotlib/}
 \end{itemize}
 \end{frame}
-
 
 \end{document}
