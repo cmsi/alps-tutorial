@@ -3,25 +3,26 @@ ALPS/tutorial
 
 CCMS hands-on materials for ALPS Library/Application / CCMS ALPS講習会のための資料
 
-* ALPS on MateriApps: [http://ma.cms-initiative.jp/ja/listapps/alps](http://ma.cms-initiative.jp/ja/listapps/alps)
-* ALPS: [http://alps.comp-phys.org](http://alps.comp-phys.org)
+* ALPS on MateriApps: http://ma.cms-initiative.jp/ja/listapps/alps
+* ALPS: http://alps.comp-phys.org
 
 Table of Contents / 内容
 ============================
 
-* ALPS Tutorial - Overview / ALPSチュートリアル - 概要
-* Installation of ALPS / ALPSのインストール
-* ALPS Application Tutorial / ALPSアプリケーションチュートリアル
-* Introduction to Python / Python入門
-* Introduction to ALPS Python / ALPS Python入門
-* How to ``alpsize'' your application / アプリケーションのALPS化
+1. ALPS Tutorial - Overview / ALPSチュートリアル - 概要
+2. Installation of ALPS / ALPSのインストール
+3. ALPS Application Tutorial (1) / ALPSアプリケーションチュートリアル(1)
+4. Introduction to Python / Python入門
+5. Introduction to ALPS Python / ALPS Python入門
+6. ALPS Application Tutorial (2) / ALPSアプリケーションチュートリアル(2)
+7. How to ``alpsize'' your application / アプリケーションのALPS化
 
 Github repository of alps-tutorial
 ===================================
 
-All the LaTeX sources and figures of ALPS tutorial materials available on Github:
+All the LaTeX sources and figures of ALPS tutorial materials are available on Github:
 
-* [https://github.com/cmsi/alps-tutorial](https://github.com/cmsi/alps-tutorial)
+* https://github.com/cmsi/alps-tutorial
 
 How to generte PDF files / PDF生成方法
 ==============================================
