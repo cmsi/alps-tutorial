@@ -100,6 +100,7 @@ ALPS.xsl parm1.in.xml parm1.task1.in.xml parm1.task2.in.xml parm1.task3.in.xml
 \begin{itemize}
  \item parm1.in.xml はシミュレーション全体の入力ファイル
  \item parm1.task\# .in.xml は各タスク毎の入力ファイル
+ \item なお、\verb|mkdir|, \verb|cd|, \verb|ls| ができるのはiPython のみ.
 \end{itemize}
 
 \end{frame}
@@ -164,6 +165,11 @@ x=[0]
 y=[0.00816759554762 +/- 7.41432666026e-05]
 props={'observable': 'Magnetization^2', 'THERMALIZATION': 10000.0, 'J': -1.0, ...}]
 \end{lstlisting}
+  \begin{itemize}
+    \item \verb|data[0]| は\verb|DataSet|（次ページ）のリストであり, タスク1つに相当.
+    \item \verb|data| は\verb|DataSet|のリストのリストで, 複数タスクに相当.
+  \end{itemize}
+
 \end{frame}
 
 \subsection*{\redm\whiteb\greenb}
