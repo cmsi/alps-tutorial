@@ -25,7 +25,7 @@
   \item 各行を入力しリターンキーを押すと, 入力内容がすぐさま実行される.
   \item Python を終了するには Ctrl-D を入力する.
   \end{itemize}
-\item Interactive Python (ipython)では, 矢印キー(↑)や Ctrl-R で履歴検索ができたり, Tab キーで関数名の補完ができて便利
+\item Interactive Python (ipython)では, 矢印キー(↑)や Ctrl-R で履歴検索ができたり, Tab キーで関数名の補完ができたり, 関数名の後に\verb|?| をつけて実行するとヘルプが表示されたりと便利機能が使える
   \begin{itemize}
   \item MateriApps LIVE!のLXTerminalでは, 背景が黒, ipythonのプロンプトが青で表示され見辛くなっている.
   \item LXTerminalの「Edit」メニューから「Preferences」を開き, 背景を白, 文字色を黒に設定し直すことを推奨.
@@ -108,8 +108,8 @@
 \end{lstlisting}
 
 \begin{itemize}
-  \item シングルクォートもしくはダブルクォートで囲った文字列で定義. 
-  \item 複数行の文字列は '''...''' もしくは """...""" で囲む
+  \item シングルクォート\verb|'|もしくはダブルクォート\verb|"|で囲った文字列で定義. 
+  \item 複数行の文字列は \verb|'''|（シングルクォート3つ） もしくは \verb|"""|（ダブルクォート3つ） で囲む.
 \end{itemize}
 \end{frame}
 
@@ -138,13 +138,16 @@
 >>>a.reverse() # 要素の並びを逆にする
 >>>a           # a そのものが変更されるので注意!
 [5, 4, 3, 2, 1]
->>>a.pop()  # リストの最後尾の要素を取り出す. 
-1           # 返り値は取り出された要素
+>>>a.pop()  # リストの最後尾の要素を取りのぞく.
+1           # 返り値は取りのぞかれた要素
 >>>a
 [5, 4, 3, 2]
->>>a.sort()
+>>>a.sort() # 要素の並び替え
 >>>a
 [2, 3, 4, 5]
+>>>a.sort(reverse=True) # 逆順
+>>>a
+[5, 4, 3, 2]
 \end{lstlisting}
 \begin{itemize}
 \item ここではリストの要素として数値のみを扱ったが, python オブジェクトなら何でも リストの要素として扱える
@@ -157,7 +160,7 @@
 \begin{frame}[t,fragile]
 \frametitle{list と tuple の違う点(1)}
 \begin{lstlisting}
->>>b = (1)  # これは tuple にならない!
+>>>b = (1)  # これは tuple にならない!（数式の評価順を制御する普通のカッコ）
 >>>type(b)
 int         # 整数扱いになる
 >>>b = (1,) # 要素 1 個の tuple を定義する
@@ -284,7 +287,8 @@ TypeError: 'tuple' object does not support item assignment
 
 \begin{frame}[t,fragile]
 \frametitle{if-elif-else 文の使い方}
-if-elif-else で条件分岐を作れる. 
+if-elif-else で条件分岐を作れる.
+コロン\verb|:| とインデントの深さ（文頭の空白の数）でブロックを表現する.
 \begin{lstlisting}[stepnumber=1]
 >>>if a > 0:
 >>>    print '0'
@@ -296,7 +300,7 @@ if-elif-else で条件分岐を作れる.
 >>>
 \end{lstlisting}
 
-三項演算子
+条件演算子（三項演算子）
 
 \begin{lstlisting}
 >>>val = val1 if cond1 else val2
@@ -411,6 +415,40 @@ while a in range(10):
 \frametitle{ファイルの読み書き}
 \begin{columns}
 \begin{column}{8cm}
+ファイルにデータを書き出す方法
+\begin{lstlisting}
+xs = ['a', 'b', 'c']
+ys = [3.432, 1.42, 2.159]
+f = open('dat.txt', 'w')
+for x,y in zip(xs,ys):
+    f.write('{} {}\n'.format(x,y))
+f.close()
+\end{lstlisting}
+\end{column}
+\begin{column}{4cm}
+出力データ (dat.txt)
+\begin{lstlisting}
+a 3.432
+b 1.42
+c 2.159
+\end{lstlisting}
+\end{column}
+\end{columns}
+
+\begin{itemize}
+\item open で dat.txt ファイルを書き込みモードで読み込む
+\item zip は複数のシーケンスからタプルのシーケンスを作る関数
+\item f.write はファイル\verb|f|に文字列を書き込む関数
+\item s.format は文字列\verb|s|中の\verb|{}| に引数の値を文字列化したものを埋め込む関数
+\end{itemize}
+ 一般的にはファイルを使い終わったら f.close() で閉じなければならないが,
+ \verb|with open('dat.txt') as f:| とすると、ブロックが終わったら自動で閉じてくれる.
+\end{frame}
+
+\begin{frame}[t,fragile]
+\frametitle{ファイルの読み書き}
+\begin{columns}
+\begin{column}{8cm}
 ファイルから１行ごとにデータを読み込む方法
 \begin{lstlisting}
 for line in open('dat.txt', 'r'):
@@ -435,11 +473,7 @@ c 2.159
       る. 
 \item 読み込んだストリングを浮動小数点にキャストしている. 
 \end{itemize}
-上の例では for 文の終了とともにファイルは自動で閉じられる. しかし, 一般的には
-\begin{itemize}
-\item f = open('dat.txt', 'r') として読み込んだ場合, ファイルを読み終
-      えたら f.close() で閉じなければならない. 
-\end{itemize}
+  上の例では\verb|with open() as f| と同様に, for 文の終了とともにファイルは自動で閉じられる. 
 \end{frame}
 
 %% \section{環境設定}
@@ -494,7 +528,7 @@ c 2.159
 $y = x^2$ のプロット
 \begin{lstlisting}
 >>> import pylab as pl
->>> x = range(-10,10)
+>>> x = range(-10,11) # 11 は含まないので注意
 >>> y = [i*i for i in x]
 # シンボルの色を赤(r), 形を丸(o)に設定
 >>> pl.plot(x, y, 'ro')
@@ -517,7 +551,7 @@ $y = x^2$ のプロット
 \frametitle{少し複雑な図をプロットしてみる}
 \begin{lstlisting}
 >>> import math as m       # cos を使うため
->>> x = range(-10,10)
+>>> x = range(-10,11)
 >>> y1 = [i*i for i in x]
 >>> y2 = [i*i*i for i in x]
 >>> y3 = [m.cos(2 * m.pi * i/20) for i in x]
