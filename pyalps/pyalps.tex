@@ -142,11 +142,11 @@ Finished with everything.
 
 \begin{frame}[t,fragile]
  \frametitle{Getting result files}
- \begin{lstlisting}
-  >>> result_files = pyalps.getResultFiles(prefix='parm1')
-  >>> print result_files
-  ['./parm1.task2.out.xml', './parm1.task3.out.xml', './parm1.task1.out.xml']
- \end{lstlisting}
+\begin{lstlisting}
+>>> result_files = pyalps.getResultFiles(prefix='parm1')
+>>> print result_files
+['./parm1.task2.out.xml', './parm1.task3.out.xml', './parm1.task1.out.xml']
+\end{lstlisting}
  \begin{itemize}
   \item カレントディレクトリ内からプレフィックスが 'parm1' のファイルを正規表現によるパターンマッチで探してファイル名を出力
   \item result\_files はファイル名のリスト．
