@@ -218,14 +218,14 @@
     \setlength{\itemsep}{1em}
   \item 環境変数の設定
     \begin{itemize}
-    \item {\color{red} ALPS\_HOME}: ALPSがインストールされているディレクトリ\\ (例: /opt/nano/alps/alps-20131104-r7230)
+    \item {\color{red} ALPS\_HOME}: ALPSがインストールされているディレクトリ\\ (例: /usr/local/alps)
     \item {\color{red} PATH}: ツール(parameter2xml)のパスを追加
     \item {\color{red} LD\_LIBRARY\_PATH}: ALPSライブラリのパスを設定
     \item {\color{red} PYTHONPATH}: ALPS Pythonモジュールのパスを追加
     \end{itemize}
   \item ALPSがプレインストールされている環境では、上記の設定を行うシェルスクリプトが用意されている. 例)
 \begin{lstlisting}
-$ source /opt/nano/alps/alpsvars.sh
+$ source /usr/local/alps/bin/alpsvars.sh
 \end{lstlisting}
   \end{itemize}
 \end{frame}
@@ -260,7 +260,6 @@ $ make
   \item 高速な並列ビルド
   \item テスト環境
   \item ビルドルール, ライブラリ, 依存関係などは CMakeLists.txt に記述する
-  \item CMakeのインストールについては, \url{http://todo.issp.u-tokyo.ac.jp/ja/search?SearchableText=cmake}
   \end{itemize}
 \end{frame}
 
@@ -281,7 +280,7 @@ $ ./hello
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,shrink=15]
+\begin{frame}[fragile,shrink=20]
   \frametitle{CMakeLists.txtの例}
   {\small \$ALPS\_HOME/tutorials/alpsize-01-cmake/CMakeLists.txt}
 \begin{semiverbatim}
@@ -304,13 +303,15 @@ $ ./hello
 \end{semiverbatim}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}[fragile,shrink]
   \frametitle{テストスクリプト}
 add\_alps\_testは以下と同等
 \begin{semiverbatim}
-\$ ./hello \$ALPS_HOME/tutorials/alpsize-00-CMake/hello.ip > hello.tmp
-\$ diff -u \$ALPS_HOME/tutorials/alpsize-00-CMake/hello.op hello.tmp
-\$ rm hello.tmp
+$ ./hello \$ALPS_HOME/tutorials/alpsize-00-CMake/hello.ip \\
+  > hello.tmp
+$ diff -u \$ALPS_HOME/tutorials/alpsize-00-CMake/hello.op \\
+  hello.tmp
+$ rm hello.tmp
 \end{semiverbatim}
 実行結果(出力)を hello.op と比較
 \begin{semiverbatim}
