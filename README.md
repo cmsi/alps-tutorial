@@ -1,7 +1,7 @@
 ALPS/tutorial
 =============
 
-CMSI hands-on materials for ALPS Library/Application / CMSI ALPS講習会のための資料
+CCMS hands-on materials for ALPS Library/Application / CCMS ALPS講習会のための資料
 
 * ALPS on MateriApps: [http://ma.cms-initiative.jp/ja/listapps/alps](http://ma.cms-initiative.jp/ja/listapps/alps)
 * ALPS: [http://alps.comp-phys.org](http://alps.comp-phys.org)
@@ -12,9 +12,8 @@ Table of Contents / 内容
 * ALPS Tutorial - Overview / ALPSチュートリアル - 概要
 * Installation of ALPS / ALPSのインストール
 * ALPS Application Tutorial / ALPSアプリケーションチュートリアル
-* Python
+* Introduction to Python / Python入門
 * Introduction to ALPS Python / ALPS Python入門
-* Introduction to Matplotlib / Matplotlib入門
 * How to ``alpsize'' your application / アプリケーションのALPS化
 
 Github repository of alps-tutorial

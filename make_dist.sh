@@ -22,8 +22,7 @@ cp -fp installation/installation-normal.pdf $DIR/ja/02_installation.pdf
 cp -fp tutorial/tutorial-normal.pdf $DIR/ja/03_tutorial.pdf
 cp -fp python/python-normal.pdf $DIR/ja/04_python.pdf
 cp -fp pyalps/pyalps-normal.pdf $DIR/ja/05_pyalps.pdf
-cp -fp matplotlib/matplotlib-normal.pdf $DIR/ja/06_matplotlib.pdf
-cp -fp alpsize/alpsize-normal.pdf $DIR/ja/07_alpsize.pdf
+cp -fp alpsize/alpsize-normal.pdf $DIR/ja/06_alpsize.pdf
 
 cp -fp python/python.ipynb $DIR/ja
 cp -fp pyalps/crash_course_pyalps.ipynb $DIR/ja
@@ -42,8 +41,7 @@ cp -fp installation/installation-wide.pdf $DIR/ja/02_installation.pdf
 cp -fp tutorial/tutorial-wide.pdf $DIR/ja/03_tutorial.pdf
 cp -fp python/python-wide.pdf $DIR/ja/04_python.pdf
 cp -fp pyalps/pyalps-wide.pdf $DIR/ja/05_pyalps.pdf
-cp -fp matplotlib/matplotlib-wide.pdf $DIR/ja/06_matplotlib.pdf
-cp -fp alpsize/alpsize-wide.pdf $DIR/ja/07_alpsize.pdf
+cp -fp alpsize/alpsize-wide.pdf $DIR/ja/06_alpsize.pdf
 
 cp -fp python/python.ipynb $DIR/ja
 cp -fp pyalps/crash_course_pyalps.ipynb $DIR/ja

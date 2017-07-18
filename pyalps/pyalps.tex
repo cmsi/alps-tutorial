@@ -1,6 +1,6 @@
 \lstset{language={Python2}}
 
-\title{ALPSチュートリアル: Introduction to ALPS Python}
+\title{ALPSチュートリアル: ALPS Python入門}
 
 \begin{document}
 
@@ -16,26 +16,17 @@
 \section{ALPS python}
 \begin{frame}[t,fragile]
  \frametitle{Launching Python}
+ \begin{itemize}
+ \item \alert{ALPS を Python のモジュールとして利用することができます．}
 
- \alert{ALPS を Python のモジュールとして利用することができます．}
+ \item MateriApps LIVE! では標準でパスが設定済なので、普通にpython (あるいはipython)を実行するだけでALPS Pythonが利用可能です.
 
- その準備として ALPS Python へ PATH を通す必要があります．
-
- phi 上で ALPS Python へ PATH を通すには次のコマンドを実行してください．
-
+ \item その他の環境では、ALPSをインストールした場合に同時にインストールされるalpsvars.shファイルを読み込んだ上で、python (あるいはipython)を実行する必要があります.
 \begin{lstlisting}
-bash> source /opt/nano/alps/alpsvars-20121208-r6630.sh
+$ source /somewhere/alpsvars.sh
+$ python
 \end{lstlisting}
-
-
- 自分で ALPS をインストールした場合，まず ALPS へ PATH を通してください．
- そこに alpspython というコマンドがインストールされているので，それを実行
- することで ALPS Python へ PATH が通せます．
-
-\begin{lstlisting}
-bash> alpspython
-\end{lstlisting}
-
+\end{itemize}
 \end{frame}
 
 \section{Preparing simulation}

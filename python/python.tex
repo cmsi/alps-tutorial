@@ -20,17 +20,17 @@
 \frametitle{Pythonの実行}
 
 \begin{itemize}
-\item ターミナル(LXTerminal)の中で python と入力しリターンキーを押すと Python インタプリタが起動します.
+\item ターミナル(LXTerminal)の中で python と入力しリターンキーを押すと Python インタプリタが起動する.
   \begin{itemize}
-  \item 各行を入力しリターンキーを押すと、入力内容がすぐさま実行されます.
+  \item 各行を入力しリターンキーを押すと, 入力内容がすぐさま実行される.
   \item Python を終了するには Ctrl-D を入力する.
   \end{itemize}
-\item Interactive Python (ipython)では、矢印キー(↑)や Ctrl-R で履歴検索ができたり、Tab キーで関数名の補完ができて便利
+\item Interactive Python (ipython)では, 矢印キー(↑)や Ctrl-R で履歴検索ができたり, Tab キーで関数名の補完ができて便利
   \begin{itemize}
-  \item MateriApps LIVE!のLXTerminalでは、背景が黒、ipythonのプロンプトが青で表示され見辛くなっています.
-  \item LXTerminalの「Edit」メニューから「Preferences」を開き、背景を白、文字色を黒に設定し直すことをおすすめします.
+  \item MateriApps LIVE!のLXTerminalでは, 背景が黒, ipythonのプロンプトが青で表示され見辛くなっている.
+  \item LXTerminalの「Edit」メニューから「Preferences」を開き, 背景を白, 文字色を黒に設定し直すことを推奨.
   \end{itemize}
-\item 以下、頭行の\verb+>>>+は Python の出力するプロンプトです. 入力する必要はありません.
+\item 以下, 頭行の\verb+>>>+は Python の出力するプロンプトである. 入力は不要.
 \end{itemize}
 \end{frame}
 
@@ -40,10 +40,8 @@
 \begin{frame}[t, fragile]
 \frametitle{基本的なデータ型}
 
-\alert{このセクションでは Python で使われる基本的なデータ型を紹介しま
-す．} array は numpy モジュールで定義されている型で，Python がもともと持っ
-ている型ではありませんが，科学計算では非常に便利な性質を持つので紹介しま
-す．
+\alert{このセクションでは Python で使われる基本的なデータ型を紹介する. } array は numpy モジュールで定義されている型で, Python がもともと持っ
+ている型ではないが, 科学計算では非常に便利な性質を持つので紹介する. 
 
 \begin{table}[hb]
  \begin{tabular}{r|l} 
@@ -63,17 +61,17 @@
 \begin{frame}[t,fragile]
 \frametitle{数値}
 
-整数, 倍精度浮動小数, 複素数の 3 種類あります．
+整数, 倍精度浮動小数, 複素数の 3 種類ある. 
 
 \begin{itemize}
  \item int, (long)
- \item float は倍精度のみです．単精度はありません．
+ \item float は倍精度のみです. 単精度はない. 
  \item complex
        \begin{itemize}
 	\item 'j' もしくは 'J' で虚数部を表す 2 + 3j
 	\item 実部 real(2+3j) = 2, 虚部 imag(2+3j) = 3  
        \end{itemize}
- \item 型変換を行えます．
+ \item 以下のようにして, 型変換を行うことが可能. 
 
        \begin{columns}
 	\begin{column}{4cm}
@@ -110,7 +108,7 @@
 \end{lstlisting}
 
 \begin{itemize}
-  \item シングルクォートもしくはダブルクォートで囲った文字列で定義できます．
+  \item シングルクォートもしくはダブルクォートで囲った文字列で定義. 
   \item 複数行の文字列は '''...''' もしくは """...""" で囲む
 \end{itemize}
 \end{frame}
@@ -121,14 +119,14 @@
   >>>a = [1,2,3,4,5] # list
   >>>a[0]   # インデックスは 0 スタート
   1         # 要素 1 個だけなら返り値はスカラー
-  >>>a[2:4] # 2<=,<4 番目のの要素が返される．
-  [3,4]     # 複数の要素なら返り値はリスト．
+  >>>a[2:4] # 2<=,<4 番目のの要素が返される. 
+  [3,4]     # 複数の要素なら返り値はリスト. 
   >>>b = (1,2,3,4,5) # tuple
   >>>b[1:]           # ':' の値を省くこともできる
   (2, 3, 4, 5)
  \end{lstlisting}
  \begin{itemize}
-  \item ここではリストの要素として数値のみを扱ったが，python オブジェクトなら何でも リストの要素として扱える
+  \item ここではリストの要素として数値のみを扱ったが, python オブジェクトなら何でも リストの要素として扱える
  \end{itemize}
 \end{frame}
 
@@ -140,7 +138,7 @@
 >>>a.reverse() # 要素の並びを逆にする
 >>>a           # a そのものが変更されるので注意!
 [5, 4, 3, 2, 1]
->>>a.pop()  # リストの最後尾の要素を取り出す．
+>>>a.pop()  # リストの最後尾の要素を取り出す. 
 1           # 返り値は取り出された要素
 >>>a
 [5, 4, 3, 2]
@@ -149,7 +147,7 @@
 [2, 3, 4, 5]
 \end{lstlisting}
 \begin{itemize}
-\item ここではリストの要素として数値のみを扱ったが，python オブジェクトなら何でも リストの要素として扱える
+\item ここではリストの要素として数値のみを扱ったが, python オブジェクトなら何でも リストの要素として扱える
 \end{itemize}
 \end{frame}
 
@@ -184,8 +182,8 @@ TypeError: 'tuple' object does not support item assignment
 \end{lstlisting}
 \begin{itemize}
 \item 要素 1 個の場合の扱いが違う
-\item tuple の要素の値は変更できない．
-\item tuple は辞書のキーに登録できる．list は不可．
+\item tuple の要素の値は変更できない. 
+\item tuple は辞書のキーに登録できる. list は不可. 
 \end{itemize}
 
 \end{frame}
@@ -275,7 +273,7 @@ TypeError: 'tuple' object does not support item assignment
 \end{lstlisting}
 
 \begin{itemize}
-\item 辞書の要素はソートされていない．登録順なども関係ない．
+\item 辞書の要素はソートされていない. 登録順なども関係ない. 
 \end{itemize}
 \end{frame}
 
@@ -286,7 +284,7 @@ TypeError: 'tuple' object does not support item assignment
 
 \begin{frame}[t,fragile]
 \frametitle{if-elif-else 文の使い方}
-if-elif-else で条件分岐を作れる．
+if-elif-else で条件分岐を作れる. 
 \begin{lstlisting}[stepnumber=1]
 >>>if a > 0:
 >>>    print '0'
@@ -322,7 +320,7 @@ a b c d
 1 b
 ...
 \end{lstlisting}
-アンパック代入は python で使える一般的なテクニックです．
+アンパック代入は python で使える一般的なテクニック. 
 \begin{lstlisting}
 >>>i,j,k = ['a', 'b', 'c']
 \end{lstlisting}
@@ -343,9 +341,9 @@ while a in range(10):
 \end{lstlisting}
 
 \begin{itemize}
-\item カレントディレクトリに上の内容で exWhile.py というファイルを作って import してみましょう
-\item "val in シークエンス:" というフレーズは while だけでなく if, for など至る所で使えます
-\item continue, break も同じく if, for などでも使えます
+\item カレントディレクトリに上の内容で exWhile.py というファイルを作って import してみよう.
+\item "val in シークエンス:" というフレーズは while だけでなく if, for など至る所で使える.
+\item continue, break も同じく if, for などでも使える.
 \end{itemize}
 
 \end{frame}
@@ -366,8 +364,8 @@ while a in range(10):
 12
 \end{lstlisting}
 \begin{itemize}
-\item def 関数名(変数,...): で関数が定義できます
-\item Python ではインデント (ここの例では空白4つ) によりスコープを制御します
+\item def 関数名(変数,...): で関数が定義できる
+\item Python ではインデント (ここの例では空白4つ) によりスコープを制御する
 \end{itemize}
 \end{frame}
 
@@ -400,8 +398,8 @@ while a in range(10):
 >>> g(x, y)
 \end{lstlisting}
 \begin{itemize}
-\item fff モジュール中の ggg 関数を呼び出しています．
-\item 呼び出し方により名前空間の階層が変わっています．
+\item fff モジュール中の ggg 関数を呼び出している. 
+\item 呼び出し方により名前空間の階層が変わる. 
 \end{itemize}
 
 \end{frame}
@@ -432,34 +430,34 @@ c 2.159
 
 \begin{itemize}
 \item open で dat.txt ファイルを readonly で読み込む
-\item 読み込んだファイルを 1 行毎に処理する．読み込まれた行は 1 つのス
+\item 読み込んだファイルを 1 行毎に処理する. 読み込まれた行は 1 つのス
       トリングとして扱われるので区切り文字（今の場合空白）で分割してい
-      る．
-\item 読み込んだストリングを浮動小数点にキャストしている．
+      る. 
+\item 読み込んだストリングを浮動小数点にキャストしている. 
 \end{itemize}
-上の例では for 文の終了とともにファイルは自動で閉じられる．しかし，一般的には
+上の例では for 文の終了とともにファイルは自動で閉じられる. しかし, 一般的には
 \begin{itemize}
-\item f = open('dat.txt', 'r') として読み込んだ場合，ファイルを読み終
-      えたら f.close() で閉じなければならない．
+\item f = open('dat.txt', 'r') として読み込んだ場合, ファイルを読み終
+      えたら f.close() で閉じなければならない. 
 \end{itemize}
 \end{frame}
 
 %% \section{環境設定}
 %% \begin{frame}[t,fragile]
 %% \frametitle{デフォルトの環境設定}
-%% 図の中で使われる文字のサイズや，図の縦・横のサイズなどをあらかじめ設定しておくことができます．
+%% 図の中で使われる文字のサイズや, 図の縦・横のサイズなどをあらかじめ設定しておくことができます. 
 %% \begin{itemize}
 %% \item matplotlib \$\{HOME\}/.matplotlib/matplotlibrc で設定する
 %% \begin{itemize}
 %% \item テンプレを \$PYTHONHOME/lib/site-packages/matplotlib/mpl-data/matplotlibrc からコピーして使う
 %% %% /opt/local//Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/matplotlib/mpl-data/matplotlibrc
-%% \item プロット時にウィンドウを開いて図を表示するには，Mac OS X の場合は次のような設定が必要
+%% \item プロット時にウィンドウを開いて図を表示するには, Mac OS X の場合は次のような設定が必要
 %%   \begin{lstlisting}
 %% #backend : Agg
 %% backend : MacOSX
 %% \end{lstlisting}
 %% \item 逆にウィンドウを開きたくないなら Agg に設定する
-%% \item AGG: Anti-Grain Geometry. ベクトルデータを画像に描くライブラリ．C++ 用．
+%% \item AGG: Anti-Grain Geometry. ベクトルデータを画像に描くライブラリ. C++ 用. 
 %% \end{itemize}
 %% \end{itemize}
 
@@ -498,7 +496,7 @@ $y = x^2$ のプロット
 >>> import pylab as pl
 >>> x = range(-10,10)
 >>> y = [i*i for i in x]
-# シンボルの色を赤(r)，形を丸(o)に設定
+# シンボルの色を赤(r), 形を丸(o)に設定
 >>> pl.plot(x, y, 'ro')
 ...[<matplotlib.lines.Line2D at 0x114c82710>]
 # 拡張子で保存のファイル形式が決まる
@@ -524,10 +522,10 @@ $y = x^2$ のプロット
 >>> y2 = [i*i*i for i in x]
 >>> y3 = [m.cos(2 * m.pi * i/20) for i in x]
 # 図を上下 2 段に並べてプロットします
->>> pl.subplot(211)        # 上側の図を書き始めます
+>>> pl.subplot(211)        # 上側の図を書き始める
 >>> pl.plot(x, y1, 'ro')   # 1 つのグラフに
 >>> pl.plot(x, y2, 'b^')   # 2 つのデータセットをプロット
->>> pl.title('$x^2$ and $x^3$')   # 図のタイトル．TeX も Ok!
+>>> pl.title('$x^2$ and $x^3$')   # 図のタイトル. TeX も Ok!
 >>> pl.legend(('$y1$', '$y2$'), numpoints=1)  # 凡例
 \end{lstlisting}
 \end{frame}
@@ -537,7 +535,7 @@ $y = x^2$ のプロット
 \begin{columns}
 \begin{column}{6cm}
 \begin{lstlisting}
-# 下側の図を書き始めます
+# 下側の図を書き始める
 >>> pl.subplot(212)        
 >>> pl.plot(x, y3, 'gs')
 >>> pl.title('$\cos(x)$')
@@ -559,10 +557,10 @@ $y = x^2$ のプロット
 %\section{Figure と Axes}
 \begin{frame}[t,fragile]
 \frametitle{Figure と Axes}
-Matplotlib の描画領域には 2 つの座標系があります．
-Figure と Axes です．1 つの Figure は 1枚の紙で，そこに複数のグラフ (Axes) を描くというイメージです．
+Matplotlib の描画領域には 2 つの座標系がある. 
+Figure と Axes です. 1 つの Figure は 1枚の紙で, そこに複数のグラフ (Axes) を描くというイメージ. 
 
-Subplot は Axes の特殊なものです．subplot(col,row,pos) で描画位置を指定できます．
+Subplot は Axes の特殊なものです. subplot(col,row,pos) で描画位置を指定できる. 
 
 \begin{center}
 \includegraphics[scale=0.4]{fig_ax.pdf}
@@ -571,7 +569,7 @@ Subplot は Axes の特殊なものです．subplot(col,row,pos) で描画位置
 
 \begin{frame}[t,fragile]
 \frametitle{Current Figure/Axes vs. オブジェクト指向}
-今まで紹介してきたプロットは，暗黙のうちに Current Figure/Axes への操作を行っていました．複数の Figure を同時に扱いたい場合はオブジェクト指向的なプロット方法が便利です．
+今まで紹介してきたプロットは, 暗黙のうちに Current Figure/Axes への操作を行っていた. 複数の Figure を同時に扱いたい場合はオブジェクト指向的なプロット方法が便利.
 
 \begin{columns}
 \begin{column}{.52\textwidth}
