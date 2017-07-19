@@ -21,17 +21,42 @@
 \begin{frame}[t, fragile]
 \frametitle{Pythonの実行}
 \begin{itemize}
-\item ターミナル(LXTerminal)の中で python と入力しリターンキーを押すと Python インタプリタが起動する.
+\item ターミナル(LXTerminal)の中でpythonと入力しEnterキーを押すと、Pythonインタプリタが起動する
   \begin{itemize}
-  \item 各行を入力しリターンキーを押すと, 入力内容がすぐさま実行される.
-  \item Python を終了するには Ctrl-D を入力する.
+  \item 各行を入力しリターンキーを押すと, 入力内容がすぐさま実行される
+  \item Python を終了するには Ctrl-D を入力する
   \end{itemize}
-\item Interactive Python (ipython)では, 矢印キー(↑)や Ctrl-R で履歴検索ができたり, Tab キーで関数名の補完ができたり, 関数名の後に\verb|?| をつけて実行するとヘルプが表示されたりと便利機能が使える
+\item Interactive Python (ipython)では, 矢印キー(↑)やCtrl-Rで履歴検索, Tabキーで関数名の補完nなど便利な機能が使える
   \begin{itemize}
-  \item MateriApps LIVE!のLXTerminalでは, 背景が黒, ipythonのプロンプトが青で表示され見辛くなっている.
-  \item LXTerminalの「Edit」メニューから「Preferences」を開き, 背景を白, 文字色を黒に設定し直すことを推奨.
+  \item MateriApps LIVE!のLXTerminalでは, 背景が黒, ipythonのプロンプトが青で表示され見辛くなっている
+  \item LXTerminalの「Edit」メニューから「Preferences」を開き, 背景を白, 文字色を黒に設定し直すことを推奨
   \end{itemize}
-\item 以下, 頭行の\verb+>>>+は Python の出力するプロンプトである. 入力は不要.
+\item Pythonコマンドをファイルに書き込み, ``python ファイル名''のように実行することでバッチ実行も可
+\item 例の中の行頭の\verb+>>>+はPythonの出力するプロンプト. 入力不要
+\end{itemize}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t, fragile]
+\frametitle{IPython Notebookを使った自習 (オプション)}
+\begin{itemize}
+\item IPython Notebookとは？
+  \begin{itemize}
+  \item ブラウザ上でドキュメントとPythonコードを編集・保存できる
+  \item Matplotlibによる図もドキュメントに埋め込むことが可能
+  \item ドキュメント内でPythonコードを直接実行できる
+  \item (最近、''Jupiter Notebook''という名前に変更された)
+  \end{itemize}
+\item IPython Notebookの起動
+\begin{lstlisting}
+$ cd $HOME/tutorials/notebook/ja
+$ ipython notebook
+\end{lstlisting}	 
+  \begin{itemize}
+  \item ブラウザが立ち上がり, notebookの一覧が表示される
+  \item 一番下のpythonをクリックして開く
+  \item グレーの枠で囲まれた箇所がPythonのコード. 枠内をクリックして「Shift + Enter」でPythonコードが実行される
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -651,6 +676,7 @@ pl.show()
   \item 標準モジュールなどの使い方が例とともに書いてあり分かりやすい
   \end{itemize}
 \item matplotlib入門 \url{http://yubais.net/doc/matplotlib/}
+\item IPython Notebook チュートリアル \url{http://qiita.com/payashim/items/d4fe5227b21a5215e78b}
 \end{itemize}
 \end{frame}
 

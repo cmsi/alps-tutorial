@@ -15,25 +15,25 @@
  \tableofcontents
 \end{frame}
 
-\section{ALPS python}
+\section{ALPS Python}
 
 \subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
  \frametitle{Launching Python}
  \begin{itemize}
- \item \alert{ALPS を Python のモジュールとして利用することが可能．}
+ \item ALPS Pythonとは
+   \begin{itemize}
+   \item ALPSのパラメータの準備, シミュレーションの実行, 実行結果の読み込みとプロットなどをPythonを使って行うためのPythonモジュール
+   \end{itemize}
+ \item MateriApps LIVE! では標準でパスが設定済. 普通にpython (あるいはipython)を実行するだけでALPS Pythonが利用可能
 
- \item MateriApps LIVE! では標準でパスが設定済. 普通にpython (あるいはipython)を実行するだけでALPS Pythonが利用可能.
-
- \item その他の環境では、ALPSをインストールした場合に同時にインストールされるalpsvars.shファイルを読み込んだ上で、python (あるいはipython)を実行.
+ \item その他の環境では、alpsvars.shファイルを読み込んだ上で、python (あるいはipython)を実行. 例)
 \begin{lstlisting}
-$ source /somewhere/alpsvars.sh
+$ source /usr/local/alps/bin/alpsvars.sh
 $ python
 \end{lstlisting}
 \end{itemize}
 \end{frame}
-
-\section{パラメータの準備}
 
 \subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
@@ -61,6 +61,26 @@ al.CycleMarkers
 \end{lstlisting}
 \end{itemize}
 \end{frame}
+
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t, fragile]
+\frametitle{IPython Notebookを使った自習 (オプション)}
+\begin{itemize}
+\item ALPS Pythonについても自習用のIPython Notebookが用意されている
+\begin{lstlisting}
+$ cd $HOME/tutorials/notebook/ja
+$ ipython notebook
+\end{lstlisting}	 
+  \begin{itemize}
+  \item ブラウザが立ち上がり, notebookの一覧が表示される
+  \item 下から二番目の ``crash_course_pyalps'' をクリックして開く
+  \item グレーの枠で囲まれた箇所がPythonのコード. 枠内をクリックして「Shift + Enter」でPythonコードが実行される
+  \item 最初の「シェル変数の設定」はMateriApps LIVE!では不要
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{パラメータの準備}
 
 \subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
