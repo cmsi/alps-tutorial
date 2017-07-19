@@ -1,32 +1,46 @@
-BASENAME = tutorial
-SRC = ${BASENAME}.tex ../style/*.sty ../style/*.bb
+BASENAME1 = tutorial1
+SRC1 = ${BASENAME1}.tex ../style/*.sty ../style/*.bb
+BASENAME2 = tutorial2
+SRC2 = ${BASENAME2}.tex ../style/*.sty ../style/*.bb
 PLATEX   = platex
 PDFLATEX = pdflatex
 TEXFLAGS = -shell-escape -interaction=nonstopmode
 
-default: ${BASENAME}-wide.pdf ${BASENAME}-normal.pdf ${BASENAME}-en-wide.pdf ${BASENAME}-en-normal.pdf
+default: ${BASENAME1}-wide.pdf ${BASENAME1}-normal.pdf ${BASENAME2}-wide.pdf ${BASENAME2}-normal.pdf ${BASENAME2}-en-wide.pdf ${BASENAME2}-en-normal.pdf
 
-${BASENAME}-wide.pdf: ${BASENAME}-wide.tex ${SRC}
+${BASENAME1}-wide.pdf: ${BASENAME1}-wide.tex ${SRC1}
 	TEXINPUTS=.:../style//: latexmk -pdfdvi -use-make -latex="${PLATEX} ${TEXFLAGS}" \
 	 -e '$$dvipdf = "dvipdfmx %O -o %D %S"' \
-	 ${BASENAME}-wide.tex
+	 ${BASENAME1}-wide.tex
 
-${BASENAME}-normal.pdf: ${BASENAME}-normal.tex ${SRC}
+${BASENAME1}-normal.pdf: ${BASENAME1}-normal.tex ${SRC1}
 	TEXINPUTS=.:../style//: latexmk -pdfdvi -use-make -latex="${PLATEX} ${TEXFLAGS}" \
 	 -e '$$dvipdf = "dvipdfmx %O -o %D %S"' \
-	 ${BASENAME}-normal.tex
+	 ${BASENAME1}-normal.tex
 
-${BASENAME}-en-wide.pdf: ${BASENAME}-en-wide.tex ${BASENAME}-en.tex ${SRC}
-	TEXINPUTS=.:../style//: latexmk -pdf -use-make -pdflatex="${PDFLATEX} ${TEXFLAGS}" ${BASENAME}-en-wide.tex
+${BASENAME2}-wide.pdf: ${BASENAME2}-wide.tex ${SRC2}
+	TEXINPUTS=.:../style//: latexmk -pdfdvi -use-make -latex="${PLATEX} ${TEXFLAGS}" \
+	 -e '$$dvipdf = "dvipdfmx %O -o %D %S"' \
+	 ${BASENAME2}-wide.tex
 
-${BASENAME}-en-normal.pdf: ${BASENAME}-en-normal.tex ${BASENAME}-en.tex ${SRC}
-	TEXINPUTS=.:../style//: latexmk -pdf -use-make -pdflatex="${PDFLATEX} ${TEXFLAGS}" ${BASENAME}-en-normal.tex
+${BASENAME2}-normal.pdf: ${BASENAME2}-normal.tex ${SRC2}
+	TEXINPUTS=.:../style//: latexmk -pdfdvi -use-make -latex="${PLATEX} ${TEXFLAGS}" \
+	 -e '$$dvipdf = "dvipdfmx %O -o %D %S"' \
+	 ${BASENAME2}-normal.tex
+
+${BASENAME2}-en-wide.pdf: ${BASENAME2}-en-wide.tex ${BASENAME2}-en.tex ${SRC2}
+	TEXINPUTS=.:../style//: latexmk -pdf -use-make -pdflatex="${PDFLATEX} ${TEXFLAGS}" ${BASENAME2}-en-wide.tex
+
+${BASENAME2}-en-normal.pdf: ${BASENAME2}-en-normal.tex ${BASENAME2}-en.tex ${SRC2}
+	TEXINPUTS=.:../style//: latexmk -pdf -use-make -pdflatex="${PDFLATEX} ${TEXFLAGS}" ${BASENAME2}-en-normal.tex
 
 .sty:
 
 clean:
-	@latexmk -c ${BASENAME}-wide.tex ${BASENAME}-normal.tex ${BASENAME}-en-wide.tex ${BASENAME}-en-normal.tex
+	@latexmk -c ${BASENAME1}-wide.tex ${BASENAME1}-normal.tex
+	@latexmk -c ${BASENAME2}-wide.tex ${BASENAME2}-normal.tex ${BASENAME2}-en-wide.tex ${BASENAME2}-en-normal.tex
 	@rm -f *.nav *.snm *.vrb
 
 distclean: clean
-	@latexmk -C ${BASENAME}-wide.tex ${BASENAME}-normal.tex ${BASENAME}-en-wide.tex ${BASENAME}-en-normal.tex
+	@latexmk -C ${BASENAME1}-wide.tex ${BASENAME1}-normal.tex
+	@latexmk -C ${BASENAME2}-wide.tex ${BASENAME2}-normal.tex ${BASENAME2}-en-wide.tex ${BASENAME2}-en-normal.tex

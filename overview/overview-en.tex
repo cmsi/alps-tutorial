@@ -1,6 +1,6 @@
 %-*- coding:utf-8 -*-
 
-\title{ALPS Tutorial -- Overview}
+\title{ALPS Tutorial \\ 01 -- Overview}
 
 \begin{document}
 
@@ -16,7 +16,7 @@
 \end{frame}
 
 \section{Reference Materials}
-\subsection*{\redb\blueb\greenb}
+\subsection*{\redb\whiteb\greenb}
 
 \begin{frame}[t,fragile]{ALPS reference materials}
   \begin{itemize}
@@ -25,31 +25,31 @@
     \begin{itemize}
     \item CMSI Hands-on Materials (ja/en)
       
-      [PDF]: : {\footnotesize \url{http://sf.net/projects/alps-tutorial/files/}}
+      [PDF]: {\footnotesize \url{https://github.com/cmsi/alps-tutorial/releases/}}
       
       [\TeX source]: {\footnotesize \url{https://github.com/cmsi/alps-tutorial/}}
       
     \item ALPS Tutorials on Official Wegpage (en/ja): {\footnotesize \url{http://alps.comp-phys.org/}}
     \end{itemize}
-  % \item ALPS Developer Wiki (en): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
-  \item CMSI MateriApps (ja/en): {\footnotesize \url{http://ma.cms-initiative.jp/}}
+  \item MateriApps (ja/en): {\footnotesize \url{http://ma.cms-initiative.jp/listapps/alps}}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]{ALPS papers}
   \begin{itemize}
     \setlength{\itemsep}{1em}
-  \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
-  \item A.~F. Albuquerque et al. {\it The ALPS project release 1.3: open source software for strongly correlated systems}, \href{http://dx.doi.org/10.1016/j.jmmm.2006.10.304}{J. Mag. Mag. Mat. 310, 1187 (2007)}.
   \item F. Alet et al. {\it The ALPS Project: Open Source Software for
-      Strongly Correlated Systems}, \href{http://jpsj.ipap.jp/link?JPSJS/74S/30}{J. Phys. Soc. Jpn. Suppl. 74, 30 (2005)}.
+    Strongly Correlated Systems}, \href{http://jpsj.ipap.jp/link?JPSJS/74S/30}{J. Phys. Soc. Jpn. Suppl. 74, 30 (2005)}.
+  \item A.~F. Albuquerque et al. {\it The ALPS project release 1.3: open source software for strongly correlated systems}, \href{http://dx.doi.org/10.1016/j.jmmm.2006.10.304}{J. Mag. Mag. Mat. 310, 1187 (2007)}.
+  \item B. Bauer et al. {\it The ALPS project release 2.0: Open source software for strongly correlated systems}, \href{http://iopscience.iop.org/1742-5468/2011/05/P05001}{J. Stat. Mech., P05001 (2011)}.
+  \item (A.~E. Antipov et al. {\it Updated Core Libraries of the ALPS Project}, \href{http://dx.doi.org/10.1016/j.cpc.2016.12.009}{Comp. Phys. Comm {\bf 213}, 235--251 (2017)}.)
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]{Need help?}
   \begin{itemize}
     \setlength{\itemsep}{1em}
-  \item Japanese ALPS Support Team: {\footnotesize \href{mailto:alps@exa.phys.s.u-tokyo.ac.jp}{alps@exa.phys.s.u-tokyo.ac.jp}}
+  \item Japanese ALPS Support Team: {\href{mailto:alps@exa.phys.s.u-tokyo.ac.jp}{alps@exa.phys.s.u-tokyo.ac.jp}}
   \item MateriApps ALPS Forum (ja/en):
 
     {\footnotesize \href{http://ma.cms-initiative.jp/ja/community/materiapps-messageboard/alps}{http://ma.cms-initiative.jp/ja/community/materiapps-...}}
@@ -60,7 +60,7 @@
 \end{frame}
 
 \section{Quantum Lattice Models}
-\subsection*{\redb\blueb\greenb}
+\subsection*{\redb\whiteb\greenb}
 
 \begin{frame}[fragile]{Quantum lattice models}
   \begin{columns}[T]
@@ -118,7 +118,7 @@
 \end{frame}
 
 \section{ALPS Project}
-\subsection*{\redb\blueb\greenb}
+\subsection*{\redb\whiteb\greenb}
 
 \begin{frame}[t,fragile]{What is ALPS?}
   ALPS = \alert{A}lgorithms and \alert{L}ibraries for \alert{P}hysics \alert{S}imulations
@@ -300,13 +300,14 @@
 \end{frame}
 
 \section{ALPS Applications}
-\subsection*{\redb\blueb\greenb}
+\subsection*{\redb\whiteb\greenb}
 
 \begin{frame}[t,fragile]{ALPS applications}
   \begin{description}
   \item[fulldiag] Exact diagonalization (full diagonalization)
   \item[sparsediag] Exact diagonalization (Lanczos method)
   \item[spinmc] Classical Monte Carlo
+  \item[simplemc] Classical Monte Carlo
   \item[loop] Quantum Monte Carlo (loop algorithm)
   \item[dirloop\_sse] Quantum Monte Carlo (directed loop algorithm)
   \item[worm] Quantum Monte Carlo (worm algorithm)
@@ -320,8 +321,7 @@
   \begin{description}
   \item[fulldiag] Exact diagonalization (full diagonalization)
     \begin{itemize}
-    \item All eigenvalues and eigenstates by using Householder method
-    \item Calculate physical quantities (numerically) exactly at any temperatures
+    \item All eigenvalues, eigenstates, finite-temperature physical quantities by using Householder method
     \end{itemize}
   \item[sparsediag] Exact diagonalization (Lanczos method)
     \begin{itemize}
@@ -332,6 +332,7 @@
       \item Metropolis method and cluster algorithm
       \item Monte Carlo simulation of classical spin models
       \item Ising model in a magnetic field, XY model, Heisenberg model, Potts model
+  \item[simplemc] Classical Monte Carlo calculation of Ising, XY, Heisenberg models
     \end{itemize}
   \end{description}
   %% \begin{itemize}

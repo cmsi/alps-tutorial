@@ -1,8 +1,10 @@
-\lstset{language={Python2}}
+%-*- coding:utf-8 -*-
 
-\title{ALPSチュートリアル: Introduction to ALPS Python}
+\title{ALPSチュートリアル \\ 05 -- ALPS Python入門}
 
 \begin{document}
+
+\lstset{language={Python2}}
 
 \begin{frame}
  \titlepage
@@ -13,64 +15,78 @@
  \tableofcontents
 \end{frame}
 
-\section{ALPS python}
+\section{ALPS Python}
+
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
  \frametitle{Launching Python}
+ \begin{itemize}
+ \item ALPS Pythonとは
+   \begin{itemize}
+   \item ALPSのパラメータの準備, シミュレーションの実行, 実行結果の読み込みとプロットなどをPythonを使って行うためのPythonモジュール
+   \end{itemize}
+ \item MateriApps LIVE! では標準でパスが設定済. 普通にpython (あるいはipython)を実行するだけでALPS Pythonが利用可能
 
- \alert{ALPS を Python のモジュールとして利用することができます．}
-
- その準備として ALPS Python へ PATH を通す必要があります．
-
- phi 上で ALPS Python へ PATH を通すには次のコマンドを実行してください．
-
+ \item その他の環境では、alpsvars.shファイルを読み込んだ上で、python (あるいはipython)を実行. 例)
 \begin{lstlisting}
-bash> source /opt/nano/alps/alpsvars-20121208-r6630.sh
+$ source /usr/local/alps/bin/alpsvars.sh
+$ python
 \end{lstlisting}
-
-
- 自分で ALPS をインストールした場合，まず ALPS へ PATH を通してください．
- そこに alpspython というコマンドがインストールされているので，それを実行
- することで ALPS Python へ PATH が通せます．
-
-\begin{lstlisting}
-bash> alpspython
-\end{lstlisting}
-
+\end{itemize}
 \end{frame}
 
-\section{Preparing simulation}
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
  \frametitle{Importing ALPS modules}
 
 \begin{itemize}
- \item ALPS Python を Python のインタープリタから利用してみましょう．
-       できれば iPython を使ってください．
+ \item ALPS Python を Python のインタープリタから利用してみよう．
+       (できれば iPython を使った方がよい)
        
-       \begin{lstlisting}
-	$ ipython
-	>>> import pyalps
-       \end{lstlisting}
-       なにもエラーが出なければこれで準備終了です．
+\begin{lstlisting}
+$ ipython
+>>> import pyalps
+\end{lstlisting}
+       なにもエラーが出なければこれで準備終了．
 
 
- \item iPython の場合 Tab 補完で pyalps のモジュールや関数などが列挙できます．
+ \item iPython の場合 Tab 補完で pyalps のモジュールや関数などが列挙できる
 
-       \begin{lstlisting}
-	>>> al.[ここで Tab]
-	Display all 102 possibilities? (y or n)
-	al.CycleColors   
-	al.CycleMarkers  
-	...            
-       \end{lstlisting}
+\begin{lstlisting}
+>>> al.[ここで Tab]
+Display all 102 possibilities? (y or n)
+al.CycleColors   
+al.CycleMarkers  
+...            
+\end{lstlisting}
 \end{itemize}
- 
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t, fragile]
+\frametitle{IPython Notebookを使った自習 (オプション)}
+\begin{itemize}
+\item ALPS Pythonについても自習用のIPython Notebookが用意されている
+\begin{lstlisting}
+$ cd $HOME/tutorials/notebook/ja
+$ ipython notebook
+\end{lstlisting}	 
+  \begin{itemize}
+  \item ブラウザが立ち上がり, notebookの一覧が表示される
+  \item 下から二番目の ``crash_course_pyalps'' をクリックして開く
+  \item グレーの枠で囲まれた箇所がPythonのコード. 枠内をクリックして「Shift + Enter」でPythonコードが実行される
+  \item 最初の「シェル変数の設定」はMateriApps LIVE!では不要
+  \end{itemize}
+\end{itemize}
+\end{frame}
 
+\section{パラメータの準備}
+
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Preparing parameter}
 
-1 回のシミュレーションに必要なパラメータセットを辞書型で与えます．
+1回のシミュレーションに必要なパラメータセットを辞書型で与える
 
 
 温度 $T = 1.5, 2, 2.5$ と変化させ 3 回のシミュレーションを行う例
@@ -86,13 +102,14 @@ bash> alpspython
 >>>
 \end{lstlisting}
 
-辞書型の要素を 3 つ持つリスト params ができます
+辞書型の要素を 3 つ持つリスト params ができる
 % [ {'LATTICE': "square lattice", 'T': t,  'J': 1 ,'THERMALIZATION': 1000, 'SWEEPS': 100000,'UPDATE': "cluster", 'MODEL': "Ising", 'L': 8} for t in [1.5,2,2.5]]
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Preparing input XML files}
-パラメータから XML 形式の入力ファイルを作成します．
+パラメータから XML 形式の入力ファイルを作成する
 \begin{lstlisting}
 >>> mkdir sim         # シミュレーション用のディレクトリを作成し
 >>> cd sim            # そこへ移動する
@@ -103,18 +120,20 @@ parm1.in.xml
 ALPS.xsl parm1.in.xml parm1.task1.in.xml parm1.task2.in.xml parm1.task3.in.xml
 \end{lstlisting}
 \begin{itemize}
- \item parm1.in.xml はシミュレーション全体の入力ファイルです
- \item parm1.task\# .in.xml は各タスク毎の入力ファイルです
+ \item parm1.in.xml はシミュレーション全体の入力ファイル
+ \item parm1.task\# .in.xml は各タスク毎の入力ファイル
+ \item なお、\verb|mkdir|, \verb|cd|, \verb|ls| ができるのはiPython のみ.
 \end{itemize}
 
 \end{frame}
 
-\section{Running simulation}
+\section{シミュレーションの実行}
+
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Running simulation on serial machine}
 \begin{lstlisting}
->>> pyalps.runApplication('spinmc',
-       input_file,Tmin=5,writexml=True)
+>>> pyalps.runApplication('spinmc', input_file,Tmin=5,writexml=True)
 spinmc parm1.in.xml --Tmin 5 --write-xml
 Generic classical Monte Carlo program using local or cluster updates
 ...
@@ -123,42 +142,44 @@ Finished with everything.
 (0, 'parm1.out.xml')
 \end{lstlisting}
 \begin{itemize}
-\item 実行が終了すると parm1.out.xml, parm1.task1.out.h5, $\cdots$ といったファイルが出力されています．
+\item 実行が終了すると parm1.out.xml, parm1.task1.out.h5, $\cdots$ といったファイルが出力されている
 \end{itemize}
- 
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Running simulation on parallel machine}
 \begin{lstlisting}
 >>> pyalps.runApplication('spinmc',input_file,Tmin=5,writexml=True,MPI=4)
 \end{lstlisting}
 \begin{itemize}
-\item MPI=4 で MPI プロセス 4 並列でシミュレーションを実行することを指示しています.
+\item MPI=4 で MPI プロセス 4 並列でシミュレーションを実行することを指示
 \end{itemize}
-
 \end{frame}
 
-\section{Loading simulation results}
+\section{実行結果の読み込み}
+
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
  \frametitle{Getting result files}
- \begin{lstlisting}
-  >>> result_files = pyalps.getResultFiles(prefix='parm1')
-  >>> print result_files
-  ['./parm1.task2.out.xml', './parm1.task3.out.xml', './parm1.task1.out.xml']
- \end{lstlisting}
+\begin{lstlisting}
+>>> result_files = pyalps.getResultFiles(prefix='parm1')
+>>> print result_files
+['./parm1.task2.out.xml', './parm1.task3.out.xml', './parm1.task1.out.xml']
+\end{lstlisting}
  \begin{itemize}
-  \item カレントディレクトリ内からプレフィックスが 'parm1' のファイルを正規表現によるパターンマッチで探してファイル名を出力します．
+  \item カレントディレクトリ内からプレフィックスが 'parm1' のファイルを正規表現によるパターンマッチで探してファイル名を出力
   \item result\_files はファイル名のリスト．
  \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Loading results}
-指定したファイル名のリストから，指定した物理量（複数可）を取り出す
+指定したファイル名のリストから，指定した物理量(複数可)を取り出す
 \begin{lstlisting}
 >>> data = pyalps.loadMeasurements(result_files,['|Magnetization|','Magnetization^2'])
->>> data[0]  # data の中身をみてみます
+>>> data[0]  # data の中身をみてみる
 [x=[0]
 y=[0.083339021352 +/- 0.00038780838614]
 props={'observable': '|Magnetization|', 'THERMALIZATION': 10000.0, 'J': -1.0, ...}, 
@@ -166,8 +187,14 @@ x=[0]
 y=[0.00816759554762 +/- 7.41432666026e-05]
 props={'observable': 'Magnetization^2', 'THERMALIZATION': 10000.0, 'J': -1.0, ...}]
 \end{lstlisting}
+  \begin{itemize}
+    \item \verb|data[0]| は\verb|DataSet|（次ページ）のリストであり, タスク1つに相当.
+    \item \verb|data| は\verb|DataSet|のリストのリストで, 複数タスクに相当.
+  \end{itemize}
+
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{データの構造}
 シミュレーション結果を表すクラス
@@ -181,7 +208,7 @@ props={'observable': 'Magnetization^2', 'THERMALIZATION': 10000.0, 'J': -1.0, ..
 \end{itemize}
 
 \begin{lstlisting}
-# 物理量の平均値と標準誤差を取り出してみます
+# 物理量の平均値と標準誤差を取り出してみる
 >>> data[0][0].y
 array([0.083339021352 +/- 0.00038780838614], dtype=object)
 >>> data[0][0].y.mean
@@ -191,7 +218,9 @@ array([0.083339021352 +/- 0.00038780838614], dtype=object)
 \end{lstlisting}
 \end{frame}
 
-\section{Plotting results}
+\section{結果のプロット}
+
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Plotting the results}
 \begin{lstlisting}
@@ -206,10 +235,11 @@ array([0.986621683313 +/- 5.59763992999e-05,
 {'observable': '|Magnetization|', '...
 \end{lstlisting}
 \begin{itemize}
-\item data から pyalps.collectXY により x 軸として 'T', y 軸として '$|$Magnetization$|$' を取り出しています．
+\item data から pyalps.collectXY により x 軸として 'T', y 軸として '$|$Magnetization$|$' を取り出している
 \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Plotting in Python using matplotlib}
 \begin{lstlisting}
@@ -224,9 +254,10 @@ array([0.986621683313 +/- 5.59763992999e-05,
 \includegraphics[scale=0.2]{ising.pdf}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Converting to other formats}
-ほかのデータフォーマットに変換できます
+ほかのデータフォーマットに変換できる
 \begin{lstlisting}
 >>> print pyalps.plot.convertToText(plotdata)
 >>> print pyalps.plot.makeGnuplotPlot(plotdata)
@@ -242,13 +273,14 @@ text 形式の出力例
 2.0	0.912126100521 +/- 0.000350201474667
 2.5	0.603552651599 +/- 0.00146115425377
 \end{lstlisting}
-
 \end{frame}
 
-\section{Evaluating data}
+\section{結果の評価}
+
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
 \frametitle{Example of evaluating data}
-binder 比 $<m^2>/<|m|>^2$ の計算をしてみます
+binder 比 $<m^2>/<|m|>^2$ の計算をしてみる
 \begin{lstlisting}
 >>> binder = pyalps.DataSet()
 >>> binder.props = pyalps.dict_intersect([d[0].props for d in data])
@@ -257,7 +289,7 @@ binder 比 $<m^2>/<|m|>^2$ の計算をしてみます
 >>> print binder
 \end{lstlisting}
 \begin{itemize}
-\item 空のデータセットを作ります
+\item 空のデータセットを作る
 \item 複数の辞書から key:val ともに一致する項目を抜き出す
 \item データから x 軸となる 'T' の数列をとりだす．
 \item $d[0]$ から $m^2$, $d[1]$ から $|m|$ を取り出して binder 比を計算

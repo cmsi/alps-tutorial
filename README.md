@@ -1,28 +1,28 @@
-ALPS/tutorial
+ALPS Tutorial
 =============
 
-CMSI hands-on materials for ALPS Library/Application / CMSI ALPS講習会のための資料
+CCMS hands-on materials for ALPS Library/Application / CCMS ALPS講習会のための資料
 
-* ALPS on MateriApps: [http://ma.cms-initiative.jp/ja/listapps/alps](http://ma.cms-initiative.jp/ja/listapps/alps)
-* ALPS: [http://alps.comp-phys.org](http://alps.comp-phys.org)
+* ALPS on MateriApps: http://ma.cms-initiative.jp/ja/listapps/alps
+* ALPS: http://alps.comp-phys.org
 
 Table of Contents / 内容
 ============================
 
-* ALPS Tutorial - Overview / ALPSチュートリアル - 概要
-* Installation of ALPS / ALPSのインストール
-* ALPS Application Tutorial / ALPSアプリケーションチュートリアル
-* Python
-* Introduction to ALPS Python / ALPS Python入門
-* Introduction to Matplotlib / Matplotlib入門
-* How to ``alpsize'' your application / アプリケーションのALPS化
+1. Overview / 概要
+2. Installation of ALPS / ALPSのインストール
+3. Application Tutorial (1) / アプリケーション実習(1)
+4. Introduction to Python / Python入門
+5. Introduction to ALPS Python / ALPS Python入門
+6. Application Tutorial (2) / アプリケーション実習(2)
+7. "Alpsize" your application / アプリケーションのALPS化
 
 Github repository of alps-tutorial
 ===================================
 
-All the LaTeX sources and figures of ALPS tutorial materials available on Github:
+All LaTeX sources and figures of ALPS tutorial materials are available on Github:
 
-* [https://github.com/cmsi/alps-tutorial](https://github.com/cmsi/alps-tutorial)
+* https://github.com/cmsi/alps-tutorial
 
 How to generte PDF files / PDF生成方法
 ==============================================
@@ -32,14 +32,14 @@ How to generte PDF files / PDF生成方法
 Pre-generated PDF files / 生成済のPDFファイル
 ======================================================
 
-Pre-generated PDF files (normal screen and wide screen versions) are available at SourceForge:
+Pre-generated PDF files (normal screen and wide screen versions) are available at
 
-* [http://sourceforge.net/projects/alps-tutorial/files](http://sourceforge.net/projects/alps-tutorial/files)
+* https://github.com/cmsi/alps-tutorial/releases
 
 Authors / 著者
 ====================
 
-CMSI hands-on materials for ALPS Library/Application are written and maintained by [Japanese ALPS suppor team](https://github.com/cmsi/alps-tutorial/graphs/contributors?type=a)
+CCMS hands-on materials for ALPS Library/Application are written and maintained by [Japanese ALPS support team](https://github.com/cmsi/alps-tutorial/graphs/contributors?type=a) <alps@exa.phys.s.u-tokyo.ac.jp>
 
 License / ライセンス
 ==========================
