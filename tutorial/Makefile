@@ -1,43 +1,46 @@
-BASENAME = tutorial
-SRC = ../style/*.sty ../style/*.bb
+BASENAME1 = tutorial1
+SRC1 = ${BASENAME1}.tex ../style/*.sty ../style/*.bb
+BASENAME2 = tutorial2
+SRC2 = ${BASENAME2}.tex ../style/*.sty ../style/*.bb
+PLATEX   = platex
+PDFLATEX = pdflatex
+TEXFLAGS = -shell-escape -interaction=nonstopmode
 
-default: ${BASENAME}-wide.pdf ${BASENAME}-normal.pdf ${BASENAME}-en-wide.pdf ${BASENAME}-en-normal.pdf
+default: ${BASENAME1}-wide.pdf ${BASENAME1}-normal.pdf ${BASENAME2}-wide.pdf ${BASENAME2}-normal.pdf ${BASENAME2}-en-wide.pdf ${BASENAME2}-en-normal.pdf
 
-${BASENAME}-wide.dvi: ${BASENAME}-wide.tex ${SRC} ${BASENAME}.tex
-	TEXINPUTS=.:../style//: platex -shell-escape ${BASENAME}-wide.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-wide.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-wide.tex
+${BASENAME1}-wide.pdf: ${BASENAME1}-wide.tex ${SRC1}
+	TEXINPUTS=.:../style//: latexmk -pdfdvi -use-make -latex="${PLATEX} ${TEXFLAGS}" \
+	 -e '$$dvipdf = "dvipdfmx %O -o %D %S"' \
+	 ${BASENAME1}-wide.tex
 
-${BASENAME}-wide.pdf: ${BASENAME}-wide.dvi
-	TEXINPUTS=.:../style//: dvipdfmx ${BASENAME}-wide.dvi
+${BASENAME1}-normal.pdf: ${BASENAME1}-normal.tex ${SRC1}
+	TEXINPUTS=.:../style//: latexmk -pdfdvi -use-make -latex="${PLATEX} ${TEXFLAGS}" \
+	 -e '$$dvipdf = "dvipdfmx %O -o %D %S"' \
+	 ${BASENAME1}-normal.tex
 
-${BASENAME}-normal.dvi: ${BASENAME}-normal.tex ${SRC} ${BASENAME}.tex
-	TEXINPUTS=.:../style//: platex -shell-escape ${BASENAME}-normal.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-normal.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-normal.tex
+${BASENAME2}-wide.pdf: ${BASENAME2}-wide.tex ${SRC2}
+	TEXINPUTS=.:../style//: latexmk -pdfdvi -use-make -latex="${PLATEX} ${TEXFLAGS}" \
+	 -e '$$dvipdf = "dvipdfmx %O -o %D %S"' \
+	 ${BASENAME2}-wide.tex
 
-${BASENAME}-normal.pdf: ${BASENAME}-normal.dvi
-	TEXINPUTS=.:../style//: dvipdfmx ${BASENAME}-normal.dvi
+${BASENAME2}-normal.pdf: ${BASENAME2}-normal.tex ${SRC2}
+	TEXINPUTS=.:../style//: latexmk -pdfdvi -use-make -latex="${PLATEX} ${TEXFLAGS}" \
+	 -e '$$dvipdf = "dvipdfmx %O -o %D %S"' \
+	 ${BASENAME2}-normal.tex
 
-${BASENAME}-en-wide.dvi: ${BASENAME}-en-wide.tex ${SRC} ${BASENAME}-en.tex
-	TEXINPUTS=.:../style//: platex -shell-escape ${BASENAME}-en-wide.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-en-wide.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-en-wide.tex
+${BASENAME2}-en-wide.pdf: ${BASENAME2}-en-wide.tex ${BASENAME2}-en.tex ${SRC2}
+	TEXINPUTS=.:../style//: latexmk -pdf -use-make -pdflatex="${PDFLATEX} ${TEXFLAGS}" ${BASENAME2}-en-wide.tex
 
-${BASENAME}-en-wide.pdf: ${BASENAME}-en-wide.dvi
-	TEXINPUTS=.:../style//: dvipdfmx ${BASENAME}-en-wide.dvi
+${BASENAME2}-en-normal.pdf: ${BASENAME2}-en-normal.tex ${BASENAME2}-en.tex ${SRC2}
+	TEXINPUTS=.:../style//: latexmk -pdf -use-make -pdflatex="${PDFLATEX} ${TEXFLAGS}" ${BASENAME2}-en-normal.tex
 
-${BASENAME}-en-normal.dvi: ${BASENAME}-en-normal.tex ${SRC} ${BASENAME}-en.tex
-	TEXINPUTS=.:../style//: platex -shell-escape ${BASENAME}-en-normal.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-en-normal.tex
-	TEXINPUTS=.:../style//: platex ${BASENAME}-en-normal.tex
-
-${BASENAME}-en-normal.pdf: ${BASENAME}-en-normal.dvi
-	TEXINPUTS=.:../style//: dvipdfmx ${BASENAME}-en-normal.dvi
+.sty:
 
 clean:
-	rm -f ${BASENAME}*.aux ${BASENAME}*.dvi ${BASENAME}*.log ${BASENAME}*.nav ${BASENAME}*.out ${BASENAME}*.snm ${BASENAME}*.toc ${BASENAME}*.vrb
-	rm -rf auto *.xbb ../style/*.xbb
+	@latexmk -c ${BASENAME1}-wide.tex ${BASENAME1}-normal.tex
+	@latexmk -c ${BASENAME2}-wide.tex ${BASENAME2}-normal.tex ${BASENAME2}-en-wide.tex ${BASENAME2}-en-normal.tex
+	@rm -f *.nav *.snm *.vrb
 
 distclean: clean
-	rm -f ${BASENAME}-wide.pdf ${BASENAME}-normal.pdf ${BASENAME}-en-wide.pdf ${BASENAME}-en-normal.pdf
+	@latexmk -C ${BASENAME1}-wide.tex ${BASENAME1}-normal.tex
+	@latexmk -C ${BASENAME2}-wide.tex ${BASENAME2}-normal.tex ${BASENAME2}-en-wide.tex ${BASENAME2}-en-normal.tex

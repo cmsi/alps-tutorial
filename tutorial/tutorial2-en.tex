@@ -1,6 +1,6 @@
 %-*- coding:utf-8 -*-
 
-\title{ALPS Application Tutorial}
+\title{ALPS Tutorial \\ 06 -- Application Tutorial (2)}
 
 \begin{document}
 
@@ -15,8 +15,8 @@
    \tableofcontents
 \end{frame}
 
-\section{Workflow of ALPS Simulation / ALPSシミュレーションの流れ}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\section{Workflow of ALPS Simulation}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}{Workflow of ALPS simulation}
   \begin{center}
@@ -67,6 +67,40 @@ $ cp -rp $ALPS_HOME/tutorials $HOME
 \end{frame}
 
 \begin{frame}[t,fragile]
+  \frametitle{Preparation for running tutorials}
+  In the case of using ALPS installed in \verb+$HOME+ by yourself
+  \begin{enumerate}
+  \item Set up environment variables
+\begin{lstlisting}
+$ source $HOME/alps/bin/alpsvars.sh
+\end{lstlisting}
+  \item Confirm that ALPS tools work correctly
+\begin{lstlisting}
+$ pconfig
+\end{lstlisting}
+  \item Copy tutorial files
+\begin{lstlisting}
+$ cp -rp $ALPS_HOME/tutorials $HOME
+\end{lstlisting}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{Preparation for running tutorials}
+  In the case of using MateriApps LIVE!
+  \begin{enumerate}
+  \item Confirm that ALPS tools work correctly
+\begin{lstlisting}
+$ pconfig
+\end{lstlisting}
+  \item Copy tutorial files
+\begin{lstlisting}
+$ cp -rp /usr/share/alps/tutorials $HOME
+\end{lstlisting}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[t,fragile]
   \frametitle{Miki's first ALPS simulation}
   \begin{itemize}
     \item Run simulations from Python (\href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:MC-02_Susceptibilities}{mc-02-susceptibilities})
@@ -103,8 +137,8 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
-\section{Preparation of Input Files / 入力ファイルの準備}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\section{Preparation of Input Files}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}[t,fragile]{Inputs/Outputs of ALPS simulation}
   \begin{itemize}
@@ -211,8 +245,8 @@ THERMALIZATION = SWEEPS/8;
   \end{itemize}
 \end{frame}
 
-\section{Running ALPS Applications / ALPSアプリケーションの実行}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\section{Running ALPS Applications}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}[t,fragile]{Running ALPS applications}
   \begin{enumerate}
@@ -229,8 +263,8 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
   \end{enumerate}
 \end{frame}
 
-\section{Plotting Simulation Results / 結果のプロット}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\section{Plotting Simulation Results}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}[t,fragile]{Plotting simulation results}
   \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
@@ -260,8 +294,8 @@ data = pyalps.loadMeasurements(
   \end{enumerate}
 \end{frame}
 
-\section{Further Tutorials / もっとチュートリアル}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\section{Further Tutorials}
+\subsection*{\redm\whiteb\greenb}
 
 \begin{frame}[t,fragile]{Still hungry?}
   \begin{itemize}

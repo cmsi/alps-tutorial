@@ -1,6 +1,6 @@
 %-*- coding:utf-8 -*-
 
-\title{ALPSアプリケーションチュートリアル}
+\title{ALPSチュートリアル \\ 06 -- アプリケーション実習(2)}
 
 \begin{document}
 
@@ -15,93 +15,20 @@
    \tableofcontents
 \end{frame}
 
-\section{ALPSシミュレーションの流れ / Workflow of ALPS Simulation}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\section{ALPSシミュレーションの流れ}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}{ALPSシミュレーションのワークフロー}
   \begin{center}
     \includegraphics[height=0.8\textheight]{workflow.pdf}
   \end{center}
 \end{frame}
 
-\begin{frame}[t,fragile]{ALPSセットアップ・スクリプト}
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t,fragile]
+  \frametitle{ALPSシミュレーションの実行例}
   \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item 環境変数{\tt ALPS\_HOME}, {\tt PATH}, {\tt LD\_LIBRARY\_PATH}, {\tt PYTHONPATH}などを適切に設定するためのスクリプト「{\color {red}alpsvars.sh}」があらかじめ用意されている
-  \item alpsvars.shのインストール場所
-    \begin{itemize}
-    \item psi.issp.u-tokyo.ac.jp:
-      {\footnotesize \tt /opt/MateriApps/alps/alpsvars.sh}
-    \item phi.aics.riken.jp:
-      {\footnotesize \tt /home/materiapps/alps/alpsvars.sh}
-    \item kashiwa.issp.u-tokyo.ac.jp:
-      {\footnotesize \tt /home/issp/materiapps/alps/alpsvars.sh}
-    \item k.aics.riken.jp:
-      {\footnotesize \tt /opt/spire/alps/alpsvars.sh}
-    \end{itemize}
-  \item {\color{red} ALPSがインストールされているスパコン}の一覧とセットアップ・スクリプトの場所については、以下を参照 {\footnotesize \url{https://github.com/wistaria/MateriAppsInstaller}}
-  \item \href{http://cmsi.github.io/MateriAppsLive/}{MateriApps LIVE!}では、環境変数はあらかじめ設定されているため、セットアップ・スクリプトは不要
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t,fragile]
-  \frametitle{チュートリアル実行の準備}
-  \begin{enumerate}
-  \item ワークステーションにSSHログイン
-\begin{lstlisting}
-$ ssh -YC username@hostname
-\end{lstlisting}
-  \item 環境変数のセットアップ
-\begin{lstlisting}
-$ source /somewhere/alpsvars.sh
-\end{lstlisting}
-  \item ALPSツールが正しく動くかどうか確認
-\begin{lstlisting}
-$ pconfig
-\end{lstlisting}
-  \item チュートリアルに使用するファイルをコピー
-\begin{lstlisting}
-$ cp -rp $ALPS_HOME/tutorials $HOME
-\end{lstlisting}
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}[t,fragile]
-  \frametitle{チュートリアル実行の準備 (ローカル環境を使う場合)}
-  \begin{enumerate}
-  \item 環境変数のセットアップ
-\begin{lstlisting}
-$ source $HOME/alps/alpsvars.sh
-\end{lstlisting}
-  \item ALPSツールが正しく動くかどうか確認
-\begin{lstlisting}
-$ pconfig
-\end{lstlisting}
-  \item チュートリアルに使用するファイルをコピー
-\begin{lstlisting}
-$ cp -rp $ALPS_HOME/tutorials $HOME
-\end{lstlisting}
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}[t,fragile]
-  \frametitle{チュートリアル実行の準備 (MateriApps LIVE!を使う場合)}
-  \begin{enumerate}
-  \item ALPSツールが正しく動くかどうか確認
-\begin{lstlisting}
-$ pconfig
-\end{lstlisting}
-  \item チュートリアルに使用するファイルをコピー
-\begin{lstlisting}
-$ cp -rp /usr/share/alps/tutorials $HOME
-\end{lstlisting}
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}[t,fragile]
-  \frametitle{はじめてのALPSシミュレーション}
-  \begin{itemize}
-    \item Pythonからのシミュレーションの実行 (\href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:MC-02_Susceptibilities}{mc-02-susceptibilities})
+    \item Pythonからのシミュレーションの実行
 \begin{lstlisting}
 $ cd $HOME/tutorials/mc-02-susceptibilities
 $ python tutorial2a.py
@@ -116,6 +43,7 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
   \frametitle{いったい何を計算したの?}
   \begin{itemize}
@@ -135,9 +63,9 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
-\section{入力ファイルの準備 / Preparation of Input Files}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\section{入力ファイルの準備}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}{ALPSシミュレーションの入出力}
   \begin{itemize}
   \item 典型的には、一つのシミュレーションは複数のパラメータセットからなる(異なる温度など)
@@ -153,8 +81,7 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}●}}
-
+\subsection*{\redm\whitem\greenb}
 \begin{frame}{XMLの基礎}
   \begin{itemize}
   \item XML = e{\color{red} X}tensible {\color{red} M}arckup {\color{red} L}anduage
@@ -168,8 +95,7 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}●}}
-
+\subsection*{\redm\whitem\greenb}
 \begin{frame}{XMLの文法}
   \begin{itemize}
   \item 「開始タグ」には対応する「終了タグ」が必要
@@ -182,6 +108,7 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}{なぜXMLを使うのか?}
   \begin{center}
     \includegraphics[width=.8\textwidth]{xml3.pdf}
@@ -193,6 +120,7 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}{データ形式の拡張性}
   \begin{itemize}
   \item 新しいパラメータを追加すると、、、
@@ -204,20 +132,21 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
-
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}{Job XML ファイル(マスターファイル)}
   \begin{center}
     \includegraphics[height=.6\textheight]{simulation2.pdf}
   \end{center}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}{Task XML ファイル}
   \begin{center}
     \includegraphics[height=.6\textheight]{simulation3.pdf}
   \end{center}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}{ALPSによって生成されるバイナリ形式ファイル}
   \begin{itemize}
     \setlength{\itemsep}{1em}
@@ -234,6 +163,7 @@ $ python tutorial2full.py
   \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]{入力ファイルの準備}
   \begin{enumerate}
     \setlength{\itemsep}{1em}
@@ -244,6 +174,7 @@ $ python tutorial2full.py
   \end{enumerate}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]{入力ファイルの準備}
   \begin{enumerate}
     \setlength{\itemsep}{1em}
@@ -255,6 +186,7 @@ $ python tutorial2full.py
   \end{enumerate}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
   \frametitle{Simplified parameter file format}
   \begin{columns}[T]
@@ -286,6 +218,7 @@ THERMALIZATION = SWEEPS/8;
   \end{columns}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}{格子とモデルの指定}
   \begin{itemize}
   \item 格子とモデルを指定するための特別なパラメータ
@@ -295,9 +228,9 @@ THERMALIZATION = SWEEPS/8;
   \end{itemize}
 \end{frame}
 
-\section{ALPSアプリケーションの実行 / Running ALPS Applications}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\section{ALPSアプリケーションの実行}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]{ALPSアプリケーションの実行方法}
   \begin{enumerate}
   \item Pythonスクリプトから: 例) \href{https://github.com/cmsi/alps-tutorial/blob/tutorials/tutorials/mc-02-susceptibilities/tutorial2a.py}{tutorial2a.py}
@@ -313,9 +246,9 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
   \end{enumerate}
 \end{frame}
 
-\section{結果のプロット / Plotting Simulation Results}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\section{結果のプロット}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]{シミュレーション結果のプロット}
   \includegraphics[height=.5\textheight]{tutorial2a-3.pdf}
   \begin{itemize}
@@ -324,6 +257,7 @@ $ mpirun -np 8 spinmc --Tmin=5 --mpi param2a.in.xml
   \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]{測定物理量の一覧の取得}
   \begin{enumerate}
     \setlength{\itemsep}{1em}
@@ -344,8 +278,9 @@ data = pyalps.loadMeasurements(
   \end{enumerate}
 \end{frame}
 
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}ー}}
+\section{ALPSの実行シナリオ}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]
   \frametitle{ALPSの実行シナリオ}
   \begin{enumerate}
@@ -371,6 +306,7 @@ $ loop param.in.xml
   \end{enumerate}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
   \frametitle{コマンドライン実行 (厳密対角化 ed-01)}
   \begin{enumerate}
@@ -395,6 +331,7 @@ $ sparsediag --write-xml parm1a.in.xml
   \end{enumerate}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
   \frametitle{シェルスクリプトによる実行 (厳密対角化 ed-01)}
   \begin{enumerate}
@@ -420,6 +357,7 @@ sparsediag --write-xml parm1a.in.xml
   \end{enumerate}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
   \frametitle{Pythonでの対話的実行 (厳密対角化 ed-01)}
   \begin{enumerate}
@@ -440,6 +378,7 @@ $ ipython
   \end{enumerate}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
   \frametitle{Pythonでのバッチ実行 (厳密対角化 ed-01)}
   \begin{enumerate}
@@ -459,6 +398,7 @@ $ python tutorial1a.py
   \end{enumerate}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile,shrink=10]
   \frametitle{IPython notebookでの実行 (厳密対角化 ed-01)}
   \begin{enumerate}
@@ -482,6 +422,7 @@ $ ssh username@hostname -L 8888:localhost:8888
   \end{enumerate}
 \end{frame}
 
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]
   \frametitle{IPython notebookでの実行 (ローカル環境を使う場合)}
   \begin{itemize}
@@ -497,16 +438,7 @@ $ ipython notebook --pylab inline
   \end{itemize}
 \end{frame}
 
-\begin{frame}[t,fragile]{実行結果の確認}
-  \begin{itemize}
-    \item 実行結果(JOB XMLファイル、TASK XMLファイル)は、webブラウザで直接開いて中身を見ることも可能
-      \begin{itemize}
-      \item 例(Linux): firefox parm1a.task1.out.xml
-      \item 例(Mac OS X): open -a safari parm1a.task1.out.xml
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
+\subsection*{\redm\whitem\greenb}
 \begin{frame}[t,fragile]{シミュレーションの並列実行}
   \begin{itemize}
     \item パラメータセットに関する並列実行が可能 (embarassingly parallel)
@@ -524,9 +456,21 @@ $ ipython notebook --pylab inline
   \end{itemize}
 \end{frame}
 
-\section{もっとチュートリアル / Further Tutorials}
-\subsection*{{\protect\color{red}●}{\protect\color{blue}●}{\protect\color{green}●}}
+\subsection*{\redm\whitem\greenb}
+\begin{frame}[t,fragile]{実行結果の確認}
+  \begin{itemize}
+    \item 実行結果(JOB XMLファイル、TASK XMLファイル)は、webブラウザで直接開いて中身を確認することも可能
+      \begin{itemize}
+      \item 例(MateriApps LIVE!): iceweasel parm1a.task1.out.xml
+      \item 例(Linux): firefox parm1a.task1.out.xml
+      \item 例(Mac OS X): open -a safari parm1a.task1.out.xml
+      \end{itemize}
+  \end{itemize}
+\end{frame}
 
+\section{もっとチュートリアル}
+
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]{より高度なチュートリアル}
   \begin{itemize}
   \item パラメータファイルを変更することで、以下のようなシミュレーションが実行可能:
@@ -542,6 +486,7 @@ $ ipython notebook --pylab inline
   \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]{ALPS格子チュートリアル}
   \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO/ja}{ALPS Lattice HowTo} \\
   \begin{itemize}
@@ -553,6 +498,7 @@ $ ipython notebook --pylab inline
   \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenb}
 \begin{frame}[t,fragile]{ALPS模型チュートリアル}
   \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO}{ALPS Model HowTo} \\
   \begin{itemize}
@@ -565,8 +511,7 @@ $ ipython notebook --pylab inline
   \end{itemize}
 \end{frame}
 
-\subsection*{{\protect\color{red}ー}{\protect\color{blue}●}{\protect\color{green}ー}}
-
+\subsection*{\redm\whiteb\greenm}
 \begin{frame}[t,fragile]{厳密対角化チュートリアル}
   \begin{itemize}
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-01_SparseDiagonalization/ja}{ED-01 Sparse Diagonalization (Lanczos)
@@ -588,6 +533,7 @@ $ ipython notebook --pylab inline
   \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenm}
 \begin{frame}[t,fragile]{厳密対角化チュートリアル}
   \begin{itemize}
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-04_Criticality/ja}{ED-04 Conformal field theory description of 1D critical spectra}
@@ -604,6 +550,7 @@ $ ipython notebook --pylab inline
   \end{itemize}
 \end{frame}
 
+\subsection*{\redm\whiteb\greenm}
 \begin{frame}[t,fragile]{モンテカルロ法チュートリアル}
   \begin{itemize}
   \item mc-01-autocorrelations
