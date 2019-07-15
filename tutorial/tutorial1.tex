@@ -69,8 +69,8 @@ $ source /usr/local/alps/bin/alpsvars.sh
     % \setlength{\itemsep}{1em}
   \item チュートリアルファイルのコピー
 \begin{lstlisting}
-$ cp -r /usr/share/alps/tutorials $HOME
-$ cd $HOME/tutorials/mc-09-snapshot
+$ cp -r /usr/share/alps/tutorials/mc-09-snapshot .
+$ cd mc-09-snapshot
 \end{lstlisting}
   \item パラメータの変換 (一群のXMLファイル parm9a.*.in.xml の生成)
 \begin{lstlisting}
@@ -119,7 +119,7 @@ data = pyalps.loadMeasurements(pyalps.getResultFiles(prefix='parm9a'),
 \begin{lstlisting}
 for item in pyalps.flatten(data):
     item.props['L'] = int(item.props['L'])
-magnetization2 = pyalps.collectXY(data, x='T',y='Magnetization Density^2’,
+magnetization2 = pyalps.collectXY(data, x='T',y='Magnetization Density^2',
   foreach=['L'])
 magnetization2.sort(key=lambda item: item.props['L'])
 \end{lstlisting}

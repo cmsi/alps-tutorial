@@ -1,0 +1,240 @@
+%-*- coding:utf-8 -*-
+
+\title{ALPS Tutorial \\ 03 -- Application Tutorial (1)}
+
+\begin{document}
+
+\lstset{language={C++},showspaces=false,rulecolor=\color[cmyk]{0, 0.29,0.84,0}}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section*{Outline}
+\begin{frame}[t,fragile]
+   \tableofcontents
+\end{frame}
+
+\section{Before starting simulations}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile]{Before starting simulations -- common operations}
+  \begin{itemize}
+    % \setlength{\itemsep}{1em}
+  \item Open terminal
+    \begin{itemize}
+    \item \alert{On MateriAps LIVE!: Start Menu $\Rightarrow$ ``System Tools'' $\Rightarrow$ ``LXTerminal''}
+    \item On macOS: Open ``Terminal'' application
+    \item If using a remote workstation, open the terminal and SSH to the remote node
+    \end{itemize}
+
+  \item PATH setting
+    \begin{itemize}
+    \item \alert{On MateriAps LIVE!: PATH has been configured already}
+    \item In other environment, you have to run alpsvars.sh. ex)
+\begin{lstlisting}
+$ source /usr/local/alps/bin/alpsvars.sh
+\end{lstlisting}
+    \end{itemize}
+    
+  \item Tutorial files
+    \begin{itemize}
+    \item \alert{On MateriApps LIVE!: Tutorial files can be found in /usr/share/alps/tutorials/}
+    \item In other environment, there should be ``tutorials'' directory in the place where ALPS is installed
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Two-dimensional ferromagnetic Ising model}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile]{Phase transition in two-dimensional ferromagnetic Ising model (1)}
+  \begin{itemize}
+    % \setlength{\itemsep}{1em}
+  \item Most simplest model that exhibits a phase transiton
+    \[
+      {\cal H} = - J \sum_{\langle i,j \rangle} \sigma_i \sigma_j \qquad (\sigma = \pm 1)
+      \]
+    \item Second-order phase transition happens  at critical temperature ($T_{\rm c} = 2/\log(1+\sqrt{2}) = 2.269\cdots$)
+    \item At high temperatures ($T > T_{\rm c}$): paramagnetic phase, no long-range order due to entropy effect
+    \item At low temperatures ($T < T_{\rm c}$): ferromagnetic phase, long-range order due to interaction between spins
+    \item Specific heat and susceptibility diverge at the critical point (critical phenomena)
+    \item Simulation of equilibrium state by simplemc classical Monte Carlo code (Metropolis method)
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile]{Phase transition in two-dimensional ferromagnetic Ising model (2)}
+  \begin{itemize}
+    % \setlength{\itemsep}{1em}
+  \item Copy tutorial file
+\begin{lstlisting}
+$ cp -r /usr/share/alps/tutorials/mc-09-snapshot .
+$ cd mc-09-snapshot
+\end{lstlisting}
+  \item Convert parameter file into XML files parm9a.*.in.xml
+\begin{lstlisting}
+$ parameter2xml parm9a
+\end{lstlisting}
+  \item Execute simulation
+\begin{lstlisting}
+$ simplemc parm9a.in.xml
+\end{lstlisting}
+\item Plot results
+\begin{lstlisting}
+$ python plot9a.py
+\end{lstlisting}
+\item Close three plot windows
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile]{Paramter file (parm9a)}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item Look at the contents by ``less parm9a''
+    \begin{itemize}
+    \item \verb+LATTICE="square lattice"+ : specify square lattice
+    \item \verb+J=1+ : ferromagnetic interaction ($J>0$)
+    \item \verb+ALGORITHM="ising"+ : use Ising model simulator
+    \item \verb+SWEEPS=65536+ : Monte Carlo steps
+    \item \verb+L=8+ : linear extent of lattice ($L=8, 16, 24$)
+    \item \verb+{ T = 5.0 }+ : list of temperatures
+    \end{itemize}
+  \item Variables not enclosed in \{ \} are common parameters
+  \item Simulation is performed for each \{ \} (XML file (*.task*.*) is created for each temperature)
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile,shrink]{Python plot script (plot9a.py)}
+  \begin{itemize}
+    % \setlength{\itemsep}{1em}
+  \item Extraction results from data files
+\begin{lstlisting}
+data = pyalps.loadMeasurements(pyalps.getResultFiles(prefix='parm9a'),
+  ['Specific Heat','Magnetization Density^2','Binder Ratio of Magnetization'])
+\end{lstlisting}
+  \item Organize by system sizes
+\begin{lstlisting}
+for item in pyalps.flatten(data):
+    item.props['L'] = int(item.props['L'])
+magnetization2 = pyalps.collectXY(data, x='T',y='Magnetization Density^2',
+  foreach=['L'])
+magnetization2.sort(key=lambda item: item.props['L'])
+\end{lstlisting}
+  \item Plot using matplotlib
+\begin{lstlisting}
+pyplot.figure()
+alpsplot.plot(magnetization2)
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile]{Visualization of snapshot of Ising spins (1)}
+  \begin{itemize}
+    % \setlength{\itemsep}{1em}
+  \item Look at spin state in paramagnetic phase, in critical point, and in ferromagnetic phase
+  \item Parameter SNAPSHOT\_INTERVAL is added in the parameter file (parm9b)
+  \item Convert parameter file
+\begin{lstlisting}
+$ parameter2xml parm9b
+\end{lstlisting}
+  \item Execute simulation
+\begin{lstlisting}
+$ simplemc parm9b.in.xml
+\end{lstlisting}
+\item Convert snapshot
+\begin{lstlisting}
+$ snap2vtk parm9b.*.snap
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile]{Visualization of snapshot of Ising spins (2)}
+  \begin{itemize}
+    % \setlength{\itemsep}{1em}
+  \item Start ParaView (Start Menu $\Rightarrow$ ``Education'' $\Rightarrow$ ``ParaView Viewer''
+  \item file $\Rightarrow$ open $\Rightarrow$ choose parm9b.task1.clone1.16384.vtk $\Rightarrow$ OK $\Rightarrow$ Apply
+    \begin{itemize}
+    \item filters $\Rightarrow$ common $\Rightarrow$ glyph (or click globe-like icon)
+    \item Glyph Type = Box, X Length = 0.08, Y Length = 0.08, Maximum Number of Points = 20000 $\Rightarrow$ Apply
+    \end{itemize}
+  \item Click horizontal division icon at upper right corner
+  \item file $\Rightarrow$ open $\Rightarrow$ choose parm9b.task2.clone1.16384.vtk $\Rightarrow$ OK $\Rightarrow$ Apply
+    \begin{itemize}
+    \item filters $\Rightarrow$ common $\Rightarrow$ glyph (or click globe-like icon)
+    \item Set Glyph in the same way
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile]{Visualization of snapshot of Ising spins (3)}
+  \begin{itemize}
+    % \setlength{\itemsep}{1em}
+  \item Click horizontal division icon at upper right corner
+  \item file $\Rightarrow$ open $\Rightarrow$ choose parm9b.task3.clone1.16384.vtk $\Rightarrow$ OK $\Rightarrow$ Apply
+    \begin{itemize}
+      \item filters $\Rightarrow$ common $\Rightarrow$ glyph (or click globe-like icon)
+      \item Set Glyph in the same way
+    \end{itemize}
+  \item Link cameras
+    \begin{itemize}
+    \item Adjust windows to become the same size
+    \item Click middle window $\Rightarrow$ Tools $\Rightarrow$ Add Camera Link $\Rightarrow$ click left window
+    \item Link right window to left one similarly
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Visualization of spin vortices}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile]{Visualization of spin vortex in two-dimensional classical XY model}
+  \begin{itemize}
+    % \setlength{\itemsep}{1em}
+  \item Convert parameter file, execute simulation, convert snapshots
+\begin{lstlisting}
+$ parameter2xml parm9c
+$ simplemc parm9c.in.xml
+$ snap2vtk parm9c.*.snap
+\end{lstlisting}
+Note that \verb+ALGORITHM="xy"+ in the parameter file
+  \item Visualization using ParaView
+    \begin{itemize}
+      \item file $\Rightarrow$ open $\Rightarrow$ choose parm9c.task1.clone1.16384.vtk $\Rightarrow$ OK
+      \item properties tab $\Rightarrow$ Apply
+      \item Add Glyph
+      \item Glyph Type = Arrow, Tip Radius = 0.2, Shaft Radius = 0.06, Translate = -0.1 0 0, Scale = 0.2 0.2 0.2 $\Rightarrow$ Apply
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Antiferromagnetic classical Heisenberg model on triangular lattice}
+
+\subsection*{\redb\whiteb\greenm}
+\begin{frame}[t,fragile]{Antiferromagnetic classical Heisenberg model on triangular lattice}
+  \begin{itemize}
+    % \setlength{\itemsep}{1em}
+  \item Convert parameter file, execute simulation, convert snapshots
+\begin{lstlisting}
+$ parameter2xml parm9d
+$ simplemc parm9d.in.xml
+$ snap2vtk parm9d.*.snap
+\end{lstlisting}
+Note that \verb+LATTICE+, \verb+J+, \verb+ALGORITHM+, \verb+H+ in the parameter file
+  \item Visualization using ParaView
+    \begin{itemize}
+      \item file $\Rightarrow$ open $\Rightarrow$ choose parm9d.task1.clone1.16384.vtk $\Rightarrow$  OK
+      \item properties tag $\Rightarrow$ Apply
+      \item Add Glyph and set Arrow
+      \item Display tag $\Rightarrow$ Color by $\Rightarrow$ Glyph Vector $\Rightarrow$ Z $\Rightarrow$ Properties tag
+      \item Display one more snapshot (parm9d.task2.clone1.16384.vtk) and link cameras
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\end{document}
