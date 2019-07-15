@@ -24,88 +24,89 @@
   \end{center}
 \end{frame}
 
-\begin{frame}[t,fragile]{ALPS setup script}
-  \begin{itemize}
-    % \setlength{\itemsep}{1em}
-  \item ALPS provides shell script ``{\color {red}alpsvars.sh}'' which initializes environment variables, {\tt ALPS\_HOME}, {\tt PATH}, {\tt LD\_LIBRARY\_PATH}, {\tt PYTHONPATH}, etc
-  \item alpsvars.sh can be found in the following places:
-    \begin{itemize}
-    \item psi.issp.u-tokyo.ac.jp:
-      {\footnotesize \tt /opt/MateriApps/alps/alpsvars.sh}
-    \item phi.aics.riken.jp:
-      {\footnotesize \tt /home/materiapps/alps/alpsvars.sh}
-    \item kashiwa.issp.u-tokyo.ac.jp:
-      {\footnotesize \tt /home/issp/materiapps/alps/alpsvars.sh}
-    \item k.aics.riken.jp:
-      {\footnotesize \tt /opt/spire/alps/alpsvars.sh}
-    \end{itemize}
-  \item For complete list of {\color{red} {\em ALPS-ready} supercomputers} and location of setup script, please refer to \url{https://github.com/wistaria/MateriAppsInstaller}
-  \item On \href{http://cmsi.github.io/MateriAppsLive/}{MateriApps LIVE!}, setup script is not needed as environment variables are set by default
-  \end{itemize}
-\end{frame}
+%% \begin{frame}[t,fragile]{ALPS setup script}
+%%   \begin{itemize}
+%%     % \setlength{\itemsep}{1em}
+%%   \item ALPS provides shell script ``{\color {red}alpsvars.sh}'' which initializes environment variables, {\tt ALPS\_HOME}, {\tt PATH}, {\tt LD\_LIBRARY\_PATH}, {\tt PYTHONPATH}, etc
+%%   \item alpsvars.sh can be found in the following places:
+%%     \begin{itemize}
+%%     \item psi.issp.u-tokyo.ac.jp:
+%%       {\footnotesize \tt /opt/MateriApps/alps/alpsvars.sh}
+%%     \item phi.aics.riken.jp:
+%%       {\footnotesize \tt /home/materiapps/alps/alpsvars.sh}
+%%     \item kashiwa.issp.u-tokyo.ac.jp:
+%%       {\footnotesize \tt /home/issp/materiapps/alps/alpsvars.sh}
+%%     \item k.aics.riken.jp:
+%%       {\footnotesize \tt /opt/spire/alps/alpsvars.sh}
+%%     \end{itemize}
+%%   \item For complete list of {\color{red} {\em ALPS-ready} supercomputers} and location of setup script, please refer to \url{https://github.com/wistaria/MateriAppsInstaller}
+%%   \item On \href{http://cmsi.github.io/MateriAppsLive/}{MateriApps LIVE!}, setup script is not needed as environment variables are set by default
+%%   \end{itemize}
+%% \end{frame}
+
+%% \begin{frame}[t,fragile]
+%%   \frametitle{Preparation for running tutorials}
+%%   \begin{enumerate}
+%%   \item SSH login to workstation
+%% \begin{lstlisting}
+%% $ ssh -YC username@hostname
+%% \end{lstlisting}
+%%   \item Set up environment variables
+%% \begin{lstlisting}
+%% $ source /somewhere/alpsvars.sh
+%% \end{lstlisting}
+%%   \item Confirm that ALPS tools work correctly
+%% \begin{lstlisting}
+%% $ pconfig
+%% \end{lstlisting}
+%%   \item Copy tutorial files
+%% \begin{lstlisting}
+%% $ cp -rp $ALPS_HOME/tutorials $HOME
+%% \end{lstlisting}
+%%   \end{enumerate}
+%% \end{frame}
+
+%% \begin{frame}[t,fragile]
+%%   \frametitle{Preparation for running tutorials}
+%%   In the case of using ALPS installed in \verb+$HOME+ by yourself
+%%   \begin{enumerate}
+%%   \item Set up environment variables
+%% \begin{lstlisting}
+%% $ source $HOME/alps/bin/alpsvars.sh
+%% \end{lstlisting}
+%%   \item Confirm that ALPS tools work correctly
+%% \begin{lstlisting}
+%% $ pconfig
+%% \end{lstlisting}
+%%   \item Copy tutorial files
+%% \begin{lstlisting}
+%% $ cp -rp $ALPS_HOME/tutorials $HOME
+%% \end{lstlisting}
+%%   \end{enumerate}
+%% \end{frame}
+
+%% \begin{frame}[t,fragile]
+%%   \frametitle{Preparation for running tutorials}
+%%   In the case of using MateriApps LIVE!
+%%   \begin{enumerate}
+%%   \item Confirm that ALPS tools work correctly
+%% \begin{lstlisting}
+%% $ pconfig
+%% \end{lstlisting}
+%%   \item Copy tutorial files
+%% \begin{lstlisting}
+%% $ cp -rp /usr/share/alps/tutorials $HOME
+%% \end{lstlisting}
+%%   \end{enumerate}
+%% \end{frame}
 
 \begin{frame}[t,fragile]
-  \frametitle{Preparation for running tutorials}
-  \begin{enumerate}
-  \item SSH login to workstation
-\begin{lstlisting}
-$ ssh -YC username@hostname
-\end{lstlisting}
-  \item Set up environment variables
-\begin{lstlisting}
-$ source /somewhere/alpsvars.sh
-\end{lstlisting}
-  \item Confirm that ALPS tools work correctly
-\begin{lstlisting}
-$ pconfig
-\end{lstlisting}
-  \item Copy tutorial files
-\begin{lstlisting}
-$ cp -rp $ALPS_HOME/tutorials $HOME
-\end{lstlisting}
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}[t,fragile]
-  \frametitle{Preparation for running tutorials}
-  In the case of using ALPS installed in \verb+$HOME+ by yourself
-  \begin{enumerate}
-  \item Set up environment variables
-\begin{lstlisting}
-$ source $HOME/alps/bin/alpsvars.sh
-\end{lstlisting}
-  \item Confirm that ALPS tools work correctly
-\begin{lstlisting}
-$ pconfig
-\end{lstlisting}
-  \item Copy tutorial files
-\begin{lstlisting}
-$ cp -rp $ALPS_HOME/tutorials $HOME
-\end{lstlisting}
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}[t,fragile]
-  \frametitle{Preparation for running tutorials}
-  In the case of using MateriApps LIVE!
-  \begin{enumerate}
-  \item Confirm that ALPS tools work correctly
-\begin{lstlisting}
-$ pconfig
-\end{lstlisting}
-  \item Copy tutorial files
-\begin{lstlisting}
-$ cp -rp /usr/share/alps/tutorials $HOME
-\end{lstlisting}
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}[t,fragile]
-  \frametitle{Miki's first ALPS simulation}
+  \frametitle{Example of ALPS simulation}
   \begin{itemize}
     \item Run simulations from Python (\href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:MC-02_Susceptibilities}{mc-02-susceptibilities})
 \begin{lstlisting}
-$ cd $HOME/tutorials/mc-02-susceptibilities
+$ cp -rp /usr/share/alps/tutorials/mc-02-susceptibilities .
+$ cd mc-02-susceptibilities  
 $ python tutorial2a.py
 $ python tutorial2b.py
 $ python tutorial2c.py
@@ -332,6 +333,83 @@ data = pyalps.loadMeasurements(
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO#The_basis_of_the_full_lattice_model}{The basis of the full lattice model}
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO#Quantum_operators}{Quantum operators}
   \item \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO#Hamiltonian_descriptions}{Hamiltonian descriptions}
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenm}
+\begin{frame}[t,fragile]{Exact diagonalization tutorials}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-01_SparseDiagonalization}{ED-01 Sparse Diagonalization (Lanczos)}
+
+    For the one-dimensional quantum system of $S =1$ (number of sites
+    is 4), obtain the eigenvalues by the Lanczos method, and output
+    the eigenvalues, correlation function, etc.
+
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-02_Gaps}{ED-02 Spin gaps of 1D quantum systems}
+    
+    For the one-dimensional $S=1$ system (number of sites if from 4
+    to 14), calculate the eigenvalues using the Lanczos method, and
+    calculate the energy gap in the thermodynamic limit from the
+    obtained energy eigenvalues.
+
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenm}
+\begin{frame}[t,fragile]{Exact diagonalization tutorials}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-03_Spectra}{ED-03 Spectra of 1D quantum systems}
+
+    For the following two types of quantum lattice models, we
+    calculate the eigenvalues using Lanczos method
+    \begin{itemize}
+      \item $S=1/2$ quantum antiferromagnetic Heisenberg chain
+      \item $S=1/2$ quantum antiferromagnetic Heisenberg ladder
+    \end{itemize}
+
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-04_Criticality}{ED-04 Conformal field theory description of 1D critical spectra}
+
+    For the transverse-field Ising model, calculate the eigenvalues
+    using the Lancos method, and demonstrate the relationship between
+    the critical exponents of the correlation function and the energy
+    gap derived from conformal field theory using the eigenvalues
+    obtained from numerical calculations.
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenm}
+\begin{frame}[t,fragile]{Exact diagonalization tutorials}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-05_ED_Phase_Transition}{ED-05 Phase transition in a frustrated spin chain}
+
+    For the Heisenberg chain with the next nearest neighbor
+    interaction, calculate Eigenvalues by the Lanczos method, and
+    obtain the critical point. In addition, perform analysis using
+    conformal field theory.
+
+  \item \href{http://alps.comp-phys.org/mediawiki/index.php/ALPS_2_Tutorials:ED-06_FullDiagonalization}{ED-06 Full Diagonalization}
+
+    Perform a full diagonalization for the $S=1$ antiferromagnetic
+    Heisenberg chain (8 sites), and plot the thermodynamic behavior
+    for various physical quantities based on the obtained eigenvalues.
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenm}
+\begin{frame}[t,fragile]{Monte Carlo tutorials}
+  \begin{itemize}
+  \item mc-01-autocorrelations
+  \item mc-01b-equilibration-and-convergence
+  \item mc-02-susceptibilities
+  \item mc-03-magnetization
+  \item mc-04-measurements
+  \item mc-05-bosons
+  \item mc-06-qwl
+  \item mc-07-phase-transition
+  \item mc-08-quantum-phase-transition
   \end{itemize}
 \end{frame}
 
