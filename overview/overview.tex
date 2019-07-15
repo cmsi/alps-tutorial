@@ -32,7 +32,7 @@
      \item ALPSオフィシャルページTurorials (英/日): {\footnotesize \url{http://alps.comp-phys.org/}}
     \end{itemize}
     %  \item ALPS Developer Wiki (en): {\footnotesize \url{http://alps.comp-phys.org/trac/}}
-  \item MateriApps (日/英): {\footnotesize \url{http://ma.cms-initiative.jp/listapps/alps}}
+  \item MateriApps (日/英): {\footnotesize \url{https://ma.issp.u-tokyo.ac.jp/app/213}}
   \item 藤堂眞治,「``実験技術''としての量子多体シミュレーションソフトウェアALPS」, \href{http://www.jps.or.jp/books/gakkaishi/2015/04/06/70-04exp.pdf}{日本物理学会誌 {\bf 70}, 275 (2015)}.
   \end{itemize}
 \end{frame}
@@ -54,9 +54,6 @@
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item 日本ALPSサポートチーム: {\href{mailto:alps@exa.phys.s.u-tokyo.ac.jp}{alps@exa.phys.s.u-tokyo.ac.jp}}
-  \item MateriApps ALPS フォーラム(日/英):
-
-    {\footnotesize \href{http://ma.cms-initiative.jp/ja/community/materiapps-messageboard/alps}{http://ma.cms-initiative.jp/ja/community/materiapps-...}}
   \item ALPS User's Mailing List (英):
 
     {\footnotesize \href{https://alps.comp-phys.org/mediawiki/index.php/Forum:Overview}{https://alps.comp-phys.org/mediawiki/index.php/Forum...}}
@@ -64,19 +61,18 @@
 \end{frame}
 
 \subsection*{\redb\whiteb\greenb}
-\begin{frame}[t,fragile]{ALPSチュートリアル スタッフ}
+\begin{frame}[t,fragile]{ALPSチュートリアル}
   \begin{itemize}
     \setlength{\itemsep}{1em}
-  \item チュートリアル資料作成・講師
+  \item チュートリアル資料開発
     \begin{itemize}
     \item 藤堂眞治 (東大院理/物性研)
-    \item 本山裕一 (東大物性研)
     \end{itemize}
-  \item 主催
+  \item 開発協力者: 本山裕一, 松尾春彦, 五十嵐亮, 諏訪秀麿, 坂下達也
+  \item サポート
     \begin{itemize}
     \item ISSP-CCMS: 東京大学物性研究所計算物質科学研究センター \url{http://ccms.issp.u-tokyo.ac.jp/} \\[2em]
     \end{itemize}
-  \item これまでの協力者: 松尾春彦 (現 ペジーコンピューティング), 五十嵐亮 (現 東大情報基盤センター), 諏訪秀麿 (東大院理・テネシー大), 坂下達也 (現 名古屋大学)
   \end{itemize}
 \end{frame}
 
@@ -233,7 +229,7 @@
 \begin{frame}[t,fragile]
 \frametitle{``Cite-me''ライセンス}
   \begin{itemize}
-  \item GNU General Public License 2 (GPL2) を基本としたライセンス
+  \item GNU General Public License 2 (GPLv2) を基本としたライセンス
   \item Non-commercial academic use の場合自由に利用可能
   \item 自由に再配布可
   \item ユーザが変更を施したコードも同じライセンスの下で再配布可
@@ -484,7 +480,6 @@ std::cout << binder;
 Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
 \end{lstlisting}
   \item 作成した局所ハミルトニアンは行列の形で取り出せる
-  \item プラケット項などの多サイトにわたる相互作用には未対応
   \item ALPS Model HOWTO: {\small \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO/ja}{http://alps.comp-phys.org/mediawiki/ index.php/Tutorials:ModelHOWTO/ja}}
   \item あらかじめ用意されている模型: ``spin", ``boson Hubbard", ``hardcore boson", ``fermion Hubbard", ``alternative fermion Hubbard", ``spinless fermions", ``Kondo lattice", ``t-J"
   \end{itemize}

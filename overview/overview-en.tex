@@ -23,7 +23,7 @@
     \setlength{\itemsep}{1em}
   \item ALPS Tutorial Materials
     \begin{itemize}
-    \item CMSI Hands-on Materials (ja/en)
+    \item CMSI Hands-on Materials (en/ja)
       
       [PDF]: {\footnotesize \url{https://github.com/cmsi/alps-tutorial/releases/}}
       
@@ -31,7 +31,7 @@
       
     \item ALPS Tutorials on Official Wegpage (en/ja): {\footnotesize \url{http://alps.comp-phys.org/}}
     \end{itemize}
-  \item MateriApps (ja/en): {\footnotesize \url{http://ma.cms-initiative.jp/listapps/alps}}
+  \item MateriApps (ja/en): {\footnotesize \url{https://ma.issp.u-tokyo.ac.jp/en/app/217}}
   \end{itemize}
 \end{frame}
 
@@ -50,14 +50,72 @@
   \begin{itemize}
     \setlength{\itemsep}{1em}
   \item Japanese ALPS Support Team: {\href{mailto:alps@exa.phys.s.u-tokyo.ac.jp}{alps@exa.phys.s.u-tokyo.ac.jp}}
-  \item MateriApps ALPS Forum (ja/en):
-
-    {\footnotesize \href{http://ma.cms-initiative.jp/ja/community/materiapps-messageboard/alps}{http://ma.cms-initiative.jp/ja/community/materiapps-...}}
   \item ALPS User's Mailing List (en):
 
     {\footnotesize \href{https://alps.comp-phys.org/mediawiki/index.php/Forum:Overview}{https://alps.comp-phys.org/mediawiki/index.php/Forum...}}
   \end{itemize}
 \end{frame}
+
+\subsection*{\redb\whiteb\greenb}
+\begin{frame}[t,fragile]{ALPS tutorial}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item Main developer of this tutorial
+    \begin{itemize}
+    \item Synge Todo (Department of Physics / ISSP, University of Tokyo)
+    \end{itemize}
+  \item Collaborators
+    \begin{itemize}
+    \item Y. Motoyama, H. Matsuo, R. Igarashi, H. Suwa, T. Sakashita
+    \end{itemize}
+  \item Support
+    \begin{itemize}
+    \item ISSP-CCMS: Center for Computational Materials Science, Institute for Solid State Physics, Unversity of Tokyo \url{http://ccms.issp.u-tokyo.ac.jp/} \\[2em]
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+%% \subsection*{\redb\whiteb\greenb}
+%% \begin{frame}[t,fragile]
+%%   \frametitle{Agenda}
+%%              {\footnotesize\color{red} $\bullet$} : Beginner course (1-2 hrs)
+
+%%              {\footnotesize\color{blue} $\bullet$} : Intermediate course (half day)
+
+%%              {\footnotesize\color{green} $\bullet$} : Developer course (full day) \\[1em]
+             
+%%   \begin{tabular}{|l|l|c|c|c|}
+%%         \hline
+%%         ALPS Overview & {\tt 01\_overview} & {\footnotesize\color{red} $\circ$} & {\blueb} & {\footnotesize\color{green} $\bullet$} \\
+%%         \hline
+%%         Installation of ALPS & {\tt 02\_installation} & {\footnotesize\color{red} } & {\footnotesize\color{blue} $\circ$} & {\footnotesize\color{green} $\bullet$} \\
+%%         \hline
+%%         Application Tutorials (1) & {\tt 03\_tutorial1} & {\footnotesize\color{red} $\bullet$} & {\blueb} & {\footnotesize\color{green} } \\
+%%         \hline
+%%         Introduction of Python & {\tt 04\_python} & {\footnotesize\color{red}} & {\footnotesize\color{blue} $\circ$} & {\footnotesize\color{green} $\circ$} \\
+%%         \hline
+%%         ALPS Python & {\tt 05\_pyalps} & {\footnotesize\color{red} } & {\footnotesize\color{blue} $\circ$} & {\footnotesize\color{green} $\circ$} \\
+%%         \hline
+%%         Application Tutorials (2) & {\tt 06\_tutorial2} & {\footnotesize\color{red} } & {\blueb} & {\footnotesize\color{green} $\circ$} \\
+%%         \hline
+%%         Alpsize Applications & {\tt 07\_alpsize} & {\footnotesize\color{red} } & {\footnotesize\color{blue} } & {\footnotesize\color{green} $\bullet$} \\
+%%         \hline
+%%   \end{tabular}
+%% \end{frame}
+
+%% \subsection*{\redb\whiteb\greenb}
+%% \begin{frame}[t,fragile]
+%%   \frametitle{ALPSチュートリアルの目標}
+%%   \begin{itemize}
+%%     \setlength{\itemsep}{1em}
+%%     \item ALPSの概要を知る \ [{\redb}{\blueb}{\footnotesize\color{green} $\bullet$}]
+%%     \item ALPSアプリケーションの実行方法を学ぶ  \ [{\footnotesize\color{red} $\bullet$}{\blueb}{\footnotesize\color{green} $\circ$}]
+%%     \item ALPS Pythonツールを使った結果の解析方法を学ぶ  \ [{\redb}{\footnotesize\color{blue} $\circ$}{\footnotesize\color{green} $\circ$}]
+%%     \item ALPSライブラリの仕組みを学ぶ \ [{\footnotesize\color{red} ー}{\footnotesize\color{blue} ー}{\footnotesize\color{green} $\circ$}]
+%%     \item ユーザアプリケーションの作成方法を学ぶ \ [{\footnotesize\color{red} ー}{\footnotesize\color{blue} ー}{\footnotesize\color{green} $\bullet$}]
+%%     \item (ALPSチュートリアルの問題点を洗い出し改良する) \ [{\footnotesize\color{red} $\bullet$}{\blueb}{\footnotesize\color{green} $\bullet$}] 
+%%   \end{itemize}
+%% \end{frame}
 
 \section{Quantum Lattice Models}
 \subsection*{\redb\whiteb\greenb}
@@ -263,7 +321,7 @@
 %\begin{itemize}
 %\item ALPS Library License, ALPS Application License
   \begin{itemize}
-  \item Based on GNU General Public License 2 (GPL2)
+  \item Based on GNU General Public License 2 (GPLv2)
   \item Free for non-commercial academic use
   \item User's code can be redistributed freely under the same license
   \item Acknowledgment and citation requirement
@@ -296,6 +354,224 @@
   \item Various {\em \color{red} state-of-the-art} solvers (applications): ED, CMC, QMC, DMRG, DMFT
   \item Common input format for {\em \color{red} all} ALPS applications
   \item {\em \color{red} Portable} output format and Python evaluation/plotting tools
+  \end{itemize}
+\end{frame}
+
+\section{ALPS Libraries}
+
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t,fragile]{ALPS libraries and applications}
+  \begin{center}
+    \includegraphics[height=0.65\textheight]{hierarchy.pdf}
+  \end{center}
+\end{frame}
+
+\subsection*{\redm\whitem\greenb}
+\begin{frame}[t,fragile]
+  \frametitle{Third-party libraries}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item \href{http://www.boost.org/}{Boost C++ Library}: random nubers, graph, serialization, etc
+  \item \href{http://www.hdfgroup.org/HDF5/}{HDF5} (Hierarchical Data Format): portable binary file format
+  \item \href{http://www.mpi-forum.org/}{MPI} (Message Passing Interface): for parallel simulation (optional)
+  \item \href{http://www.netlib.org/blas/}{BLAS}, \href{http://www.netlib.org/lapack/}{LAPACK}: matrix diagonalization, singular value decomposition, etc (optional)
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redm\whitem\greenb}
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/parameter library}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      \begin{itemize}
+      \item Library for input/output parameters
+        %\begin{itemize}
+        \item Line feed, semicolon, comma to separate paramter definitions
+        \item Can use arithmetic operations and elementary functions (sin, cos, exp, etc.)
+        \item $\pi$ (PI), imaginary unit (I)
+          \item Commens in C-style and C++-style
+          \item Variables not enclosed in \{ \} are common parameters
+          \item Variables enclosed in \{ \} are different parameter sets
+        %\end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{.5\textwidth}
+    \begin{lstlisting}
+LATTICE = "chain lattice";
+L = 16,
+SEED = 2873
+// C++ style comment
+SWEEPS = 4096;
+THERMALIZATION = SWEEPS/8;
+/* C style comment */
+{ T = 2; Sq = 2*PI/3; }
+{ T = 1.8; }
+\end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection*{\redm\whitem\greenb}
+\begin{frame}[t,fragile]
+  \frametitle{Example code using ALPS/parameter}
+  \lstset{language={C++}}
+  \begin{lstlisting}
+#include <boost/foreach.hpp>
+#include <alps/parameter.h>
+int main() {
+  std::ifstream fin;
+  fin.open("parameters.txt");
+  alps::ParameterList plist(fin);
+  BOOST_FOREACH(alps::Parameters& p, plist) {
+    double a = p["a"];
+    double b = p.value_or_default("b", 0.5);
+    ...
+  }
+  ...
+}
+\end{lstlisting}
+\end{frame}
+
+\subsection*{\redm\whitem\greenb}
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/alea library}
+  \begin{itemize}
+  \item Template library for accumulating and analyzing correlated time-series data from Markov process
+    \lstset{language={C++}}
+    \begin{lstlisting}
+alps::RealObservable mag2("Magnetization^2");
+...
+mag2 << m * m; // at each MC step
+\end{lstlisting}
+  \item Binning analysis for mean, error, and autocorrelation time
+    \lstset{language={C++}}
+    \begin{lstlisting}
+std::cout << mag2 << std::endl;
+\end{lstlisting}
+  \item Ouput
+\lstset{language={bash}}
+\begin{lstlisting}
+Magnetization^2: 3.142 +/- 0.001; tau = 10.3
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redm\whitem\greenb}
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/alea library}
+  \begin{itemize}
+  \item Jackknife error analysis for correlated quantities
+    \lstset{language={C++}}
+    \begin{lstlisting}
+alps::RealObsevaluator mag2eval(mag2);
+alps::RealObsevaluator mag4eval(mag4);
+alps::RealObsevaluator binder = mag2eval * mag2eval / mag4eval;
+std::cout << binder;
+\end{lstlisting}
+  \item Output
+\lstset{language={bash}}
+\begin{lstlisting}
+(Magnetization^2) * (Magnetization^2) / (Magnetization^4): 0.453 +/- 0.005
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t,fragile,shrink]
+  \frametitle{ALPS/lattice library}
+  \begin{itemize}
+    \setlength{\itemsep}{1em}
+  \item Lattices are represented as mathematical structures called ``graphs''
+    \begin{itemize}
+    \item site $\Leftrightarrow$ vertex
+    \item bond $\Leftrightarrow$ edge
+    \end{itemize}
+  \item ALPS:Lattice library provides a useful “wrapper” on generic graph libraries (e.g. BGL)
+    \begin{itemize}
+    \item Input/Output in XML format
+    \item constructing a lattice by repeating unit cell
+    \item coordinates, parity, reciprocal vectors, etc
+    \end{itemize}
+  \item Predefined lattices: ``chain lattice", ``square lattice", ``triangular lattice", ``honeycomb lattice", ``simple cubic lattice", etc
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t,fragile]
+  \frametitle{Finite lattice + embedded unit cell}
+  \begin{itemize}
+  \item Infinite lattice
+  \begin{lstlisting}
+<LATTICE name="2D" dimension="2">
+  <BASIS>
+    <VECTOR>   1 0 </VECTOR>
+    <VECTOR> 0.5 1 </VECTOR>
+  </BASIS>
+</LATTICE>
+\end{lstlisting}
+  \end{itemize}
+  \begin{center}
+    \includegraphics[height=0.3\textheight]{TutorialLatticeHOWTOLattice1}
+  \end{center}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t, fragile]
+  \frametitle{Finite lattice and embedded unit cell}
+  \begin{itemize}
+  \item Unit cell
+  \begin{lstlisting}
+<UNITCELL name="simple1d" dimension="1" vertices="1">
+  <EDGE>
+    <SOURCE vertex="1" offset="0"/><TARGET vertex="1" offset="1"/>
+  </EDGE>
+</UNITCELL>
+\end{lstlisting}
+  \end{itemize}
+  \begin{center}
+    \includegraphics[height=0.25\textheight]{TutorialLatticeHOWTOLatticegraph3}
+  \end{center}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t,fragile]
+  \frametitle{Finite lattice and embedded unit cell}
+  \begin{itemize}
+  \item Extents and boundary conditions
+    \begin{lstlisting}
+<LATTICEGRAPH name = "chain lattice">
+  <FINITELATTICE>
+    <LATTICE ref="chain lattice"/>
+    <PARAMETER name="L"/>
+    <EXTENT size ="L"/>
+    <BOUNDARY type="periodic"/>
+  </FINITELATTICE>
+  <UNITCELL ref="simple1d"/>
+</LATTICEGRAPH>
+\end{lstlisting}
+  \item More complex examples
+    \begin{itemize}
+    \item ALPS Lattice HOWTO: {\small \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:LatticeHOWTO}{http://alps.comp-phys.org/mediawiki/ index.php/Tutorials:LatticeHOWTO}}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection*{\redm\whiteb\greenb}
+\begin{frame}[t,fragile]
+  \frametitle{ALPS/model library}
+  \begin{itemize}
+%    \setlength{\itemsep}{1em}
+  \item Enables us to define a Hamiltonian in XML format
+    \begin{itemize}  
+    \item quantum numbers, operators
+    \item accepts symbolic expressions for site-/bond-Hamiltonians
+    \end{itemize}
+    \begin{lstlisting}
+Jz*Sz(i)*Sz(j)+Jxy/2*(Splus(i)*Sminus(j)+Sminus(i)*Splus(j))
+\end{lstlisting}
+  \item generates local Hamiltonians in a matrix form
+  \item ALPS Model HOWTO: {\small \href{http://alps.comp-phys.org/mediawiki/index.php/Tutorials:ModelHOWTO}{http://alps.comp-phys.org/mediawiki/ index.php/Tutorials:ModelHOWTO}}
+  \item Predefined models: ``spin", ``boson Hubbard", ``hardcore boson", ``fermion Hubbard", ``alternative fermion Hubbard", ``spinless fermions", ``Kondo lattice", ``t-J", etc
   \end{itemize}
 \end{frame}
 
