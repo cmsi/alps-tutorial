@@ -29,6 +29,7 @@ cp -fp python/python.ipynb $DIR/ja
 cp -fp pyalps/crash_course_pyalps.ipynb $DIR/ja
 
 cp -fp overview/overview-en-normal.pdf $DIR/en/01_overview.pdf
+cp -fp tutorial/tutorial1-en-normal.pdf $DIR/en/03_tutorial1.pdf
 cp -fp tutorial/tutorial2-en-normal.pdf $DIR/en/06_tutorial2.pdf
 
 tar zcf $DIR.tgz $DIR
@@ -49,6 +50,7 @@ cp -fp python/python.ipynb $DIR/ja
 cp -fp pyalps/crash_course_pyalps.ipynb $DIR/ja
 
 cp -fp overview/overview-en-wide.pdf $DIR/en/01_overview.pdf
+cp -fp tutorial/tutorial1-en-wide.pdf $DIR/en/03_tutorial1.pdf
 cp -fp tutorial/tutorial2-en-wide.pdf $DIR/en/06_tutorial2.pdf
 
 tar zcf $DIR.tgz $DIR
