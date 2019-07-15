@@ -23,17 +23,17 @@
   \item すでにインストールされているものを利用
     \begin{itemize}
     \item MateriApps LIVE!
-    \item 物性研システムB (sekirei)
+    \item 物性研システムB (sekirei), システムC (enaga)
     \end{itemize}
   \item バイナリパッケージの利用
     \begin{itemize}
-    \item Debian Package (Debian Wheezy, Jessie) [\href{https://github.com/cmsi/MateriAppsLive/wiki/UsingMateriAppsInDebian}{設定方法}]
+    \item Debian Package (Debian Jessie, Stretch) [\href{https://github.com/cmsi/MateriAppsLive/wiki/UsingMateriAppsInDebian}{設定方法}]
     \item MacPorts (コンパイル方法に不備があり動作が遅い)
     \end{itemize}
   \item MateriApps Installerスクリプトを利用
     \begin{itemize}
     \item \url{https://github.com/wistaria/MateriAppsInstaller}
-    \item macOS、Linux PC (GCC, Intel)、富士通FX10、京コンピュータ等
+    \item macOS、Linux PC (GCC, Intel)、Fujitsu FX10、京コンピュータ等
     \end{itemize}
   \item 自分でインストール
   \end{itemize}
@@ -43,17 +43,12 @@
 \begin{frame}
  \frametitle{MateriApps LIVE!}
  \begin{itemize}
-   \item \url{http://cmsi.github.io/MateriAppsLive/}
-   \item 多数の計算科学アプリがインストール済のLive Debian/GNU Linuxシステム
+   \item \url{https://cmsi.github.io/MateriAppsLive/}
+   \item 多数の計算科学アプリがインストール済のDebian Linux仮想ハードディスクイメージ
    \item ALPSもすでにインストール済
-   \item MateriApps LIVE! VirtualBox版: VirtualBox仮想化アプリにMateriApps LIVE!仮想ハードディスクイメージ(OVA)をインポートし, 仮想マシン上で起動
+   \item VirtualBox仮想化アプリにMateriApps LIVE!仮想ハードディスクイメージ(OVA)をインポートし, 仮想マシン上で起動
      \begin{itemize}
-     \item 動作が少し遅く、メモリがより多く必要であるが、簡単・確実
-     \item \alert{本チュートリアルではこちらを利用} [\href{https://www.slideshare.net/cms\_initiative/materiapps-live-65694832}{設定方法}]
-     \end{itemize}
-   \item MateriApps LIVE! ブート用USB: MateriApps LIVE! ブートイメージが格納されたUSBメモリから直接起動
-     \begin{itemize}
-     \item PCによっては起動がうまくいかないことも
+     \item \mbox{} [\href{https://www.slideshare.net/cms_initiative/clipboards/how-to-setup-materiapps-live}{設定方法}]
      \end{itemize}
  \end{itemize}
 \end{frame}
@@ -66,21 +61,21 @@
   \begin{itemize}
   \item 必須のもの\\
     \begin{tabular}{ll}
-      CMake & \url{http://www.cmake.org/} \\
-      Boost & \url{http://www.boost.org/} \\
-      HDF5  & \url{http://www.hdfgroup.org/HDF5/} \\
+      CMake & \url{https://www.cmake.org/} \\
+      Boost & \url{https://www.boost.org/} \\
+      HDF5  & \url{https://www.hdfgroup.org/solutions/hdf5/} \\
     \end{tabular}
   \item 結果の解析に必要なもの \\
     \begin{tabular}{ll}
-      BLAS/LAPACK & \url{http://www.netlib.org/} \\
-      Python & \url{http://www.python.org/} \\
-      Numpy & \url{http://www.numpy.org} \\
-      Scipy & \url{http://www.scipy.org} \\
-      Matplotlib & \url{http://matplotlib.org/}
+      BLAS/LAPACK & \url{https://www.netlib.org/} \\
+      Python & \url{https://www.python.org/} \\
+      Numpy & \url{https://www.numpy.org/} \\
+      Scipy & \url{https://www.scipy.org/} \\
+      Matplotlib & \url{https://matplotlib.org/}
     \end{tabular}
   \item あるとよいもの \\
     \begin{tabular}{ll}
-      MPI & \url{http://www.mpi-forum.org/} \\
+      MPI & \url{https://www.mpi-forum.org/} \\
     \end{tabular}
   \end{itemize}
 \end{frame}
